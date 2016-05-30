@@ -1,0 +1,29 @@
+
+.burger {
+  border: 0;
+  padding: 0;
+  background: none;
+  display: block;
+  outline: 0;
+}
+
+  .line {
+    transition-timing-function: ease-out;
+    transition-duration: .2s;
+  }
+
+  .last {
+    margin-bottom: 0;
+  }
+
+  .out {
+    transition-property: transform;
+  }
+
+  .in {
+    transition-property: opacity;
+  }
+
+  .rounded {
+    border-radius: 5px;
+  }
