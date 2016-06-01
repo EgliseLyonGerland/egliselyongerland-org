@@ -66,6 +66,7 @@ export default class App extends Component {
       <div className={styles.app}>
         <Helmet {...config.app.head}/>
         <Header />
+        {this.props.children}
       </div>
     );
   }

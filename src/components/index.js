@@ -14,3 +14,4 @@
 export Header from './Header/Header';
 export Sidebar from './Sidebar/Sidebar';
 export Burger from './Burger/Burger';
+export Jumbotron from './Jumbotron/Jumbotron';
