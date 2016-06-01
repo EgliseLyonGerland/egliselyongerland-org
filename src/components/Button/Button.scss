@@ -1,0 +1,17 @@
+
+@import "../../theme/variables.scss";
+
+.button {
+  background: $color-main;
+  cursor: pointer;
+}
+
+  .md {
+    font-size: 16px;
+    padding: 10px 15px;
+  }
+
+  .lg {
+    font-size: 20px;
+    padding: 15px 20px;
+  }

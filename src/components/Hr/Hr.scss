@@ -1,0 +1,38 @@
+
+@import "../../theme/variables.scss";
+@import "../../theme/mixins.scss";
+
+@mixin hr-size($name, $size) {
+  .#{$name} {
+    margin: ($size / 2) 0;
+  }
+
+  .inline {
+    &.#{$name} {
+      margin: 0 ($size / 2);
+    }
+  }
+}
+
+.hr {
+  @include clearfix;
+
+  border: 0;
+  margin: ($hr-size-md / 2) 0;
+}
+
+  .line {
+    border-bottom: solid 1px;
+  }
+
+  .inline {
+    display: inline-block;
+    margin: 0 ($hr-size-md / 2);
+  }
+
+  @include hr-size('nm', $hr-size-nm);
+  @include hr-size('xs', $hr-size-xs);
+  @include hr-size('sm', $hr-size-sm);
+  @include hr-size('md', $hr-size-md);
+  @include hr-size('lg', $hr-size-lg);
+  @include hr-size('xl', $hr-size-xl);

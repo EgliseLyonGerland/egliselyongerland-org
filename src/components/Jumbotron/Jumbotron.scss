@@ -7,7 +7,6 @@
   background-size: cover;
   height: 800px;
   color: white;
-  z-index: -1;
 
   &:before {
     content: "";
@@ -37,7 +36,11 @@
   }
 
   .baseline {
-    font-size: 26px;
+    font-size: 30px;
     font-weight: $font-weight-thin;
-    margin-top: 20px;
+    margin-top: 40px;
+  }
+
+  .link {
+    margin-top: 100px;
   }

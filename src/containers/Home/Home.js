@@ -14,11 +14,14 @@ class Home extends Component {
     // const logoImage = require('./logo.png');
     return (
       <div>
-        <Helmet title="Home"/>
+        <Helmet title="Accueil"/>
+
         <Jumbotron
           title="Nouveau logo, nouveau site."
-          baseline="L'église s'offre un lifting numérique."
+          baseline="L'église Lyon-Gerland s'offre un lifting numérique pour cette année 2016."
           img="http://image.toutlecine.com/photos/b/r/a/brazil-1984-01-g.jpg"
+          link="#"
+          linkLabel="En savoir plus"
         />
       </div>
     );
