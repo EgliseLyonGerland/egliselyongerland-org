@@ -40,6 +40,7 @@ export default class Html extends Component {
           <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16" />
 
           <meta name="viewport" content="width=device-width, initial-scale=1" />
+
           <link href="https://fonts.googleapis.com/css?family=Lato:400,100,300,700,900" rel="stylesheet" type="text/css" />
 
           {/* styles (will be present only in production with webpack extract text plugin) */}

@@ -30,14 +30,14 @@ module.exports = {
     affix: false
   },
   styles: {
-    mixins: false,
+    mixins: true,
     normalize: true,
     print: false,
     glyphicons: false,
-    scaffolding: false,
+    scaffolding: true,
     type: false,
     code: false,
-    grid: false,
+    grid: true,
     tables: false,
     forms: false,
     buttons: false,
