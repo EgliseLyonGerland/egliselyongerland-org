@@ -1,17 +1,41 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 // import { Link } from 'react-router';
 // import config from '../../config';
 
+import { connect } from 'react-redux';
+import { asyncConnect } from 'redux-async-connect';
+import { isLoaded, load as loadPosts } from 'redux/modules/posts';
+
 import Helmet from 'react-helmet';
 
-import { Jumbotron } from 'components';
+import { Jumbotron, Hr } from 'components';
 
+@asyncConnect([{
+  deferred: true,
+  promise: ({ store: { dispatch, getState }}) => {
+    if (!isLoaded(getState())) {
+      return dispatch(loadPosts());
+    }
+  }
+}])
+@connect(
+  state => ({
+    posts: state.posts.data,
+  })
+)
 export default
 class Home extends Component {
+
+  static propTypes = {
+    posts: PropTypes.array,
+  };
+
   render() {
     // const styles = require('./Home.scss');
     // require the logo image both from client and server
     // const logoImage = require('./logo.png');
+    const { posts } = this.props;
+
     return (
       <div>
         <Helmet title="Accueil"/>
@@ -23,6 +47,18 @@ class Home extends Component {
           link="#"
           linkLabel="En savoir plus"
         />
+
+        {posts && (
+          <div className="container">
+            <Hr />
+
+            {posts.map(post => {
+              return (
+                <div>{post.title}</div>
+              );
+            })}
+          </div>
+        )}
       </div>
     );
       // <div className={styles.home}>
