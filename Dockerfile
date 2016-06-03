@@ -17,7 +17,7 @@ ADD . /usr/src/app/
 RUN npm run build
 
 # Expose the app port
-EXPOSE 8000
+EXPOSE 8080
 
 # Build the app
 CMD [ "npm", "start" ]
