@@ -33,7 +33,12 @@ export default class Html extends Component {
           {head.link.toComponent()}
           {head.script.toComponent()}
 
-          <link rel="shortcut icon" href="/favicon.ico" />
+          <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
+          <link rel="icon" type="image/png" href="/favicon-194x194.png" sizes="194x194" />
+          <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+          <link rel="icon" type="image/png" href="/favicon-192x192.png" sizes="192x192" />
+          <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16" />
+
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <link href="https://fonts.googleapis.com/css?family=Lato:400,100,300,700,900" rel="stylesheet" type="text/css" />
 
