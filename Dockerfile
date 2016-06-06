@@ -1,9 +1,5 @@
 FROM node:wheezy
 
-# Environment variables
-ENV PORT 8080
-ENV NODE_ENV production
-
 # Prepare app directory
 RUN mkdir -p /usr/src/app
 ADD package.json /usr/src/app/
@@ -18,7 +14,7 @@ ADD . /usr/src/app/
 RUN npm run build
 
 # Expose the app port
-EXPOSE 8080
+EXPOSE 8000
 
 # Build the app
 CMD [ "npm", "start" ]
