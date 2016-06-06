@@ -1,5 +1,9 @@
 FROM node:wheezy
 
+# Environment variables
+ENV PORT 8080
+ENV NODE_ENV production
+
 # Prepare app directory
 RUN mkdir -p /usr/src/app
 ADD package.json /usr/src/app/
