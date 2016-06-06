@@ -1,8 +1,5 @@
 FROM node:wheezy
 
-# Set environments variables
-ENV PORT 8000
-
 # Prepare app directory
 RUN mkdir -p /usr/src/app
 ADD package.json /usr/src/app/
