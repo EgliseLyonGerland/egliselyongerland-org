@@ -33,6 +33,13 @@ module.exports = Object.assign({
         {property: 'og:image:width', content: '200'},
         {property: 'og:image:height', content: '200'}
       ]
+    },
+    breakpoints: {
+      xs: 500,
+      sm: 700,
+      md: 1000,
+      lg: 1280,
+      xl: 1400
     }
   },
 
