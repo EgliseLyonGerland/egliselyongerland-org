@@ -5,11 +5,13 @@ import { createResponsiveStateReducer } from 'redux-responsive';
 
 import { app } from '../../config';
 
+import display from './display';
 import posts from './posts';
 
 export default combineReducers({
   routing: routerReducer,
   reduxAsyncConnect,
   browser: createResponsiveStateReducer(app.breakpoints),
+  display,
   posts,
 });

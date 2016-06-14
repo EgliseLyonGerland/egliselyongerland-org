@@ -1,0 +1,98 @@
+
+@import "../../theme/variables.scss";
+
+.search {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: visibility 0s;
+  transition-delay: .5s;
+}
+
+  .bg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 0;
+    background: rgba(black, .7);
+    transition: opacity .2s;
+    z-index: -1;
+  }
+
+  .topbar {
+    position: relative;
+    background: $color-main;
+    height: $header-height;
+    transition: transform .2s;
+    transition-delay: .2s;
+    transform: translateY(-100%);
+    z-index: 1;
+    display: flex;
+  }
+
+  .input {
+    height: $header-height;
+    padding: $header-height / 2;
+    padding-right: 0;
+    width: 100%;
+    border: 0;
+    background: 0;
+    color: white;
+    font-size: 25px;
+    font-weight: $font-weight-light;
+    outline: 0;
+
+    &::placeholder {
+      color: rgba(white, .5);
+    }
+  }
+
+  .closeBtn {
+    line-height: $header-height;
+    width: $header-height;
+    font-size: $header-height / 2;
+    text-align: center;
+    color: white;
+    cursor: pointer;
+  }
+
+  .content {
+    position: relative;
+    flex-grow: 1;
+    visibility: hidden;
+    background: $color-main;
+    opacity: 0;
+    transform: translateY(-50px);
+    transition: visibility 0s, transform .2s, opacity .2s;
+  }
+
+  .contentOpened {
+    composes: content;
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .opened {
+    visibility: visible;
+    transition-delay: 0s;
+
+    .topbar {
+      transform: translateY(0);
+      transition: transform .2s;
+      transition-delay: .2s;
+    }
+
+    .bg {
+      opacity: 1;
+      transition: opacity .2s;
+    }
+  }

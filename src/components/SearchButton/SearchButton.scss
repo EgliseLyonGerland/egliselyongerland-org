@@ -1,0 +1,17 @@
+
+@import "../../theme/variables.scss";
+
+.button {
+  width: $header-height;
+  height: $header-height;
+  background: #EEE;
+  line-height: $header-height;
+  text-align: center;
+  font-size: 1.2rem;
+  color: #AAA;
+  cursor: pointer;
+
+  &:hover {
+    color: $color-main;
+  }
+}

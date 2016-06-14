@@ -7,7 +7,7 @@
   border-bottom: solid 1px #EEE;
   display: flex;
   align-items: center;
-  padding: 0 ($header-height + 20) 0 20px;
+  padding: 0 $header-height 0 20px;
   z-index: 100;
 }
 
@@ -21,8 +21,11 @@
     margin-top: -6px;
   }
 
-  .links {
+  .blankItem {
     margin-left: auto;
+  }
+
+  .links {
     display: flex;
     flex-grow: 1;
     max-width: 500px;

@@ -37,8 +37,12 @@ $color-main: #228fcb;
 
 // -- Header
 $header-height: 70px;
+$header-zindex: 100;
 $header-logo-height: 40px;
 $header-brand-height: 22px;
+
+// -- Sidebar
+$sidebar-zindex: 200;
 
 // -- Hr
 $hr-size-nm: 0;

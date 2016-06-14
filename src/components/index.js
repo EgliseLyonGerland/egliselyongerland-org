@@ -10,4 +10,6 @@ export Button from './Button/Button';
 export Header from './Header/Header';
 export Hr from './Hr/Hr';
 export Jumbotron from './Jumbotron/Jumbotron';
+export Search from './Search/Search';
+export SearchButton from './SearchButton/SearchButton';
 export Sidebar from './Sidebar/Sidebar';

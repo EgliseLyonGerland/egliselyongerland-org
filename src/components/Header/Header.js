@@ -3,7 +3,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 import { Link } from 'react-router';
-import { Sidebar } from 'components';
+import { Sidebar, SearchButton } from 'components';
 
 @connect(
   state => { return { browser: state.browser }; }
@@ -13,6 +13,7 @@ class Header extends Component {
 
   static propTypes = {
     browser: PropTypes.object.isRequired,
+    onSearchButtonClicked: PropTypes.func.isRequired,
   }
 
   render() {
@@ -26,7 +27,7 @@ class Header extends Component {
       { label: 'Contact' },
     ];
 
-    const { browser } = this.props;
+    const { browser, onSearchButtonClicked } = this.props;
 
     return (
       <div className={styles.header}>
@@ -56,6 +57,7 @@ class Header extends Component {
           </div>
         )}
 
+        <SearchButton onClicked={() => onSearchButtonClicked()} />
         <Sidebar />
       </div>
     );

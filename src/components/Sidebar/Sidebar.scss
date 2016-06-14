@@ -8,10 +8,11 @@
   top: 0;
   right: 0;
   width: $header-height;
-  height: $header-height;
+  height: $header-height - 1;
   transition: height .15s, width .15s .1s;
   transition-timing-function: ease-in-out;
   overflow: hidden;
+  z-index: $sidebar-zindex;
 }
 
   .content {
@@ -49,7 +50,7 @@
 
   .opened {
     bottom: 0;
-    width: 450px;
+    width: 550px;
     height: 100vh;
     transition: width .3s, height .3s .3s;
 
