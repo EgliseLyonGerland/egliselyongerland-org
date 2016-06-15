@@ -7,11 +7,12 @@ import ReactDOM from 'react-dom';
 import createStore from './redux/create';
 import ApiClient from './helpers/ApiClient';
 import io from 'socket.io-client';
-import {Provider} from 'react-redux';
+import { Provider } from 'react-redux';
 import { Router, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { ReduxAsyncConnect } from 'redux-async-connect';
 import useScroll from 'scroll-behavior/lib/useStandardScroll';
+import { calculateResponsiveState } from 'redux-responsive';
 
 import getRoutes from './routes';
 
@@ -50,6 +51,8 @@ ReactDOM.render(
   </Provider>,
   dest
 );
+
+store.dispatch(calculateResponsiveState(window));
 
 if (process.env.NODE_ENV !== 'production') {
   window.React = React; // enable debugger
