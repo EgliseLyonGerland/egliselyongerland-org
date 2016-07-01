@@ -1,8 +1,9 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+
+import { Link } from 'react-router';
+import { Burger } from 'components';
 
 import classes from 'classnames';
-
-import { Burger } from 'components';
 
 export default
 class Sidebar extends Component {
@@ -33,6 +34,8 @@ class Sidebar extends Component {
         <div className={styles.content}>
           <a className={styles.link} href="#">L'église</a>
           <a className={styles.link} href="#">Prédications</a>
+          <a className={styles.link} href="#">Le groupe des jeunes</a>
+          <Link to="/persecuted-church" className={styles.link}>L'église persécutée</Link>
           <a className={styles.link} href="#">Contact</a>
         </div>
       </div>

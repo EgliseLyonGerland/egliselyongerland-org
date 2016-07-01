@@ -1,0 +1,17 @@
+
+@import "../../theme/mixins.scss";
+
+.container {
+  @include clearfix;
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  max-width: 1200px;
+}
+
+  .xs { max-width: 600px }
+  .sm { max-width: 800px }
+  .md { max-width: 1000px }
+  .lg { max-width: 1200px }
+  .xl { max-width: 1400px }

@@ -7,6 +7,7 @@
 
 export Burger from './Burger/Burger';
 export Button from './Button/Button';
+export Container from './Container/Container';
 export Header from './Header/Header';
 export Hr from './Hr/Hr';
 export Image from './Image/Image';

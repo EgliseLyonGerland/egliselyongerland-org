@@ -37,7 +37,7 @@ class Image extends Component {
     let { lineHeight } = this.props;
 
     if (!lineHeight) {
-      lineHeight = Math.ceil(fontSize * 1.3 * 10) / 10;
+      lineHeight = Math.ceil(fontSize * 1.5 * 10) / 10;
     }
 
     const style = {
