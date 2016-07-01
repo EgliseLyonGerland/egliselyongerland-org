@@ -19,9 +19,14 @@ import { Jumbotron, Image, Text, Hr } from 'components';
   }
 }])
 @connect(
-  state => ({
-    posts: state.posts.data,
-  })
+  state => {
+    const { entities } = state;
+    const posts = state.posts.data.map(id => entities.posts[id]);
+
+    return {
+      posts,
+    };
+  }
 )
 export default
 class Home extends Component {

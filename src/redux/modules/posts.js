@@ -1,3 +1,6 @@
+import { postSchema } from 'redux/schemas';
+import { arrayOf } from 'normalizr';
+
 const LOAD = 'POSTS_LOAD';
 const LOAD_SUCCESS = 'POSTS_LOAD_SUCCESS';
 const LOAD_FAIL = 'POSTS_LOAD_FAIL';
@@ -18,7 +21,7 @@ export default function posts(state = initialState, action = {}) {
         ...state,
         loading: false,
         loaded: true,
-        data: action.result
+        data: action.data.result,
       };
     case LOAD_FAIL:
       return {
@@ -40,5 +43,6 @@ export function load() {
   return {
     types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
     promise: (client) => client.get('/posts/load'),
+    schema: arrayOf(postSchema),
   };
 }
