@@ -8,7 +8,7 @@ import { isLoaded, load as loadPosts } from 'redux/modules/posts';
 
 import Helmet from 'react-helmet';
 
-import { Jumbotron, Hr } from 'components';
+import { Jumbotron, Image, Text, Hr } from 'components';
 
 @asyncConnect([{
   deferred: true,
@@ -48,13 +48,20 @@ class Home extends Component {
 
         {posts && (
           <div className="container">
-            <Hr />
+            <Hr xl />
 
-            {posts.map(post => {
-              return (
-                <div>{post.title}</div>
-              );
-            })}
+            <div className="row">
+              {posts.slice(0, 2).map((post, index) => {
+                return (
+                  <div className="col-xs-6" key={index}>
+                    <Image src={`http://lorempixel.com/400/200/people/${index}`} />
+                    <Hr sm />
+                    <Text fontSize={1.5} minLines={3} maxLines={3}>{post.title}</Text>
+                    <Hr />
+                  </div>
+                );
+              })}
+            </div>
           </div>
         )}
       </div>

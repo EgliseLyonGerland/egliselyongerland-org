@@ -1,0 +1,29 @@
+
+@import "../../theme/variables.scss";
+
+.text {}
+
+
+  .thin {
+    font-weight: $font-weight-thin;
+  }
+
+  .light {
+    font-weight: $font-weight-light;
+  }
+
+  .regular {
+    font-weight: $font-weight-regular;
+  }
+
+  .medium {
+    font-weight: $font-weight-medium;
+  }
+
+  .bold {
+    font-weight: $font-weight-bold;
+  }
+
+  .black {
+    font-weight: $font-weight-black;
+  }
