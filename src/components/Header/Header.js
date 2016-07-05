@@ -13,7 +13,10 @@ class Header extends Component {
 
   static propTypes = {
     browser: PropTypes.object.isRequired,
+    sidebarOpened: PropTypes.bool,
     onSearchButtonClicked: PropTypes.func.isRequired,
+    onOpenSidebarButtonClicked: PropTypes.func.isRequired,
+    onCloseSidebarButtonClicked: PropTypes.func.isRequired,
   }
 
   render() {
@@ -24,10 +27,15 @@ class Header extends Component {
     const links = [
       { label: 'L\'église' },
       { label: 'Prédications' },
-      { label: 'Contact' },
+      { label: 'Blog' },
     ];
 
-    const { browser, onSearchButtonClicked } = this.props;
+    const {
+      browser,
+      sidebarOpened,
+      onSearchButtonClicked,
+      onOpenSidebarButtonClicked,
+      onCloseSidebarButtonClicked } = this.props;
 
     return (
       <div className={styles.header}>
@@ -58,7 +66,11 @@ class Header extends Component {
         )}
 
         <SearchButton onClicked={() => onSearchButtonClicked()} />
-        <Sidebar />
+
+        <Sidebar
+          opened={sidebarOpened}
+          onOpenSidebarButtonClicked={() => onOpenSidebarButtonClicked()}
+          onCloseSidebarButtonClicked={() => onCloseSidebarButtonClicked()} />
       </div>
     );
   }

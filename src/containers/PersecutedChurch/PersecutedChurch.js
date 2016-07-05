@@ -14,7 +14,6 @@ export default
 class PersecutedChurch extends Component {
 
   render() {
-    // const styles = require('./App.scss');
     const picture = require('./picture.jpg');
     const picture2 = require('./picture2.jpg');
 

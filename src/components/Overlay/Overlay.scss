@@ -1,0 +1,22 @@
+
+@import "../../theme/variables.scss";
+
+.overlay {
+  background: rgba(black, .7);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: $overlay-zindex;
+  opacity: 0;
+  cursor: pointer;
+  visibility: hidden;
+  transition: visibility 0s linear .2s, opacity .2s linear;
+}
+
+  .active {
+    visibility: visible;
+    opacity: 1;
+    transition-delay: 0s;
+  }

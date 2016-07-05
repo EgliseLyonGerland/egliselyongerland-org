@@ -6,7 +6,9 @@ import { createResponsiveStateReducer } from 'redux-responsive';
 import { app } from '../../config';
 
 import entities from './entities';
-import display from './display';
+import overlay from './overlay';
+import searchbar from './searchbar';
+import sidebar from './sidebar';
 import posts from './posts';
 
 
@@ -15,6 +17,8 @@ export default combineReducers({
   reduxAsyncConnect,
   browser: createResponsiveStateReducer(app.breakpoints),
   entities,
-  display,
+  overlay,
+  searchbar,
+  sidebar,
   posts,
 });

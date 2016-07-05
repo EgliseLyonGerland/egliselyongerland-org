@@ -39,12 +39,11 @@ class Search extends Component {
   render() {
     const styles = require('./Search.scss');
 
-    const { opened, hideButtonClicked } = this.props;
+    const { opened } = this.props;
     const { search } = this.state;
 
     return (
       <div className={`${styles.search} ${opened ? styles.opened : ''}`}>
-        <div className={styles.bg} onClick={() => hideButtonClicked()} />
         <div className={styles.topbar}>
           <input
             className={styles.input}

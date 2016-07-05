@@ -53,6 +53,7 @@
     width: 550px;
     height: 100vh;
     transition: width .3s, height .3s .3s;
+    z-index: $sidebar-zindex + $overlay-zindex;
 
     .content {
       opacity: 1;

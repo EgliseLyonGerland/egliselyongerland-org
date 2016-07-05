@@ -3,41 +3,62 @@ import React, { Component, PropTypes } from 'react';
 import Helmet from 'react-helmet';
 import config from '../../config';
 import { connect } from 'react-redux';
-import * as displayActions from 'redux/modules/display';
+import * as searchbarActions from 'redux/modules/searchbar';
+import * as sidebarActions from 'redux/modules/sidebar';
 
-import { Header, Search } from 'components';
+import { Header, Search, Overlay } from 'components';
 
 @connect(
   state => ({
-    searchVisibility: state.display.searchVisibility,
+    overlay: state.overlay,
+    isSearchbarOpened: state.searchbar.opened,
+    isSidebarOpened: state.sidebar.opened,
   }),
-  displayActions
+  { ...searchbarActions, ...sidebarActions }
 )
 export default
 class App extends Component {
   static propTypes = {
     children: PropTypes.object.isRequired,
-    searchVisibility: PropTypes.string.isRequired,
-    setSearchVisibility: PropTypes.func.isRequired,
-    toggleSearchVisibility: PropTypes.func.isRequired,
+    overlay: PropTypes.object.isRequired,
+    isSearchbarOpened: PropTypes.bool.isRequired,
+    openSearchbar: PropTypes.func.isRequired,
+    closeSearchbar: PropTypes.func.isRequired,
+    isSidebarOpened: PropTypes.bool.isRequired,
+    openSidebar: PropTypes.func.isRequired,
+    closeSidebar: PropTypes.func.isRequired,
   };
+
+  handleOverlayClicked() {
+    this.props.closeSearchbar();
+    this.props.closeSidebar();
+  }
 
   render() {
     const styles = require('./App.scss');
 
     const {
-      searchVisibility,
-      toggleSearchVisibility,
-      setSearchVisibility } = this.props;
+      overlay,
+      isSearchbarOpened,
+      isSidebarOpened,
+      openSearchbar,
+      closeSearchbar,
+      openSidebar,
+      closeSidebar } = this.props;
 
     return (
       <div className={styles.app}>
         <Helmet {...config.app.head}/>
-        <Header onSearchButtonClicked={() => toggleSearchVisibility()} />
-        {this.props.children}
+        <Overlay {...overlay} onClicked={() => this.handleOverlayClicked()} />
+        <Header
+          sidebarOpened={isSidebarOpened}
+          onSearchButtonClicked={() => openSearchbar()}
+          onOpenSidebarButtonClicked={() => openSidebar()}
+          onCloseSidebarButtonClicked={() => closeSidebar()} />
         <Search
-          opened={searchVisibility === displayActions.SearchVisibilityStates.SHOW}
-          hideButtonClicked={() => setSearchVisibility(displayActions.SearchVisibilityStates.HIDE)} />
+          opened={isSearchbarOpened}
+          hideButtonClicked={() => closeSearchbar()} />
+        {this.props.children}
       </div>
     );
   }

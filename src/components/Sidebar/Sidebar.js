@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 import { Link } from 'react-router';
 import { Burger } from 'components';
@@ -8,23 +8,29 @@ import classes from 'classnames';
 export default
 class Sidebar extends Component {
 
-  constructor() {
-    super();
+  static propTypes = {
+    opened: PropTypes.bool,
+    onOpenSidebarButtonClicked: PropTypes.func,
+    onCloseSidebarButtonClicked: PropTypes.func,
+  }
 
-    this.state = {
-      opened: false,
-    };
+  static defaultProps = {
+    opened: false,
+    onOpenSidebarButtonClicked: () => {},
+    onCloseSidebarButtonClicked: () => {},
   }
 
   toggle() {
-    this.setState({
-      opened: !this.state.opened,
-    });
+    if (this.props.opened) {
+      this.props.onCloseSidebarButtonClicked();
+    } else {
+      this.props.onOpenSidebarButtonClicked();
+    }
   }
 
   render() {
     const styles = require('./Sidebar.scss');
-    const { opened } = this.state;
+    const { opened } = this.props;
 
     return (
       <div className={classes(styles.sidebar, (opened && styles.opened))}>

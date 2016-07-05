@@ -5,7 +5,7 @@ import classnames from 'classnames';
 export default
 class Container extends Component {
   static propTypes = {
-    children: PropTypes.object,
+    children: PropTypes.any,
     className: PropTypes.string,
     style: PropTypes.object,
     xs: PropTypes.bool,
