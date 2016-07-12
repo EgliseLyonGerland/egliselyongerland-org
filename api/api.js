@@ -22,16 +22,24 @@ app.use(session({
   saveUninitialized: false,
   cookie: { maxAge: 60000 }
 }));
+
 app.use(bodyParser.json());
 
+app.get('/posts', (req, res) => {
+  executeAction(req, res, actions.posts.posts);
+});
 
-app.use((req, res) => {
-  const splittedUrlPath = req.url.split('?')[0].split('/').slice(1);
+app.get('/posts/:postID', (req, res) => {
+  executeAction(req, res, actions.posts.post);
+});
 
-  const {action, params} = mapUrl(actions, splittedUrlPath);
+app.get('/taxonomies/category/terms', (req, res) => {
+  executeAction(req, res, actions.categories.categories);
+});
 
+function executeAction(req, res, action) {
   if (action) {
-    action(req, params)
+    action(req)
       .then((result) => {
         if (result instanceof Function) {
           result(res);
@@ -49,8 +57,7 @@ app.use((req, res) => {
   } else {
     res.status(404).end('NOT FOUND');
   }
-});
-
+}
 
 const bufferSize = 100;
 const messageBuffer = new Array(bufferSize);

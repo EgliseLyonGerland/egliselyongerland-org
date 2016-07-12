@@ -1,8 +1,8 @@
 import data from './data';
 
-export default function post(req, [ id ]) {
+export default function post({ params: { postID } }) {
   return new Promise((resolve, reject) => {
-    const post = data.reduce((result, datum) => (datum.ID == id ? datum : result), null);
+    const post = data.reduce((result, datum) => (datum.ID == postID ? datum : result), null);
 
     if (post) {
       resolve(post);
@@ -10,7 +10,7 @@ export default function post(req, [ id ]) {
 
     reject({
       status: 404,
-      message: `Post ${id} not found`,
+      message: `Post ${postID} not found`,
     });
   });
 }
