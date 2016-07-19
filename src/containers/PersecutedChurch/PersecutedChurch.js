@@ -7,7 +7,6 @@ import Helmet from 'react-helmet';
 import { Container, Text, Hr } from 'components';
 
 @asyncConnect([{
-  deferred: true,
   promise: () => Promise.all([]),
 }])
 export default
