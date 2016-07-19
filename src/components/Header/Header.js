@@ -21,7 +21,7 @@ class Header extends Component {
 
   render() {
     const styles = require('./Header.scss');
-    const logo = require('./logo.svg');
+    // const logo = require('./logo.svg');
     const brand = require('./brand.svg');
 
     const links = [
@@ -40,11 +40,13 @@ class Header extends Component {
     return (
       <div className={styles.header}>
 
+        {/*
         <Link to="/">
           <img className={styles.logo} src={logo} height="40" />
         </Link>
+        */}
 
-        {browser.width >= 500 && (
+        {browser.width >= 0 && (
           <Link to="/">
             <img className={styles.brand} src={brand} height="22" />
           </Link>
@@ -52,7 +54,7 @@ class Header extends Component {
 
         <div className={styles.blankItem} />
 
-        {browser.width >= 800 && (
+        {browser.width >= 850 && (
           <div className={styles.links}>
             {links.map((link, index) => {
               return (
