@@ -7,6 +7,20 @@ const initialState = {
   data: [],
 };
 
+function parseBookSlug(slug) {
+  const [, book, chapter, verse] = slug.match(/(\w+)(?:\-(\d+)?)?(?:\-(\d+))?$/) || [];
+
+  return [ book, chapter, verse ];
+}
+
+function getChapterNumber(slug) {
+  return parseInt(parseBookSlug(slug)[1], 10);
+}
+
+function getVerseNumber(slug) {
+  return parseInt(parseBookSlug(slug)[2], 10);
+}
+
 export default function(state = initialState, action = {}) {
   switch (action.type) {
     case LOAD:
@@ -42,10 +56,10 @@ export function loadFromCategories() {
         label: name,
         testament: (testament === '2' ? 'new' : 'old'),
         chapters: getCategoriesByParentSlug(categories, book.slug).map(chapter => ({
-          number: 1,
+          number: getChapterNumber(chapter.slug),
           label: chapter.name,
           verses: getCategoriesByParentSlug(categories, chapter.slug).map(verse => ({
-            number: 1,
+            number: getVerseNumber(verse.slug),
             label: verse.name,
           })),
         })),

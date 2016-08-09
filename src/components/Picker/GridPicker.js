@@ -19,15 +19,13 @@ class GridPicker extends Component {
 
     return (
       <div className={styles.grid}>
-        {items.map((item) => {
-          return (
-            <div key={item.key} className={styles.cell} onClick={() => onChange(item.key)}>{item.label}</div>
-          );
-        })}
+        {items.map((item) =>
+          <div key={item.key} className={styles.cell} onClick={() => onChange(item.key)}>{item.label}</div>
+        )}
 
-        {fill(new Array(20), 0).map(() => {
-          return (<div className={styles.cellGhost} />);
-        })}
+        {fill(new Array(20), 0).map((value, index) =>
+          <div key={index} className={styles.cellGhost} />
+        )}
       </div>
     );
   }

@@ -100,7 +100,7 @@ class BiblePicker extends Component {
     const currentPaneIndex = findIndex(booksTabs, ['key', currentTestament]);
 
     const panes = booksTabs.map(tab =>
-      <div className={styles.pane} style={{ maxHeight: '500px', overflowY: 'auto' }}>
+      <div key={tab.key} className={styles.pane} style={{ maxHeight: '500px', overflowY: 'auto' }}>
         <LabelPicker
           current={currentBook}
           labels={books.filter(book => book.testament === tab.key).map(({ key, label }) => ({ key, label }))}
@@ -185,12 +185,6 @@ class BiblePicker extends Component {
     const tabs = this.getTabs();
     const currentTabIndex = findIndex(tabs, ['current', true]);
 
-    const panes = tabs.map(tab =>
-      <div key={tab.key} className={styles.pane}>
-        {this.renderPane(tab.key)}
-      </div>
-    );
-
     return (
       <div>
         <TabPicker
@@ -205,7 +199,11 @@ class BiblePicker extends Component {
           >
             {style =>
               <div style={{ transform: `translateX(${-style.x}%)` }}>
-                {panes}
+                {tabs.map(tab =>
+                  <div key={tab.key} className={styles.pane}>
+                    {this.renderPane(tab.key)}
+                  </div>
+                )}
               </div>
             }
           </Motion>
