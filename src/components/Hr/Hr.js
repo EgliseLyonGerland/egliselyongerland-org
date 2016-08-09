@@ -19,7 +19,7 @@ class Hr extends Component {
 
   static defaultProps = {
     line: false,
-    color: '#AAA',
+    color: '#DDD',
     opacity: 1,
     inline: false,
   }

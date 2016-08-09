@@ -3,11 +3,15 @@ import React, { Component, PropTypes } from 'react';
 import Helmet from 'react-helmet';
 import config from '../../config';
 import { connect } from 'react-redux';
+import { asyncConnect } from 'redux-async-connect';
 import * as searchbarActions from 'redux/modules/searchbar';
 import * as sidebarActions from 'redux/modules/sidebar';
 
 import { Header, Search, Overlay } from 'components';
 
+@asyncConnect([{
+  promise: () => Promise.all([]),
+}])
 @connect(
   state => ({
     overlay: state.overlay,

@@ -5,6 +5,7 @@ import merge from 'lodash/merge';
 const initialState = {
   posts: {},
   authors: {},
+  categories: {},
 };
 
 export default function entities(state = initialState, action) {

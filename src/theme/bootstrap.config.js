@@ -39,7 +39,7 @@ module.exports = {
     code: false,
     grid: true,
     tables: false,
-    forms: false,
+    forms: true,
     buttons: false,
     'component-animations': false,
     dropdowns: false,
@@ -66,7 +66,7 @@ module.exports = {
     tooltip: false,
     popovers: false,
     carousel: false,
-    utilities: false,
+    utilities: true,
     'responsive-utilities': false
   }
 };

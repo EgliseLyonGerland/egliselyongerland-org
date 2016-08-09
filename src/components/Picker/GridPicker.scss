@@ -1,0 +1,30 @@
+
+@import './variables';
+
+$background: lighten(black, 98%);
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -1px;
+}
+
+.cell {
+  flex-grow: 1;
+  flex-basis: 60px;
+  text-align: center;
+  line-height: 60px;
+  border: $border-color solid;
+  border-width: 0 1px 1px 0;
+  cursor: pointer;
+
+  &:hover {
+    background: $background;
+  }
+}
+
+.cellGhost {
+  composes: cell;
+  height: 0;
+  border: 0;
+}

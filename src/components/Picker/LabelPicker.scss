@@ -1,0 +1,14 @@
+
+@import './variables';
+
+$background: lighten(black, 98%);
+
+.label {
+  padding: 7px 15px;
+  border-bottom: $border-color solid 1px;
+  cursor: pointer;
+
+  &:hover {
+    background: $background;
+  }
+}

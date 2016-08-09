@@ -4,24 +4,31 @@ import React, { Component, PropTypes } from 'react';
 
 import { connect } from 'react-redux';
 import { asyncConnect } from 'redux-async-connect';
-import { isLoaded, load as loadPosts } from 'redux/modules/posts';
+import { isLoaded as isPostsLoaded, load as loadPosts } from 'redux/modules/posts';
 
 import Helmet from 'react-helmet';
 
 import { Jumbotron, Image, Text, Hr } from 'components';
 
+const POSTS_KEY = 'home';
+
 @asyncConnect([{
   deferred: true,
   promise: ({ store: { dispatch, getState }}) => {
-    if (!isLoaded(getState())) {
-      return dispatch(loadPosts());
+    if (!isPostsLoaded(POSTS_KEY, getState())) {
+      return dispatch(loadPosts(POSTS_KEY, { limit: 2 }));
     }
   }
 }])
 @connect(
   state => {
     const { entities } = state;
-    const posts = state.posts.data.map(id => entities.posts[id]);
+
+    let posts = null;
+
+    if (isPostsLoaded(POSTS_KEY, state)) {
+      posts = state.posts.home.data.map(id => entities.posts[id]);
+    }
 
     return {
       posts,

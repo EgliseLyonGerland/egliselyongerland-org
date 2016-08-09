@@ -2,6 +2,7 @@ import { createStore as _createStore, applyMiddleware, compose } from 'redux';
 import createClientMiddleware from './middleware/clientMiddleware';
 import overlayMiddleware from './middleware/overlayMiddleware';
 import { routerMiddleware } from 'react-router-redux';
+import thunk from 'redux-thunk';
 import { createResponsiveStoreEnhancer } from 'redux-responsive';
 
 export default function createStore(history, client, data) {
@@ -9,6 +10,7 @@ export default function createStore(history, client, data) {
   const reduxRouterMiddleware = routerMiddleware(history);
 
   const middleware = [
+    thunk,
     createClientMiddleware(client),
     overlayMiddleware,
     reduxRouterMiddleware

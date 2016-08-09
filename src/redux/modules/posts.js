@@ -5,44 +5,66 @@ const LOAD = 'POSTS_LOAD';
 const LOAD_SUCCESS = 'POSTS_LOAD_SUCCESS';
 const LOAD_FAIL = 'POSTS_LOAD_FAIL';
 
-const initialState = {
-  loaded: false
-};
-
-export default function posts(state = initialState, action = {}) {
+export default function posts(state = {}, action = {}) {
   switch (action.type) {
     case LOAD:
       return {
         ...state,
-        loading: true
+        [action.key]: {
+          loading: true,
+        }
       };
     case LOAD_SUCCESS:
       return {
         ...state,
-        loading: false,
-        loaded: true,
-        data: action.data.result,
+        [action.key]: {
+          loading: false,
+          loaded: true,
+          data: action.data.result,
+        }
       };
     case LOAD_FAIL:
       return {
         ...state,
-        loading: false,
-        loaded: false,
-        error: action.error
+        [action.key]: {
+          loading: false,
+          loaded: false,
+          error: action.error
+        }
       };
     default:
       return state;
   }
 }
 
-export function isLoaded(globalState) {
-  return globalState.posts && globalState.posts.loaded;
+export function isLoaded(key, globalState) {
+  return globalState.posts
+    && globalState.posts[key]
+    && globalState.posts[key].loaded;
 }
 
-export function load() {
+export function load(key, filters = {}) {
+  const {
+    page = 1,
+    limit = 10,
+    categories,
+  } = filters;
+
+  const params = { page };
+
+  if (limit) {
+    params['filter[posts_per_page]'] = limit;
+  }
+
+  if (categories) {
+    params['filter[category__and][]'] = categories;
+  }
+
   return {
     types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
-    promise: (client) => client.get('/posts'),
+    promise: (client) => client.get('/posts', { params }),
     schema: arrayOf(postSchema),
+    key,
+    filters,
   };
 }

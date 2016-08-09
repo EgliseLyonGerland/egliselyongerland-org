@@ -26,8 +26,8 @@ class Header extends Component {
 
     const links = [
       { label: 'L\'église' },
-      { label: 'Prédications' },
-      { label: 'Blog' },
+      { label: 'Prédications', path: '/blog/category/sermon' },
+      { label: 'Blog', path: '/blog' },
     ];
 
     const {
@@ -59,7 +59,11 @@ class Header extends Component {
             {links.map((link, index) => {
               return (
                 <div className={styles.linksItem} key={index}>
-                  <a className={styles.link} href="">{link.label}</a>
+                  {link.path ? (
+                    <Link className={styles.link} to={link.path}>{link.label}</Link>
+                  ) : (
+                    <a className={styles.link} href="">{link.label}</a>
+                  )}
                   <span className={styles.linkCarret + ' fa fa-chevron-right'} />
                 </div>
               );

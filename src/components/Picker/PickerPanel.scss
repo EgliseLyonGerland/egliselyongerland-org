@@ -1,0 +1,16 @@
+
+@import './variables';
+
+$background: lighten($border-color, 5%);
+
+.panel {
+  border: $border-color solid 1px;
+  border-radius: 3px;
+  box-shadow: 1px 1px 2px $border-color;
+}
+
+.title {
+  border-bottom: $border-color solid 1px;
+  background: $background;
+  padding: 7px 15px;
+}

@@ -9,7 +9,9 @@ import entities from './entities';
 import overlay from './overlay';
 import searchbar from './searchbar';
 import sidebar from './sidebar';
+import categories from './categories';
 import posts from './posts';
+import books from './books';
 
 
 export default combineReducers({
@@ -20,5 +22,7 @@ export default combineReducers({
   overlay,
   searchbar,
   sidebar,
+  categories,
   posts,
+  books,
 });

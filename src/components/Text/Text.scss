@@ -1,8 +1,10 @@
 
 @import "../../theme/variables.scss";
+@import "../../theme/mixins.scss";
 
-.text {}
-
+.text {
+  font-weight: $font-weight-light;
+}
 
   .thin {
     font-weight: $font-weight-thin;
@@ -26,4 +28,39 @@
 
   .black {
     font-weight: $font-weight-black;
+  }
+
+  .left {
+    text-align: left;
+  }
+
+  .right {
+    text-align: right;
+  }
+
+  .center {
+    text-align: center;
+  }
+
+  .justify {
+    text-align: justify;
+  }
+
+  .ellipsis {
+    text-overflow: ellipsis;
+  }
+
+  .fade {
+    position: relative;
+
+    &:after {
+      @include gradient-vertical($start-color: transparent, $end-color: white);
+
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 40px;
+    }
   }
