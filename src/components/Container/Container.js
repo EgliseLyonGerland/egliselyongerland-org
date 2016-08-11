@@ -1,50 +1,39 @@
-import React, {Component, PropTypes} from 'react';
+import React, { PropTypes } from 'react';
 
 import classnames from 'classnames';
 
-export default
-class Container extends Component {
-  static propTypes = {
-    children: PropTypes.any,
-    className: PropTypes.string,
-    style: PropTypes.object,
-    xs: PropTypes.bool,
-    sm: PropTypes.bool,
-    md: PropTypes.bool,
-    lg: PropTypes.bool,
-    xl: PropTypes.bool,
-  }
+import styles from './Container.scss';
 
-  render() {
-    const styles = require('./Container.scss');
+const Container = ({ children, className, style, ...props }) => {
+  const sizes = ['xs', 'sm', 'md', 'lg', 'xl'];
+  const size = sizes.reduce((prev, curr) => (props[curr] ? curr : prev), 'lg');
 
-    const { children, className, style } = this.props;
-
-    // Check size
-    const sizes = ['xs', 'sm', 'md', 'lg', 'xl'];
-    let size = 'lg';
-
-    for (const index in sizes) {
-      if (this.props[sizes[index]]) {
-        size = sizes[index];
-      }
-    }
-
-    // Build new props
-    const props = {
-      style,
-    };
-
-    props.className = classnames(
+  // Build new props
+  const newProps = {
+    style,
+    className: classnames(
       className,
       styles.container,
       styles[size],
-    );
+    )
+  };
 
-    return (
-      <div {...props}>
-        {children}
-      </div>
-    );
-  }
-}
+  return (
+    <div {...newProps}>
+      {children}
+    </div>
+  );
+};
+
+Container.propTypes = {
+  children: PropTypes.any,
+  className: PropTypes.string,
+  style: PropTypes.object,
+  xs: PropTypes.bool,
+  sm: PropTypes.bool,
+  md: PropTypes.bool,
+  lg: PropTypes.bool,
+  xl: PropTypes.bool,
+};
+
+export default Container;

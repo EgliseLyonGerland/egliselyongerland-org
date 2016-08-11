@@ -1,6 +1,8 @@
-import React, {Component, PropTypes} from 'react';
+import React, { Component, PropTypes } from 'react';
 
 import classes from 'classnames';
+
+import styles from './Burger.scss';
 
 export default
 class Burger extends Component {
@@ -35,7 +37,6 @@ class Burger extends Component {
     const lines = [];
     const { size, height, weight, color, rounded } = this.props;
     const gutter = (height - (weight * size)) / (size - 1);
-    const styles = require('./Burger.scss');
 
     for (let index = 1; index <= size; index++) {
       const isOut = (index === 1 || index === size);
@@ -53,13 +54,13 @@ class Burger extends Component {
           isLast && styles.last,
         ),
         style: {
-          height: weight + 'px',
+          height: `${weight}px`,
           backgroundColor: color,
         },
       };
 
       if (!isLast) {
-        props.style.marginBottom = gutter + 'px';
+        props.style.marginBottom = `${gutter}px`;
       }
 
       if (this.props.muted) {
@@ -84,16 +85,15 @@ class Burger extends Component {
 
   render() {
     const { width, height } = this.props;
-    const styles = require('./Burger.scss');
 
     return (
       <span
         className={styles.burger}
         style={{
-          width: width + 'px',
-          height: height + 'px',
+          width: `${width}px`,
+          height: `${height}px`,
         }}
-        onClick={this.handleClick.bind(this)}
+        onClick={() => this.handleClick()}
       >
         {this.renderLines()}
       </span>

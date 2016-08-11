@@ -1,28 +1,21 @@
-import React, {Component, PropTypes} from 'react';
+import React, { PropTypes } from 'react';
 
-// import classnames from 'classnames';
+import styles from './Image.scss';
 
-export default
-class Image extends Component {
+const Image = ({ src, title = '', seoFriendly }) => (
+  <div className={styles.image} style={{ backgroundImage: `url(${src})` }}>
+    {seoFriendly && (<img className={styles.img} src={src} alt={title} />)}
+  </div>
+);
 
-  static propTypes = {
-    src: PropTypes.string.isRequired,
-    seoFriendly: PropTypes.bool,
-  }
+Image.propTypes = {
+  src: PropTypes.string.isRequired,
+  title: PropTypes.string,
+  seoFriendly: PropTypes.bool,
+};
 
-  static defaultProps = {
-    seoFriendly: true,
-  }
+Image.defaultProps = {
+  seoFriendly: true,
+};
 
-  render() {
-    const styles = require('./Image.scss');
-
-    const { src, seoFriendly } = this.props;
-
-    return (
-      <div className={styles.image} style={{ backgroundImage: `url(${src})` }}>
-        {seoFriendly && (<img className={styles.img} src={src} />)}
-      </div>
-    );
-  }
-}
+export default Image;

@@ -1,12 +1,12 @@
 import express from 'express';
 import session from 'express-session';
 import bodyParser from 'body-parser';
-import config from '../src/config';
-import * as actions from './actions/index';
-import {mapUrl} from 'utils/url.js';
 import PrettyError from 'pretty-error';
 import http from 'http';
 import SocketIo from 'socket.io';
+
+import config from '../src/config';
+import * as actions from './actions/index';
 
 const pretty = new PrettyError();
 const app = express();
@@ -15,27 +15,6 @@ const server = new http.Server(app);
 
 const io = new SocketIo(server);
 io.path('/ws');
-
-app.use(session({
-  secret: 'react and redux rule!!!!',
-  resave: false,
-  saveUninitialized: false,
-  cookie: { maxAge: 60000 }
-}));
-
-app.use(bodyParser.json());
-
-app.get('/posts', (req, res) => {
-  executeAction(req, res, actions.posts.posts);
-});
-
-app.get('/posts/:postID', (req, res) => {
-  executeAction(req, res, actions.posts.post);
-});
-
-app.get('/taxonomies/category/terms', (req, res) => {
-  executeAction(req, res, actions.categories.categories);
-});
 
 function executeAction(req, res, action) {
   if (action) {
@@ -59,6 +38,27 @@ function executeAction(req, res, action) {
   }
 }
 
+app.use(session({
+  secret: 'react and redux rule!!!!',
+  resave: false,
+  saveUninitialized: false,
+  cookie: { maxAge: 60000 }
+}));
+
+app.use(bodyParser.json());
+
+app.get('/posts', (req, res) => {
+  executeAction(req, res, actions.posts.posts);
+});
+
+app.get('/posts/:postID', (req, res) => {
+  executeAction(req, res, actions.posts.post);
+});
+
+app.get('/taxonomies/category/terms', (req, res) => {
+  executeAction(req, res, actions.categories.categories);
+});
+
 const bufferSize = 100;
 const messageBuffer = new Array(bufferSize);
 let messageIndex = 0;
@@ -73,7 +73,7 @@ if (config.apiPort) {
   });
 
   io.on('connection', (socket) => {
-    socket.emit('news', {msg: `'Hello World!' from server`});
+    socket.emit('news', { msg: '\'Hello World!\' from server' });
 
     socket.on('history', () => {
       for (let index = 0; index < bufferSize; index++) {
@@ -86,10 +86,10 @@ if (config.apiPort) {
     });
 
     socket.on('msg', (data) => {
-      data.id = messageIndex;
-      messageBuffer[messageIndex % bufferSize] = data;
+      const newData = { ...data, id: messageIndex };
+      messageBuffer[messageIndex % bufferSize] = newData;
       messageIndex++;
-      io.emit('msg', data);
+      io.emit('msg', newData);
     });
   });
   io.listen(runnable);

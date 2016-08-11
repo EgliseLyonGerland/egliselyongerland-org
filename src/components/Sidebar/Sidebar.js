@@ -5,6 +5,8 @@ import { Burger } from 'components';
 
 import classes from 'classnames';
 
+import styles from './Sidebar.scss';
+
 export default
 class Sidebar extends Component {
 
@@ -29,7 +31,6 @@ class Sidebar extends Component {
   }
 
   render() {
-    const styles = require('./Sidebar.scss');
     const { opened } = this.props;
 
     return (
@@ -38,11 +39,11 @@ class Sidebar extends Component {
           <Burger weight={5} width={25} height={25} color="white" muted={opened} />
         </button>
         <div className={styles.content}>
-          <a className={styles.link} href="#">L'église</a>
-          <a className={styles.link} href="#">Prédications</a>
-          <a className={styles.link} href="#">Le groupe des jeunes</a>
+          <a className={styles.link} href="#church">L'église</a>
+          <a className={styles.link} href="#sermons">Prédications</a>
+          <a className={styles.link} href="#youngs">Le groupe des jeunes</a>
           <Link to="/persecuted-church" className={styles.link}>L'église persécutée</Link>
-          <a className={styles.link} href="#">Contact</a>
+          <a className={styles.link} href="#contact">Contact</a>
         </div>
       </div>
     );

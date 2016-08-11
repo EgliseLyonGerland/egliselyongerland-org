@@ -1,38 +1,36 @@
 import { normalize } from 'normalizr';
 
 export default function clientMiddleware(client) {
-  return ({dispatch, getState}) => {
-    return next => action => {
-      if (typeof action === 'function') {
-        return action(dispatch, getState);
-      }
+  return ({ dispatch, getState }) => next => action => {
+    if (typeof action === 'function') {
+      return action(dispatch, getState);
+    }
 
-      const { promise, types, schema, ...rest } = action; // eslint-disable-line no-redeclare
-      if (!promise) {
-        return next(action);
-      }
+    const { promise, types, schema, ...rest } = action; // eslint-disable-line no-redeclare
+    if (!promise) {
+      return next(action);
+    }
 
-      const [REQUEST, SUCCESS, FAILURE] = types;
-      next({...rest, type: REQUEST});
+    const [REQUEST, SUCCESS, FAILURE] = types;
+    next({ ...rest, type: REQUEST });
 
-      const actionPromise = promise(client);
-      actionPromise.then(
-        (result) => {
-          let data = result;
+    const actionPromise = promise(client);
+    actionPromise.then(
+      (result) => {
+        let data = result;
 
-          if (typeof schema !== 'undefined') {
-            data = normalize(result, schema);
-          }
+        if (typeof schema !== 'undefined') {
+          data = normalize(result, schema);
+        }
 
-          return next({...rest, data, type: SUCCESS});
-        },
-        (error) => next({...rest, error, type: FAILURE})
-      ).catch((error)=> {
-        console.error('MIDDLEWARE ERROR:', error);
-        next({...rest, error, type: FAILURE});
-      });
+        return next({ ...rest, data, type: SUCCESS });
+      },
+      (error) => next({ ...rest, error, type: FAILURE })
+    ).catch((error) => {
+      console.error('MIDDLEWARE ERROR:', error);
+      next({ ...rest, error, type: FAILURE });
+    });
 
-      return actionPromise;
-    };
+    return actionPromise;
   };
 }

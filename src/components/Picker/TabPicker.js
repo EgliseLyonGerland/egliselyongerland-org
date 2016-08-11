@@ -23,13 +23,15 @@ class TabPicker extends Component {
 
   static defaultProps = {
     activeBarColor: 'red',
-    renderLabel: ({ label }) => {
-      return (<Text fontSize={0.9} fontWeight="medium" ellipsis maxLines={1}>{label}</Text>);
-    },
+    renderLabel: ({ label }) => (
+      <Text fontSize={0.9} fontWeight="medium" ellipsis maxLines={1}>{label}</Text>
+    ),
   }
 
   indexOf(key) {
-    return this.props.tabs.reduce((position, tab, index) => (tab.key === key ? index : position), 0);
+    return this.props.tabs.reduce((position, tab, index) => (
+      tab.key === key ? index : position), 0
+    );
   }
 
   handleChangeTab(tab) {
@@ -79,7 +81,8 @@ class TabPicker extends Component {
             width: `${tabWidth}%`,
             background: activeBarColor,
             transform: `translateX(${currentTabIndex * 100}%)`,
-          }} />
+          }}
+        />
       </div>
     );
   }

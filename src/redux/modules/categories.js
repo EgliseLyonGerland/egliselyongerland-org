@@ -5,7 +5,7 @@ const LOAD = 'CATEGORIES_LOAD';
 const LOAD_SUCCESS = 'CATEGORIES_LOAD_SUCCESS';
 const LOAD_FAIL = 'CATEGORIES_LOAD_FAIL';
 
-export default function(state = {}, action = {}) {
+export default function (state = {}, action = {}) {
   switch (action.type) {
     case LOAD:
       return {

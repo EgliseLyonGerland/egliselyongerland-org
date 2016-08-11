@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 
+import styles from './Search.scss';
+
 export default
 class Search extends Component {
 
@@ -23,7 +25,7 @@ class Search extends Component {
 
   componentDidUpdate() {
     if (this.props.opened) {
-      this.refs.input.focus();
+      this.input.focus();
     }
   }
 
@@ -37,8 +39,6 @@ class Search extends Component {
   }
 
   render() {
-    const styles = require('./Search.scss');
-
     const { opened } = this.props;
     const { search } = this.state;
 
@@ -49,12 +49,14 @@ class Search extends Component {
             className={styles.input}
             type="text"
             placeholder="Que recherchez-vous ?"
-            ref="input"
+            ref={ref => { this.input = ref; }}
             value={this.state.search}
             onChange={evt => {
               this.setState({ search: evt.target.value });
-            }} />
-            <span className={styles.closeBtn} onClick={() => this.handleCloseBtn()}>&times;</span>
+            }}
+          />
+
+          <span className={styles.closeBtn} onClick={() => this.handleCloseBtn()}>&times;</span>
         </div>
         <div className={search.length === 0 ? styles.content : styles.contentOpened} />
       </div>

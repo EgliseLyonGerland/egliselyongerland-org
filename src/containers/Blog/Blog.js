@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 
 import { connect } from 'react-redux';
-import { asyncConnect } from 'redux-async-connect';
+import { asyncConnect } from 'redux-connect';
 import { toArray } from 'lodash';
 
 import { isLoaded as isPostsLoaded, load as loadPosts } from 'redux/modules/posts';
@@ -23,16 +23,14 @@ const POSTS_KEY = 'blog';
 function parseBookSlug(slug) {
   const [, book, chapter, verse] = slug.match(/(\w+)(?:\-(\d+)?)?(?:\-(\d+))?$/) || [];
 
-  return [ book, chapter, verse ];
+  return [book, chapter, verse];
 }
 
 @asyncConnect([{
   deferred: true,
-  promise: ({ params, store: { dispatch, getState }}) => {
-    return dispatch(loadCategories())
-      .then(() => {
-        return dispatch(loadBooks());
-      })
+  promise: ({ params, store: { dispatch, getState } }) => { // eslint-disable-line arrow-body-style
+    const result = dispatch(loadCategories())
+      .then(() => dispatch(loadBooks()))
       .then(() => {
         const { typeSlug, bookSlug } = params;
         const { entities: { categories } } = getState();
@@ -56,6 +54,8 @@ function parseBookSlug(slug) {
 
         return dispatch(loadPosts(POSTS_KEY, filters));
       });
+
+    return __CLIENT__ ? null : result;
   }
 }])
 @connect(
@@ -121,17 +121,17 @@ class Blog extends Component {
       bookSlug = book;
 
       if (chapter) {
-        bookSlug += '-' + chapter;
+        bookSlug += `-${chapter}`;
 
         if (verse) {
-          bookSlug += '-' + verse;
+          bookSlug += `-${verse}`;
         }
       }
     }
 
-    const url = '/blog'
-      + (type ? `/category/${type}` : '')
-      + (bookSlug ? `/book/${bookSlug}` : '');
+    let url = '/blog';
+    url += (type ? `/category/${type}` : '');
+    url += (bookSlug ? `/book/${bookSlug}` : '');
 
     return url;
   }
@@ -147,23 +147,21 @@ class Blog extends Component {
       return (<Text><i>Aucun résultat</i></Text>);
     }
 
-    return posts.map((post, index) => {
-      return (
-        <div key={post.ID}>
-          <div className="row">
-            <div className="col-xs-5">
-              <Image src={post.featured_image.attachment_meta.sizes.medium.url} />
-            </div>
-            <div className="col-xs-7">
-              <Text fontSize={1.6} fontWeight="regular">{post.title}</Text>
-              <Hr />
-              <Text fontSize={1.2} maxLines={4} fadeLastLine>{post.excerpt}</Text>
-            </div>
+    return posts.map((post, index) =>
+      <div key={post.ID}>
+        <div className="row">
+          <div className="col-xs-5">
+            <Image src={post.featured_image.attachment_meta.sizes.medium.url} />
           </div>
-          {((index + 1) < posts.length) && (<Hr line lg />)}
+          <div className="col-xs-7">
+            <Text fontSize={1.6} fontWeight="regular">{post.title}</Text>
+            <Hr />
+            <Text fontSize={1.2} maxLines={4} fadeLastLine>{post.excerpt}</Text>
+          </div>
         </div>
-      );
-    });
+        {((index + 1) < posts.length) && (<Hr line lg />)}
+      </div>
+    );
   }
 
   renderBibleFilter() {
@@ -180,7 +178,8 @@ class Blog extends Component {
             book: (currentBook === book && !chapter && !verse ? null : book),
             chapter: (currentChapter === chapter && !verse ? null : chapter),
             verse: (currentVerse === verse ? null : verse),
-          }))} />
+          }))}
+        />
       </PickerPanel>
     );
   }
@@ -199,7 +198,8 @@ class Blog extends Component {
             book: currentBook,
             chapter: currentChapter,
             verse: currentVerse,
-          }))} />
+          }))}
+        />
       </PickerPanel>
     );
   }
@@ -233,7 +233,7 @@ class Blog extends Component {
   render() {
     return (
       <div>
-        <Helmet title="Accueil"/>
+        <Helmet title="Accueil" />
         <Hr />
         <Container>
           <H1>Blog</H1>

@@ -1,69 +1,55 @@
-import React, {Component, PropTypes} from 'react';
+import React, { PropTypes } from 'react';
 
 import classnames from 'classnames';
 
-export default
-class Hr extends Component {
-  static propTypes = {
-    line: PropTypes.bool,
-    color: PropTypes.string,
-    opacity: PropTypes.number,
-    inline: PropTypes.bool,
-    nm: PropTypes.bool,
-    xs: PropTypes.bool,
-    sm: PropTypes.bool,
-    md: PropTypes.bool,
-    lg: PropTypes.bool,
-    xl: PropTypes.bool,
-  }
+import styles from './Hr.scss';
 
-  static defaultProps = {
-    line: false,
-    color: '#DDD',
-    opacity: 1,
-    inline: false,
-  }
+const Hr = ({ line, color, opacity, inline, ...props }) => {
+  // Check size
+  const sizes = ['nm', 'xs', 'sm', 'md', 'lg', 'xl'];
+  const size = sizes.reduce((prev, curr) => (props[curr] ? curr : prev), 'md');
 
-  render() {
-    const styles = require('./Hr.scss');
+  // Build new props
+  const newProps = {};
 
-    const {
-      line,
-      color,
-      opacity,
-      inline,
-    } = this.props;
+  newProps.className = classnames(
+    styles.hr,
+    styles[size],
+    line && styles.line,
+    inline && styles.inline
+  );
 
-    // Check size
-    const sizes = ['nm', 'xs', 'sm', 'md', 'lg', 'xl'];
-    let size = 'md';
+  if (line) {
+    newProps.style = { borderColor: color };
 
-    for (const index in sizes) {
-      if (this.props[sizes[index]]) {
-        size = sizes[index];
-      }
+    if (opacity) {
+      newProps.opacity = opacity;
     }
-
-    // Build new props
-    const props = {};
-
-    props.className = classnames(
-      styles.hr,
-      styles[size],
-      line && styles.line,
-      inline && styles.inline
-    );
-
-    if (line) {
-      props.style = { borderColor: color };
-
-      if (opacity) {
-        props.opacity = opacity;
-      }
-    }
-
-    return (
-      <div {...props} />
-    );
   }
-}
+
+  return (
+    <div {...newProps} />
+  );
+};
+
+Hr.propTypes = {
+  line: PropTypes.bool,
+  color: PropTypes.string,
+  opacity: PropTypes.number,
+  inline: PropTypes.bool,
+  nm: PropTypes.bool,
+  xs: PropTypes.bool,
+  sm: PropTypes.bool,
+  md: PropTypes.bool,
+  lg: PropTypes.bool,
+  xl: PropTypes.bool,
+};
+
+Hr.defaultProps = {
+  line: false,
+  color: '#DDD',
+  opacity: 1,
+  inline: false,
+};
+
+export default Hr;

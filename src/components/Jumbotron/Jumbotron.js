@@ -1,46 +1,41 @@
-import React, {Component, PropTypes} from 'react';
+import React, { PropTypes } from 'react';
 
-import {Button, Hr} from 'components';
+import { Button, Hr } from 'components';
 
-export default
-class Jumbotron extends Component {
+import styles from './Jumbotron.scss';
 
-  static propTypes = {
-    title: PropTypes.string,
-    baseline: PropTypes.string,
-    img: PropTypes.string,
-    link: PropTypes.string,
-    linkLabel: PropTypes.string,
-  }
+const Jumbotron = ({ title, baseline, img, link, linkLabel }) => (
+  <div className={styles.jumbotron} style={{ backgroundImage: `url(${img})` }}>
+    <div className={styles.content}>
+      <div className={styles.title}>{title}</div>
 
-  static defaultProps = {
-    linkLabel: 'Voir',
-  }
+      {baseline && (
+        <div className={styles.baseline}>{baseline}</div>
+      )}
 
-  render() {
-    const styles = require('./Jumbotron.scss');
-    const { title, baseline, img, link, linkLabel } = this.props;
-
-    return (
-      <div className={styles.jumbotron} style={{ backgroundImage: `url(${img})` }}>
-        <div className={styles.content}>
-          <div className={styles.title}>{title}</div>
-
-          {baseline && (
-            <div className={styles.baseline}>{baseline}</div>
-          )}
-
-          {link && (
-            <div className={styles.link}>
-              <Button size="lg">
-                {linkLabel}
-                <Hr inline />
-                <span className="fa fa-chevron-right" />
-              </Button>
-            </div>
-          )}
+      {link && (
+        <div className={styles.link}>
+          <Button size="lg">
+            {linkLabel}
+            <Hr inline />
+            <span className="fa fa-chevron-right" />
+          </Button>
         </div>
-      </div>
-    );
-  }
-}
+      )}
+    </div>
+  </div>
+);
+
+Jumbotron.propTypes = {
+  title: PropTypes.string,
+  baseline: PropTypes.string,
+  img: PropTypes.string,
+  link: PropTypes.string,
+  linkLabel: PropTypes.string,
+};
+
+Jumbotron.defaultProps = {
+  linkLabel: 'Voir',
+};
+
+export default Jumbotron;

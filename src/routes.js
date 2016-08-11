@@ -10,22 +10,17 @@ import {
     NotFound,
   } from 'containers';
 
-export default () => {
-  /**
-   * Please keep routes in alphabetical order
-   */
-  return (
-    <Route path="/" component={App}>
-      { /* Home (main) route */ }
-      <IndexRoute component={Home} />
+export default () => (
+  <Route path="/" component={App}>
+    { /* Home (main) route */ }
+    <IndexRoute component={Home} />
 
-      { /* Blog routes */ }
-      <Route path="/blog(/category/:typeSlug)(/book/:bookSlug)" component={Blog} />
+    { /* Blog routes */ }
+    <Route path="/blog(/category/:typeSlug)(/book/:bookSlug)" component={Blog} />
 
-      <Route path="/persecuted-church" component={PersecutedChurch} />
+    <Route path="/persecuted-church" component={PersecutedChurch} />
 
-      { /* Catch all route */ }
-      <Route path="*" component={NotFound} status={404} />
-    </Route>
-  );
-};
+    { /* Catch all route */ }
+    <Route path="*" component={NotFound} status={404} />
+  </Route>
+);

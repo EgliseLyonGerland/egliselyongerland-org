@@ -1,21 +1,15 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 
-export default
-class SearchButton extends Component {
+import styles from './SearchButton.scss';
 
-  static propTypes = {
-    onClicked: PropTypes.func,
-  }
+const SearchButton = ({ onClicked }) => (
+  <div className={styles.button} onClick={() => onClicked()}>
+    <span className="fa fa-search" />
+  </div>
+);
 
-  render() {
-    const styles = require('./SearchButton.scss');
+SearchButton.propTypes = {
+  onClicked: PropTypes.func,
+};
 
-    const { onClicked } = this.props;
-
-    return (
-      <div className={styles.button} onClick={() => onClicked()}>
-        <span className="fa fa-search" />
-      </div>
-    );
-  }
-}
+export default SearchButton;

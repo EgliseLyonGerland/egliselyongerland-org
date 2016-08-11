@@ -1,26 +1,22 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 
-export default
-class Overlay extends Component {
-  static propTypes = {
-    active: PropTypes.bool,
-    onClicked: PropTypes.func,
-  }
+import styles from './Overlay.scss';
 
-  static defaultProps = {
-    active: false,
-    onClicked: () => {},
-  }
+const Overlay = ({ active, onClicked }) => (
+  <div
+    className={`${styles.overlay} ${active ? styles.active : ''}`}
+    onClick={() => onClicked()}
+  />
+);
 
-  render() {
-    const styles = require('./Overlay.scss');
+Overlay.propTypes = {
+  active: PropTypes.bool,
+  onClicked: PropTypes.func,
+};
 
-    const { active, onClicked } = this.props;
+Overlay.defaultProps = {
+  active: false,
+  onClicked: () => {},
+};
 
-    return (
-      <div
-        className={`${styles.overlay} ${active ? styles.active : ''}`}
-        onClick={() => onClicked()} />
-    );
-  }
-}
+export default Overlay;

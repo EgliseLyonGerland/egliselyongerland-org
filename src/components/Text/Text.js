@@ -1,6 +1,8 @@
-import React, {Component, PropTypes} from 'react';
+import React, { Component, PropTypes } from 'react';
 
 import classnames from 'classnames';
+
+import styles from './Text.scss';
 
 export default
 class Text extends Component {
@@ -32,8 +34,6 @@ class Text extends Component {
   }
 
   render() {
-    const styles = require('./Text.scss');
-
     const {
       children,
       element,
@@ -61,12 +61,12 @@ class Text extends Component {
     };
 
     if (minLines) {
-      style.minHeight = lineHeight * minLines + unit;
+      style.minHeight = (lineHeight * minLines) + unit;
       style.overflow = 'hidden';
     }
 
     if (maxLines) {
-      style.maxHeight = lineHeight * maxLines + unit;
+      style.maxHeight = (lineHeight * maxLines) + unit;
       style.overflow = 'hidden';
     }
 

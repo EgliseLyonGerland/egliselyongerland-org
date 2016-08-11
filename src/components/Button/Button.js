@@ -1,4 +1,6 @@
-import React, {Component, PropTypes} from 'react';
+import React, { Component, PropTypes } from 'react';
+
+import styles from './Button.scss';
 
 export default
 class Button extends Component {
@@ -13,11 +15,10 @@ class Button extends Component {
   }
 
   render() {
-    const styles = require('./Button.scss');
     const { children, size } = this.props;
 
     return (
-      <button className={styles.button + ' ' + styles[size]}>
+      <button className={`${styles.button} ${styles[size]}`}>
         {children}
       </button>
     );

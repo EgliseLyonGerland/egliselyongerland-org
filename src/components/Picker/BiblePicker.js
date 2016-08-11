@@ -103,8 +103,11 @@ class BiblePicker extends Component {
       <div key={tab.key} className={styles.pane} style={{ maxHeight: '500px', overflowY: 'auto' }}>
         <LabelPicker
           current={currentBook}
-          labels={books.filter(book => book.testament === tab.key).map(({ key, label }) => ({ key, label }))}
-          onChange={label => onChange({ book: label.key, chapter: null, verse: null })} />
+          labels={books
+            .filter(book => book.testament === tab.key)
+            .map(({ key, label }) => ({ key, label }))}
+          onChange={label => onChange({ book: label.key, chapter: null, verse: null })}
+        />
       </div>
     );
 
@@ -114,10 +117,11 @@ class BiblePicker extends Component {
           tabs={booksTabs.map(tab => ({ ...tab, current: tab.key === currentTestament }))}
           bgColor="#F7F7F7"
           activeBarColor="#CCC"
-          renderLabel={tab => {
-            return (<Text fontSize={0.8} color="#777" ellipsis maxLines={1}>{tab.label}</Text>);
-          }}
-          onChange={() => this.toggleTestament() } />
+          renderLabel={tab =>
+            <Text fontSize={0.8} color="#777" ellipsis maxLines={1}>{tab.label}</Text>
+          }
+          onChange={() => this.toggleTestament()}
+        />
 
         <div className={styles.panes}>
           <Motion
@@ -145,7 +149,9 @@ class BiblePicker extends Component {
 
     return (
       <GridPicker
-        items={chapters.map(chapter => ({ key: chapter.number, label: chapter.number, current: currentChapter }))}
+        items={chapters.map(chapter =>
+          ({ key: `${chapter.number}`, label: `${chapter.number}`, current: currentChapter })
+        )}
         onChange={chapter => onChange({ book: currentBook, chapter, verse: null })}
       />
     );
@@ -162,7 +168,9 @@ class BiblePicker extends Component {
 
     return (
       <GridPicker
-        items={verses.map(verse => ({ key: verse.number, label: verse.number, current: currentVerse }))}
+        items={verses.map(verse =>
+          ({ key: `${verse.number}`, label: `${verse.number}`, current: currentVerse })
+        )}
         onChange={verse => onChange({ book: currentBook, chapter: currentChapter, verse })}
       />
     );

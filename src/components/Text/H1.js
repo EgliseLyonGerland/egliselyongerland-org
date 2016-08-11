@@ -1,15 +1,13 @@
-import React, {Component} from 'react';
+import React from 'react';
 
 import Text from './Text';
 
-export default
-class H1 extends Component {
-  render() {
-    return (
-      <Text
-        fontSize={2}
-        fontWeight="black"
-        {...this.props} />
-    );
-  }
-}
+const H1 = (props) => (
+  <Text
+    fontSize={2}
+    fontWeight="black"
+    {...props}
+  />
+);
+
+export default H1;

@@ -2,10 +2,10 @@ import data from './data';
 
 export default function post({ params: { postID } }) {
   return new Promise((resolve, reject) => {
-    const post = data.reduce((result, datum) => (datum.ID == postID ? datum : result), null);
+    const _post = data.reduce((result, datum) => (datum.ID === postID ? datum : result), null);
 
-    if (post) {
-      resolve(post);
+    if (_post) {
+      resolve(_post);
     }
 
     reject({

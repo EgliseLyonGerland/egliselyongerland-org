@@ -1,23 +1,25 @@
-import data from './data';
+/* eslint-disable camelcase */
 
-import { get, find, indexOf, random } from 'lodash';
+import { get, indexOf, random } from 'lodash';
+
+import data from './data';
 
 function postHasAllCagtegories(post, categoriesID) {
   const postCategories = get(post, 'terms.category', []);
 
   const categoriesMatched = postCategories.reduce((total, category) => {
-    if (indexOf(categoriesID, category.ID + '') > -1) {
+    if (indexOf(categoriesID, `${category.ID}`) > -1) {
       return total + 1;
     }
 
     return total;
   }, 0);
 
-  return categoriesMatched == categoriesID.length;
+  return categoriesMatched === categoriesID.length;
 }
 
 export default function posts({ query }) {
-  return new Promise((resolve, reject) => {
+  return new Promise(resolve => {
     const {
       page = 1,
       filter = {},

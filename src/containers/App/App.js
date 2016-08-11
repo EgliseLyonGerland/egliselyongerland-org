@@ -1,17 +1,16 @@
 import React, { Component, PropTypes } from 'react';
 
 import Helmet from 'react-helmet';
-import config from '../../config';
 import { connect } from 'react-redux';
-import { asyncConnect } from 'redux-async-connect';
 import * as searchbarActions from 'redux/modules/searchbar';
 import * as sidebarActions from 'redux/modules/sidebar';
 
 import { Header, Search, Overlay } from 'components';
 
-@asyncConnect([{
-  promise: () => Promise.all([]),
-}])
+import config from '../../config';
+
+import styles from './App.scss';
+
 @connect(
   state => ({
     overlay: state.overlay,
@@ -39,8 +38,6 @@ class App extends Component {
   }
 
   render() {
-    const styles = require('./App.scss');
-
     const {
       overlay,
       isSearchbarOpened,
@@ -52,16 +49,18 @@ class App extends Component {
 
     return (
       <div className={styles.app}>
-        <Helmet {...config.app.head}/>
+        <Helmet {...config.app.head} />
         <Overlay {...overlay} onClicked={() => this.handleOverlayClicked()} />
         <Header
           sidebarOpened={isSidebarOpened}
           onSearchButtonClicked={() => openSearchbar()}
           onOpenSidebarButtonClicked={() => openSidebar()}
-          onCloseSidebarButtonClicked={() => closeSidebar()} />
+          onCloseSidebarButtonClicked={() => closeSidebar()}
+        />
         <Search
           opened={isSearchbarOpened}
-          hideButtonClicked={() => closeSearchbar()} />
+          hideButtonClicked={() => closeSearchbar()}
+        />
         {this.props.children}
       </div>
     );
