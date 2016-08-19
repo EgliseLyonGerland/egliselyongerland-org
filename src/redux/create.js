@@ -3,10 +3,11 @@ import { routerMiddleware } from 'react-router-redux';
 import { createResponsiveStoreEnhancer } from 'redux-responsive';
 import thunk from 'redux-thunk';
 
+import reducer from './modules/reducer';
+
 import createClientMiddleware from './middleware/clientMiddleware';
 import overlayMiddleware from './middleware/overlayMiddleware';
-
-import reducer from './modules/reducer';
+import changeRouteMiddleware from './middleware/changeRouteMiddleware';
 
 export default function createStore(history, client, data) {
   // Sync dispatched route actions to the history
@@ -16,6 +17,7 @@ export default function createStore(history, client, data) {
     thunk,
     createClientMiddleware(client),
     overlayMiddleware,
+    changeRouteMiddleware,
     reduxRouterMiddleware
   ];
 
