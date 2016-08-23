@@ -1,0 +1,25 @@
+
+.image {
+  height: 600px;
+}
+
+.content {
+  position: relative;
+  background: white;
+  padding: 50px;
+  margin-top: -400px;
+  min-height: 1000px;
+  box-shadow: 0 -1px 5px rgba(black, .3);
+  z-index: 100;
+}
+
+.text {
+  p {
+    margin-bottom: 20px;
+  }
+}
+
+.comments {
+  max-width: 700px;
+  margin: 0 auto;
+}

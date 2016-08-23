@@ -4,7 +4,7 @@ import classnames from 'classnames';
 
 import styles from './Hr.scss';
 
-const Hr = ({ line, color, opacity, inline, ...props }) => {
+const Hr = ({ children, line, color, opacity, inline, ...props }) => {
   // Check size
   const sizes = ['nm', 'xs', 'sm', 'md', 'lg', 'xl'];
   const size = sizes.reduce((prev, curr) => (props[curr] ? curr : prev), 'md');
@@ -28,11 +28,14 @@ const Hr = ({ line, color, opacity, inline, ...props }) => {
   }
 
   return (
-    <div {...newProps} />
+    <div {...newProps}>
+      {children}
+    </div>
   );
 };
 
 Hr.propTypes = {
+  children: PropTypes.any,
   line: PropTypes.bool,
   color: PropTypes.string,
   opacity: PropTypes.number,

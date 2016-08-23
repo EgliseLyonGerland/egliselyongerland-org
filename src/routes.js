@@ -3,12 +3,13 @@ import React from 'react';
 import { IndexRoute, Route } from 'react-router';
 
 import {
-    App,
-    Home,
-    PersecutedChurch,
-    Blog,
-    NotFound,
-  } from 'containers';
+  App,
+  Home,
+  PersecutedChurch,
+  Blog,
+  Post,
+  NotFound,
+} from 'containers';
 
 export default () => (
   <Route path="/" component={App}>
@@ -17,7 +18,9 @@ export default () => (
 
     { /* Blog routes */ }
     <Route path="/blog(/category/:typeSlug)(/book/:bookSlug)" component={Blog} />
+    <Route path="/blog/post/:postId" component={Post} />
 
+    { /* Other routes */ }
     <Route path="/persecuted-church" component={PersecutedChurch} />
 
     { /* Catch all route */ }

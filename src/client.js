@@ -12,6 +12,7 @@ import { ReduxAsyncConnect } from 'redux-connect';
 import withScroll from 'scroll-behavior';
 import { calculateResponsiveState } from 'redux-responsive';
 import { get } from 'lodash';
+import 'moment/locale/fr';
 
 import createStore from './redux/create';
 import ApiClient from './helpers/ApiClient';

@@ -7,6 +7,7 @@ import httpProxy from 'http-proxy';
 import path from 'path';
 import PrettyError from 'pretty-error';
 import http from 'http';
+import 'moment/locale/fr';
 
 import { match } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
