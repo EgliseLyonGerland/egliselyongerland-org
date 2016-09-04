@@ -13,12 +13,12 @@ const PersecutedChurch = () => (
     <Helmet title="L'Église persécutée" />
 
     <Parallax bgImage={picture} strength={400}>
-      <div style={{ height: '800px' }} />
+      <div style={{ height: '60vh' }} />
     </Parallax>
 
     <Hr xl />
 
-    <Container sm style={{ height: '100vh' }}>
+    <Container sm>
       <Text fontSize={2} fontWeight="bold" element="h2">Lorem ipsum</Text>
       <Hr lg />
       <Text>
@@ -53,7 +53,7 @@ const PersecutedChurch = () => (
     <Hr xl />
 
     <Parallax bgImage={picture2} strength={400}>
-      <div style={{ height: '800px' }} />
+      <div style={{ height: '60vh' }} />
     </Parallax>
   </div>
 );
