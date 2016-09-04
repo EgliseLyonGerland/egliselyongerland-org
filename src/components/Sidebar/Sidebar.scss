@@ -67,3 +67,13 @@
       width: 100%;
     }
   }
+
+  @media (max-width: 500px) {
+    .content {
+      padding: 20px 20px 20px 0;
+    }
+
+    .link {
+      font-size: 26px;
+    }
+  }

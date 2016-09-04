@@ -3,19 +3,24 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 import { Link } from 'react-router';
+import { slice, filter } from 'lodash';
+
 import { Sidebar, SearchButton } from 'components';
 
 import styles from './Header.scss';
-// import logo from './logo.svg';
+import logo from './logo.svg';
 import brand from './brand.svg';
 
 const mapStateToProps = state => ({ browser: state.browser });
 
 const Header = (props) => {
   const links = [
-    { label: 'L\'église' },
+    { label: 'L\'église', path: '/church' },
     { label: 'Prédications', path: '/blog/category/sermon' },
     { label: 'Blog', path: '/blog' },
+    { label: 'Groupe de jeune', path: '/youngs' },
+    { label: 'L\'église persécutée', path: '/persecuted-church' },
+    { label: 'Contact', path: '/contact' },
   ];
 
   const {
@@ -28,13 +33,11 @@ const Header = (props) => {
   return (
     <div className={styles.header}>
 
-      {/*
       <Link to="/">
-        <img className={styles.logo} src={logo} height="40" />
+        <img className={styles.logo} src={logo} height="40" alt="Église Lyon Gerland" />
       </Link>
-      */}
 
-      {browser.width >= 0 && (
+      {browser.width >= 500 && (
         <Link to="/">
           <img className={styles.brand} src={brand} height="22" alt="Église Lyon Gerland" />
         </Link>
@@ -44,7 +47,7 @@ const Header = (props) => {
 
       {browser.width >= 850 && (
         <div className={styles.links}>
-          {links.map((link, index) =>
+          {slice(links, 0, 3).map((link, index) =>
             <div className={styles.linksItem} key={index}>
               {link.path ? (
                 <Link className={styles.link} to={link.path}>{link.label}</Link>
@@ -60,6 +63,7 @@ const Header = (props) => {
       <SearchButton onClicked={() => onSearchButtonClicked()} />
 
       <Sidebar
+        links={filter(links, (link, index) => index >= 3 || browser.width < 850)}
         opened={sidebarOpened}
         onOpenSidebarButtonClicked={() => onOpenSidebarButtonClicked()}
         onCloseSidebarButtonClicked={() => onCloseSidebarButtonClicked()}

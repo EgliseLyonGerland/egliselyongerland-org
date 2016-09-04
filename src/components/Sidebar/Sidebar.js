@@ -11,6 +11,10 @@ export default
 class Sidebar extends Component {
 
   static propTypes = {
+    links: PropTypes.arrayOf(PropTypes.shape({
+      label: PropTypes.string.isRequired,
+      path: PropTypes.string.isRequired,
+    })),
     opened: PropTypes.bool,
     onOpenSidebarButtonClicked: PropTypes.func,
     onCloseSidebarButtonClicked: PropTypes.func,
@@ -31,7 +35,7 @@ class Sidebar extends Component {
   }
 
   render() {
-    const { opened } = this.props;
+    const { links, opened } = this.props;
 
     return (
       <div className={classes(styles.sidebar, (opened && styles.opened))}>
@@ -39,11 +43,9 @@ class Sidebar extends Component {
           <Burger weight={5} width={25} height={25} color="white" muted={opened} />
         </button>
         <div className={styles.content}>
-          <a className={styles.link} href="#church">L'église</a>
-          <a className={styles.link} href="#sermons">Prédications</a>
-          <a className={styles.link} href="#youngs">Le groupe des jeunes</a>
-          <Link to="/persecuted-church" className={styles.link}>L'église persécutée</Link>
-          <a className={styles.link} href="#contact">Contact</a>
+          {links.map(link =>
+            <Link key={link.path} to={link.path} className={styles.link}>{link.label}</Link>
+          )}
         </div>
       </div>
     );
