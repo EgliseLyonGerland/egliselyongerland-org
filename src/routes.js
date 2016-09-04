@@ -9,6 +9,7 @@ import {
   Blog,
   Post,
   NotFound,
+  Wip,
 } from 'containers';
 
 export default () => (
@@ -22,6 +23,9 @@ export default () => (
 
     { /* Other routes */ }
     <Route path="/persecuted-church" component={PersecutedChurch} />
+    <Route path="/church" component={Wip} />
+    <Route path="/youngs" component={Wip} />
+    <Route path="/contact" component={Wip} />
 
     { /* Catch all route */ }
     <Route path="*" component={NotFound} status={404} />
