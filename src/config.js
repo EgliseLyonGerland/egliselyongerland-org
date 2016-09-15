@@ -2,18 +2,21 @@ require('babel-polyfill');
 
 const environment = {
   development: {
-    isProduction: false
+    isProduction: false,
+    apiEndpoint: 'http://sky.egliselyongerland.local/api',
   },
   production: {
-    isProduction: true
+    isProduction: true,
+    apiEndpoint: 'http://sky.egliselyongerland.org/api',
   }
 }[process.env.NODE_ENV || 'development'];
 
 module.exports = Object.assign({
   host: process.env.HOST || 'localhost',
   port: process.env.PORT,
-  apiHost: process.env.APIHOST || 'localhost',
-  apiPort: process.env.APIPORT,
+  apiHost: 'localhost',
+  apiPort: 3030,
+  apiEndpoint: 'http://localhost:3030/api',
   app: {
     title: 'React Redux Example',
     description: 'All the modern best practices in one example.',

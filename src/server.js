@@ -3,7 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/server';
 import favicon from 'serve-favicon';
 import compression from 'compression';
-import httpProxy from 'http-proxy';
+// import httpProxy from 'http-proxy';
 import path from 'path';
 import PrettyError from 'pretty-error';
 import http from 'http';
@@ -25,10 +25,10 @@ const targetUrl = `http://${config.apiHost}:${config.apiPort}`;
 const pretty = new PrettyError();
 const app = new Express();
 const server = new http.Server(app);
-const proxy = httpProxy.createProxyServer({
-  target: targetUrl,
-  ws: true
-});
+// const proxy = httpProxy.createProxyServer({
+//   target: targetUrl,
+//   ws: true
+// });
 
 app.use(compression());
 app.use(favicon(path.join(__dirname, '..', 'static', 'favicon.ico')));
@@ -36,31 +36,31 @@ app.use(favicon(path.join(__dirname, '..', 'static', 'favicon.ico')));
 app.use(Express.static(path.join(__dirname, '..', 'static')));
 
 // Proxy to API server
-app.use('/api', (req, res) => {
-  proxy.web(req, res, { target: targetUrl });
-});
-
-app.use('/ws', (req, res) => {
-  proxy.web(req, res, { target: `${targetUrl}/ws` });
-});
-
-server.on('upgrade', (req, socket, head) => {
-  proxy.ws(req, socket, head);
-});
+// app.use('/api', (req, res) => {
+//   proxy.web(req, res, { target: targetUrl });
+// });
+//
+// app.use('/ws', (req, res) => {
+//   proxy.web(req, res, { target: `${targetUrl}/ws` });
+// });
+//
+// server.on('upgrade', (req, socket, head) => {
+//   proxy.ws(req, socket, head);
+// });
 
 // added the error handling to avoid https://github.com/nodejitsu/node-http-proxy/issues/527
-proxy.on('error', (error, req, res) => {
-  if (error.code !== 'ECONNRESET') {
-    console.error('proxy error', error);
-  }
-  if (!res.headersSent) {
-    res.writeHead(500, { 'content-type': 'application/json' });
-  }
-
-  const json = { error: 'proxy_error', reason: error.message };
-
-  res.end(JSON.stringify(json));
-});
+// proxy.on('error', (error, req, res) => {
+//   if (error.code !== 'ECONNRESET') {
+//     console.error('proxy error', error);
+//   }
+//   if (!res.headersSent) {
+//     res.writeHead(500, { 'content-type': 'application/json' });
+//   }
+//
+//   const json = { error: 'proxy_error', reason: error.message };
+//
+//   res.end(JSON.stringify(json));
+// });
 
 app.use((req, res) => {
   if (__DEVELOPMENT__) {
