@@ -2,12 +2,9 @@ import React, { Component, PropTypes } from 'react';
 
 import { connect } from 'react-redux';
 import { asyncConnect } from 'redux-connect';
-import { toArray } from 'lodash';
+import { has, eq, transform } from 'lodash';
 
 import { isLoaded as isPostsLoaded, load as loadPosts } from 'redux/modules/posts';
-import { isLoaded as isCategoriesLoaded, load as loadCategories } from 'redux/modules/categories';
-import { loadFromCategories as loadBooks } from 'redux/modules/books';
-import { getCategoryBySlug } from 'utils/categories';
 
 import Helmet from 'react-helmet';
 
@@ -15,85 +12,50 @@ import {
   PickerPanel,
   BiblePicker,
   LabelPicker,
-  Container, Image, Spinner,
-  Text, H1, Hr } from 'components';
+  PopButton,
+  PostsFeed,
+  Container,
+  Spinner,
+  Text,
+  H1,
+  Hr
+} from 'components';
 
 const POSTS_KEY = 'blog';
 
-function parseBookSlug(slug) {
-  const [, book, chapter, verse] = slug.match(/(\w+)(?:\-(\d+)?)?(?:\-(\d+))?$/) || [];
-
-  return [book, chapter, verse];
-}
-
 @asyncConnect([{
-  deferred: true,
-  promise: ({ params, store: { dispatch, getState } }) => { // eslint-disable-line arrow-body-style
-    const result = dispatch(loadCategories())
-      .then(() => dispatch(loadBooks()))
-      .then(() => {
-        const { typeSlug, bookSlug } = params;
-        const { entities: { categories } } = getState();
-        const filters = { limit: 15, categories: [] };
+  promise: ({ location: { query }, store: { dispatch } }) => {
+    const filters = {
+      aggs: true,
+    };
 
-        if (typeSlug) {
-          const currentType = getCategoryBySlug(toArray(categories), typeSlug);
+    if (has(query, 'category')) {
+      filters.category = query.category;
+    }
 
-          if (currentType) {
-            filters.categories.push(currentType.ID);
-          }
-        }
+    if (has(query, 'author')) {
+      filters.author = query.author;
+    }
 
-        if (bookSlug) {
-          const bookType = getCategoryBySlug(toArray(categories), bookSlug);
-
-          if (bookType) {
-            filters.categories.push(bookType.ID);
-          }
-        }
-
-        return dispatch(loadPosts(POSTS_KEY, filters));
-      });
+    const result = dispatch(loadPosts(POSTS_KEY, filters));
 
     return __CLIENT__ ? null : result;
   }
 }])
 @connect(
-  (state, props) => {
-    const { entities, books } = state;
-    const { params } = props; // eslint-disable-line react/prop-types
-
+  state => {
     let posts = null;
-    let types = null;
-    let currentType = null;
-    let currentBook = null;
-    let currentChapter = null;
-    let currentVerse = null;
+    let aggs = null;
 
     if (isPostsLoaded(POSTS_KEY, state)) {
-      posts = state.posts[POSTS_KEY].data.map(id => entities.posts[id]);
-    }
-
-    if (isCategoriesLoaded(state)) {
-      const categories = state.categories.data.map(id => entities.categories[id]);
-
-      types = categories.filter(({ parent, count }) => count > 0 && parent === 10);
-
-      currentType = getCategoryBySlug(categories, params.typeSlug);
-    }
-
-    if (params.bookSlug) {
-      [currentBook, currentChapter, currentVerse] = parseBookSlug(params.bookSlug);
+      posts = state.posts[POSTS_KEY].data;
+      aggs = state.posts[POSTS_KEY].aggs;
     }
 
     return {
       posts,
-      types,
-      books: books.data,
-      currentType,
-      currentBook,
-      currentChapter: parseInt(currentChapter, 10),
-      currentVerse: parseInt(currentVerse, 10),
+      aggs,
+      browser: state.browser,
     };
   }
 )
@@ -102,104 +64,103 @@ class Blog extends Component {
 
   static propTypes = {
     posts: PropTypes.array,
+    aggs: PropTypes.object,
     types: PropTypes.array,
-    books: PropTypes.array,
     currentType: PropTypes.object,
     currentBook: PropTypes.string,
     currentChapter: PropTypes.number,
     currentVerse: PropTypes.number,
+    browser: PropTypes.object,
+    location: PropTypes.object,
   }
 
   static contextTypes = {
     router: PropTypes.object,
   }
 
-  generateUrl({ type, book, chapter, verse }) {
-    let bookSlug;
+  goTo(params) {
+    const { router } = this.context;
+    const { location: { query } } = this.props;
 
-    if (book) {
-      bookSlug = book;
-
-      if (chapter) {
-        bookSlug += `-${chapter}`;
-
-        if (verse) {
-          bookSlug += `-${verse}`;
-        }
+    router.push(router.createPath('/blog', transform(params, (prev, curr, key) => {
+      if (!query[key] || eq(query[key], curr)) {
+        prev[key] = curr; // eslint-disable-line no-param-reassign
       }
-    }
-
-    let url = '/blog';
-    url += (type ? `/category/${type}` : '');
-    url += (bookSlug ? `/book/${bookSlug}` : '');
-
-    return url;
-  }
-
-  renderPosts() {
-    const { posts } = this.props;
-
-    if (!posts) {
-      return (<Spinner />);
-    }
-
-    if (!posts.length) {
-      return (<Text><i>Aucun résultat</i></Text>);
-    }
-
-    return posts.map((post, index) =>
-      <div key={post.ID}>
-        <div className="row">
-          <div className="col-xs-5">
-            <Image src={post.featured_image.attachment_meta.sizes.medium.url} />
-          </div>
-          <div className="col-xs-7">
-            <Text fontSize={1.6} fontWeight="regular">{post.title}</Text>
-            <Hr />
-            <Text fontSize={1.2} maxLines={4} fadeLastLine>{post.excerpt}</Text>
-          </div>
-        </div>
-        {((index + 1) < posts.length) && (<Hr line lg />)}
-      </div>
-    );
+    }, {})));
   }
 
   renderBibleFilter() {
-    const { books, currentType, currentBook, currentChapter, currentVerse } = this.props;
-    const { router } = this.context;
+    // const { books, currentType, currentBook, currentChapter, currentVerse } = this.props;
+    // const { router } = this.context;
+
+    const { aggs: { bibleRefs } } = this.props;
 
     return (
       <PickerPanel title="Référence biblique">
         <BiblePicker
-          books={books}
-          {...{ currentBook, currentChapter, currentVerse }}
-          onChange={({ book, chapter, verse }) => router.push(this.generateUrl({
-            type: currentType && currentType.slug,
-            book: (currentBook === book && !chapter && !verse ? null : book),
-            chapter: (currentChapter === chapter && !verse ? null : chapter),
-            verse: (currentVerse === verse ? null : verse),
-          }))}
+          books={bibleRefs}
         />
       </PickerPanel>
     );
+    // {...{ currentBook, currentChapter, currentVerse }}
+    // onChange={({ book, chapter, verse }) => router.push(this.generateUrl({
+    //   type: currentType && currentType.slug,
+    //   book: (currentBook === book && !chapter && !verse ? null : book),
+    //   chapter: (currentChapter === chapter && !verse ? null : chapter),
+    //   verse: (currentVerse === verse ? null : verse),
+    // }))}
   }
 
   renderCategoriesFilter() {
-    const { types, currentType, currentBook, currentChapter, currentVerse } = this.props;
-    const { router } = this.context;
+    const {
+      aggs: { categories },
+      location: { query },
+    } = this.props;
 
     return (
       <PickerPanel title="Catégories">
         <LabelPicker
-          current={currentType && currentType.slug}
-          labels={types.map(type => ({ key: type.slug, label: type.name }))}
-          onChange={label => router.push(this.generateUrl({
-            type: (currentType && currentType.slug === label.key ? null : label.key),
-            book: currentBook,
-            chapter: currentChapter,
-            verse: currentVerse,
+          current={parseInt(query.category, 10)}
+          labels={categories.map(category => ({
+            key: category.id,
+            label: category.name,
+            total: category.total,
           }))}
-        />
+          onChange={label => this.goTo({ ...query, category: label.key })}
+        >
+          {(label) => (
+            <Text fontSize={1} maxLines={1} ellipsis>
+              {label.label} <Text fontSize={0.8} element="span" color="#AAA">({label.total})</Text>
+            </Text>
+          )}
+        </LabelPicker>
+      </PickerPanel>
+    );
+  }
+
+  renderAuthorsFilter() {
+    const {
+      aggs: { authors },
+      location: { query },
+    } = this.props;
+
+    return (
+      <PickerPanel title="Auteurs">
+        <LabelPicker
+          current={parseInt(query.author, 10)}
+          labels={authors.map(author => ({
+            key: author.id,
+            label: author.name,
+            total: author.total,
+          }))}
+          onChange={label => this.goTo({ ...query, author: label.key })}
+        >
+          {(label) => (
+            <Text fontSize={1} maxLines={1} ellipsis>
+              {label.label} <Text fontSize={0.8} element="span" color="#AAA">({label.total})</Text>
+            </Text>
+          )}
+        </LabelPicker>
       </PickerPanel>
     );
   }
@@ -213,9 +174,9 @@ class Blog extends Component {
   }
 
   renderFilters() {
-    const { types, books } = this.props;
+    const { aggs } = this.props;
 
-    if (!types || !books) {
+    if (aggs === null) {
       return (<Text>Chargement...</Text>);
     }
 
@@ -225,28 +186,63 @@ class Blog extends Component {
         <Hr lg />
         {this.renderCategoriesFilter()}
         <Hr lg />
+        {this.renderAuthorsFilter()}
+        <Hr lg />
         {this.renderBibleFilter()}
       </div>
     );
   }
 
+  renderPosts() {
+    const { posts } = this.props;
+
+    if (!posts) {
+      return (<Spinner />);
+    }
+
+    if (!posts.length) {
+      return (<Text><i>Aucun résultat</i></Text>);
+    }
+
+    return <PostsFeed posts={posts} />;
+  }
+
+  renderWideScreen() {
+    return (
+      <div className="row">
+        <div className="col-xs-5">
+          {this.renderFilters()}
+        </div>
+        <div className="col-xs-7">
+          {this.renderPosts()}
+        </div>
+      </div>
+    );
+  }
+
+  renderSmallScreen() {
+    return (
+      <div>
+        {this.renderPosts()}
+        <PopButton title="Filtres">
+          {this.renderFilters()}
+        </PopButton>
+      </div>
+    );
+  }
+
   render() {
+    const { browser } = this.props;
+
     return (
       <div>
         <Helmet title="Accueil" />
         <Hr />
-        <Container>
+        <Container md>
           <H1>Blog</H1>
           <Hr lg />
 
-          <div className="row">
-            <div className="col-xs-4">
-              {this.renderFilters()}
-            </div>
-            <div className="col-xs-8">
-              {this.renderPosts()}
-            </div>
-          </div>
+          {browser.width >= 750 ? this.renderWideScreen() : this.renderSmallScreen()}
         </Container>
       </div>
     );

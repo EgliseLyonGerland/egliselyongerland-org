@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 import { asyncConnect } from 'redux-connect';
 import Helmet from 'react-helmet';
 import { Parallax } from 'react-parallax';
-import Gravatar from 'react-gravatar';
 import moment from 'moment';
 import Disqus from 'react-disqus-thread';
 import md5 from 'md5';
+import { get } from 'lodash';
 
 import { Container, Spinner, Hr, Text } from 'components';
 
@@ -26,14 +26,11 @@ import styles from './Post.scss';
 }])
 @connect(
   (state, props) => {
-    const { entities } = state;
+    const { post } = state;
     const { params: { postId } } = props;
-    const post = entities.posts[postId];
-    const author = post ? entities.authors[post.author] : null;
 
     return {
-      post,
-      author,
+      post: post[postId].data,
     };
   }
 )
@@ -42,7 +39,6 @@ class Post extends Component {
 
   static propTypes = {
     post: PropTypes.object,
-    author: PropTypes.object,
   };
 
   static defaultProps = {
@@ -50,19 +46,19 @@ class Post extends Component {
   };
 
   render() {
-    const { post, author } = this.props;
+    const { post } = this.props;
 
     if (!post) {
       return (<Spinner />);
     }
 
-    const gravatarId = author.avatar ? author.avatar.match(/[a-f0-9]{32}/i)[0] : null;
+    const imageUrl = get(post, 'pictures.large', null);
 
     return (
       <div>
         <Helmet title={post.title} />
 
-        <Parallax bgImage={post.featured_image.attachment_meta.sizes.large.url} strength={400}>
+        <Parallax bgImage={imageUrl} strength={400}>
           <div className={styles.image} />
         </Parallax>
 
@@ -72,9 +68,8 @@ class Post extends Component {
             <Hr lg />
             <Text element="div" fontSize={1} color="#555">
               <span>
-                {gravatarId && <Gravatar md5={gravatarId} size={40} />}
                 <Hr inline md />
-                <b>{author.name}</b>
+                <b>{post.author.name}</b>
               </span>
               <Hr inline>—</Hr>
               <span title={moment(post.date).format()}>

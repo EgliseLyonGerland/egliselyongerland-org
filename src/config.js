@@ -3,11 +3,11 @@ require('babel-polyfill');
 const environment = {
   development: {
     isProduction: false,
-    apiEndpoint: 'http://sky.egliselyongerland.local/api',
+    apiEndpoint: 'http://api.egliselyongerland.local',
   },
   production: {
     isProduction: true,
-    apiEndpoint: 'http://sky.egliselyongerland.org/api',
+    apiEndpoint: 'http://api.egliselyongerland.org',
   }
 }[process.env.NODE_ENV || 'development'];
 

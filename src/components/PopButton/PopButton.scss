@@ -1,0 +1,49 @@
+
+@import "../../theme/variables.scss";
+
+.container {
+  position: fixed;
+  background: $color-main;
+  width: $pop-button-size;
+  height: $pop-button-size;
+  bottom: $pop-button-margin;
+  right: $pop-button-margin;
+  border-radius: $pop-button-size / 2;
+  box-shadow: 0 0 7px rgba(black, 0.7);
+  transition: all .2s;
+  z-index: $pop-button-zindex;
+  overflow: auto;
+}
+
+.content {
+  padding: $pop-button-margin;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s linear .3s, opacity .2s
+}
+
+.opened {
+  background: white;
+  width: calc(100vw - #{$pop-button-margin * 2});
+  height: calc(100vh - #{$pop-button-margin * 2});
+  border-radius: 2px;
+
+  .content {
+    visibility: visible;
+    opacity: 1;
+    transition-delay: 0s;
+  }
+}
+
+.button {
+  line-height: $pop-button-size;
+  font-size: $pop-button-size / 3;
+  text-align: center;
+  color: white;
+  cursor: pointer;
+}
+
+.closeButton {
+  float: right;
+  cursor: pointer;
+}

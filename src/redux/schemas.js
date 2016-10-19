@@ -1,26 +1,20 @@
 import { Schema, arrayOf } from 'normalizr';
 
 const postSchema = new Schema('posts', {
-  idAttribute: 'ID'
+  idAttribute: 'id'
 });
 
 const authorSchema = new Schema('authors', {
-  idAttribute: 'ID'
+  idAttribute: 'id'
 });
 
 const categorySchema = new Schema('categories', {
-  idAttribute: 'ID'
+  idAttribute: 'id'
 });
 
 postSchema.define({
   author: authorSchema,
-  terms: {
-    category: arrayOf(categorySchema),
-  },
-});
-
-categorySchema.define({
-  parent: categorySchema
+  categories: arrayOf(categorySchema),
 });
 
 export {

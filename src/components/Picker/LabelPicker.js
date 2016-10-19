@@ -4,7 +4,7 @@ import { Text } from 'components';
 
 import styles from './LabelPicker.scss';
 
-const LabelPicker = ({ labels, current = null, onChange = () => {} }) => (
+const LabelPicker = ({ labels, current = null, children, onChange = () => {} }) => (
   <div>
     {labels.map(label => (
       <div
@@ -18,7 +18,9 @@ const LabelPicker = ({ labels, current = null, onChange = () => {} }) => (
           className={`pull-right fa fa-toggle-${current === label.key ? 'on' : 'off'}`}
         />
 
-        <Text fontSize={1} maxLines={1} ellipsis>{label.label}</Text>
+        {children ? children(label) : (
+          <Text fontSize={1} maxLines={1} ellipsis>{label.label}</Text>
+        )}
       </div>
     ))}
   </div>
@@ -29,7 +31,8 @@ LabelPicker.propTypes = {
     key: PropTypes.any.isRequired,
     label: PropTypes.string.isRequired,
   })).isRequired,
-  current: PropTypes.string,
+  current: PropTypes.any,
+  children: PropTypes.func,
   onChange: PropTypes.func,
 };
 

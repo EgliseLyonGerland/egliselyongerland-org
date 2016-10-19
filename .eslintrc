@@ -21,7 +21,8 @@
     "react/jsx-filename-extension": [1, { "extensions": [".js"] }],
     "react/jsx-first-prop-new-line": [1, "multiline"],
     "react/require-extension": 0,
-    "import/no-extraneous-dependencies": [error, { devDependencies: true }]
+    "import/no-extraneous-dependencies": [error, { devDependencies: true }],
+    "react/prefer-stateless-function": [0]
   },
   "plugins": [
     "react", "import"

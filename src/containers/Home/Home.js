@@ -6,7 +6,7 @@ import { isLoaded as isPostsLoaded, load as loadPosts } from 'redux/modules/post
 
 import Helmet from 'react-helmet';
 
-import { Jumbotron, Image, Text, Hr } from 'components';
+import { Container, Jumbotron, PostsFeed, H1, Hr } from 'components';
 
 const POSTS_KEY = 'home';
 
@@ -21,12 +21,10 @@ const asyncPromises = [{
 }];
 
 const mapStateToProps = state => {
-  const { entities } = state;
-
   let posts = null;
 
   if (isPostsLoaded(POSTS_KEY, state)) {
-    posts = state.posts.home.data.map(id => entities.posts[id]);
+    posts = state.posts[POSTS_KEY].data;
   }
 
   return {
@@ -46,22 +44,12 @@ const Home = ({ posts }) => (
       linkLabel="En savoir plus"
     />
 
-    {posts && (
-      <div className="container">
-        <Hr xl />
-
-        <div className="row">
-          {posts.slice(0, 2).map((post, index) =>
-            <div className="col-xs-6" key={index}>
-              <Image src={`http://lorempixel.com/400/200/people/${index}`} />
-              <Hr sm />
-              <Text fontSize={1.5} minLines={3} maxLines={3}>{post.title}</Text>
-              <Hr />
-            </div>
-          )}
-        </div>
-      </div>
-    )}
+    <Container>
+      <Hr xl />
+      <H1>Dernières prédications</H1>
+      <Hr />
+      <PostsFeed posts={posts} horizontal />
+    </Container>
   </div>
 );
 

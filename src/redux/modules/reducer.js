@@ -9,10 +9,8 @@ import entities from './entities';
 import overlay from './overlay';
 import searchbar from './searchbar';
 import sidebar from './sidebar';
-import categories from './categories';
 import posts from './posts';
-import books from './books';
-
+import post from './post';
 
 export default combineReducers({
   routing: routerReducer,
@@ -22,7 +20,6 @@ export default combineReducers({
   overlay,
   searchbar,
   sidebar,
-  categories,
   posts,
-  books,
+  post,
 });

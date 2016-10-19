@@ -30,13 +30,12 @@ export default
 class BiblePicker extends Component {
   static propTypes = {
     books: PropTypes.arrayOf(PropTypes.shape({
-      key: PropTypes.string.isRequired,
-      label: PropTypes.string.isRequired,
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      testament: PropTypes.string.isRequired,
       chapters: PropTypes.arrayOf(PropTypes.shape({
         number: PropTypes.number.isRequired,
-        verses: PropTypes.arrayOf(PropTypes.shape({
-          number: PropTypes.number.isRequired,
-        })).isRequired,
+        verses: PropTypes.arrayOf(PropTypes.number).isRequired,
       })).isRequired,
     })).isRequired,
     currentTestament: PropTypes.oneOf(['new', 'old']),
@@ -105,7 +104,7 @@ class BiblePicker extends Component {
           current={currentBook}
           labels={books
             .filter(book => book.testament === tab.key)
-            .map(({ key, label }) => ({ key, label }))}
+            .map(({ id, name }) => ({ key: id, label: name }))}
           onChange={label => onChange({ book: label.key, chapter: null, verse: null })}
         />
       </div>
@@ -169,7 +168,7 @@ class BiblePicker extends Component {
     return (
       <GridPicker
         items={verses.map(verse =>
-          ({ key: `${verse.number}`, label: `${verse.number}`, current: currentVerse })
+          ({ key: `${verse}`, label: `${verse}`, current: currentVerse })
         )}
         onChange={verse => onChange({ book: currentBook, chapter: currentChapter, verse })}
       />

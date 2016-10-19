@@ -1,9 +1,20 @@
-import { postSchema } from 'redux/schemas';
-import { arrayOf } from 'normalizr';
+// import { arrayOf } from 'normalizr';
+
+// import { postSchema } from 'redux/schemas';
 
 const LOAD = 'POSTS_LOAD';
 const LOAD_SUCCESS = 'POSTS_LOAD_SUCCESS';
 const LOAD_FAIL = 'POSTS_LOAD_FAIL';
+
+const initialPostsState = {
+  loading: false,
+  loaded: false,
+  total: 0,
+  from: 0,
+  limit: 0,
+  data: [],
+  aggs: {},
+};
 
 export default function posts(state = {}, action = {}) {
   switch (action.type) {
@@ -11,6 +22,7 @@ export default function posts(state = {}, action = {}) {
       return {
         ...state,
         [action.key]: {
+          ...initialPostsState,
           loading: true,
         }
       };
@@ -18,17 +30,16 @@ export default function posts(state = {}, action = {}) {
       return {
         ...state,
         [action.key]: {
-          loading: false,
+          ...initialPostsState,
+          ...action.data,
           loaded: true,
-          data: action.data.result,
         }
       };
     case LOAD_FAIL:
       return {
         ...state,
         [action.key]: {
-          loading: false,
-          loaded: false,
+          ...initialPostsState,
           error: action.error
         }
       };
@@ -45,25 +56,39 @@ export function isLoaded(key, globalState) {
 
 export function load(key, filters = {}) {
   const {
-    page = 1,
+    from = 0,
     limit = 10,
-    categories,
+    aggs = false,
+    author = null,
+    category = null,
   } = filters;
 
-  const params = { page };
+  const params = {};
 
-  if (limit) {
-    params['filter[posts_per_page]'] = limit;
+  if (from) {
+    params.from = from;
   }
 
-  if (categories) {
-    params['filter[category__and][]'] = categories;
+  if (limit) {
+    params.limit = limit;
+  }
+
+  if (aggs) {
+    params.aggs = 1;
+  }
+
+  if (author) {
+    params.author = author;
+  }
+
+  if (category) {
+    params.category = category;
   }
 
   return {
     types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
-    promise: (client) => client.get('/posts', { params }),
-    schema: arrayOf(postSchema),
+    promise: client => client.get('/posts', { params }),
+    // schema: arrayOf(postSchema),
     key,
     filters,
   };
