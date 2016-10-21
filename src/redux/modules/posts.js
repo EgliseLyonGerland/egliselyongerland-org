@@ -23,7 +23,9 @@ export default function posts(state = {}, action = {}) {
         ...state,
         [action.key]: {
           ...initialPostsState,
+          ...state[action.key],
           loading: true,
+          loaded: false,
         }
       };
     case LOAD_SUCCESS:
@@ -31,7 +33,9 @@ export default function posts(state = {}, action = {}) {
         ...state,
         [action.key]: {
           ...initialPostsState,
+          ...state[action.key],
           ...action.data,
+          loading: false,
           loaded: true,
         }
       };
@@ -40,7 +44,10 @@ export default function posts(state = {}, action = {}) {
         ...state,
         [action.key]: {
           ...initialPostsState,
-          error: action.error
+          ...state[action.key],
+          error: action.error,
+          loading: false,
+          loaded: false,
         }
       };
     default:

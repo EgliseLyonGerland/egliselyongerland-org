@@ -1,39 +1,81 @@
-import React, { PropTypes } from 'react';
+import React, { PropTypes, Component } from 'react';
 
 import { Text } from 'components';
 
 import styles from './LabelPicker.scss';
 
-const LabelPicker = ({ labels, current = null, children, onChange = () => {} }) => (
-  <div>
-    {labels.map(label => (
-      <div
-        className="clearfix"
-        key={label.key}
-        className={styles.label}
-        onClick={() => onChange(label)}
-      >
-        <Text
-          fontSize={1}
-          className={`pull-right fa fa-toggle-${current === label.key ? 'on' : 'off'}`}
-        />
+class LabelPicker extends Component {
+  static propTypes = {
+    labels: PropTypes.arrayOf(PropTypes.shape({
+      key: PropTypes.any.isRequired,
+      label: PropTypes.string.isRequired,
+    })).isRequired,
+    current: PropTypes.any,
+    children: PropTypes.func,
+    readOnly: PropTypes.bool,
+    crop: PropTypes.number,
+    onChange: PropTypes.func,
+  }
 
-        {children ? children(label) : (
-          <Text fontSize={1} maxLines={1} ellipsis>{label.label}</Text>
+  constructor() {
+    super();
+
+    this.state = {
+      opened: false,
+    };
+  }
+
+  render() {
+    const {
+      labels,
+      crop = null,
+      current = null,
+      readOnly = false,
+      children,
+      onChange = () => {}
+    } = this.props;
+
+    const {
+      opened
+    } = this.state;
+
+    return (
+      <div className={`${readOnly ? styles.readOnly : ''}`}>
+        {labels.map((label, index) => {
+          if (!opened && crop !== null && index >= crop) {
+            return null;
+          }
+
+          return (
+            <div
+              className="clearfix"
+              key={label.key}
+              className={styles.label}
+              onClick={() => onChange(label.key === current ? null : label.key)}
+            >
+              <Text
+                fontSize={1}
+                className={`pull-right fa fa-toggle-${current === label.key ? 'on' : 'off'}`}
+              />
+
+              {children ? children(label) : (
+                <Text fontSize={1} maxLines={1} ellipsis>{label.label}</Text>
+              )}
+            </div>
+          );
+        })}
+
+        {crop !== null && labels.length > crop && (
+          <div
+            className={`${styles.more} clearfix`}
+            onClick={() => this.setState({ opened: !opened })}
+          >
+            <a>Afficher {opened ? 'moins' : 'plus'}</a>
+          </div>
         )}
       </div>
-    ))}
-  </div>
-);
-
-LabelPicker.propTypes = {
-  labels: PropTypes.arrayOf(PropTypes.shape({
-    key: PropTypes.any.isRequired,
-    label: PropTypes.string.isRequired,
-  })).isRequired,
-  current: PropTypes.any,
-  children: PropTypes.func,
-  onChange: PropTypes.func,
-};
+    );
+  }
+}
 
 export default LabelPicker;

@@ -40,7 +40,7 @@ module.exports = {
     grid: true,
     tables: false,
     forms: true,
-    buttons: false,
+    buttons: true,
     'component-animations': false,
     dropdowns: false,
     'button-groups': false,

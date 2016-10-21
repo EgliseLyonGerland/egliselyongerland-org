@@ -2,9 +2,9 @@ import React, { Component, PropTypes } from 'react';
 
 import { connect } from 'react-redux';
 import { asyncConnect } from 'redux-connect';
-import { has, eq, transform } from 'lodash';
+import { has, transform } from 'lodash';
 
-import { isLoaded as isPostsLoaded, load as loadPosts } from 'redux/modules/posts';
+import { load as loadPosts } from 'redux/modules/posts';
 
 import Helmet from 'react-helmet';
 
@@ -22,10 +22,12 @@ import {
 } from 'components';
 
 const POSTS_KEY = 'blog';
+const LIMIT = 10;
 
 @asyncConnect([{
   promise: ({ location: { query }, store: { dispatch } }) => {
     const filters = {
+      limit: LIMIT,
       aggs: true,
     };
 
@@ -37,6 +39,10 @@ const POSTS_KEY = 'blog';
       filters.author = query.author;
     }
 
+    if (has(query, 'page')) {
+      filters.from = (query.page - 1) * LIMIT;
+    }
+
     const result = dispatch(loadPosts(POSTS_KEY, filters));
 
     return __CLIENT__ ? null : result;
@@ -44,17 +50,29 @@ const POSTS_KEY = 'blog';
 }])
 @connect(
   state => {
+    let page = 1;
+    let maxPage = 1;
+    let total = 0;
     let posts = null;
     let aggs = null;
+    let loading = true;
 
-    if (isPostsLoaded(POSTS_KEY, state)) {
+    if (state.posts[POSTS_KEY]) {
+      total = state.posts[POSTS_KEY].total;
       posts = state.posts[POSTS_KEY].data;
       aggs = state.posts[POSTS_KEY].aggs;
+      loading = state.posts[POSTS_KEY].loading;
+      page = Math.ceil(state.posts[POSTS_KEY].from / LIMIT) + 1;
+      maxPage = Math.ceil(total / LIMIT);
     }
 
     return {
+      page,
+      maxPage,
+      total,
       posts,
       aggs,
+      loading,
       browser: state.browser,
     };
   }
@@ -63,13 +81,12 @@ export default
 class Blog extends Component {
 
   static propTypes = {
+    page: PropTypes.number,
+    maxPage: PropTypes.number,
+    total: PropTypes.number,
     posts: PropTypes.array,
     aggs: PropTypes.object,
-    types: PropTypes.array,
-    currentType: PropTypes.object,
-    currentBook: PropTypes.string,
-    currentChapter: PropTypes.number,
-    currentVerse: PropTypes.number,
+    loading: PropTypes.bool,
     browser: PropTypes.object,
     location: PropTypes.object,
   }
@@ -80,10 +97,9 @@ class Blog extends Component {
 
   goTo(params) {
     const { router } = this.context;
-    const { location: { query } } = this.props;
 
     router.push(router.createPath('/blog', transform(params, (prev, curr, key) => {
-      if (!query[key] || eq(query[key], curr)) {
+      if (curr !== null) {
         prev[key] = curr; // eslint-disable-line no-param-reassign
       }
     }, {})));
@@ -93,7 +109,11 @@ class Blog extends Component {
     // const { books, currentType, currentBook, currentChapter, currentVerse } = this.props;
     // const { router } = this.context;
 
-    const { aggs: { bibleRefs } } = this.props;
+    const { aggs: { bibleRefs = null } } = this.props;
+
+    if (!bibleRefs || !bibleRefs.length) {
+      return null;
+    }
 
     return (
       <PickerPanel title="Référence biblique">
@@ -113,20 +133,25 @@ class Blog extends Component {
 
   renderCategoriesFilter() {
     const {
+      loading,
       aggs: { categories },
       location: { query },
     } = this.props;
 
+    const readOnly = loading || (categories.length === 1 && !query.category);
+
     return (
       <PickerPanel title="Catégories">
         <LabelPicker
+          crop={10}
+          readOnly={readOnly}
           current={parseInt(query.category, 10)}
           labels={categories.map(category => ({
             key: category.id,
             label: category.name,
             total: category.total,
           }))}
-          onChange={label => this.goTo({ ...query, category: label.key })}
+          onChange={key => this.goTo({ ...query, page: null, category: key })}
         >
           {(label) => (
             <Text fontSize={1} maxLines={1} ellipsis>
@@ -140,20 +165,25 @@ class Blog extends Component {
 
   renderAuthorsFilter() {
     const {
+      loading,
       aggs: { authors },
       location: { query },
     } = this.props;
 
+    const readOnly = loading || (authors.length === 1 && !query.author);
+
     return (
       <PickerPanel title="Auteurs">
         <LabelPicker
+          crop={10}
+          readOnly={readOnly}
           current={parseInt(query.author, 10)}
           labels={authors.map(author => ({
             key: author.id,
             label: author.name,
             total: author.total,
           }))}
-          onChange={label => this.goTo({ ...query, author: label.key })}
+          onChange={key => this.goTo({ ...query, page: null, author: key })}
         >
           {(label) => (
             <Text fontSize={1} maxLines={1} ellipsis>
@@ -180,23 +210,29 @@ class Blog extends Component {
       return (<Text>Chargement...</Text>);
     }
 
+    const filters = [
+      this.renderSearchFilter(),
+      this.renderCategoriesFilter(),
+      this.renderAuthorsFilter(),
+      this.renderBibleFilter(),
+    ];
+
     return (
       <div>
-        {this.renderSearchFilter()}
-        <Hr lg />
-        {this.renderCategoriesFilter()}
-        <Hr lg />
-        {this.renderAuthorsFilter()}
-        <Hr lg />
-        {this.renderBibleFilter()}
+        {filters.map((filter, index) => (filter ? (
+          <div key={index}>
+            {filter}
+            <Hr lg />
+          </div>
+        ) : null))}
       </div>
     );
   }
 
   renderPosts() {
-    const { posts } = this.props;
+    const { posts, loading } = this.props;
 
-    if (!posts) {
+    if (loading) {
       return (<Spinner />);
     }
 
@@ -204,7 +240,36 @@ class Blog extends Component {
       return (<Text><i>Aucun résultat</i></Text>);
     }
 
-    return <PostsFeed posts={posts} />;
+    return (
+      <div>
+        {this.renderNavigation()}
+        <PostsFeed posts={posts} />
+      </div>
+    );
+  }
+
+  renderNavigation() {
+    const { total, page, maxPage, location: { query } } = this.props;
+
+    return (
+      <div>
+        <Text className="pull-left" fontSize={1}>{total} {total > 1 ? 'articles' : 'article'}</Text>
+        <div className="pull-right">
+          <button
+            disabled={page <= 1}
+            className="btn fa fa-angle-left"
+            onClick={() => this.goTo({ ...query, page: page - 1 })}
+          />
+          <button
+            disabled={page >= maxPage}
+            className="btn fa fa-angle-right"
+            onClick={() => this.goTo({ ...query, page: page + 1 })}
+          />
+        </div>
+        <div className="clearfix" />
+        <Hr />
+      </div>
+    );
   }
 
   renderWideScreen() {
