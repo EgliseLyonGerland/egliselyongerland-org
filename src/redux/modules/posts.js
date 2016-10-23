@@ -61,42 +61,11 @@ export function isLoaded(key, globalState) {
     && globalState.posts[key].loaded;
 }
 
-export function load(key, filters = {}) {
-  const {
-    from = 0,
-    limit = 10,
-    aggs = false,
-    author = null,
-    category = null,
-  } = filters;
-
-  const params = {};
-
-  if (from) {
-    params.from = from;
-  }
-
-  if (limit) {
-    params.limit = limit;
-  }
-
-  if (aggs) {
-    params.aggs = 1;
-  }
-
-  if (author) {
-    params.author = author;
-  }
-
-  if (category) {
-    params.category = category;
-  }
-
+export function load(key, params = {}) {
   return {
     types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
     promise: client => client.get('/posts', { params }),
     // schema: arrayOf(postSchema),
     key,
-    filters,
   };
 }

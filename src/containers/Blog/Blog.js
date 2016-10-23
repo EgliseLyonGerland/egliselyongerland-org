@@ -28,7 +28,7 @@ const LIMIT = 10;
   promise: ({ location: { query }, store: { dispatch } }) => {
     const filters = {
       limit: LIMIT,
-      aggs: true,
+      aggs: 1,
     };
 
     if (has(query, 'category')) {
@@ -37,6 +37,18 @@ const LIMIT = 10;
 
     if (has(query, 'author')) {
       filters.author = query.author;
+    }
+
+    if (has(query, 'book')) {
+      filters.book = query.book;
+
+      if (has(query, 'chapter')) {
+        filters.chapter = query.chapter;
+
+        if (has(query, 'verse')) {
+          filters.verse = query.verse;
+        }
+      }
     }
 
     if (has(query, 'page')) {
@@ -54,7 +66,7 @@ const LIMIT = 10;
     let maxPage = 1;
     let total = 0;
     let posts = null;
-    let aggs = null;
+    let aggs = {};
     let loading = true;
 
     if (state.posts[POSTS_KEY]) {
@@ -106,10 +118,10 @@ class Blog extends Component {
   }
 
   renderBibleFilter() {
-    // const { books, currentType, currentBook, currentChapter, currentVerse } = this.props;
-    // const { router } = this.context;
-
-    const { aggs: { bibleRefs = null } } = this.props;
+    const {
+      location: { query },
+      aggs: { bibleRefs = null },
+    } = this.props;
 
     if (!bibleRefs || !bibleRefs.length) {
       return null;
@@ -119,24 +131,28 @@ class Blog extends Component {
       <PickerPanel title="Référence biblique">
         <BiblePicker
           books={bibleRefs}
+          currentBook={parseInt(query.book, 10)}
+          currentChapter={parseInt(query.chapter, 10)}
+          currentVerse={parseInt(query.verse, 10)}
+          onChange={params => {
+            console.log(params);
+            this.goTo({ ...query, ...params, page: null });
+          }}
         />
       </PickerPanel>
     );
-    // {...{ currentBook, currentChapter, currentVerse }}
-    // onChange={({ book, chapter, verse }) => router.push(this.generateUrl({
-    //   type: currentType && currentType.slug,
-    //   book: (currentBook === book && !chapter && !verse ? null : book),
-    //   chapter: (currentChapter === chapter && !verse ? null : chapter),
-    //   verse: (currentVerse === verse ? null : verse),
-    // }))}
   }
 
   renderCategoriesFilter() {
     const {
       loading,
-      aggs: { categories },
+      aggs: { categories = null },
       location: { query },
     } = this.props;
+
+    if (categories === null) {
+      return null;
+    }
 
     const readOnly = loading || (categories.length === 1 && !query.category);
 
@@ -166,9 +182,13 @@ class Blog extends Component {
   renderAuthorsFilter() {
     const {
       loading,
-      aggs: { authors },
+      aggs: { authors = null },
       location: { query },
     } = this.props;
+
+    if (authors === null) {
+      return null;
+    }
 
     const readOnly = loading || (authors.length === 1 && !query.author);
 
