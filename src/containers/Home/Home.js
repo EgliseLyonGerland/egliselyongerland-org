@@ -11,7 +11,6 @@ import { Container, Jumbotron, PostsFeed, H1, Hr } from 'components';
 const POSTS_KEY = 'home';
 
 const asyncPromises = [{
-  deferred: true,
   promise: ({ store: { dispatch, getState } }) => {
     const isLoaded = isPostsLoaded(POSTS_KEY, getState());
     const result = isLoaded ? null : dispatch(loadPosts(POSTS_KEY, { limit: 2 }));
@@ -21,7 +20,7 @@ const asyncPromises = [{
 }];
 
 const mapStateToProps = state => {
-  let posts = null;
+  let posts = [];
 
   if (isPostsLoaded(POSTS_KEY, state)) {
     posts = state.posts[POSTS_KEY].data;
