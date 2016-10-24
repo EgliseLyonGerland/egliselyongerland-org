@@ -143,7 +143,7 @@ class BiblePicker extends Component {
     const currentPaneIndex = findIndex(booksTabs, ['key', currentTestament]);
 
     const panes = booksTabs.map(tab =>
-      <div key={tab.key} className={styles.pane}>
+      <div key={tab.key} className={styles.pane} style={{ height: '400px', overflowY: 'auto' }}>
         <LabelPicker
           current={currentBook}
           labels={books
