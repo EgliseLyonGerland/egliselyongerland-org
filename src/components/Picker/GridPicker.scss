@@ -1,8 +1,6 @@
 
 @import './variables';
 
-$background: lighten(black, 98%);
-
 .grid {
   display: flex;
   flex-wrap: wrap;
@@ -19,7 +17,19 @@ $background: lighten(black, 98%);
   cursor: pointer;
 
   &:hover {
-    background: $background;
+    background: lighten(black, 98%);
+  }
+}
+
+.active {
+  .label {
+    color: white;
+    background: $color-main;
+    border-radius: 100%;
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
   }
 }
 

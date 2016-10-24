@@ -135,7 +135,6 @@ class Blog extends Component {
           currentChapter={parseInt(query.chapter, 10)}
           currentVerse={parseInt(query.verse, 10)}
           onChange={params => {
-            console.log(params);
             this.goTo({ ...query, ...params, page: null });
           }}
         />
@@ -157,7 +156,7 @@ class Blog extends Component {
     const readOnly = loading || (categories.length === 1 && !query.category);
 
     return (
-      <PickerPanel title="Catégories">
+      <PickerPanel title="Catégorie">
         <LabelPicker
           crop={10}
           readOnly={readOnly}
@@ -193,7 +192,7 @@ class Blog extends Component {
     const readOnly = loading || (authors.length === 1 && !query.author);
 
     return (
-      <PickerPanel title="Auteurs">
+      <PickerPanel title="Auteur">
         <LabelPicker
           crop={10}
           readOnly={readOnly}

@@ -56,10 +56,34 @@ class BiblePicker extends Component {
       currentTestament: props.currentTestament,
       currentPane: this.getCurrentPane(props),
     };
+
+    this.mainTabs = [...mainTabs];
   }
 
   componentWillReceiveProps(nextProps) {
     this.setState({ currentPane: this.getCurrentPane(nextProps) });
+  }
+
+  getCurrentBook() {
+    const { books, currentBook } = this.props;
+
+    if (currentBook) {
+      return find(books, ['id', currentBook]);
+    }
+
+    return null;
+  }
+
+  getCurrentChapter() {
+    const { currentChapter } = this.props;
+
+    if (currentChapter) {
+      const chapters = get(this.getCurrentBook(), 'chapters', []);
+
+      return find(chapters, ['number', currentChapter]);
+    }
+
+    return null;
   }
 
   getCurrentPane(props) {
@@ -76,11 +100,31 @@ class BiblePicker extends Component {
     return pane;
   }
 
+  getPaneName(pane) {
+    const {
+      currentChapter,
+      currentVerse,
+    } = this.props;
+
+    if (pane === 'books') {
+      const book = this.getCurrentBook();
+
+      return book ? book.name : 'Livres';
+    }
+
+    if (pane === 'chapters') {
+      return currentChapter ? `Chapitre ${currentChapter}` : 'Chapitres';
+    }
+
+    return currentVerse ? `Verset ${currentVerse}` : 'Versets';
+  }
+
   getTabs() {
     const { currentPane } = this.state;
 
     return mainTabs.map(tab => ({
       ...tab,
+      label: this.getPaneName(tab.key),
       active: true,
       current: tab.key === currentPane,
     }));
@@ -99,7 +143,7 @@ class BiblePicker extends Component {
     const currentPaneIndex = findIndex(booksTabs, ['key', currentTestament]);
 
     const panes = booksTabs.map(tab =>
-      <div key={tab.key} className={styles.pane} style={{ maxHeight: '500px', overflowY: 'auto' }}>
+      <div key={tab.key} className={styles.pane}>
         <LabelPicker
           current={currentBook}
           labels={books
@@ -140,16 +184,18 @@ class BiblePicker extends Component {
 
   renderChaptersPane() {
     const {
-      currentBook, currentChapter,
-      books, onChange = () => {}
+      currentBook,
+      currentChapter,
+      onChange = () => {}
     } = this.props;
 
-    const chapters = get(find(books, ['id', currentBook]), 'chapters', []);
+    const chapters = get(this.getCurrentBook(), 'chapters', []);
 
     return (
       <GridPicker
+        current={currentChapter}
         items={chapters.map(chapter =>
-          ({ key: `${chapter.number}`, label: `${chapter.number}`, current: currentChapter })
+          ({ key: chapter.number, label: `${chapter.number}` })
         )}
         onChange={chapter => onChange({ book: currentBook, chapter, verse: null })}
       />
@@ -158,17 +204,19 @@ class BiblePicker extends Component {
 
   renderVersesPane() {
     const {
-      currentBook, currentChapter, currentVerse,
-      books, onChange = () => {}
+      currentBook,
+      currentChapter,
+      currentVerse,
+      onChange = () => {}
     } = this.props;
 
-    const chapters = get(find(books, ['id', currentBook]), 'chapters', []);
-    const verses = get(find(chapters, ['number', currentChapter]), 'verses', []);
+    const verses = get(this.getCurrentChapter(), 'verses', []);
 
     return (
       <GridPicker
+        current={currentVerse}
         items={verses.map(verse =>
-          ({ key: `${verse}`, label: `${verse}`, current: currentVerse })
+          ({ key: verse, label: `${verse}` })
         )}
         onChange={verse => onChange({ book: currentBook, chapter: currentChapter, verse })}
       />
