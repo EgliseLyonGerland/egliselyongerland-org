@@ -3,6 +3,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { asyncConnect } from 'redux-connect';
 import { has, transform } from 'lodash';
+import { TransitionMotion, spring } from 'react-motion';
 
 import { load as loadPosts } from 'redux/modules/posts';
 
@@ -14,8 +15,8 @@ import {
   LabelPicker,
   PopButton,
   PostsFeed,
+  BlankItemsFeed,
   Container,
-  Spinner,
   Text,
   H1,
   Hr
@@ -25,7 +26,7 @@ const POSTS_KEY = 'blog';
 const LIMIT = 10;
 
 @asyncConnect([{
-  promise: ({ location: { query }, store: { dispatch } }) => {
+  promise: ({ location: { key, query }, store: { dispatch } }) => {
     const filters = {
       limit: LIMIT,
       aggs: 1,
@@ -67,7 +68,7 @@ const LIMIT = 10;
     let total = 0;
     let posts = null;
     let aggs = {};
-    let loading = true;
+    let loading = false;
 
     if (state.posts[POSTS_KEY]) {
       total = state.posts[POSTS_KEY].total;
@@ -78,6 +79,9 @@ const LIMIT = 10;
       maxPage = Math.ceil(total / LIMIT);
     }
 
+    const browser = state.browser;
+    const location = state.routing.locationBeforeTransitions;
+
     return {
       page,
       maxPage,
@@ -85,7 +89,8 @@ const LIMIT = 10;
       posts,
       aggs,
       loading,
-      browser: state.browser,
+      browser,
+      location,
     };
   }
 )
@@ -168,11 +173,11 @@ class Blog extends Component {
           }))}
           onChange={key => this.goTo({ ...query, page: null, category: key })}
         >
-          {(label) => (
+          {label =>
             <Text fontSize={1} maxLines={1} ellipsis>
               {label.label} <Text fontSize={0.8} element="span" color="#AAA">({label.total})</Text>
             </Text>
-          )}
+          }
         </LabelPicker>
       </PickerPanel>
     );
@@ -252,19 +257,14 @@ class Blog extends Component {
     const { posts, loading } = this.props;
 
     if (loading) {
-      return (<Spinner />);
+      return <BlankItemsFeed items={5} />;
     }
 
-    if (!posts.length) {
-      return (<Text><i>Aucun résultat</i></Text>);
+    if (posts.length) {
+      return <PostsFeed posts={posts} />;
     }
 
-    return (
-      <div>
-        {this.renderNavigation()}
-        <PostsFeed posts={posts} />
-      </div>
-    );
+    return <Text><i>Aucun résultat</i></Text>;
   }
 
   renderNavigation() {
@@ -272,7 +272,14 @@ class Blog extends Component {
 
     return (
       <div>
-        <Text className="pull-left" fontSize={1}>{total} {total > 1 ? 'articles' : 'article'}</Text>
+        <div className="pull-left">
+          <button className="btn" disabled>
+            <small>{total} {total > 1 ? 'articles' : 'article'}</small>
+          </button>
+          <button className="btn" disabled>
+            <small>page {page}/{maxPage}</small>
+          </button>
+        </div>
         <div className="pull-right">
           <button
             disabled={page <= 1}
@@ -292,13 +299,45 @@ class Blog extends Component {
   }
 
   renderWideScreen() {
+    const { location } = this.props;
+    const posts = this.renderPosts();
+
     return (
       <div className="row">
         <div className="col-xs-5">
           {this.renderFilters()}
         </div>
         <div className="col-xs-7">
-          {this.renderPosts()}
+          {this.renderNavigation()}
+
+          <TransitionMotion
+            styles={[{
+              key: location.key,
+              data: posts,
+              style: { x: spring(0) },
+            }]}
+            willEnter={() => ({ x: 110 })}
+            willLeave={() => ({ x: spring(-110) })}
+          >
+            {interpolatedStyles =>
+              <div style={{ width: '100%', whiteSpace: 'nowrap', overflowX: 'hidden' }}>
+                {interpolatedStyles.map(({ key, style, data }, index) =>
+                  <div
+                    key={key}
+                    style={{
+                      width: '100%',
+                      whiteSpace: 'normal',
+                      display: 'inline-block',
+                      verticalAlign: 'top',
+                      transform: `translateX(${style.x - (index * 100)}%)`
+                    }}
+                  >
+                    {data}
+                  </div>
+                )}
+              </div>
+            }
+          </TransitionMotion>
         </div>
       </div>
     );

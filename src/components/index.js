@@ -17,6 +17,7 @@ export Jumbotron from './Jumbotron/Jumbotron';
 export Overlay from './Overlay/Overlay';
 export PopButton from './PopButton/PopButton';
 export PostsFeed from './PostsFeed/PostsFeed';
+export BlankItemsFeed from './PostsFeed/BlankItemsFeed';
 export Search from './Search/Search';
 export SearchButton from './SearchButton/SearchButton';
 export Sidebar from './Sidebar/Sidebar';
