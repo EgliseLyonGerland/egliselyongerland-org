@@ -26,7 +26,7 @@ const POSTS_KEY = 'blog';
 const LIMIT = 10;
 
 @asyncConnect([{
-  promise: ({ location: { key, query }, store: { dispatch } }) => {
+  promise: ({ location: { query }, store: { dispatch } }) => {
     const filters = {
       limit: LIMIT,
       aggs: 1,
@@ -124,6 +124,7 @@ class Blog extends Component {
 
   renderBibleFilter() {
     const {
+      loading,
       location: { query },
       aggs: { bibleRefs = null },
     } = this.props;
@@ -136,6 +137,7 @@ class Blog extends Component {
       <PickerPanel title="Référence biblique">
         <BiblePicker
           books={bibleRefs}
+          readOnly={loading}
           currentBook={parseInt(query.book, 10)}
           currentChapter={parseInt(query.chapter, 10)}
           currentVerse={parseInt(query.verse, 10)}

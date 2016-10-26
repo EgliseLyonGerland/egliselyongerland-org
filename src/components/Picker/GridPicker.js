@@ -12,6 +12,7 @@ class GridPicker extends Component {
       label: PropTypes.string.isRequired,
     })).isRequired,
     current: PropTypes.any,
+    readOnly: PropTypes.bool,
     onChange: PropTypes.func,
   }
 
@@ -19,11 +20,12 @@ class GridPicker extends Component {
     const {
       items = [],
       current,
+      readOnly = false,
       onChange = () => {}
     } = this.props;
 
     return (
-      <div className={styles.grid}>
+      <div className={classes(styles.grid, { [styles.readOnly]: readOnly })}>
         {items.map((item) =>
           <div
             key={item.key}
@@ -31,7 +33,7 @@ class GridPicker extends Component {
               styles.cell,
               { [styles.active]: current === item.key }
             )}
-            onClick={() => onChange(current === item.key ? null : item.key)}
+            onClick={() => !readOnly && onChange(current === item.key ? null : item.key)}
           >
             <span className={styles.label}>{item.label}</span>
           </div>

@@ -29,3 +29,4 @@ export BiblePicker from './Picker/BiblePicker';
 export GridPicker from './Picker/GridPicker';
 export LabelPicker from './Picker/LabelPicker';
 export TabPicker from './Picker/TabPicker';
+export PanePicker from './Picker/PanePicker';

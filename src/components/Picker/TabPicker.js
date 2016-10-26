@@ -10,11 +10,11 @@ export default
 class TabPicker extends Component {
   static propTypes = {
     tabs: PropTypes.arrayOf(PropTypes.shape({
-      key: PropTypes.string.isRequired,
+      key: PropTypes.any.isRequired,
       label: PropTypes.string.isRequired,
       active: PropTypes.bool,
-      current: PropTypes.bool,
     })).isRequired,
+    current: PropTypes.any,
     bgColor: PropTypes.string,
     activeBarColor: PropTypes.string,
     renderLabel: PropTypes.func,
@@ -28,12 +28,6 @@ class TabPicker extends Component {
     ),
   }
 
-  indexOf(key) {
-    return this.props.tabs.reduce((position, tab, index) => (
-      tab.key === key ? index : position), 0
-    );
-  }
-
   handleChangeTab(tab) {
     this.props.onChange(tab);
   }
@@ -43,22 +37,22 @@ class TabPicker extends Component {
       tabs,
       bgColor,
       activeBarColor,
-      renderLabel } = this.props;
+      renderLabel,
+      current,
+    } = this.props;
 
     const tabWidth = 100 / tabs.length;
-    const currentTabIndex = findIndex(tabs, ['current', true]);
+    const currentTabIndex = Math.max(0, findIndex(tabs, ['key', current]));
 
-    const tabStyles = {
-      width: `${tabWidth}%`,
-    };
+    const tabsStyles = {};
 
     if (bgColor) {
-      tabStyles.backgroundColor = bgColor;
+      tabsStyles.backgroundColor = bgColor;
     }
 
     return (
       <div className={styles.tabs}>
-        <div className={styles.tabsContent}>
+        <div className={styles.tabsContent} style={tabsStyles}>
           {tabs.map(tab => {
             const { key, active = true } = tab;
 
@@ -66,7 +60,7 @@ class TabPicker extends Component {
               <div
                 key={key}
                 className={`${styles.tab} ${active ? '' : styles.tabDisabled}`}
-                style={tabStyles}
+                style={{ width: `${tabWidth}%` }}
                 onClick={() => this.handleChangeTab(tab)}
               >
                 {renderLabel(tab)}
