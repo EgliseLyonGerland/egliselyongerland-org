@@ -150,7 +150,7 @@ class BiblePicker extends Component {
         labels={books
           .filter(book => book.testament === testament)
           .map(({ id, name }) => ({ key: id, label: name }))}
-        onChange={key => onChange({ book: key, chapter: null, verse: null })}
+        onChange={key => onChange({ book: key, chapter: undefined, verse: undefined })}
       />
     );
   }
@@ -198,7 +198,7 @@ class BiblePicker extends Component {
         items={chapters.map(chapter =>
           ({ key: chapter.number, label: `${chapter.number}` })
         )}
-        onChange={chapter => onChange({ book: currentBook, chapter, verse: null })}
+        onChange={chapter => onChange({ book: currentBook, chapter, verse: undefined })}
       />
     );
   }

@@ -135,6 +135,7 @@
     "phantomjs-prebuilt": "2.1.12",
     "piping": "1.0.0-rc.3",
     "pretty-error": "2.0.0",
+    "qs": "^6.3.0",
     "randomcolor": "^0.4.4",
     "react": "15.3.0",
     "react-bootstrap": "0.30.2",

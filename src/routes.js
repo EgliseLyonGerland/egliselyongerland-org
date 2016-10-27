@@ -18,7 +18,7 @@ export default () => (
     <IndexRoute component={Home} />
 
     { /* Blog routes */ }
-    <Route path="/blog(/category/:typeSlug)(/book/:bookSlug)" component={Blog} />
+    <Route path="/blog(/category/:category)(/author/:author)(/book/:book)" component={Blog} />
     <Route path="/blog/post/:postId" component={Post} />
 
     { /* Other routes */ }

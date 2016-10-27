@@ -6,6 +6,7 @@ import { Link } from 'react-router';
 import { slice, filter } from 'lodash';
 
 import { Sidebar, SearchButton } from 'components';
+import routes from 'utils/routes';
 
 import styles from './Header.scss';
 import logo from './logo.svg';
@@ -15,12 +16,30 @@ const mapStateToProps = state => ({ browser: state.browser });
 
 const Header = (props) => {
   const links = [
-    { label: 'L\'église', path: '/church' },
-    { label: 'Prédications', path: '/blog/category/sermon' },
-    { label: 'Blog', path: '/blog' },
-    { label: 'Groupe de jeune', path: '/youngs' },
-    { label: 'L\'église persécutée', path: '/persecuted-church' },
-    { label: 'Contact', path: '/contact' },
+    {
+      label: 'L\'église',
+      path: '/church',
+    },
+    {
+      label: 'Prédications',
+      path: routes.blog({ category: 1 }),
+    },
+    {
+      label: 'Blog',
+      path: routes.blog(),
+    },
+    {
+      label: 'Groupe de jeune',
+      path: '/youngs',
+    },
+    {
+      label: 'L\'église persécutée',
+      path: '/persecuted-church',
+    },
+    {
+      label: 'Contact',
+      path: '/contact',
+    },
   ];
 
   const {

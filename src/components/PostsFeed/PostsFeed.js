@@ -7,6 +7,7 @@ import randomcolor from 'randomcolor';
 import classes from 'classnames';
 
 import { Image, Text } from 'components';
+import routes from 'utils/routes';
 
 import styles from './PostsFeed.scss';
 
@@ -49,7 +50,7 @@ class PostsFeed extends Component {
       <div className={styles.taxonomies}>
         {category && (
           <Link
-            to={`/blog/category/${category.id}`}
+            to={routes.blog({ category: category.id })}
             className={classes(styles.taxonomy, styles.category)}
           >
             {this.renderBullet(randomcolor({ seed: category.name }))}
@@ -57,7 +58,7 @@ class PostsFeed extends Component {
           </Link>
         )}
         {bibleRef && (
-          <Link to="/blog" className={classes(styles.taxonomy, styles.ref)}>
+          <Link to={routes.blog()} className={classes(styles.taxonomy, styles.ref)}>
             {this.renderBullet()}
             <span className={styles.taxonomyLabel}>{bibleRef.raw}</span>
           </Link>
@@ -76,13 +77,13 @@ class PostsFeed extends Component {
 
           return (
             <div className={styles.post} key={post.id}>
-              <Link to={`/blog/post/${post.id}`}>
+              <Link to={routes.post(post.id)}>
                 <Image src={imageUrl} height={240} />
               </Link>
 
               <div className={styles.content}>
                 {this.renderTaxonomies(post)}
-                <Link className={styles.title} to={`/blog/post/${post.id}`}>{post.title}</Link>
+                <Link className={styles.title} to={routes.post(post.id)}>{post.title}</Link>
               </div>
 
               <div className={styles.footer}>
@@ -90,7 +91,7 @@ class PostsFeed extends Component {
                   <Image src={post.author.picture} ratio={1} />
                 </span>
                 <Text fontSize={14} lineHeight={20} unit="px" fontWeight="regular">
-                  <Link to={`/blog/author/${post.author.id}`}>
+                  <Link to={routes.blog({ author: post.author.id })}>
                     {post.author.name}
                   </Link>
                 </Text>

@@ -51,7 +51,7 @@ class LabelPicker extends Component {
               className="clearfix"
               key={label.key}
               className={styles.label}
-              onClick={() => !readOnly && onChange(label.key === current ? null : label.key)}
+              onClick={() => !readOnly && onChange(label.key === current ? undefined : label.key)}
             >
               <Text
                 fontSize={1}

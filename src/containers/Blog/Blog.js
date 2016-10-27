@@ -2,10 +2,12 @@ import React, { Component, PropTypes } from 'react';
 
 import { connect } from 'react-redux';
 import { asyncConnect } from 'redux-connect';
-import { has, transform } from 'lodash';
+import { has } from 'lodash';
 import { TransitionMotion, spring } from 'react-motion';
+import randomcolor from 'randomcolor';
 
 import { load as loadPosts } from 'redux/modules/posts';
+import routes from 'utils/routes';
 
 import Helmet from 'react-helmet';
 
@@ -26,22 +28,22 @@ const POSTS_KEY = 'blog';
 const LIMIT = 10;
 
 @asyncConnect([{
-  promise: ({ location: { query }, store: { dispatch } }) => {
+  promise: ({ params, location: { query }, store: { dispatch } }) => {
     const filters = {
       limit: LIMIT,
       aggs: 1,
     };
 
-    if (has(query, 'category')) {
-      filters.category = query.category;
+    if (has(params, 'category')) {
+      filters.category = params.category;
     }
 
-    if (has(query, 'author')) {
-      filters.author = query.author;
+    if (has(params, 'author')) {
+      filters.author = params.author;
     }
 
-    if (has(query, 'book')) {
-      filters.book = query.book;
+    if (has(params, 'book')) {
+      filters.book = params.book;
 
       if (has(query, 'chapter')) {
         filters.chapter = query.chapter;
@@ -62,7 +64,7 @@ const LIMIT = 10;
   }
 }])
 @connect(
-  state => {
+  (state, { params }) => {
     let page = 1;
     let maxPage = 1;
     let total = 0;
@@ -91,6 +93,7 @@ const LIMIT = 10;
       loading,
       browser,
       location,
+      params: { ...params, ...location.query },
     };
   }
 )
@@ -106,28 +109,21 @@ class Blog extends Component {
     loading: PropTypes.bool,
     browser: PropTypes.object,
     location: PropTypes.object,
+    params: PropTypes.object,
   }
 
   static contextTypes = {
     router: PropTypes.object,
   }
 
-  goTo(params) {
-    const { router } = this.context;
-
-    router.push(router.createPath('/blog', transform(params, (prev, curr, key) => {
-      if (curr !== null) {
-        prev[key] = curr; // eslint-disable-line no-param-reassign
-      }
-    }, {})));
-  }
-
   renderBibleFilter() {
     const {
       loading,
-      location: { query },
+      params,
       aggs: { bibleRefs = null },
     } = this.props;
+
+    const { router } = this.context;
 
     if (!bibleRefs || !bibleRefs.length) {
       return null;
@@ -138,11 +134,11 @@ class Blog extends Component {
         <BiblePicker
           books={bibleRefs}
           readOnly={loading}
-          currentBook={parseInt(query.book, 10)}
-          currentChapter={parseInt(query.chapter, 10)}
-          currentVerse={parseInt(query.verse, 10)}
-          onChange={params => {
-            this.goTo({ ...query, ...params, page: null });
+          currentBook={parseInt(params.book, 10)}
+          currentChapter={parseInt(params.chapter, 10)}
+          currentVerse={parseInt(params.verse, 10)}
+          onChange={data => {
+            router.push(routes.blog({ ...params, ...data, page: undefined }));
           }}
         />
       </PickerPanel>
@@ -152,28 +148,32 @@ class Blog extends Component {
   renderCategoriesFilter() {
     const {
       loading,
+      params,
       aggs: { categories = null },
-      location: { query },
     } = this.props;
+
+    const { router } = this.context;
 
     if (categories === null) {
       return null;
     }
 
-    const readOnly = loading || (categories.length === 1 && !query.category);
+    const readOnly = loading || (categories.length === 1 && !params.category);
 
     return (
       <PickerPanel title="Catégorie">
         <LabelPicker
           crop={10}
           readOnly={readOnly}
-          current={parseInt(query.category, 10)}
+          current={parseInt(params.category, 10)}
           labels={categories.map(category => ({
             key: category.id,
             label: category.name,
             total: category.total,
           }))}
-          onChange={key => this.goTo({ ...query, page: null, category: key })}
+          onChange={key =>
+            router.push(routes.blog({ ...params, page: undefined, category: key }))
+          }
         >
           {label =>
             <Text fontSize={1} maxLines={1} ellipsis>
@@ -188,28 +188,32 @@ class Blog extends Component {
   renderAuthorsFilter() {
     const {
       loading,
+      params,
       aggs: { authors = null },
-      location: { query },
     } = this.props;
+
+    const { router } = this.context;
 
     if (authors === null) {
       return null;
     }
 
-    const readOnly = loading || (authors.length === 1 && !query.author);
+    const readOnly = loading || (authors.length === 1 && !params.author);
 
     return (
       <PickerPanel title="Auteur">
         <LabelPicker
           crop={10}
           readOnly={readOnly}
-          current={parseInt(query.author, 10)}
+          current={parseInt(params.author, 10)}
           labels={authors.map(author => ({
             key: author.id,
             label: author.name,
             total: author.total,
           }))}
-          onChange={key => this.goTo({ ...query, page: null, author: key })}
+          onChange={key =>
+            router.push(routes.blog({ ...params, page: undefined, author: key }))
+          }
         >
           {(label) => (
             <Text fontSize={1} maxLines={1} ellipsis>
@@ -256,10 +260,12 @@ class Blog extends Component {
   }
 
   renderPosts() {
-    const { posts, loading } = this.props;
+    const { posts, loading, location: { query } } = this.props;
 
     if (loading) {
-      return <BlankItemsFeed items={5} />;
+      return (
+        <BlankItemsFeed items={3} color={randomcolor({ luminosity: 'light', seed: query.key })} />
+      );
     }
 
     if (posts.length) {
@@ -270,7 +276,8 @@ class Blog extends Component {
   }
 
   renderNavigation() {
-    const { total, page, maxPage, location: { query } } = this.props;
+    const { total, page, maxPage, params } = this.props;
+    const { router } = this.context;
 
     return (
       <div>
@@ -286,12 +293,12 @@ class Blog extends Component {
           <button
             disabled={page <= 1}
             className="btn fa fa-angle-left"
-            onClick={() => this.goTo({ ...query, page: page - 1 })}
+            onClick={() => router.push(routes.blog({ ...params, page: page - 1 }))}
           />
           <button
             disabled={page >= maxPage}
             className="btn fa fa-angle-right"
-            onClick={() => this.goTo({ ...query, page: page + 1 })}
+            onClick={() => router.push(routes.blog({ ...params, page: page + 1 }))}
           />
         </div>
         <div className="clearfix" />
