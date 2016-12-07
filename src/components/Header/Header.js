@@ -1,102 +1,149 @@
-import React, { PropTypes } from 'react';
+import React, { PropTypes, Component } from 'react';
 
 import { connect } from 'react-redux';
 
 import { Link } from 'react-router';
-import { slice, filter } from 'lodash';
+import { slice } from 'lodash';
+import classes from 'classnames';
 
-import { Sidebar, SearchButton } from 'components';
+import { Sidebar, SearchButton, Burger, Container } from 'components';
 import routes from 'utils/routes';
 
 import styles from './Header.scss';
-import logo from './logo.svg';
+// import logo from './logo2.svg';
 import brand from './brand.svg';
+
+const links = [
+  {
+    label: 'L\'église',
+    path: '/church',
+  },
+  {
+    label: 'Prédications',
+    path: routes.blog({ category: 1 }),
+  },
+  {
+    label: 'Blog',
+    path: routes.blog(),
+  },
+  {
+    label: 'Groupe de jeune',
+    path: '/youngs',
+  },
+  {
+    label: 'L\'église persécutée',
+    path: '/persecuted-church',
+  },
+  {
+    label: 'Contact',
+    path: '/contact',
+  },
+];
 
 const mapStateToProps = state => ({ browser: state.browser });
 
-const Header = (props) => {
-  const links = [
-    {
-      label: 'L\'église',
-      path: '/church',
-    },
-    {
-      label: 'Prédications',
-      path: routes.blog({ category: 1 }),
-    },
-    {
-      label: 'Blog',
-      path: routes.blog(),
-    },
-    {
-      label: 'Groupe de jeune',
-      path: '/youngs',
-    },
-    {
-      label: 'L\'église persécutée',
-      path: '/persecuted-church',
-    },
-    {
-      label: 'Contact',
-      path: '/contact',
-    },
-  ];
+class Header extends Component {
+  static propTypes = {
+    browser: PropTypes.object.isRequired,
+    sidebarOpened: PropTypes.bool,
+    onSearchButtonClicked: PropTypes.func.isRequired,
+    onOpenSidebarButtonClicked: PropTypes.func.isRequired,
+    onCloseSidebarButtonClicked: PropTypes.func.isRequired,
+  }
 
-  const {
-    browser,
-    sidebarOpened,
-    onSearchButtonClicked,
-    onOpenSidebarButtonClicked,
-    onCloseSidebarButtonClicked } = props;
+  constructor(props) {
+    super(props);
 
-  return (
-    <div className={styles.header}>
+    this.sidebarLinks = slice(links, 3);
 
-      <Link to="/">
-        <img className={styles.logo} src={logo} height="40" alt="Église Lyon Gerland" />
-      </Link>
+    this.state = {
+      transform: true,
+    };
+  }
 
-      {browser.width >= 500 && (
-        <Link to="/">
-          <img className={styles.brand} src={brand} height="22" alt="Église Lyon Gerland" />
-        </Link>
-      )}
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll.bind(this));
 
-      <div className={styles.blankItem} />
+    this.sidebarLinks = links;
+  }
 
-      {browser.width >= 850 && (
-        <div className={styles.links}>
-          {slice(links, 0, 3).map((link, index) =>
-            <div className={styles.linksItem} key={index}>
-              {link.path ? (
-                <Link className={styles.link} to={link.path}>{link.label}</Link>
-              ) : (
-                <a className={styles.link} href="">{link.label}</a>
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll.bind(this));
+  }
+
+  handleScroll(event) {
+    const scrollTop = event.srcElement.body.scrollTop;
+    const itemTranslate = Math.min(0, scrollTop - 60);
+
+    this.setState({
+      transform: itemTranslate
+    });
+  }
+
+  toggleSidebar() {
+    if (this.props.sidebarOpened) {
+      this.props.onCloseSidebarButtonClicked();
+    } else {
+      this.props.onOpenSidebarButtonClicked();
+    }
+  }
+
+  render() {
+    const {
+      transform
+    } = this.state;
+
+    const {
+      browser,
+      sidebarOpened,
+      onSearchButtonClicked,
+      onOpenSidebarButtonClicked,
+      onCloseSidebarButtonClicked } = this.props;
+
+    return (
+      <div className={classes(styles.header, { [styles.foobar]: !transform })}>
+        <Container className={styles.body}>
+          {/* <Link to="/">
+            <img className={styles.logo} src={logo} height="40" alt="Église Lyon Gerland" />
+          </Link> */}
+
+          {browser.width >= 500 && (
+            <Link to="/">
+              <img className={styles.brand} src={brand} height="22" alt="Église Lyon Gerland" />
+            </Link>
+          )}
+
+          <div className={styles.blankItem} />
+
+          {browser.width >= 850 && (
+            <div className={styles.links}>
+              {slice(links, 0, 3).map((link, index) =>
+                <div className={styles.linksItem} key={index}>
+                  <Link className={styles.link} to={link.path}>{link.label}</Link>
+                </div>
               )}
-              <span className={`${styles.linkCarret} fa fa-chevron-right`} />
             </div>
           )}
-        </div>
-      )}
 
-      <SearchButton onClicked={() => onSearchButtonClicked()} />
+          <div className={styles.search}>
+            <SearchButton onClicked={() => onSearchButtonClicked()} />
+          </div>
 
-      <Sidebar
-        links={filter(links, (link, index) => index >= 3 || browser.width < 850)}
-        opened={sidebarOpened}
-        onOpenSidebarButtonClicked={() => onOpenSidebarButtonClicked()}
-        onCloseSidebarButtonClicked={() => onCloseSidebarButtonClicked()}
-      />
-    </div>
-  );
-};
+          <button className={styles.burger} onClick={() => this.toggleSidebar()}>
+            <Burger weight={3} width={17} height={17} color="white" muted={sidebarOpened} rounded />
+          </button>
 
-Header.propTypes = {
-  browser: PropTypes.object.isRequired,
-  sidebarOpened: PropTypes.bool,
-  onSearchButtonClicked: PropTypes.func.isRequired,
-  onOpenSidebarButtonClicked: PropTypes.func.isRequired,
-  onCloseSidebarButtonClicked: PropTypes.func.isRequired,
-};
+        </Container>
+
+        <Sidebar
+          links={this.sidebarLinks}
+          opened={sidebarOpened}
+          onOpenSidebarButtonClicked={() => onOpenSidebarButtonClicked()}
+          onCloseSidebarButtonClicked={() => onCloseSidebarButtonClicked()}
+        />
+      </div>
+    );
+  }
+}
 
 export default connect(mapStateToProps)(Header);

@@ -2,23 +2,48 @@
 @import "../../theme/variables.scss";
 
 .header {
-  background: white;
-  height: $header-height - 1;
-  border-bottom: solid 1px #EEE;
-  display: flex;
-  align-items: center;
-  padding: 0 $header-height 0 20px;
-  z-index: 100;
+  position: fixed;
+  top: 0;
+  z-index: $header-zindex;
+  width: 100%;
+  transition: background .3s;
+
+  &.foobar {
+    background: #124765;
+
+    .body {
+      height: $header-height * 0.7;
+    }
+  }
 }
+
+  .body {
+    display: flex;
+    align-items: center;
+    height: $header-height;
+    padding: 0 30px;
+    transition: height .3s;
+  }
 
   .logo {
     height: $header-logo-height;
+    margin-right: 20px;
   }
 
   .brand {
     height: $header-brand-height;
+    margin-right: 20px;
+  }
+
+  .burger {
+    position: relative;
+    margin-left: 35px;
+    z-index: $sidebar-zindex + 1;
+  }
+
+  .search {
+    display: none;
     margin-left: 20px;
-    margin-top: -6px;
   }
 
   .blankItem {
@@ -28,27 +53,29 @@
   .links {
     display: flex;
     flex-grow: 1;
-    max-width: 500px;
-    padding-left: 20px;
+    max-width: 300px;
+    margin-left: 20px;
   }
 
   .linksItem {
     flex-grow: 1;
-    text-align: center;
+    text-align: right;
   }
 
   .link {
-    color: #AAA;
+    color: white;
     text-decoration: none;
     text-transform: uppercase;
-    font-weight: $font-weight-medium;
+    font-weight: $font-weight-light;
+    font-size: 16px;
 
     &:hover {
-      color: $color-main;
+      text-decoration: underline;
     }
-  }
 
-  .linkCarret {
-    color: $color-main;
-    margin-left: 10px;
+    &:focus,
+    &:visited {
+      color: white;
+      text-decoration: none;
+    }
   }

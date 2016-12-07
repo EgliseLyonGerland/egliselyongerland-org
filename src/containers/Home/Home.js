@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React, { PropTypes, Component } from 'react';
 
 import { connect } from 'react-redux';
 import { asyncConnect } from 'redux-connect';
@@ -31,30 +31,30 @@ const mapStateToProps = state => {
   };
 };
 
-const Home = ({ posts }) => (
-  <div>
-    <Helmet title="Accueil" />
+class Home extends Component {
+  static propTypes = {
+    posts: PropTypes.array,
+  }
 
-    <Jumbotron
-      title="Nouveau logo, nouveau site."
-      baseline="L'église Lyon-Gerland s'offre un lifting numérique pour cette année 2016."
-      img="http://image.toutlecine.com/photos/b/r/a/brazil-1984-01-g.jpg"
-      link="#"
-      linkLabel="En savoir plus"
-    />
+  render() {
+    const { posts } = this.props;
 
-    <Container>
-      <Hr xl />
-      <H1>Dernières prédications</H1>
-      <Hr />
-      <PostsFeed posts={posts} horizontal />
-    </Container>
-  </div>
-);
+    return (
+      <div>
+        <Helmet title="Accueil" />
 
-Home.propTypes = {
-  posts: PropTypes.array,
-};
+        <Jumbotron background="/worship.jpg" height="80vh" />
+
+        <Container>
+          <Hr xl />
+          <H1>Dernières prédications</H1>
+          <Hr />
+          <PostsFeed posts={posts} horizontal />
+        </Container>
+      </div>
+    );
+  }
+}
 
 export default connect(mapStateToProps)(
   asyncConnect(asyncPromises)(Home)

@@ -1,41 +1,31 @@
-import React, { PropTypes } from 'react';
-
-import { Button, Hr } from 'components';
+import React, { Component, PropTypes } from 'react';
 
 import styles from './Jumbotron.scss';
 
-const Jumbotron = ({ title, baseline, img, link, linkLabel }) => (
-  <div className={styles.jumbotron} style={{ backgroundImage: `url(${img})` }}>
-    <div className={styles.content}>
-      <div className={styles.title}>{title}</div>
+class Jumbotron extends Component {
+  static propTypes = {
+    height: PropTypes.string,
+    background: PropTypes.string,
+    children: PropTypes.any,
+  }
 
-      {baseline && (
-        <div className={styles.baseline}>{baseline}</div>
-      )}
+  render() {
+    const { height, background, children } = this.props;
 
-      {link && (
-        <div className={styles.link}>
-          <Button size="lg">
-            {linkLabel}
-            <Hr inline />
-            <span className="fa fa-chevron-right" />
-          </Button>
-        </div>
-      )}
-    </div>
-  </div>
-);
+    const style = {
+      height: height || '70px',
+    };
 
-Jumbotron.propTypes = {
-  title: PropTypes.string,
-  baseline: PropTypes.string,
-  img: PropTypes.string,
-  link: PropTypes.string,
-  linkLabel: PropTypes.string,
-};
+    if (background) {
+      style.backgroundImage = `url(${background})`;
+    }
 
-Jumbotron.defaultProps = {
-  linkLabel: 'Voir',
-};
+    return (
+      <div className={styles.jumbotron} style={style}>
+        {children}
+      </div>
+    );
+  }
+}
 
 export default Jumbotron;

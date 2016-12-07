@@ -2,45 +2,7 @@
 @import "../../theme/variables.scss";
 
 .jumbotron {
-  position: relative;
-  background: no-repeat 50% 50%;
+  background: #124765;
   background-size: cover;
-  height: 800px;
-  color: white;
-
-  &:before {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: black;
-    opacity: 0.3;
-  }
+  min-height: $header-height;
 }
-
-  .content {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    z-index: 1;
-  }
-
-  .title {
-    font-size: 60px;
-    font-weight: $font-weight-bold;
-  }
-
-  .baseline {
-    font-size: 30px;
-    font-weight: $font-weight-thin;
-    margin-top: 40px;
-  }
-
-  .link {
-    margin-top: 100px;
-  }

@@ -25,14 +25,11 @@ export default function sidebar(state = initialState, action = {}) {
 export function openSidebar() {
   return {
     type: OPEN_SIDEBAR,
-    overlay: true,
   };
 }
 
 export function closeSidebar() {
   return {
     type: CLOSE_SIDEBAR,
-    overlay: false,
-    overlayDelay: 0.1,
   };
 }

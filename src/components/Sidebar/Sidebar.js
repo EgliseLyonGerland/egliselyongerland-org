@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
 import { Link } from 'react-router';
-import { Burger } from 'components';
 
 import classes from 'classnames';
 
@@ -39,9 +38,6 @@ class Sidebar extends Component {
 
     return (
       <div className={classes(styles.sidebar, (opened && styles.opened))}>
-        <button className={styles.burger} onClick={() => this.toggle()}>
-          <Burger weight={5} width={25} height={25} color="white" muted={opened} />
-        </button>
         <div className={styles.content}>
           {links.map(link =>
             <Link key={link.path} to={link.path} className={styles.link}>{link.label}</Link>

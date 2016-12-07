@@ -12,6 +12,7 @@ import routes from 'utils/routes';
 import Helmet from 'react-helmet';
 
 import {
+  Jumbotron,
   PickerPanel,
   BiblePicker,
   LabelPicker,
@@ -369,6 +370,7 @@ class Blog extends Component {
     return (
       <div>
         <Helmet title="Accueil" />
+        <Jumbotron />
         <Hr />
         <Container md>
           <H1>Blog</H1>
