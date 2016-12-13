@@ -12,9 +12,11 @@ class Jumbotron extends Component {
   render() {
     const { height, background, children } = this.props;
 
-    const style = {
-      height: height || '70px',
-    };
+    const style = {};
+
+    if (height) {
+      style.height = height;
+    }
 
     if (background) {
       style.backgroundImage = `url(${background})`;
@@ -22,7 +24,9 @@ class Jumbotron extends Component {
 
     return (
       <div className={styles.jumbotron} style={style}>
-        {children}
+        <div className={styles.content}>
+          {children}
+        </div>
       </div>
     );
   }

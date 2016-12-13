@@ -1,0 +1,16 @@
+
+.h1 {
+  margin-bottom: 20px;
+  color: #555;
+
+  &:after {
+    content: "";
+    display: block;
+    max-width: 150px;
+    padding-top: 23px;
+    background-image: linear-gradient(to right, #555 33%, rgba(255,255,255,0) 0%);
+    background-position: -10px bottom;
+    background-size: 10px 3px;
+    background-repeat: repeat-x;
+  }
+}

@@ -265,7 +265,7 @@ class Blog extends Component {
 
     if (loading) {
       return (
-        <BlankItemsFeed items={3} color={randomcolor({ luminosity: 'light', seed: query.key })} />
+        <BlankItemsFeed items={7} color={randomcolor({ luminosity: 'light', seed: query.key })} />
       );
     }
 

@@ -10,7 +10,7 @@ import { Sidebar, SearchButton, Burger, Container } from 'components';
 import routes from 'utils/routes';
 
 import styles from './Header.scss';
-// import logo from './logo2.svg';
+import logo from './logo.svg';
 import brand from './brand.svg';
 
 const links = [
@@ -103,11 +103,11 @@ class Header extends Component {
     return (
       <div className={classes(styles.header, { [styles.foobar]: !transform })}>
         <Container className={styles.body}>
-          {/* <Link to="/">
+          <Link to="/">
             <img className={styles.logo} src={logo} height="40" alt="Église Lyon Gerland" />
-          </Link> */}
+          </Link>
 
-          {browser.width >= 500 && (
+          {browser.width >= 540 && (
             <Link to="/">
               <img className={styles.brand} src={brand} height="22" alt="Église Lyon Gerland" />
             </Link>

@@ -2,11 +2,11 @@ import React, { PropTypes, Component } from 'react';
 
 import { Link } from 'react-router';
 import { get } from 'lodash';
-import moment from 'moment';
+// import moment from 'moment';
 import randomcolor from 'randomcolor';
 import classes from 'classnames';
 
-import { Image, Text } from 'components';
+import { Image } from 'components';
 import routes from 'utils/routes';
 
 import styles from './PostsFeed.scss';
@@ -77,8 +77,8 @@ class PostsFeed extends Component {
 
           return (
             <div className={styles.post} key={post.id}>
-              <Link to={routes.post(post.id)}>
-                <Image src={imageUrl} height={240} />
+              <Link className={styles.picture} to={routes.post(post.id)}>
+                <Image src={imageUrl} height={130} />
               </Link>
 
               <div className={styles.content}>
@@ -86,7 +86,7 @@ class PostsFeed extends Component {
                 <Link className={styles.title} to={routes.post(post.id)}>{post.title}</Link>
               </div>
 
-              <div className={styles.footer}>
+              {/* <div className={styles.footer}>
                 <span className={styles.avatar}>
                   <Image src={post.author.picture} ratio={1} />
                 </span>
@@ -98,7 +98,7 @@ class PostsFeed extends Component {
                 <Text fontSize={12} lineHeight={16} unit="px">
                   {moment(post.date).fromNow()}
                 </Text>
-              </div>
+              </div> */}
             </div>
           );
         })}

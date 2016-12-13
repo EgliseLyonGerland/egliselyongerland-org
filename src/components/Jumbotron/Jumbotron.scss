@@ -3,6 +3,13 @@
 
 .jumbotron {
   background: #124765;
+  background-image: url(/generic-bg.jpg);
+  background-repeat: no-repeat;
+  background-position: center center;
   background-size: cover;
-  min-height: $header-height;
+  min-height: 30vh;
 }
+
+  .content {
+    // padding-top: $header-height;
+  }

@@ -6,14 +6,16 @@ import { isLoaded as isPostsLoaded, load as loadPosts } from 'redux/modules/post
 
 import Helmet from 'react-helmet';
 
-import { Container, Jumbotron, PostsFeed, H1, Hr } from 'components';
+import { Container, Jumbotron, PostsFeed, H2, Hr } from 'components';
+
+import styles from './Home.scss';
 
 const POSTS_KEY = 'home';
 
 const asyncPromises = [{
   promise: ({ store: { dispatch, getState } }) => {
     const isLoaded = isPostsLoaded(POSTS_KEY, getState());
-    const result = isLoaded ? null : dispatch(loadPosts(POSTS_KEY, { limit: 2 }));
+    const result = isLoaded ? null : dispatch(loadPosts(POSTS_KEY, { limit: 10 }));
 
     return __CLIENT__ ? null : result;
   }
@@ -43,13 +45,32 @@ class Home extends Component {
       <div>
         <Helmet title="Accueil" />
 
-        <Jumbotron background="/worship.jpg" height="80vh" />
-
+        <Jumbotron background="/worship.jpg">
+          <Container sm>
+            <div className={styles.welcome}>
+              <div className={styles.welcomeHeadline}>
+                Bienvenue.
+              </div>
+              <div className={styles.welcomeContentline}>
+                On vous donne rendez-vous le dimanche à 17h pour célébrer le Seigneur Jésus Christ
+              </div>
+            </div>
+          </Container>
+        </Jumbotron>
+        <Hr lg />
         <Container>
-          <Hr xl />
-          <H1>Dernières prédications</H1>
-          <Hr />
-          <PostsFeed posts={posts} horizontal />
+          <div className="row">
+            <div className="col-md-7">
+              <H2>Derniers posts</H2>
+              <Hr />
+              <PostsFeed posts={posts} />
+            </div>
+            <div className="col-md-5">
+              <H2>Dernières prédications</H2>
+              <Hr />
+              <PostsFeed posts={posts.slice(0, 2)} />
+            </div>
+          </div>
         </Container>
       </div>
     );

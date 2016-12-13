@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-import Text from './Text';
+import H1 from './H1';
 
-const H2 = (props) => (
-  <Text
-    fontSize={1.8}
-    fontWeight="bold"
-    {...props}
-  />
-);
+class H2 extends Component {
+  render() {
+    return (
+      <H1
+        fontSize={1.4}
+        fontWeight="bold"
+        {...this.props}
+      />
+    );
+  }
+}
 
 export default H2;

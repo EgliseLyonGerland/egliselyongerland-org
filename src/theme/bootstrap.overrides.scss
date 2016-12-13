@@ -10,8 +10,11 @@ html {
 }
 
 a {
-  &:hover {
+  &:hover,
+  &:focus,
+  &:visited {
     text-decoration: none;
+    color: inherit;
   }
 }
 
