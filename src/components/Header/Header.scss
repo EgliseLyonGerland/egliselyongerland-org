@@ -8,11 +8,19 @@
   width: 100%;
   transition: background .3s;
 
-  &.foobar {
+  &.sticky {
     background: #111;
 
     .body {
-      height: $header-height * 0.7;
+      height: $header-sticky-height;
+    }
+
+    .logo {
+      transform: scale($header-sticky-logo-scale);
+    }
+
+    .brand {
+      transform: scale($header-sticky-brand-scale) translateX($header-sticky-brand-translate);
     }
   }
 }
@@ -28,11 +36,15 @@
   .logo {
     height: $header-logo-height;
     margin-right: 20px;
+    transition: transform .3s;
+    transform-origin: left center;
   }
 
   .brand {
     height: $header-brand-height;
     margin-right: 20px;
+    transition: transform .3s;
+    transform-origin: left center;
   }
 
   .burger {

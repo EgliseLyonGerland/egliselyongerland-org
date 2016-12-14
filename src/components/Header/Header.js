@@ -101,7 +101,7 @@ class Header extends Component {
       onCloseSidebarButtonClicked } = this.props;
 
     return (
-      <div className={classes(styles.header, { [styles.foobar]: !transform })}>
+      <div className={classes(styles.header, { [styles.sticky]: !transform })}>
         <Container className={styles.body}>
           <Link to="/">
             <img className={styles.logo} src={logo} height="40" alt="Église Lyon Gerland" />
