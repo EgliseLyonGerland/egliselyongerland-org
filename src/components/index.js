@@ -23,6 +23,7 @@ export SearchButton from './SearchButton/SearchButton';
 export Sidebar from './Sidebar/Sidebar';
 export Spinner from './Spinner/Spinner';
 export Text from './Text/Text';
+export WhatWhenWhere from './WhatWhenWhere/WhatWhenWhere';
 
 export PickerPanel from './Picker/PickerPanel';
 export BiblePicker from './Picker/BiblePicker';

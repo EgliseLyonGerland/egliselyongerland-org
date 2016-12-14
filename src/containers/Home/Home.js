@@ -6,7 +6,15 @@ import { isLoaded as isPostsLoaded, load as loadPosts } from 'redux/modules/post
 
 import Helmet from 'react-helmet';
 
-import { Container, Jumbotron, PostsFeed, H2, Hr } from 'components';
+import {
+  Container,
+  Jumbotron,
+  PostsFeed,
+  WhatWhenWhere,
+  Text,
+  H2,
+  Hr
+} from 'components';
 
 import styles from './Home.scss';
 
@@ -48,15 +56,26 @@ class Home extends Component {
         <Jumbotron background="/worship.jpg">
           <Container sm>
             <div className={styles.welcome}>
-              <div className={styles.welcomeHeadline}>
+              <Text fontSize={4} fontWeight="thin">
                 Bienvenue.
-              </div>
-              <div className={styles.welcomeContentline}>
-                On vous donne rendez-vous le dimanche à 17h pour célébrer le Seigneur Jésus Christ
-              </div>
+              </Text>
+              <Hr lg />
+              <Text fontSize={1.6}>
+                Nous sommes une église chrétienne protestante qui cherche
+                à glorifier Dieu par la prière, par l'enseignement biblique,
+                et par l'amour du prochain.
+              </Text>
+              <Hr />
+              <Text fontSize={1.6}>
+                Profondément attachés à la Bible, nous avons à cœur de diffuser
+                son message, qui est centré sur la personne et l'oeuvre de Jésus-Christ.
+              </Text>
             </div>
           </Container>
         </Jumbotron>
+        <Container xl>
+          <WhatWhenWhere />
+        </Container>
         <Hr lg />
         <Container>
           <div className="row">

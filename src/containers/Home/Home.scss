@@ -2,19 +2,9 @@
 
 .welcome {
   color: white;
-  min-height: 95vh;
+  min-height: 100vh;
   text-align: center;
   display: flex;
   justify-content: center;
   flex-direction: column;
-}
-
-.welcomeHeadline {
-  font-size: 80px;
-  font-weight: $font-weight-thin;
-}
-
-.welcomeContentline {
-  font-size: 30px;
-  font-weight: $font-weight-light;
 }

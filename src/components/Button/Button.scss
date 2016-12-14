@@ -2,8 +2,16 @@
 @import "../../theme/variables.scss";
 
 .button {
-  background: $color-main;
+  background: transparent;
+  border: solid 1px;
   cursor: pointer;
+  transition: background .3s;
+
+  &:hover {
+    background: #222;
+    border-color: #222;
+    color: white;
+  }
 }
 
   .md {
