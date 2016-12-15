@@ -29,7 +29,7 @@ export default function createStore(history, client, data) {
     const DevTools = require('../containers/DevTools/DevTools');
 
     finalCreateStore = compose(
-      createResponsiveStoreEnhancer({ calculateStateInitially: false }),
+      createResponsiveStoreEnhancer({ calculateInitialState: false }),
       applyMiddleware(...middleware),
       window.devToolsExtension ? window.devToolsExtension() : DevTools.instrument(),
       persistState(window.location.href.match(/[?&]debug_session=([^&]+)\b/))

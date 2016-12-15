@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 import { reducer as reduxAsyncConnect } from 'redux-connect';
 import { createResponsiveStateReducer } from 'redux-responsive';
+import { canUseDOM } from 'exenv';
 
 import { app } from '../../config';
 
@@ -15,7 +16,11 @@ import post from './post';
 export default combineReducers({
   routing: routerReducer,
   reduxAsyncConnect,
-  browser: createResponsiveStateReducer(app.breakpoints),
+  browser: createResponsiveStateReducer(app.breakpoints, {
+    extraFields: () => ({
+      width: canUseDOM ? window.innerWidth : 1024,
+    }),
+  }),
   entities,
   overlay,
   searchbar,
