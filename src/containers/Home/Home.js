@@ -53,19 +53,17 @@ class Home extends Component {
       <div>
         <Helmet title="Accueil" />
 
-        <Jumbotron background="/worship.jpg">
-          <Container sm>
+        <Jumbotron background="/images/jumbotrons/worship.jpg">
+          <Container md>
             <div className={styles.welcome}>
-              <Text fontSize={4} fontWeight="thin">
-                Bienvenue.
-              </Text>
+              <Text fontSize={4} fontWeight="thin">Bienvenue</Text>
               <Hr lg />
               <Text fontSize={1.6}>
                 Nous sommes une église chrétienne protestante qui cherche
                 à glorifier Dieu par la prière, par l'enseignement biblique,
                 et par l'amour du prochain.
               </Text>
-              <Hr />
+              <Hr line xl />
               <Text fontSize={1.6}>
                 Profondément attachés à la Bible, nous avons à cœur de diffuser
                 son message, qui est centré sur la personne et l'oeuvre de Jésus-Christ.

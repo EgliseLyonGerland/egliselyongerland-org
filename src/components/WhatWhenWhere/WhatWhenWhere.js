@@ -9,7 +9,7 @@ class WhatWhenWhere extends Component {
     return (
       <div className={styles.www}>
         <div className={styles.right}>
-          <H2>Culte tous les dimanches à 17h.</H2>
+          <H2>Culte ouvert à tous,<br /> le dimanche à 17h.</H2>
           <Text>302 avenue Jean Jaurès</Text>
           <Text>69007 Lyon</Text>
           <Hr lg />

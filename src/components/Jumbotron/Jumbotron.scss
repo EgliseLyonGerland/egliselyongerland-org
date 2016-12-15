@@ -7,9 +7,12 @@
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
-  min-height: 30vh;
 }
 
   .content {
-    // padding-top: $header-height;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: $header-sticky-height;
+    min-height: 40vh;
   }

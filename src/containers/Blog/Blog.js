@@ -21,7 +21,6 @@ import {
   BlankItemsFeed,
   Container,
   Text,
-  H1,
   Hr
 } from 'components';
 
@@ -370,12 +369,9 @@ class Blog extends Component {
     return (
       <div>
         <Helmet title="Accueil" />
-        <Jumbotron />
-        <Hr />
+        <Jumbotron title="Blog" background="/images/jumbotrons/blog.jpg" />
+        <Hr xl />
         <Container md>
-          <H1>Blog</H1>
-          <Hr lg />
-
           {browser.width >= 750 ? this.renderWideScreen() : this.renderSmallScreen()}
         </Container>
       </div>

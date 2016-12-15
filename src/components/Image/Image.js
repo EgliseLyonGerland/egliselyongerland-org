@@ -25,7 +25,7 @@ class Image extends Component {
       seoFriendly
     } = this.props;
 
-    const src = this.props.src || '/placeholder.jpg';
+    const src = this.props.src || '/images/placeholder.jpg';
     const style = { backgroundImage: `url(${src})` };
 
     if (height) {
