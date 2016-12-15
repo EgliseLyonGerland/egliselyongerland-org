@@ -57,7 +57,7 @@ class Header extends Component {
     this.sidebarLinks = slice(links, 3);
 
     this.state = {
-      transform: true,
+      sticky: false,
     };
   }
 
@@ -76,7 +76,7 @@ class Header extends Component {
     const itemTranslate = Math.min(0, scrollTop - 60);
 
     this.setState({
-      transform: itemTranslate
+      sticky: !itemTranslate
     });
   }
 
@@ -90,7 +90,7 @@ class Header extends Component {
 
   render() {
     const {
-      transform
+      sticky
     } = this.state;
 
     const {
@@ -100,14 +100,19 @@ class Header extends Component {
       onOpenSidebarButtonClicked,
       onCloseSidebarButtonClicked } = this.props;
 
+    const className = classes(styles.header, {
+      [styles.sticky]: sticky,
+      [styles.mini]: sticky || browser.width <= 960,
+    });
+
     return (
-      <div className={classes(styles.header, { [styles.sticky]: !transform })}>
+      <div className={className}>
         <Container className={styles.body}>
           <Link to="/">
             <img className={styles.logo} src={logo} height="40" alt="Église Lyon Gerland" />
           </Link>
 
-          {browser.width >= 540 && (
+          {browser.width >= 600 && (
             <Link to="/">
               <img className={styles.brand} src={brand} height="22" alt="Église Lyon Gerland" />
             </Link>
@@ -115,7 +120,7 @@ class Header extends Component {
 
           <div className={styles.blankItem} />
 
-          {browser.width >= 850 && (
+          {browser.width >= 860 && (
             <div className={styles.links}>
               {slice(links, 0, 3).map((link, index) =>
                 <div className={styles.linksItem} key={index}>

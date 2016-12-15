@@ -46,6 +46,8 @@ ReactDOM.render(
 
 store.dispatch(calculateResponsiveState(window));
 
+window.addEventListener('resize', () => store.dispatch(calculateResponsiveState(window)));
+
 if (process.env.NODE_ENV !== 'production') {
   window.React = React; // enable debugger
 

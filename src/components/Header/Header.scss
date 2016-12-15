@@ -8,6 +8,16 @@
   width: 100%;
   transition: background .3s;
 
+  &.mini {
+    .logo {
+      transform: scale($header-sticky-logo-scale);
+    }
+
+    .brand {
+      transform: scale($header-sticky-brand-scale) translateX($header-sticky-brand-translate);
+    }
+  }
+
   &.sticky {
     background: #111;
 
@@ -17,10 +27,6 @@
 
     .logo {
       transform: scale($header-sticky-logo-scale) rotate(180deg);
-    }
-
-    .brand {
-      transform: scale($header-sticky-brand-scale) translateX($header-sticky-brand-translate);
     }
   }
 }
@@ -63,14 +69,13 @@
 
   .links {
     display: flex;
-    flex-grow: 1;
-    max-width: 300px;
-    margin-left: 20px;
+    flex-grow: 0;
   }
 
   .linksItem {
-    flex-grow: 1;
+    flex-grow: 0;
     text-align: right;
+    margin-left: 20px;
   }
 
   .link {
