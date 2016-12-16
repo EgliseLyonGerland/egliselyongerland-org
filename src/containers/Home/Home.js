@@ -20,6 +20,8 @@ import {
 } from 'components';
 
 import worship from './worship.jpg';
+import sunshineLeft from './sunshine-left.svg';
+import sunshineRight from './sunshine-right.svg';
 
 const POSTS_KEY = 'home';
 
@@ -58,7 +60,13 @@ class Home extends Component {
 
         <Jumbotron height="100vh" background={worship}>
           <Container md style={{ color: 'white', textAlign: 'center' }}>
-            <Text fontSize={4} fontWeight="thin">Bienvenue</Text>
+            <Text fontSize={4} fontWeight="thin" element="div">
+              <img src={sunshineLeft} role="presentation" />
+              <Hr inline />
+              Bienvenue
+              <Hr inline />
+              <img src={sunshineRight} role="presentation" />
+            </Text>
             <Hr lg />
             <Text fontSize={1.6}>
               Nous sommes une église chrétienne protestante qui cherche
