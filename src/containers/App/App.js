@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import * as searchbarActions from 'redux/modules/searchbar';
 import * as sidebarActions from 'redux/modules/sidebar';
 
-import { Header, Search, Overlay } from 'components';
+import { Header/* , Search */, Overlay } from 'components';
 
 import config from '../../config';
 
@@ -14,7 +14,7 @@ import styles from './App.scss';
 @connect(
   state => ({
     overlay: state.overlay,
-    isSearchbarOpened: state.searchbar.opened,
+    // isSearchbarOpened: state.searchbar.opened,
     isSidebarOpened: state.sidebar.opened,
   }),
   { ...searchbarActions, ...sidebarActions }
@@ -24,26 +24,26 @@ class App extends Component {
   static propTypes = {
     children: PropTypes.object.isRequired,
     overlay: PropTypes.object.isRequired,
-    isSearchbarOpened: PropTypes.bool.isRequired,
+    // isSearchbarOpened: PropTypes.bool.isRequired,
     openSearchbar: PropTypes.func.isRequired,
-    closeSearchbar: PropTypes.func.isRequired,
+    // closeSearchbar: PropTypes.func.isRequired,
     isSidebarOpened: PropTypes.bool.isRequired,
     openSidebar: PropTypes.func.isRequired,
     closeSidebar: PropTypes.func.isRequired,
   };
 
   handleOverlayClicked() {
-    this.props.closeSearchbar();
+    // this.props.closeSearchbar();
     this.props.closeSidebar();
   }
 
   render() {
     const {
       overlay,
-      isSearchbarOpened,
+      // isSearchbarOpened,
       isSidebarOpened,
       openSearchbar,
-      closeSearchbar,
+      // closeSearchbar,
       openSidebar,
       closeSidebar } = this.props;
 
@@ -57,10 +57,10 @@ class App extends Component {
           onOpenSidebarButtonClicked={() => openSidebar()}
           onCloseSidebarButtonClicked={() => closeSidebar()}
         />
-        <Search
+        {/* <Search
           opened={isSearchbarOpened}
           hideButtonClicked={() => closeSearchbar()}
-        />
+        /> */}
         {this.props.children}
       </div>
     );

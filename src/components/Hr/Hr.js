@@ -4,6 +4,8 @@ import classnames from 'classnames';
 
 import styles from './Hr.scss';
 
+const SIZES = ['nm', 'xs', 'sm', 'md', 'lg', 'xl'];
+
 class Hr extends Component {
   static propTypes = {
     children: PropTypes.any,
@@ -11,12 +13,6 @@ class Hr extends Component {
     color: PropTypes.string,
     opacity: PropTypes.number,
     inline: PropTypes.bool,
-    nm: PropTypes.bool,
-    xs: PropTypes.bool,
-    sm: PropTypes.bool,
-    md: PropTypes.bool,
-    lg: PropTypes.bool,
-    xl: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -30,8 +26,7 @@ class Hr extends Component {
     const { children, line, color, opacity, inline } = this.props;
 
     // Check size
-    const sizes = ['nm', 'xs', 'sm', 'md', 'lg', 'xl'];
-    const size = sizes.reduce((prev, curr) => (this.props[curr] ? curr : prev), 'md');
+    const size = SIZES.reduce((prev, curr) => (this.props[curr] ? curr : prev), 'md');
 
     // Build new props
     const newProps = {};

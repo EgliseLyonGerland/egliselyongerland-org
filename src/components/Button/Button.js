@@ -1,24 +1,40 @@
 import React, { Component, PropTypes } from 'react';
 
+import classes from 'classnames';
+
 import styles from './Button.scss';
+
+const SIZES = ['xxs', 'xs', 'sm', 'md', 'lg', 'xl', 'xxl'];
 
 export default
 class Button extends Component {
 
   static propTypes = {
     children: PropTypes.any.isRequired,
-    size: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
-  }
-
-  static defaultProps = {
-    size: 'md',
+    rounded: PropTypes.bool,
+    negative: PropTypes.bool,
   }
 
   render() {
-    const { children, size } = this.props;
+    const {
+      children,
+      rounded,
+      negative,
+    } = this.props;
+
+    const size = SIZES.reduce((prev, curr) => (this.props[curr] ? curr : prev), 'md');
+
+    const className = classes(
+      styles.button,
+      styles[size],
+      {
+        [styles.rounded]: rounded,
+        [styles.negative]: negative,
+      }
+    );
 
     return (
-      <button className={`${styles.button} ${styles[size]}`}>
+      <button className={className}>
         {children}
       </button>
     );

@@ -2,7 +2,9 @@ import React, { PropTypes, Component } from 'react';
 
 import { connect } from 'react-redux';
 import { asyncConnect } from 'redux-connect';
+import { Link } from 'react-router';
 import { isLoaded as isPostsLoaded, load as loadPosts } from 'redux/modules/posts';
+import routes from 'utils/routes';
 
 import Helmet from 'react-helmet';
 
@@ -11,12 +13,11 @@ import {
   Jumbotron,
   PostsFeed,
   WhatWhenWhere,
+  Button,
   Text,
   H2,
   Hr
 } from 'components';
-
-import styles from './Home.scss';
 
 const POSTS_KEY = 'home';
 
@@ -53,22 +54,24 @@ class Home extends Component {
       <div>
         <Helmet title="Accueil" />
 
-        <Jumbotron background="/images/jumbotrons/worship.jpg">
-          <Container md>
-            <div className={styles.welcome}>
-              <Text fontSize={4} fontWeight="thin">Bienvenue</Text>
-              <Hr lg />
-              <Text fontSize={1.6}>
-                Nous sommes une église chrétienne protestante qui cherche
-                à glorifier Dieu par la prière, par l'enseignement biblique,
-                et par l'amour du prochain.
-              </Text>
-              <Hr line xl />
-              <Text fontSize={1.6}>
-                Profondément attachés à la Bible, nous avons à cœur de diffuser
-                son message, qui est centré sur la personne et l'oeuvre de Jésus-Christ.
-              </Text>
-            </div>
+        <Jumbotron height="100vh" background="/images/jumbotrons/worship.jpg">
+          <Container md style={{ color: 'white', textAlign: 'center' }}>
+            <Text fontSize={4} fontWeight="thin">Bienvenue</Text>
+            <Hr lg />
+            <Text fontSize={1.6}>
+              Nous sommes une église chrétienne protestante qui cherche
+              à glorifier Dieu par la prière, par l'enseignement biblique,
+              et par l'amour du prochain.
+            </Text>
+            <Hr line xl />
+            <Text fontSize={1.6}>
+              Profondément attachés à la Bible, nous avons à cœur de diffuser
+              son message, qui est centré sur la personne et l'oeuvre de Jésus-Christ.
+            </Text>
+            <Hr xl />
+            <Link to={routes.church()}>
+              <Button lg negative>En savoir plus</Button>
+            </Link>
           </Container>
         </Jumbotron>
         <Container xl>

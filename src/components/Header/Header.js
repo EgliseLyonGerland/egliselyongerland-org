@@ -137,7 +137,6 @@ class Header extends Component {
           <button className={styles.burger} onClick={() => this.toggleSidebar()}>
             <Burger weight={3} width={17} height={17} color="white" muted={sidebarOpened} rounded />
           </button>
-
         </Container>
 
         <Sidebar

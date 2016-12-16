@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 
+import { Link } from 'react-router';
+
 import { Image, Button, Text, H2, Hr } from 'components';
+import routes from 'utils/routes';
 
 import styles from './WhatWhenWhere.scss';
 
@@ -13,9 +16,13 @@ class WhatWhenWhere extends Component {
           <Text>302 avenue Jean Jaurès</Text>
           <Text>69007 Lyon</Text>
           <Hr lg />
-          <Button>En savoir plus</Button>
+          <Link to={routes.church()}>
+            <Button>En savoir plus</Button>
+          </Link>
           <Hr inline />
-          <Button>Contact</Button>
+          <Link to={routes.contact()}>
+            <Button>Contact</Button>
+          </Link>
         </div>
         <div className={styles.left}>
           <Image src="/images/map.png" height={450} />

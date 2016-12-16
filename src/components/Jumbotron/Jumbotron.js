@@ -19,19 +19,9 @@ class Jumbotron extends Component {
   render() {
     const { title, height, background, children } = this.props;
 
-    const style = {};
-
-    if (height) {
-      style.height = height;
-    }
-
-    if (background) {
-      style.backgroundImage = `url(${background})`;
-    }
-
     return (
-      <div className={styles.jumbotron} style={style}>
-        <div className={styles.content}>
+      <div className={styles.jumbotron} style={{ backgroundImage: `url(${background})` }}>
+        <div className={styles.content} style={{ minHeight: height || '40vh' }}>
           {title &&
             <div>
               <Text fontSize="4" color="white" fontWeight="bold">{title}</Text>

@@ -34,4 +34,9 @@ export default {
   post: (id) => (
     `/blog/post/${id}`
   ),
+
+  church: () => '/church',
+  youngs: () => '/youngs',
+  contact: () => '/contact',
+  persecutedChurch: () => '/persecuted-church',
 };
