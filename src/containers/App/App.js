@@ -5,11 +5,11 @@ import { connect } from 'react-redux';
 import * as searchbarActions from 'redux/modules/searchbar';
 import * as sidebarActions from 'redux/modules/sidebar';
 
-import { Header/* , Search */, Overlay } from 'components';
+import { Header, Footer /* , Search */, Overlay } from 'components';
 
 import config from '../../config';
 
-import styles from './App.scss';
+import './App.scss';
 
 @connect(
   state => ({
@@ -48,7 +48,7 @@ class App extends Component {
       closeSidebar } = this.props;
 
     return (
-      <div className={styles.app}>
+      <div>
         <Helmet {...config.app.head} />
         <Overlay {...overlay} onClicked={() => this.handleOverlayClicked()} />
         <Header
@@ -62,6 +62,8 @@ class App extends Component {
           hideButtonClicked={() => closeSearchbar()}
         /> */}
         {this.props.children}
+
+        <Footer />
       </div>
     );
   }

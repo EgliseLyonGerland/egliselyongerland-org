@@ -8,6 +8,7 @@
 export Burger from './Burger/Burger';
 export Button from './Button/Button';
 export Container from './Container/Container';
+export Footer from './Footer/Footer';
 export Header from './Header/Header';
 export H1 from './Text/H1';
 export H2 from './Text/H2';
