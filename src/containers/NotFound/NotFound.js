@@ -1,16 +1,31 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-import { Container, Jumbotron, Hr } from 'components';
+import { shuffle, keys } from 'lodash';
 
-export default function NotFound() {
-  return (
-    <div>
-      <Jumbotron />
-      <Hr />
-      <Container>
-        <h1>Doh! 404!</h1>
-        <p>These are <em>not</em> the droids you are looking for!</p>
-      </Container>
-    </div>
-  );
+import { Container, Jumbotron, Text, Hr } from 'components';
+
+import verses from './verses.json';
+
+class NotFound extends Component {
+  render() {
+    const book = shuffle(keys(verses))[0];
+    const verse = verses[book];
+
+    return (
+      <div>
+        <Jumbotron height="100vh">
+          <Container sm style={{ textAlign: 'center' }}>
+            <Text color="white" fontWeight="bold" fontSize={2}>{book}</Text>
+            <Text color="white" fontSize={10} lineHeight={10} fontWeight="bold">40.4</Text>
+            <Hr line width="50%" xl />
+            <Text color="white" fontWeight="thin" fontSize={1.6} italic>
+              “{verse}” — <small>{book} 40.4</small>
+            </Text>
+          </Container>
+        </Jumbotron>
+      </div>
+    );
+  }
 }
+
+export default NotFound;

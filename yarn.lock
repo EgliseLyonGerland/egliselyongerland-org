@@ -2443,7 +2443,7 @@ fastparse@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/fastparse/-/fastparse-1.1.1.tgz#d1e2643b38a94d7583b479060e6c4affc94071f8"
 
-fbjs@^0.8.1, fbjs@^0.8.4:
+fbjs@^0.8.1:
   version "0.8.6"
   resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-0.8.6.tgz#7eb67d6986b2d5007a9b6e92e0e7cb6f75cad290"
   dependencies:
@@ -4989,7 +4989,7 @@ react-dock@^0.2.1:
     lodash.debounce "^3.1.1"
     object-assign "^4.0.1"
 
-"react-dom@^0.14.0 || ^15.0.0", "react-dom@^0.14.0 || ^15.0.0-0":
+"react-dom@^0.14.0 || ^15.0.0":
   version "15.4.1"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-15.4.1.tgz#d54c913261aaedb17adc20410d029dcc18a1344a"
   dependencies:
@@ -5052,13 +5052,6 @@ react-overlays@^0.6.6:
     dom-helpers "^2.4.0"
     react-prop-types "^0.4.0"
     warning "^3.0.0"
-
-react-parallax@0.4.3:
-  version "0.4.3"
-  resolved "https://registry.yarnpkg.com/react-parallax/-/react-parallax-0.4.3.tgz#c7bcd5e9d17db9de55090559053267637204a66d"
-  dependencies:
-    react "^0.14.0 || ^15.0.0-0"
-    react-dom "^0.14.0 || ^15.0.0-0"
 
 react-prop-types@^0.4.0:
   version "0.4.0"
@@ -5137,14 +5130,6 @@ react-transform-hmr@1.0.4:
   dependencies:
     global "^4.3.0"
     react-proxy "^1.1.7"
-
-"react@^0.14.0 || ^15.0.0-0":
-  version "15.4.1"
-  resolved "https://registry.yarnpkg.com/react/-/react-15.4.1.tgz#498e918602677a3983cd0fd206dfe700389a0dd6"
-  dependencies:
-    fbjs "^0.8.4"
-    loose-envify "^1.1.0"
-    object-assign "^4.1.0"
 
 react@15.3.0:
   version "15.3.0"

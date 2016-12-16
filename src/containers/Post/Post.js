@@ -3,13 +3,12 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { asyncConnect } from 'redux-connect';
 import Helmet from 'react-helmet';
-import { Parallax } from 'react-parallax';
 import moment from 'moment';
 import Disqus from 'react-disqus-thread';
 import md5 from 'md5';
 import { get } from 'lodash';
 
-import { Container, Spinner, Hr, Text } from 'components';
+import { Container, Jumbotron, Spinner, Hr, Text } from 'components';
 
 import { load as loadPost, isLoaded as isPostLoaded } from 'redux/modules/post';
 
@@ -58,14 +57,10 @@ class Post extends Component {
       <div>
         <Helmet title={post.title} />
 
-        <Parallax bgImage={imageUrl} strength={400}>
-          <div className={styles.image} />
-        </Parallax>
+        <Jumbotron background={imageUrl} title={post.title} height="600px" />
 
         <Container md>
           <div className={styles.content}>
-            <Text element="h1" fontWeight="light" fontSize={2.6}>{post.title}</Text>
-            <Hr lg />
             <Text element="div" fontSize={1} color="#555">
               <span>
                 <Hr inline md />

@@ -19,6 +19,8 @@ import {
   Hr
 } from 'components';
 
+import worship from './worship.jpg';
+
 const POSTS_KEY = 'home';
 
 const asyncPromises = [{
@@ -54,7 +56,7 @@ class Home extends Component {
       <div>
         <Helmet title="Accueil" />
 
-        <Jumbotron height="100vh" background="/images/jumbotrons/worship.jpg">
+        <Jumbotron height="100vh" background={worship}>
           <Container md style={{ color: 'white', textAlign: 'center' }}>
             <Text fontSize={4} fontWeight="thin">Bienvenue</Text>
             <Hr lg />

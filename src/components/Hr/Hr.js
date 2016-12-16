@@ -13,6 +13,7 @@ class Hr extends Component {
     color: PropTypes.string,
     opacity: PropTypes.number,
     inline: PropTypes.bool,
+    width: PropTypes.string,
   }
 
   static defaultProps = {
@@ -23,7 +24,7 @@ class Hr extends Component {
   }
 
   render() {
-    const { children, line, color, opacity, inline } = this.props;
+    const { children, line, color, opacity, inline, width } = this.props;
 
     // Check size
     const size = SIZES.reduce((prev, curr) => (this.props[curr] ? curr : prev), 'md');
@@ -43,6 +44,10 @@ class Hr extends Component {
 
       if (opacity) {
         newProps.opacity = opacity;
+      }
+
+      if (width) {
+        newProps.style.width = width;
       }
     }
 

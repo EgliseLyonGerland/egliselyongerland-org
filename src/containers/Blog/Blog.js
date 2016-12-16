@@ -24,6 +24,8 @@ import {
   Hr
 } from 'components';
 
+import jumbotron from './jumbotron.jpg';
+
 const POSTS_KEY = 'blog';
 const LIMIT = 10;
 
@@ -369,7 +371,7 @@ class Blog extends Component {
     return (
       <div>
         <Helmet title="Accueil" />
-        <Jumbotron title="Blog" background="/images/jumbotrons/blog.jpg" />
+        <Jumbotron title="Blog" background={jumbotron} />
         <Hr xl />
         <Container md>
           {browser.width >= 750 ? this.renderWideScreen() : this.renderSmallScreen()}

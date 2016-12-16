@@ -14,6 +14,7 @@ class Text extends Component {
     fontSize: PropTypes.number,
     fontWeight: PropTypes.oneOf(['thin', 'light', 'regular', 'medium', 'bold', 'black']),
     lineHeight: PropTypes.number,
+    italic: PropTypes.bool,
     color: PropTypes.string,
     minLines: PropTypes.number,
     maxLines: PropTypes.number,
@@ -39,6 +40,7 @@ class Text extends Component {
       element,
       fontSize,
       fontWeight,
+      italic,
       color,
       minLines,
       maxLines,
@@ -68,6 +70,10 @@ class Text extends Component {
     if (maxLines) {
       style.maxHeight = (lineHeight * maxLines) + unit;
       style.overflow = 'hidden';
+    }
+
+    if (italic) {
+      style.fontStyle = 'italic';
     }
 
     if (color) {

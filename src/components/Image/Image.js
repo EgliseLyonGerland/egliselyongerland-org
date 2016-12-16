@@ -13,7 +13,7 @@ class Image extends Component {
 
   static defaultProps = {
     seoFriendly: true,
-    ratio: (16 / 9),
+    ratio: (9 / 16),
   }
 
   render() {

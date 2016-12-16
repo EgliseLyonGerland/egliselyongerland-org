@@ -3,6 +3,7 @@ import React, { Component, PropTypes } from 'react';
 import { Text, Hr } from 'components';
 
 import styles from './Jumbotron.scss';
+import picture from './default.jpg';
 
 class Jumbotron extends Component {
   static propTypes = {
@@ -13,7 +14,7 @@ class Jumbotron extends Component {
   }
 
   static defaultProps = {
-    background: '/images/jumbotrons/default.jpg',
+    background: picture,
   }
 
   render() {
