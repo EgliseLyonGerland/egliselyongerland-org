@@ -3,10 +3,11 @@ import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import { asyncConnect } from 'redux-connect';
 import { Link } from 'react-router';
+import Helmet from 'react-helmet';
+import { differenceBy } from 'lodash';
+
 import { isLoaded as isPostsLoaded, load as loadPosts } from 'redux/modules/posts';
 import routes from 'utils/routes';
-
-import Helmet from 'react-helmet';
 
 import {
   Container,
@@ -23,36 +24,55 @@ import worship from './worship.jpg';
 import sunshineLeft from './sunshine-left.svg';
 import sunshineRight from './sunshine-right.svg';
 
-const POSTS_KEY = 'home';
+const POSTS_KEY = 'home-posts';
+const SERMONS_KEY = 'home-sermons';
 
 const asyncPromises = [{
   promise: ({ store: { dispatch, getState } }) => {
-    const isLoaded = isPostsLoaded(POSTS_KEY, getState());
-    const result = isLoaded ? null : dispatch(loadPosts(POSTS_KEY, { limit: 10 }));
+    const promises = [];
 
-    return __CLIENT__ ? null : result;
+    if (!isPostsLoaded(POSTS_KEY, getState())) {
+      promises.push(dispatch(loadPosts(POSTS_KEY, { limit: 10 })));
+    }
+
+    if (!isPostsLoaded(SERMONS_KEY, getState())) {
+      promises.push(dispatch(loadPosts(SERMONS_KEY, { limit: 2 })));
+    }
+
+    if (__CLIENT__ || !promises.length) {
+      return null;
+    }
+
+    return Promise.all(promises);
   }
 }];
 
 const mapStateToProps = state => {
   let posts = [];
+  let sermons = [];
+
+  if (isPostsLoaded(SERMONS_KEY, state)) {
+    sermons = state.posts[SERMONS_KEY].data;
+  }
 
   if (isPostsLoaded(POSTS_KEY, state)) {
-    posts = state.posts[POSTS_KEY].data;
+    posts = differenceBy(state.posts[POSTS_KEY].data, sermons, 'id');
   }
 
   return {
     posts,
+    sermons,
   };
 };
 
 class Home extends Component {
   static propTypes = {
     posts: PropTypes.array,
+    sermons: PropTypes.array,
   }
 
   render() {
-    const { posts } = this.props;
+    const { posts, sermons } = this.props;
 
     return (
       <div>
@@ -94,11 +114,19 @@ class Home extends Component {
               <H2>Derniers posts</H2>
               <Hr />
               <PostsFeed posts={posts} />
+              <Hr lg />
+              <Link to={routes.blog()} className="pull-right">
+                <Button sm>Tous les posts</Button>
+              </Link>
             </div>
             <div className="col-md-5">
               <H2>Dernières prédications</H2>
               <Hr />
-              <PostsFeed posts={posts.slice(0, 2)} />
+              <PostsFeed posts={sermons} />
+              <Hr lg />
+              <Link to={routes.sermons()} className="pull-right">
+                <Button sm>Toutes les prédications</Button>
+              </Link>
             </div>
           </div>
         </Container>

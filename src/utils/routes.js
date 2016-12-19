@@ -1,6 +1,6 @@
 import qs from 'qs';
 
-export default {
+const routes = {
   blog: (params = {}) => {
     const paths = [];
 
@@ -31,12 +31,12 @@ export default {
     return `/blog${paths.join('')}`;
   },
 
-  post: (id) => (
-    `/blog/post/${id}`
-  ),
-
-  church: () => '/church',
-  youngs: () => '/youngs',
-  contact: () => '/contact',
-  persecutedChurch: () => '/persecuted-church',
+  sermons: () => (routes.blog({ category: 1 })),
+  post: (id) => (`/blog/post/${id}`),
+  church: () => ('/church'),
+  youngs: () => ('/youngs'),
+  contact: () => ('/contact'),
+  persecutedChurch: () => ('/persecuted-church'),
 };
+
+export default routes;

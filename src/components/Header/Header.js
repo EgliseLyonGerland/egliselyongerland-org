@@ -16,11 +16,11 @@ import brand from './brand.svg';
 const links = [
   {
     label: 'L\'église',
-    path: '/church',
+    path: routes.church(),
   },
   {
     label: 'Prédications',
-    path: routes.blog({ category: 1 }),
+    path: routes.sermons(),
   },
   {
     label: 'Blog',
@@ -28,15 +28,15 @@ const links = [
   },
   {
     label: 'Groupe de jeune',
-    path: '/youngs',
+    path: routes.youngs(),
   },
   {
     label: 'L\'église persécutée',
-    path: '/persecuted-church',
+    path: routes.persecutedChurch(),
   },
   {
     label: 'Contact',
-    path: '/contact',
+    path: routes.contact(),
   },
 ];
 
