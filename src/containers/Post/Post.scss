@@ -1,17 +1,11 @@
 
-.image {
-  height: 600px;
+.content {
+  min-height: 500px;
 }
 
-.content {
-  position: relative;
-  background: white;
-  padding: 50px;
-  margin-top: -100px;
-  min-height: 1000px;
-  z-index: 100;
-  border: 1px solid;
-  border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+.avatar {
+  display: inline-block;
+  width: 70px;
 }
 
 .text {

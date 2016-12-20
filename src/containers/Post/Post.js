@@ -8,7 +8,7 @@ import Disqus from 'react-disqus-thread';
 import md5 from 'md5';
 import { get } from 'lodash';
 
-import { Container, Jumbotron, Spinner, Hr, Text } from 'components';
+import { Container, Jumbotron, Image, Hr, Text } from 'components';
 
 import { load as loadPost, isLoaded as isPostLoaded } from 'redux/modules/post';
 
@@ -18,7 +18,11 @@ import styles from './Post.scss';
   promise: ({ params, store: { dispatch, getState } }) => {
     const { postId } = params;
 
-    const result = isPostLoaded(getState()) ? null : dispatch(loadPost(postId));
+    if (isPostLoaded(getState(), postId)) {
+      return null;
+    }
+
+    const result = dispatch(loadPost(postId));
 
     return __CLIENT__ ? null : result;
   }
@@ -47,46 +51,48 @@ class Post extends Component {
   render() {
     const { post } = this.props;
 
-    if (!post) {
-      return (<Spinner />);
-    }
-
+    const title = get(post, 'title', 'Chargement...');
     const imageUrl = get(post, 'pictures.large', null);
 
     return (
       <div>
-        <Helmet title={post.title} />
+        <Helmet title={title} />
 
-        <Jumbotron background={imageUrl} title={post.title} height="600px" />
-
+        <Jumbotron background={imageUrl} title={title} overlay={0.3} fontSize={2.6} />
+        <Hr />
         <Container md>
-          <div className={styles.content}>
-            <Text element="div" fontSize={1} color="#555">
-              <span>
-                <Hr inline md />
-                <b>{post.author.name}</b>
-              </span>
-              <Hr inline>—</Hr>
-              <span title={moment(post.date).format()}>
-                <Text fontSize={1.2} lineHeight={1.5} className="fa fa-clock-o" />
-                <Hr inline sm />
-                <span>{moment(post.date).fromNow()}</span>
-              </span>
-            </Text>
-            <Hr lg />
-            <Text element="div">
-              <div className={styles.text} dangerouslySetInnerHTML={{ __html: post.content }} />
-            </Text>
-            <Hr xl />
-            <div className={styles.comments}>
-              <Text fontSize={1.6} fontWeight="regular">Discussion</Text>
+          {post &&
+            <div className={styles.content}>
+              <Text element="div" fontSize={1} color="#555">
+                <span>
+                  <span className={styles.avatar}>
+                    <Image src={post.author.picture} ratio={1} />
+                  </span>
+                  <Hr inline md />
+                  <b>{post.author.name}</b>
+                </span>
+                <Hr inline>—</Hr>
+                <span title={moment(post.date).format()}>
+                  <Text fontSize={1.2} lineHeight={1.5} className="fa fa-clock-o" />
+                  <Hr inline sm />
+                  <span>{moment(post.date).fromNow()}</span>
+                </span>
+              </Text>
               <Hr lg />
-              <Disqus
-                shortname="egliselyongerland-dev"
-                identifier={md5(`post-${post.id}`)}
-              />
+              <Text element="div">
+                <div className={styles.text} dangerouslySetInnerHTML={{ __html: post.content }} />
+              </Text>
+              <Hr xl />
+              <div className={styles.comments}>
+                <Text fontSize={1.6} fontWeight="regular">Discussion</Text>
+                <Hr lg />
+                <Disqus
+                  shortname="egliselyongerland-dev"
+                  identifier={md5(`post-${post.id}`)}
+                />
+              </div>
             </div>
-          </div>
+          }
         </Container>
       </div>
     );

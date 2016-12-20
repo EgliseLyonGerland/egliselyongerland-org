@@ -18,7 +18,7 @@ class Hr extends Component {
 
   static defaultProps = {
     line: false,
-    color: '#DDD',
+    color: 'white',
     opacity: 1,
     inline: false,
   }
@@ -40,7 +40,9 @@ class Hr extends Component {
     );
 
     if (line) {
-      newProps.style = { borderColor: color };
+      newProps.style = {
+        backgroundImage: `linear-gradient(to right, ${color} 33%, transparent 0%)`,
+      };
 
       if (opacity) {
         newProps.opacity = opacity;

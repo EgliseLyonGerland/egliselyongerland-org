@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 
-import { Text, Hr } from 'components';
+import classes from 'classnames';
+import { Container, Text, Hr } from 'components';
 
 import styles from './Jumbotron.scss';
 import picture from './default.jpg';
@@ -10,24 +11,43 @@ class Jumbotron extends Component {
     height: PropTypes.string,
     background: PropTypes.string,
     title: PropTypes.string,
+    overlay: PropTypes.number,
+    fontSize: PropTypes.number,
+    fontWeight: PropTypes.string,
     children: PropTypes.any,
   }
 
   static defaultProps = {
     background: picture,
+    overlay: 0,
+    fontSize: 4,
+    fontWeight: 'bold',
   }
 
   render() {
-    const { title, height, background, children } = this.props;
+    const {
+      title,
+      height,
+      background,
+      overlay,
+      fontSize,
+      fontWeight,
+      children,
+    } = this.props;
+
+    const className = classes(
+      styles.jumbotron,
+      { [styles.overlay]: (overlay > 0) }
+    );
 
     return (
-      <div className={styles.jumbotron} style={{ backgroundImage: `url(${background})` }}>
+      <div className={className} style={{ backgroundImage: `url(${background})` }}>
         <div className={styles.content} style={{ minHeight: height || '40vh' }}>
           {title &&
-            <div>
-              <Text fontSize="4" color="white" fontWeight="bold">{title}</Text>
+            <Container md className={styles.title}>
+              <Text fontSize={fontSize} color="white" fontWeight={fontWeight}>{title}</Text>
               <Hr line />
-            </div>
+            </Container>
           }
 
           {children}

@@ -7,11 +7,32 @@
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
+
+  &.overlay {
+    position: relative;
+
+    &:before {
+      content: "";
+      position: absolute;
+      display: block;
+      height: 100%;
+      width: 100%;
+      top: 0;
+      left: 0;
+      background: rgba(black, .2);
+    }
+  }
 }
 
-  .content {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-top: $header-sticky-height;
-  }
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: $header-sticky-height;
+  position: relative;
+}
+
+.title {
+  text-align: center;
+}

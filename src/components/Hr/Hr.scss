@@ -24,12 +24,11 @@
 
   .line {
     display: block;
-    height: 3px;
+    height: 4px;
     margin-left: auto;
     margin-right: auto;
-    background-image: linear-gradient(to right, #CCC 33%, rgba(255,255,255,0) 0%);
     background-position: -10px bottom;
-    background-size: 10px 3px;
+    background-size: 12px 4px;
     background-repeat: repeat-x;
   }
 
