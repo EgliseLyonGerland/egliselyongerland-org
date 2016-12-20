@@ -12,6 +12,8 @@ import { Container, Jumbotron, Image, Hr, Text } from 'components';
 
 import { load as loadPost, isLoaded as isPostLoaded } from 'redux/modules/post';
 
+import { disqus } from '../../config';
+
 import styles from './Post.scss';
 
 @asyncConnect([{
@@ -83,11 +85,11 @@ class Post extends Component {
                 <div className={styles.text} dangerouslySetInnerHTML={{ __html: post.content }} />
               </Text>
               <Hr xl />
+              <Hr xl line color="#CCC" />
+              <Hr xl />
               <div className={styles.comments}>
-                <Text fontSize={1.6} fontWeight="regular">Discussion</Text>
-                <Hr lg />
                 <Disqus
-                  shortname="egliselyongerland-dev"
+                  shortname={disqus.shortname}
                   identifier={md5(`post-${post.id}`)}
                 />
               </div>

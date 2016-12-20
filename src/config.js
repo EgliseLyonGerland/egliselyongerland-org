@@ -4,10 +4,16 @@ const environment = {
   development: {
     isProduction: false,
     apiEndpoint: 'http://api.egliselyongerland.local',
+    disqus: {
+      shortname: 'egliselyongerland-dev',
+    },
   },
   production: {
     isProduction: true,
     apiEndpoint: 'http://api.egliselyongerland.org',
+    disqus: {
+      shortname: 'egliselyongerland',
+    },
   }
 }[process.env.NODE_ENV || 'development'];
 
