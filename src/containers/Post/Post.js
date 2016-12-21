@@ -50,52 +50,86 @@ class Post extends Component {
     post: null,
   };
 
+  renderComments(post) {
+    return (
+      <div className={styles.comments}>
+        <Hr xl />
+        <Hr xl line color="#CCC" />
+        <Hr xl />
+
+        <Disqus
+          shortname={disqus.shortname}
+          identifier={md5(`post-${post.id}`)}
+        />
+      </div>
+    );
+  }
+
+  renderPost(post) {
+    return (
+      <Container lg>
+        <div className="row">
+          <div className="col-md-4">
+            <Text element="div" fontSize={1} color="#555">
+              <span>
+                <span className={styles.avatar}>
+                  <Image src={post.author.picture} ratio={1} />
+                </span>
+                <Hr inline md />
+                <b>{post.author.name}</b>
+              </span>
+              <Hr inline>—</Hr>
+              <span title={moment(post.date).format()}>
+                <Text fontSize={1.2} lineHeight={1.5} className="fa fa-clock-o" />
+                <Hr inline sm />
+                <span>{moment(post.date).fromNow()}</span>
+              </span>
+            </Text>
+          </div>
+          <div className="col-md-8">
+            <Text element="div">
+              <div className={styles.text} dangerouslySetInnerHTML={{ __html: post.content }} />
+            </Text>
+
+            {this.renderComments(post)}
+          </div>
+
+        </div>
+      </Container>
+    );
+  }
+
   render() {
     const { post } = this.props;
 
     const title = get(post, 'title', 'Chargement...');
-    const imageUrl = get(post, 'pictures.large', null);
+    const tags = get(post, 'tags', []);
+    const imageLargeUrl = get(post, 'pictures.large', null);
+    const imageOriginalUrl = get(post, 'pictures.original', null);
 
     return (
       <div>
-        <Helmet title={title} />
+        <Helmet
+          title={title}
+          meta={[
+            { name: 'description', content: '' },
+            { property: 'keywords', content: tags.join(',') },
 
-        <Jumbotron background={imageUrl} title={title} overlay={0.3} fontSize={2.6} />
-        <Hr />
-        <Container md>
-          {post &&
-            <div className={styles.content}>
-              <Text element="div" fontSize={1} color="#555">
-                <span>
-                  <span className={styles.avatar}>
-                    <Image src={post.author.picture} ratio={1} />
-                  </span>
-                  <Hr inline md />
-                  <b>{post.author.name}</b>
-                </span>
-                <Hr inline>—</Hr>
-                <span title={moment(post.date).format()}>
-                  <Text fontSize={1.2} lineHeight={1.5} className="fa fa-clock-o" />
-                  <Hr inline sm />
-                  <span>{moment(post.date).fromNow()}</span>
-                </span>
-              </Text>
-              <Hr lg />
-              <Text element="div">
-                <div className={styles.text} dangerouslySetInnerHTML={{ __html: post.content }} />
-              </Text>
-              <Hr xl />
-              <Hr xl line color="#CCC" />
-              <Hr xl />
-              <div className={styles.comments}>
-                <Disqus
-                  shortname={disqus.shortname}
-                  identifier={md5(`post-${post.id}`)}
-                />
-              </div>
-            </div>
-          }
-        </Container>
+            { property: 'og:type', content: 'article' },
+            { property: 'og:title', content: title },
+            { property: 'og:description', content: title },
+            { property: 'og:image', content: imageOriginalUrl },
+
+            { property: 'twitter:title', content: title },
+            { property: 'twitter:title', content: title },
+            { property: 'twitter:description', content: title },
+            { property: 'twitter:image', content: imageOriginalUrl },
+          ]}
+        />
+
+        <Jumbotron background={imageLargeUrl} title={title} overlay={0.3} fontSize={2.6} />
+        <Hr xl />
+        {post && this.renderPost(post)}
       </div>
     );
   }

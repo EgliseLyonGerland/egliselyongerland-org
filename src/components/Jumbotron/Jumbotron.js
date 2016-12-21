@@ -18,7 +18,6 @@ class Jumbotron extends Component {
   }
 
   static defaultProps = {
-    background: picture,
     overlay: 0,
     fontSize: 4,
     fontWeight: 'bold',
@@ -41,7 +40,7 @@ class Jumbotron extends Component {
     );
 
     return (
-      <div className={className} style={{ backgroundImage: `url(${background})` }}>
+      <div className={className} style={{ backgroundImage: `url(${background || picture})` }}>
         <div className={styles.content} style={{ minHeight: height || '40vh' }}>
           {title &&
             <Container md className={styles.title}>
