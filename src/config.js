@@ -23,9 +23,6 @@ const environment = {
 module.exports = Object.assign({
   host: process.env.HOST || 'localhost',
   port: process.env.PORT,
-  apiHost: 'localhost',
-  apiPort: 3030,
-  apiEndpoint: 'http://localhost:3030/api',
   app: {
     title: defaultTitle,
     description: defaultDescription,
