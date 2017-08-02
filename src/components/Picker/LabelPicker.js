@@ -49,9 +49,8 @@ class LabelPicker extends Component {
 
           return (
             <div
-              className="clearfix"
               key={label.key}
-              className={styles.label}
+              className={[styles.label, 'clearfix']}
               onClick={() => !readOnly && onChange(label.key === current ? undefined : label.key)}
             >
               <Text

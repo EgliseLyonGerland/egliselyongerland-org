@@ -8,7 +8,7 @@ import styles from './GridPicker.scss';
 
 class GridPicker extends Component {
   static propTypes = {
-    items: PropTypes.arrayOf(React.PropTypes.shape({
+    items: PropTypes.arrayOf(PropTypes.shape({
       key: PropTypes.any.isRequired,
       label: PropTypes.string.isRequired,
     })).isRequired,
