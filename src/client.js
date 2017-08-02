@@ -4,12 +4,10 @@
 import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import io from 'socket.io-client';
 import { Provider } from 'react-redux';
 import { Router, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { ReduxAsyncConnect } from 'redux-connect';
-import withScroll from 'scroll-behavior';
 import { calculateResponsiveState } from 'redux-responsive';
 import { get } from 'lodash';
 import 'moment/locale/fr';
@@ -20,9 +18,8 @@ import getRoutes from './routes';
 import DevTools from './containers/DevTools/DevTools';
 
 const client = new ApiClient();
-const _browserHistory = withScroll(browserHistory);
-const store = createStore(_browserHistory, client, window.__data);
-const history = syncHistoryWithStore(_browserHistory, store);
+const store = createStore(browserHistory, client, window.__data);
+const history = syncHistoryWithStore(browserHistory, store);
 
 const dest = document.getElementById('content');
 
