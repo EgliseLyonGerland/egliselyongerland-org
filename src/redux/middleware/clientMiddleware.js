@@ -6,7 +6,7 @@ export default function clientMiddleware(client) {
       return action(dispatch, getState);
     }
 
-    const { promise, types, schema, ...rest } = action; // eslint-disable-line no-redeclare
+    const { promise, types, schema, ...rest } = action;
     if (!promise) {
       return next(action);
     }

@@ -18,7 +18,7 @@ import bootstrapConfig from '../theme/bootstrap.config.js';
  */
 const Html = ({ assets, component, store }) => {
   const content = component ? ReactDOM.renderToString(component) : '';
-  const head = Helmet.rewind();
+  const head = Helmet.renderStatic();
 
   return (
     <html lang="en-US">
