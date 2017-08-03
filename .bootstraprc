@@ -1,0 +1,59 @@
+{
+  "bootstrapVersion": 3,
+  "bootstrapCustomizations": "./src/theme/variables.scss",
+  "appStyles": "./src/theme/base.scss",
+  "loglevel": "disabled",
+  "env": {
+    "development": {
+      "styleLoaders": ["style-loader", "css-loader", "resolve-url-loader", "sass-loader"],
+      "extractStyles": false
+    },
+    "production": {
+      "styleLoaders": ["style-loader", "css-loader", "sass-loader"],
+      "extractStyles": true
+    }
+  },
+  "useCustomIconFontPath": true,
+  "extractStyles": false,
+  "styles": {
+    "mixins": true,
+    "normalize": true,
+    "print": false,
+    "glyphicons": false,
+    "scaffolding": true,
+    "type": false,
+    "code": false,
+    "grid": true,
+    "tables": false,
+    "forms": true,
+    "buttons": true,
+    "component-animations": false,
+    "dropdowns": false,
+    "button-groups": false,
+    "input-groups": false,
+    "navs": false,
+    "navbar": false,
+    "breadcrumbs": false,
+    "pagination": false,
+    "pager": false,
+    "labels": false,
+    "badges": false,
+    "jumbotron": false,
+    "thumbnails": false,
+    "alerts": false,
+    "progress-bars": false,
+    "media": false,
+    "list-group": false,
+    "panels": false,
+    "wells": false,
+    "responsive-embed": false,
+    "close": false,
+    "modals": false,
+    "tooltip": false,
+    "popovers": false,
+    "carousel": false,
+    "utilities": true,
+    "responsive-utilities": false
+  },
+  "scripts": false
+}

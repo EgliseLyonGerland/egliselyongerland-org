@@ -4,9 +4,6 @@ import ReactDOM from 'react-dom/server';
 import serialize from 'serialize-javascript';
 import Helmet from 'react-helmet';
 
-import bootstrapConfig from '../theme/bootstrap.config.js';
-// import appStyles from '../containers/App/App.scss';
-
 /**
  * Wrapper component containing HTML metadata and boilerplate tags.
  * Used in server-side code only to wrap the string output of the
@@ -39,7 +36,6 @@ const Html = ({ assets, component, store }) => {
 
         <link href="https://fonts.googleapis.com/css?family=Lato:400,100,300,700,900" rel="stylesheet" type="text/css" />
 
-        {/* styles (will be present only in production with webpack extract text plugin) */}
         {Object.keys(assets.styles).map((style, key) =>
           <link
             href={assets.styles[style]}
@@ -50,17 +46,6 @@ const Html = ({ assets, component, store }) => {
             charSet="UTF-8"
           />
         )}
-
-        {/**
-          * (will be present only in development mode) outputs a <style/> tag with all
-          * bootstrap styles + App.scss + it could be CurrentPage.scss. can smoothen
-          * the initial style flash (flicker) on page load in development mode.
-          * ideally one could also include here the style for the current page
-          * (Home.scss, About.scss, etc)
-          */}
-        {Object.keys(assets.styles).length === 0 &&
-          <style dangerouslySetInnerHTML={{ __html: `${bootstrapConfig}` }} />
-        }
       </head>
       <body>
         <div id="content" dangerouslySetInnerHTML={{ __html: content }} />
