@@ -20,7 +20,6 @@ module.exports = {
   entry: {
     main: [
       `webpack-hot-middleware/client?path=http://${host}:${port}/__webpack_hmr`,
-      "bootstrap-loader",
       "font-awesome-sass-loader!./src/theme/font-awesome.config.js",
       "./src/client.js"
     ]
@@ -38,8 +37,20 @@ module.exports = {
         exclude: /node_modules/,
         loader: "babel-loader"
       },
+      // Non-module css
       {
         test: /\.scss$/,
+        include: /theme/,
+        use: [
+          "style-loader",
+          "css-loader?importLoaders=2&sourceMap&localIdentName=[local]___[hash:base64:5]",
+          "autoprefixer-loader?browsers=last 2 version",
+          "sass-loader?outputStyle=expanded&sourceMap"
+        ]
+      },
+      {
+        test: /\.scss$/,
+        exclude: /theme/,
         use: [
           "style-loader",
           "css-loader?modules&importLoaders=2&sourceMap&localIdentName=[local]___[hash:base64:5]",

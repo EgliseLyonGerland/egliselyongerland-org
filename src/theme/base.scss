@@ -1,12 +1,12 @@
-/**
- * Override Bootstrap styles that you can't modify via variables here.
- *
- */
-
 @import './variables';
+
 
 html {
   font-size: $font-size-base;
+}
+
+body {
+  background: #fcfcfc;
 }
 
 a {

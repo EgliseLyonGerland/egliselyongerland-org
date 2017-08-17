@@ -10,8 +10,6 @@ import { Header, Footer /* , Search */, Overlay } from 'components';
 
 import config from '../../config';
 
-import './App.scss';
-
 @connect(
   state => ({
     overlay: state.overlay,

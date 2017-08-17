@@ -17,6 +17,9 @@ import ApiClient from './helpers/ApiClient';
 import getRoutes from './routes';
 import DevTools from './containers/DevTools/DevTools';
 
+import './theme/bootstrap.scss';
+import './theme/base.scss';
+
 const client = new ApiClient();
 const store = createStore(browserHistory, client, window.__data);
 const history = syncHistoryWithStore(browserHistory, store);

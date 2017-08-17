@@ -20,7 +20,6 @@ module.exports = {
   context: path.resolve(__dirname, ".."),
   entry: {
     main: [
-      "bootstrap-loader",
       "font-awesome-sass-loader!./src/theme/font-awesome.config.prod.js",
       "./src/client.js"
     ]
@@ -38,8 +37,23 @@ module.exports = {
         exclude: /node_modules/,
         loader: "babel-loader"
       },
+      // Non-module css
       {
         test: /\.scss$/,
+        include: /theme/,
+        loader: ExtractTextPlugin.extract({
+          fallback: "style-loader",
+          use: [
+            "css-loader?importLoaders=2&sourceMap",
+            "autoprefixer-loader?browsers=last 2 version",
+            "sass-loader?outputStyle=expanded&sourceMap=true&sourceMapContents=true"
+          ]
+        })
+      },
+      // Module css
+      {
+        test: /\.scss$/,
+        exclude: /theme/,
         loader: ExtractTextPlugin.extract({
           fallback: "style-loader",
           use: [

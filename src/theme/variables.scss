@@ -1,11 +1,3 @@
-/**
- *  Define scss variables here.
- *
- *  Available options for Bootstrap:
- *  http://getbootstrap.com/customize/
- *
- */
-
 // Custom Colors
 $cyan: #33e0ff;
 $humility: #777;
@@ -77,3 +69,5 @@ $pop-button-margin: 15px;
 $post-feed-margin: 36px;
 $post-feed-picture-width: 170px;
 $post-feed-picture-height: 130px;
+
+@import '../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/_variables';
