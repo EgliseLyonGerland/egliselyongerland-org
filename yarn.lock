@@ -1947,6 +1947,10 @@ dom-converter@~0.1:
   dependencies:
     utila "~0.3"
 
+dom-helpers@^3.0.0:
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/dom-helpers/-/dom-helpers-3.2.1.tgz#3203e07fed217bd1f424b019735582fc37b2825a"
+
 dom-serializer@0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/dom-serializer/-/dom-serializer-0.1.0.tgz#073c697546ce0780ce23be4a28e293e40bc30c82"
@@ -4701,6 +4705,14 @@ react-router-redux@4.0.8:
   version "4.0.8"
   resolved "https://registry.yarnpkg.com/react-router-redux/-/react-router-redux-4.0.8.tgz#227403596b5151e182377dab835b5d45f0f8054e"
 
+react-router-scroll@^0.4.2:
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/react-router-scroll/-/react-router-scroll-0.4.2.tgz#4b90e8707edf96eba7f066d94c5b4338bd6848b7"
+  dependencies:
+    prop-types "^15.5.6"
+    scroll-behavior "^0.9.3"
+    warning "^3.0.0"
+
 react-router@3.0.5:
   version "3.0.5"
   resolved "https://registry.yarnpkg.com/react-router/-/react-router-3.0.5.tgz#c3b7873758045a8bbc9562aef4ff4bc8cce7c136"
@@ -5181,6 +5193,13 @@ schema-utils@^0.3.0:
   resolved "https://registry.yarnpkg.com/schema-utils/-/schema-utils-0.3.0.tgz#f5877222ce3e931edae039f17eb3716e7137f8cf"
   dependencies:
     ajv "^5.0.0"
+
+scroll-behavior@^0.9.3:
+  version "0.9.3"
+  resolved "https://registry.yarnpkg.com/scroll-behavior/-/scroll-behavior-0.9.3.tgz#e48bcc8af364f3f07176e8dbca3968bd5e71557b"
+  dependencies:
+    dom-helpers "^3.0.0"
+    invariant "^2.2.1"
 
 scss-tokenizer@^0.2.3:
   version "0.2.3"
