@@ -1,13 +1,13 @@
-import { createStore as _createStore, applyMiddleware, compose } from 'redux';
-import { routerMiddleware } from 'react-router-redux';
-import { createResponsiveStoreEnhancer } from 'redux-responsive';
-import thunk from 'redux-thunk';
+import { createStore as _createStore, applyMiddleware, compose } from "redux";
+import { routerMiddleware } from "react-router-redux";
+import { createResponsiveStoreEnhancer } from "redux-responsive";
+import thunk from "redux-thunk";
 
-import reducer from './modules/reducer';
+import reducer from "./modules/reducer";
 
-import createClientMiddleware from './middleware/clientMiddleware';
-import overlayMiddleware from './middleware/overlayMiddleware';
-import changeRouteMiddleware from './middleware/changeRouteMiddleware';
+import createClientMiddleware from "./middleware/clientMiddleware";
+import overlayMiddleware from "./middleware/overlayMiddleware";
+import changeRouteMiddleware from "./middleware/changeRouteMiddleware";
 
 export default function createStore(history, client, data) {
   // Sync dispatched route actions to the history
@@ -24,14 +24,16 @@ export default function createStore(history, client, data) {
   let finalCreateStore;
   if (__DEVELOPMENT__ && __CLIENT__ && __DEVTOOLS__) {
     // eslint-disable-next-line global-require
-    const { persistState } = require('redux-devtools');
+    const { persistState } = require("redux-devtools");
     // eslint-disable-next-line global-require
-    const DevTools = require('../containers/DevTools/DevTools');
+    const DevTools = require("../containers/DevTools/DevTools");
 
     finalCreateStore = compose(
       createResponsiveStoreEnhancer({ calculateInitialState: false }),
       applyMiddleware(...middleware),
-      window.devToolsExtension ? window.devToolsExtension() : DevTools.instrument(),
+      window.devToolsExtension
+        ? window.devToolsExtension()
+        : DevTools.instrument(),
       persistState(window.location.href.match(/[?&]debug_session=([^&]+)\b/))
     )(_createStore);
   } else {
@@ -41,9 +43,9 @@ export default function createStore(history, client, data) {
   const store = finalCreateStore(reducer, data);
 
   if (__DEVELOPMENT__ && module.hot) {
-    module.hot.accept('./modules/reducer', () => {
+    module.hot.accept("./modules/reducer", () => {
       // eslint-disable-next-line global-require
-      store.replaceReducer(require('./modules/reducer'));
+      store.replaceReducer(require("./modules/reducer"));
     });
   }
 

@@ -28,6 +28,7 @@
     "start-prod": "better-npm-run start-prod",
     "build": "better-npm-run build",
     "lint": "eslint -c .eslintrc.js src",
+    "format": "prettier-eslint --write \"src/**/*.js\" \"webpack/*.js\" ",
     "start-dev": "better-npm-run start-dev",
     "watch-client": "better-npm-run watch-client",
     "dev": "concurrently --kill-others \"npm run watch-client\" \"npm run start-dev\""
@@ -145,6 +146,8 @@
     "eslint-plugin-import": "2.7.0",
     "eslint-plugin-jsx-a11y": "5.1.1",
     "node-sass": "4.5.3",
+    "prettier-eslint": "6.4.2",
+    "prettier-eslint-cli": "4.2.1",
     "react-a11y": "0.3.4",
     "react-addons-test-utils": "15.6.0",
     "react-transform-catch-errors": "1.0.2",

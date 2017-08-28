@@ -1,11 +1,11 @@
 // import { arrayOf } from 'normalizr';
 
 // import { postSchema } from 'redux/schemas';
-import { get } from 'lodash';
+import { get } from "lodash";
 
-const LOAD = 'POSTS_LOAD';
-const LOAD_SUCCESS = 'POSTS_LOAD_SUCCESS';
-const LOAD_FAIL = 'POSTS_LOAD_FAIL';
+const LOAD = "POSTS_LOAD";
+const LOAD_SUCCESS = "POSTS_LOAD_SUCCESS";
+const LOAD_FAIL = "POSTS_LOAD_FAIL";
 
 const initialPostsState = {
   loading: false,
@@ -14,7 +14,7 @@ const initialPostsState = {
   from: 0,
   limit: 0,
   data: [],
-  aggs: {},
+  aggs: {}
 };
 
 export default function posts(state = {}, action = {}) {
@@ -26,7 +26,7 @@ export default function posts(state = {}, action = {}) {
           ...initialPostsState,
           ...state[action.key],
           loading: true,
-          loaded: false,
+          loaded: false
         }
       };
     case LOAD_SUCCESS:
@@ -37,7 +37,7 @@ export default function posts(state = {}, action = {}) {
           ...state[action.key],
           ...action.data,
           loading: false,
-          loaded: true,
+          loaded: true
         }
       };
     case LOAD_FAIL:
@@ -48,7 +48,7 @@ export default function posts(state = {}, action = {}) {
           ...state[action.key],
           error: action.error,
           loading: false,
-          loaded: false,
+          loaded: false
         }
       };
     default:
@@ -63,8 +63,8 @@ export function isLoaded(key, globalState) {
 export function load(key, params = {}) {
   return {
     types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
-    promise: client => client.get('/posts', { params }),
+    promise: client => client.get("/posts", { params }),
     // schema: arrayOf(postSchema),
-    key,
+    key
   };
 }

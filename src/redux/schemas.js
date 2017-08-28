@@ -1,24 +1,20 @@
-import { schema, arrayOf } from 'normalizr';
+import { schema, arrayOf } from "normalizr";
 
-const postSchema = new schema.Entity('posts', {
-  idAttribute: 'id'
+const postSchema = new schema.Entity("posts", {
+  idAttribute: "id"
 });
 
-const authorSchema = new schema.Entity('authors', {
-  idAttribute: 'id'
+const authorSchema = new schema.Entity("authors", {
+  idAttribute: "id"
 });
 
-const categorySchema = new schema.Entity('categories', {
-  idAttribute: 'id'
+const categorySchema = new schema.Entity("categories", {
+  idAttribute: "id"
 });
 
 postSchema.define({
   author: authorSchema,
-  categories: arrayOf(categorySchema),
+  categories: arrayOf(categorySchema)
 });
 
-export {
-  postSchema,
-  authorSchema,
-  categorySchema,
-};
+export { postSchema, authorSchema, categorySchema };

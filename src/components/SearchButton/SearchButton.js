@@ -1,16 +1,15 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
-import styles from './SearchButton.scss';
+import styles from "./SearchButton.scss";
 
-const SearchButton = ({ onClicked }) => (
+const SearchButton = ({ onClicked }) =>
   <div className={styles.button} onClick={() => onClicked()}>
     <span className="fa fa-search" />
-  </div>
-);
+  </div>;
 
 SearchButton.propTypes = {
-  onClicked: PropTypes.func,
+  onClicked: PropTypes.func
 };
 
 export default SearchButton;

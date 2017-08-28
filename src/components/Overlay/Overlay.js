@@ -1,23 +1,22 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
-import styles from './Overlay.scss';
+import styles from "./Overlay.scss";
 
-const Overlay = ({ active, onClicked }) => (
+const Overlay = ({ active, onClicked }) =>
   <div
-    className={`${styles.overlay} ${active ? styles.active : ''}`}
+    className={`${styles.overlay} ${active ? styles.active : ""}`}
     onClick={() => onClicked()}
-  />
-);
+  />;
 
 Overlay.propTypes = {
   active: PropTypes.bool,
-  onClicked: PropTypes.func,
+  onClicked: PropTypes.func
 };
 
 Overlay.defaultProps = {
   active: false,
-  onClicked: () => {},
+  onClicked: () => {}
 };
 
 export default Overlay;

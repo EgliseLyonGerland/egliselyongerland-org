@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 
-import { Text, Hr } from 'components';
+import { Text, Hr } from "components";
 
-import styles from './PopButton.scss';
+import styles from "./PopButton.scss";
 
 class PopButton extends Component {
   constructor() {
     super();
 
     this.state = {
-      opened: false,
+      opened: false
     };
   }
 
@@ -27,22 +27,22 @@ class PopButton extends Component {
     const { opened } = this.state;
 
     return (
-      <div className={`${styles.container} ${opened ? styles.opened : ''}`}>
-        {opened ? (
-          <div className={styles.content}>
-            <div className={styles.closeButton} onClick={() => this.close()}>
-              <Text className="fa fa-times" />
-            </div>
+      <div className={`${styles.container} ${opened ? styles.opened : ""}`}>
+        {opened
+          ? <div className={styles.content}>
+              <div className={styles.closeButton} onClick={() => this.close()}>
+                <Text className="fa fa-times" />
+              </div>
 
-            <Text fontWeight="bold">{title}</Text>
-            <Hr lg line />
-            {children}
-          </div>
-        ) : (
-          <div className={styles.button} onClick={() => this.open()}>
-            <span className="fa fa-tasks" />
-          </div>
-        )}
+              <Text fontWeight="bold">
+                {title}
+              </Text>
+              <Hr lg line />
+              {children}
+            </div>
+          : <div className={styles.button} onClick={() => this.open()}>
+              <span className="fa fa-tasks" />
+            </div>}
       </div>
     );
   }
@@ -50,7 +50,7 @@ class PopButton extends Component {
 
 PopButton.propTypes = {
   title: PropTypes.string.isRequired,
-  children: PropTypes.any.isRequired,
+  children: PropTypes.any.isRequired
 };
 
 export default PopButton;

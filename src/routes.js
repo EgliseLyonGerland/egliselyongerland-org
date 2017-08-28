@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-import { IndexRoute, Route } from 'react-router';
+import { IndexRoute, Route } from "react-router";
 
 import {
   App,
@@ -9,25 +9,27 @@ import {
   Blog,
   Post,
   NotFound,
-  Wip,
-} from 'containers';
+  Wip
+} from "containers";
 
-export default () => (
+export default () =>
   <Route path="/" component={App}>
-    { /* Home (main) route */ }
+    {/* Home (main) route */}
     <IndexRoute component={Home} />
 
-    { /* Blog routes */ }
-    <Route path="/blog(/category/:category)(/author/:author)(/book/:book)" component={Blog} />
+    {/* Blog routes */}
+    <Route
+      path="/blog(/category/:category)(/author/:author)(/book/:book)"
+      component={Blog}
+    />
     <Route path="/blog/post/:postId" component={Post} />
 
-    { /* Other routes */ }
+    {/* Other routes */}
     <Route path="/persecuted-church" component={PersecutedChurch} />
     <Route path="/church" component={Wip} />
     <Route path="/youngs" component={Wip} />
     <Route path="/contact" component={Wip} />
 
-    { /* Catch all route */ }
+    {/* Catch all route */}
     <Route path="*" component={NotFound} status={404} />
-  </Route>
-);
+  </Route>;

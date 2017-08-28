@@ -1,28 +1,29 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 
-import { Motion, spring } from 'react-motion';
-import { findIndex } from 'lodash';
+import { Motion, spring } from "react-motion";
+import { findIndex } from "lodash";
 
-import { TabPicker } from 'components';
+import { TabPicker } from "components";
 
-import styles from './PanePicker.scss';
+import styles from "./PanePicker.scss";
 
-export default
-class PanePicker extends Component {
+export default class PanePicker extends Component {
   static propTypes = {
-    panes: PropTypes.arrayOf(PropTypes.shape({
-      key: PropTypes.any.isRequired,
-      label: PropTypes.string.isRequired,
-      children: PropTypes.any,
-      active: PropTypes.bool,
-    })).isRequired,
+    panes: PropTypes.arrayOf(
+      PropTypes.shape({
+        key: PropTypes.any.isRequired,
+        label: PropTypes.string.isRequired,
+        children: PropTypes.any,
+        active: PropTypes.bool
+      })
+    ).isRequired,
     current: PropTypes.any,
     onChange: PropTypes.func,
     tabBgColor: PropTypes.string,
     tabActiveBarColor: PropTypes.string,
-    height: PropTypes.number,
-  }
+    height: PropTypes.number
+  };
 
   render() {
     const {
@@ -31,17 +32,17 @@ class PanePicker extends Component {
       height,
       tabBgColor,
       tabActiveBarColor,
-      onChange = () => {},
+      onChange = () => {}
     } = this.props;
 
-    const currentPaneIndex = Math.max(0, findIndex(panes, ['key', current]));
+    const currentPaneIndex = Math.max(0, findIndex(panes, ["key", current]));
 
     let paneStyles = {};
 
     if (height) {
       paneStyles = {
         height: `${height}px`,
-        overflowY: 'auto',
+        overflowY: "auto"
       };
     }
 
@@ -52,7 +53,7 @@ class PanePicker extends Component {
           current={current}
           bgColor={tabBgColor}
           activeBarColor={tabActiveBarColor}
-          onChange={tab => (tab.active !== false) && onChange(tab)}
+          onChange={tab => tab.active !== false && onChange(tab)}
         />
 
         <div className={styles.panes}>
@@ -63,12 +64,15 @@ class PanePicker extends Component {
             {style =>
               <div style={{ transform: `translateX(${-style.x}%)` }}>
                 {panes.map(pane =>
-                  <div key={pane.key} className={styles.pane} style={paneStyles}>
+                  <div
+                    key={pane.key}
+                    className={styles.pane}
+                    style={paneStyles}
+                  >
                     {pane.children}
                   </div>
                 )}
-              </div>
-            }
+              </div>}
           </Motion>
         </div>
       </div>

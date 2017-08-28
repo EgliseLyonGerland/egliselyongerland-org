@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 
-import classnames from 'classnames';
+import classnames from "classnames";
 
-import styles from './Hr.scss';
+import styles from "./Hr.scss";
 
-const SIZES = ['nm', 'xs', 'sm', 'md', 'lg', 'xl'];
+const SIZES = ["nm", "xs", "sm", "md", "lg", "xl"];
 
 class Hr extends Component {
   static propTypes = {
@@ -14,21 +14,24 @@ class Hr extends Component {
     color: PropTypes.string,
     opacity: PropTypes.number,
     inline: PropTypes.bool,
-    width: PropTypes.string,
-  }
+    width: PropTypes.string
+  };
 
   static defaultProps = {
     line: false,
-    color: 'white',
+    color: "white",
     opacity: 1,
-    inline: false,
-  }
+    inline: false
+  };
 
   render() {
     const { children, line, color, opacity, inline, width } = this.props;
 
     // Check size
-    const size = SIZES.reduce((prev, curr) => (this.props[curr] ? curr : prev), 'md');
+    const size = SIZES.reduce(
+      (prev, curr) => (this.props[curr] ? curr : prev),
+      "md"
+    );
 
     // Build new props
     const newProps = {};
@@ -42,7 +45,7 @@ class Hr extends Component {
 
     if (line) {
       newProps.style = {
-        backgroundImage: `linear-gradient(to right, ${color} 33%, transparent 0%)`,
+        backgroundImage: `linear-gradient(to right, ${color} 33%, transparent 0%)`
       };
 
       if (opacity) {

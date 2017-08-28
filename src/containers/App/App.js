@@ -1,25 +1,24 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 
-import Helmet from 'react-helmet';
-import { connect } from 'react-redux';
-import * as searchbarActions from 'redux/modules/searchbar';
-import * as sidebarActions from 'redux/modules/sidebar';
+import Helmet from "react-helmet";
+import { connect } from "react-redux";
+import * as searchbarActions from "redux/modules/searchbar";
+import * as sidebarActions from "redux/modules/sidebar";
 
-import { Header, Footer /* , Search */, Overlay } from 'components';
+import { Header, Footer /* , Search */, Overlay } from "components";
 
-import config from '../../config';
+import config from "../../config";
 
 @connect(
   state => ({
     overlay: state.overlay,
     // isSearchbarOpened: state.searchbar.opened,
-    isSidebarOpened: state.sidebar.opened,
+    isSidebarOpened: state.sidebar.opened
   }),
   { ...searchbarActions, ...sidebarActions }
 )
-export default
-class App extends Component {
+export default class App extends Component {
   static propTypes = {
     children: PropTypes.object.isRequired,
     overlay: PropTypes.object.isRequired,
@@ -28,7 +27,7 @@ class App extends Component {
     // closeSearchbar: PropTypes.func.isRequired,
     isSidebarOpened: PropTypes.bool.isRequired,
     openSidebar: PropTypes.func.isRequired,
-    closeSidebar: PropTypes.func.isRequired,
+    closeSidebar: PropTypes.func.isRequired
   };
 
   handleOverlayClicked() {
@@ -44,7 +43,8 @@ class App extends Component {
       openSearchbar,
       // closeSearchbar,
       openSidebar,
-      closeSidebar } = this.props;
+      closeSidebar
+    } = this.props;
 
     return (
       <div>

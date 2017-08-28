@@ -1,49 +1,45 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 
-import { Text } from 'components';
+import { Text } from "components";
 
-import { findIndex } from 'lodash';
+import { findIndex } from "lodash";
 
-import styles from './TabPicker.scss';
+import styles from "./TabPicker.scss";
 
-export default
-class TabPicker extends Component {
+export default class TabPicker extends Component {
   static propTypes = {
-    tabs: PropTypes.arrayOf(PropTypes.shape({
-      key: PropTypes.any.isRequired,
-      label: PropTypes.string.isRequired,
-      active: PropTypes.bool,
-    })).isRequired,
+    tabs: PropTypes.arrayOf(
+      PropTypes.shape({
+        key: PropTypes.any.isRequired,
+        label: PropTypes.string.isRequired,
+        active: PropTypes.bool
+      })
+    ).isRequired,
     current: PropTypes.any,
     bgColor: PropTypes.string,
     activeBarColor: PropTypes.string,
     renderLabel: PropTypes.func,
-    onChange: PropTypes.func.isRequired,
-  }
+    onChange: PropTypes.func.isRequired
+  };
 
   static defaultProps = {
-    activeBarColor: 'red',
-    renderLabel: ({ label }) => (
-      <Text fontSize={0.9} fontWeight="medium" ellipsis maxLines={1}>{label}</Text>
-    ),
-  }
+    activeBarColor: "red",
+    renderLabel: ({ label }) =>
+      <Text fontSize={0.9} fontWeight="medium" ellipsis maxLines={1}>
+        {label}
+      </Text>
+  };
 
   handleChangeTab(tab) {
     this.props.onChange(tab);
   }
 
   render() {
-    const {
-      tabs,
-      bgColor,
-      activeBarColor,
-      renderLabel,
-      current,
-    } = this.props;
+    const { tabs, bgColor, activeBarColor, renderLabel, current } = this.props;
 
     const tabWidth = 100 / tabs.length;
-    const currentTabIndex = Math.max(0, findIndex(tabs, ['key', current]));
+    const currentTabIndex = Math.max(0, findIndex(tabs, ["key", current]));
 
     const tabsStyles = {};
 
@@ -60,7 +56,7 @@ class TabPicker extends Component {
             return (
               <div
                 key={key}
-                className={`${styles.tab} ${active ? '' : styles.tabDisabled}`}
+                className={`${styles.tab} ${active ? "" : styles.tabDisabled}`}
                 style={{ width: `${tabWidth}%` }}
                 onClick={() => this.handleChangeTab(tab)}
               >
@@ -75,7 +71,7 @@ class TabPicker extends Component {
           style={{
             width: `${tabWidth}%`,
             background: activeBarColor,
-            transform: `translateX(${currentTabIndex * 100}%)`,
+            transform: `translateX(${currentTabIndex * 100}%)`
           }}
         />
       </div>

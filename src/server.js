@@ -1,34 +1,34 @@
-import Express from 'express';
-import React from 'react';
-import ReactDOM from 'react-dom/server';
-import favicon from 'serve-favicon';
-import compression from 'compression';
+import Express from "express";
+import React from "react";
+import ReactDOM from "react-dom/server";
+import favicon from "serve-favicon";
+import compression from "compression";
 // import httpProxy from 'http-proxy';
-import path from 'path';
-import PrettyError from 'pretty-error';
-import http from 'http';
-import 'moment/locale/fr';
+import path from "path";
+import PrettyError from "pretty-error";
+import http from "http";
+import "moment/locale/fr";
 
-import { match } from 'react-router';
-import { syncHistoryWithStore } from 'react-router-redux';
-import { ReduxAsyncConnect, loadOnServer } from 'redux-connect';
-import createHistory from 'react-router/lib/createMemoryHistory';
-import { Provider } from 'react-redux';
+import { match } from "react-router";
+import { syncHistoryWithStore } from "react-router-redux";
+import { ReduxAsyncConnect, loadOnServer } from "redux-connect";
+import createHistory from "react-router/lib/createMemoryHistory";
+import { Provider } from "react-redux";
 
-import createStore from './redux/create';
-import ApiClient from './helpers/ApiClient';
-import Html from './helpers/Html';
-import config from './config';
-import getRoutes from './routes';
+import createStore from "./redux/create";
+import ApiClient from "./helpers/ApiClient";
+import Html from "./helpers/Html";
+import config from "./config";
+import getRoutes from "./routes";
 
 const pretty = new PrettyError();
 const app = new Express();
 const server = new http.Server(app);
 
 app.use(compression());
-app.use(favicon(path.join(__dirname, '..', 'static', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, "..", "static", "favicon.ico")));
 
-app.use(Express.static(path.join(__dirname, '..', 'static')));
+app.use(Express.static(path.join(__dirname, "..", "static")));
 
 app.use((req, res) => {
   if (__DEVELOPMENT__) {
@@ -43,8 +43,12 @@ app.use((req, res) => {
 
   function hydrateOnClient() {
     // eslint-disable-next-line prefer-template
-    res.send('<!doctype html>\n' +
-      ReactDOM.renderToString(<Html assets={webpackIsomorphicTools.assets()} store={store} />));
+    res.send(
+      "<!doctype html>\n" +
+        ReactDOM.renderToString(
+          <Html assets={webpackIsomorphicTools.assets()} store={store} />
+        )
+    );
   }
 
   if (__DISABLE_SSR__) {
@@ -62,11 +66,15 @@ app.use((req, res) => {
       if (redirectLocation) {
         res.redirect(redirectLocation.pathname + redirectLocation.search);
       } else if (error) {
-        console.error('ROUTER ERROR:', pretty.render(error));
+        console.error("ROUTER ERROR:", pretty.render(error));
         res.status(500);
         hydrateOnClient();
       } else if (renderProps) {
-        loadOnServer({ ...renderProps, store, helpers: { client } }).then(() => {
+        loadOnServer({
+          ...renderProps,
+          store,
+          helpers: { client }
+        }).then(() => {
           const component = (
             <Provider store={store} key="provider">
               <ReduxAsyncConnect {...renderProps} />
@@ -75,31 +83,40 @@ app.use((req, res) => {
 
           res.status(200);
 
-          global.navigator = { userAgent: req.headers['user-agent'] };
+          global.navigator = { userAgent: req.headers["user-agent"] };
 
           // eslint-disable-next-line prefer-template
-          res.send('<!doctype html>' +
-            ReactDOM.renderToString(
-              <Html assets={webpackIsomorphicTools.assets()} component={component} store={store} />
-            ));
+          res.send(
+            "<!doctype html>" +
+              ReactDOM.renderToString(
+                <Html
+                  assets={webpackIsomorphicTools.assets()}
+                  component={component}
+                  store={store}
+                />
+              )
+          );
         });
       } else {
-        res.status(404).send('Not found');
+        res.status(404).send("Not found");
       }
     }
   );
 });
 
 if (config.port) {
-  server.listen(config.port, (err) => {
+  server.listen(config.port, err => {
     if (err) {
       console.error(err);
     }
     console.info(
-      '----\n==> 💻  Open http://%s:%s in a browser to view the app.',
-      config.host, config.port
+      "----\n==> 💻  Open http://%s:%s in a browser to view the app.",
+      config.host,
+      config.port
     );
   });
 } else {
-  console.error('==>     ERROR: No PORT environment variable has been specified');
+  console.error(
+    "==>     ERROR: No PORT environment variable has been specified"
+  );
 }

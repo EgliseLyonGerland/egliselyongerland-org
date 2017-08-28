@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 
-import { connect } from 'react-redux';
-import { asyncConnect } from 'redux-connect';
-import { has } from 'lodash';
-import { TransitionMotion, spring } from 'react-motion';
-import randomcolor from 'randomcolor';
+import { connect } from "react-redux";
+import { asyncConnect } from "redux-connect";
+import { has } from "lodash";
+import { TransitionMotion, spring } from "react-motion";
+import randomcolor from "randomcolor";
 
-import { load as loadPosts } from 'redux/modules/posts';
-import routes from 'utils/routes';
+import { load as loadPosts } from "redux/modules/posts";
+import routes from "utils/routes";
 
-import Helmet from 'react-helmet';
+import Helmet from "react-helmet";
 
 import {
   Jumbotron,
@@ -23,86 +23,84 @@ import {
   Container,
   Text,
   Hr
-} from 'components';
+} from "components";
 
-import jumbotron from './jumbotron.jpg';
+import jumbotron from "./jumbotron.jpg";
 
-const POSTS_KEY = 'blog';
+const POSTS_KEY = "blog";
 const LIMIT = 10;
 
-@asyncConnect([{
-  promise: ({ params, location: { query }, store: { dispatch } }) => {
-    const filters = {
-      limit: LIMIT,
-      aggs: 1,
-    };
+@asyncConnect([
+  {
+    promise: ({ params, location: { query }, store: { dispatch } }) => {
+      const filters = {
+        limit: LIMIT,
+        aggs: 1
+      };
 
-    if (has(params, 'category')) {
-      filters.category = params.category;
-    }
+      if (has(params, "category")) {
+        filters.category = params.category;
+      }
 
-    if (has(params, 'author')) {
-      filters.author = params.author;
-    }
+      if (has(params, "author")) {
+        filters.author = params.author;
+      }
 
-    if (has(params, 'book')) {
-      filters.book = params.book;
+      if (has(params, "book")) {
+        filters.book = params.book;
 
-      if (has(query, 'chapter')) {
-        filters.chapter = query.chapter;
+        if (has(query, "chapter")) {
+          filters.chapter = query.chapter;
 
-        if (has(query, 'verse')) {
-          filters.verse = query.verse;
+          if (has(query, "verse")) {
+            filters.verse = query.verse;
+          }
         }
       }
+
+      if (has(query, "page")) {
+        filters.from = (query.page - 1) * LIMIT;
+      }
+
+      const result = dispatch(loadPosts(POSTS_KEY, filters));
+
+      return __CLIENT__ ? null : result;
     }
-
-    if (has(query, 'page')) {
-      filters.from = (query.page - 1) * LIMIT;
-    }
-
-    const result = dispatch(loadPosts(POSTS_KEY, filters));
-
-    return __CLIENT__ ? null : result;
   }
-}])
-@connect(
-  (state, { params }) => {
-    let page = 1;
-    let maxPage = 1;
-    let total = 0;
-    let posts = null;
-    let aggs = {};
-    let loading = false;
+])
+@connect((state, { params }) => {
+  let page = 1;
+  let maxPage = 1;
+  let total = 0;
+  let posts = null;
+  let aggs = {};
+  let loading = false;
 
-    if (state.posts[POSTS_KEY]) {
-      total = state.posts[POSTS_KEY].total;
-      posts = state.posts[POSTS_KEY].data;
-      aggs = state.posts[POSTS_KEY].aggs;
-      loading = state.posts[POSTS_KEY].loading;
-      page = Math.ceil(state.posts[POSTS_KEY].from / LIMIT) + 1;
-      maxPage = Math.ceil(total / LIMIT);
-    }
-
-    const browser = state.browser;
-    const location = state.routing.locationBeforeTransitions;
-
-    return {
-      page,
-      maxPage,
-      total,
-      posts,
-      aggs,
-      loading,
-      browser,
-      location,
-      params: { ...params, ...location.query },
-    };
+  if (state.posts[POSTS_KEY]) {
+    total = state.posts[POSTS_KEY].total;
+    posts = state.posts[POSTS_KEY].data;
+    aggs = state.posts[POSTS_KEY].aggs;
+    loading = state.posts[POSTS_KEY].loading;
+    page = Math.ceil(state.posts[POSTS_KEY].from / LIMIT) + 1;
+    maxPage = Math.ceil(total / LIMIT);
   }
-)
-export default
-class Blog extends Component {
 
+  const browser = state.browser;
+  const location = state.routing.locationBeforeTransitions;
+
+  return {
+    page,
+    maxPage,
+    total,
+    posts,
+    aggs,
+    loading,
+    browser,
+    location,
+    params: { ...params, ...location.query }
+  };
+})
+export default class Blog extends Component {
   static propTypes = {
     page: PropTypes.number,
     maxPage: PropTypes.number,
@@ -112,19 +110,15 @@ class Blog extends Component {
     loading: PropTypes.bool,
     browser: PropTypes.object,
     location: PropTypes.object,
-    params: PropTypes.object,
-  }
+    params: PropTypes.object
+  };
 
   static contextTypes = {
-    router: PropTypes.object,
-  }
+    router: PropTypes.object
+  };
 
   renderBibleFilter() {
-    const {
-      loading,
-      params,
-      aggs: { bibleRefs = null },
-    } = this.props;
+    const { loading, params, aggs: { bibleRefs = null } } = this.props;
 
     const { router } = this.context;
 
@@ -149,11 +143,7 @@ class Blog extends Component {
   }
 
   renderCategoriesFilter() {
-    const {
-      loading,
-      params,
-      aggs: { categories = null },
-    } = this.props;
+    const { loading, params, aggs: { categories = null } } = this.props;
 
     const { router } = this.context;
 
@@ -172,28 +162,27 @@ class Blog extends Component {
           labels={categories.map(category => ({
             key: category.id,
             label: category.name,
-            total: category.total,
+            total: category.total
           }))}
           onChange={key =>
-            router.push(routes.blog({ ...params, page: undefined, category: key }))
-          }
+            router.push(
+              routes.blog({ ...params, page: undefined, category: key })
+            )}
         >
           {label =>
             <Text fontSize={1} maxLines={1} ellipsis>
-              {label.label} <Text fontSize={0.8} element="span" color="#AAA">({label.total})</Text>
-            </Text>
-          }
+              {label.label}{" "}
+              <Text fontSize={0.8} element="span" color="#AAA">
+                ({label.total})
+              </Text>
+            </Text>}
         </LabelPicker>
       </PickerPanel>
     );
   }
 
   renderAuthorsFilter() {
-    const {
-      loading,
-      params,
-      aggs: { authors = null },
-    } = this.props;
+    const { loading, params, aggs: { authors = null } } = this.props;
 
     const { router } = this.context;
 
@@ -212,17 +201,20 @@ class Blog extends Component {
           labels={authors.map(author => ({
             key: author.id,
             label: author.name,
-            total: author.total,
+            total: author.total
           }))}
           onChange={key =>
-            router.push(routes.blog({ ...params, page: undefined, author: key }))
-          }
+            router.push(
+              routes.blog({ ...params, page: undefined, author: key })
+            )}
         >
-          {(label) => (
+          {label =>
             <Text fontSize={1} maxLines={1} ellipsis>
-              {label.label} <Text fontSize={0.8} element="span" color="#AAA">({label.total})</Text>
-            </Text>
-          )}
+              {label.label}{" "}
+              <Text fontSize={0.8} element="span" color="#AAA">
+                ({label.total})
+              </Text>
+            </Text>}
         </LabelPicker>
       </PickerPanel>
     );
@@ -231,7 +223,11 @@ class Blog extends Component {
   renderSearchFilter() {
     return (
       <div>
-        <input className="form-control" type="text" placeholder="Saisissez votre recherche" />
+        <input
+          className="form-control"
+          type="text"
+          placeholder="Saisissez votre recherche"
+        />
       </div>
     );
   }
@@ -240,24 +236,27 @@ class Blog extends Component {
     const { aggs } = this.props;
 
     if (aggs === null) {
-      return (<Text>Chargement...</Text>);
+      return <Text>Chargement...</Text>;
     }
 
     const filters = [
       this.renderSearchFilter(),
       this.renderCategoriesFilter(),
       this.renderAuthorsFilter(),
-      this.renderBibleFilter(),
+      this.renderBibleFilter()
     ];
 
     return (
       <div>
-        {filters.map((filter, index) => (filter ? (
-          <div key={index}>
-            {filter}
-            <Hr lg />
-          </div>
-        ) : null))}
+        {filters.map(
+          (filter, index) =>
+            filter
+              ? <div key={index}>
+                  {filter}
+                  <Hr lg />
+                </div>
+              : null
+        )}
       </div>
     );
   }
@@ -267,7 +266,10 @@ class Blog extends Component {
 
     if (loading) {
       return (
-        <BlankItemsFeed items={7} color={randomcolor({ luminosity: 'light', seed: query.key })} />
+        <BlankItemsFeed
+          items={7}
+          color={randomcolor({ luminosity: "light", seed: query.key })}
+        />
       );
     }
 
@@ -275,7 +277,11 @@ class Blog extends Component {
       return <PostsFeed posts={posts} />;
     }
 
-    return <Text><i>Aucun résultat</i></Text>;
+    return (
+      <Text>
+        <i>Aucun résultat</i>
+      </Text>
+    );
   }
 
   renderNavigation() {
@@ -286,22 +292,28 @@ class Blog extends Component {
       <div>
         <div className="pull-left">
           <button className="btn" disabled>
-            <small>{total} {total > 1 ? 'articles' : 'article'}</small>
+            <small>
+              {total} {total > 1 ? "articles" : "article"}
+            </small>
           </button>
           <button className="btn" disabled>
-            <small>page {page}/{maxPage}</small>
+            <small>
+              page {page}/{maxPage}
+            </small>
           </button>
         </div>
         <div className="pull-right">
           <button
             disabled={page <= 1}
             className="btn fa fa-angle-left"
-            onClick={() => router.push(routes.blog({ ...params, page: page - 1 }))}
+            onClick={() =>
+              router.push(routes.blog({ ...params, page: page - 1 }))}
           />
           <button
             disabled={page >= maxPage}
             className="btn fa fa-angle-right"
-            onClick={() => router.push(routes.blog({ ...params, page: page + 1 }))}
+            onClick={() =>
+              router.push(routes.blog({ ...params, page: page + 1 }))}
           />
         </div>
         <div className="clearfix" />
@@ -323,32 +335,39 @@ class Blog extends Component {
           {this.renderNavigation()}
 
           <TransitionMotion
-            styles={[{
-              key: location.key,
-              data: posts,
-              style: { x: spring(0) },
-            }]}
+            styles={[
+              {
+                key: location.key,
+                data: posts,
+                style: { x: spring(0) }
+              }
+            ]}
             willEnter={() => ({ x: 110 })}
             willLeave={() => ({ x: spring(-110) })}
           >
             {interpolatedStyles =>
-              <div style={{ width: '100%', whiteSpace: 'nowrap', overflowX: 'hidden' }}>
+              <div
+                style={{
+                  width: "100%",
+                  whiteSpace: "nowrap",
+                  overflowX: "hidden"
+                }}
+              >
                 {interpolatedStyles.map(({ key, style, data }, index) =>
                   <div
                     key={key}
                     style={{
-                      width: '100%',
-                      whiteSpace: 'normal',
-                      display: 'inline-block',
-                      verticalAlign: 'top',
-                      transform: `translateX(${style.x - (index * 100)}%)`
+                      width: "100%",
+                      whiteSpace: "normal",
+                      display: "inline-block",
+                      verticalAlign: "top",
+                      transform: `translateX(${style.x - index * 100}%)`
                     }}
                   >
                     {data}
                   </div>
                 )}
-              </div>
-            }
+              </div>}
           </TransitionMotion>
         </div>
       </div>
@@ -375,7 +394,9 @@ class Blog extends Component {
         <Jumbotron title="Blog" background={jumbotron} />
         <Hr xl />
         <Container md>
-          {browser.width >= 750 ? this.renderWideScreen() : this.renderSmallScreen()}
+          {browser.width >= 750
+            ? this.renderWideScreen()
+            : this.renderSmallScreen()}
         </Container>
       </div>
     );

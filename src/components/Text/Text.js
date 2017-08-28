@@ -1,39 +1,44 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 
-import classnames from 'classnames';
+import classnames from "classnames";
 
-import styles from './Text.scss';
+import styles from "./Text.scss";
 
-export default
-class Text extends Component {
-
+export default class Text extends Component {
   static propTypes = {
     children: PropTypes.any,
     element: PropTypes.string.isRequired,
     className: PropTypes.string,
     fontSize: PropTypes.number,
-    fontWeight: PropTypes.oneOf(['thin', 'light', 'regular', 'medium', 'bold', 'black']),
+    fontWeight: PropTypes.oneOf([
+      "thin",
+      "light",
+      "regular",
+      "medium",
+      "bold",
+      "black"
+    ]),
     lineHeight: PropTypes.number,
     italic: PropTypes.bool,
     color: PropTypes.string,
     minLines: PropTypes.number,
     maxLines: PropTypes.number,
-    align: PropTypes.oneOf(['left', 'center', 'right', 'justify']),
+    align: PropTypes.oneOf(["left", "center", "right", "justify"]),
     ellipsis: PropTypes.bool,
     fadeLastLine: PropTypes.bool,
-    unit: PropTypes.string,
-  }
+    unit: PropTypes.string
+  };
 
   static defaultProps = {
-    element: 'p',
+    element: "p",
     fontSize: 1.3,
-    fontWeight: 'light',
-    align: 'left',
+    fontWeight: "light",
+    align: "left",
     ellipsis: false,
     fadeLastLine: false,
-    unit: 'rem',
-  }
+    unit: "rem"
+  };
 
   render() {
     const {
@@ -49,7 +54,7 @@ class Text extends Component {
       ellipsis,
       fadeLastLine,
       unit,
-      className,
+      className
     } = this.props;
 
     let { lineHeight } = this.props;
@@ -60,21 +65,21 @@ class Text extends Component {
 
     const style = {
       fontSize: fontSize + unit,
-      lineHeight: lineHeight + unit,
+      lineHeight: lineHeight + unit
     };
 
     if (minLines) {
-      style.minHeight = (lineHeight * minLines) + unit;
-      style.overflow = 'hidden';
+      style.minHeight = lineHeight * minLines + unit;
+      style.overflow = "hidden";
     }
 
     if (maxLines) {
-      style.maxHeight = (lineHeight * maxLines) + unit;
-      style.overflow = 'hidden';
+      style.maxHeight = lineHeight * maxLines + unit;
+      style.overflow = "hidden";
     }
 
     if (italic) {
-      style.fontStyle = 'italic';
+      style.fontStyle = "italic";
     }
 
     if (color) {
@@ -83,11 +88,11 @@ class Text extends Component {
 
     const classes = [className, styles.text];
 
-    if (fontWeight !== 'light') {
+    if (fontWeight !== "light") {
       classes.push(styles[fontWeight]);
     }
 
-    if (align !== 'left') {
+    if (align !== "left") {
       classes.push(styles[align]);
     }
 
@@ -99,9 +104,13 @@ class Text extends Component {
       classes.push(styles.ellipsis);
     }
 
-    return React.createElement(element, {
-      className: classnames(classes),
-      style,
-    }, children);
+    return React.createElement(
+      element,
+      {
+        className: classnames(classes),
+        style
+      },
+      children
+    );
   }
 }

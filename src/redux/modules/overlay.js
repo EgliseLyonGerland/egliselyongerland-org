@@ -1,8 +1,8 @@
-const SHOW_OVERLAY = 'SHOW_OVERLAY';
-const HIDE_OVERLAY = 'HIDE_OVERLAY';
+const SHOW_OVERLAY = "SHOW_OVERLAY";
+const HIDE_OVERLAY = "HIDE_OVERLAY";
 
 const initialState = {
-  active: false,
+  active: false
 };
 
 export default function overlay(state = initialState, action = {}) {
@@ -24,12 +24,12 @@ export default function overlay(state = initialState, action = {}) {
 
 export function showOverlay() {
   return {
-    type: SHOW_OVERLAY,
+    type: SHOW_OVERLAY
   };
 }
 
 export function hideOverlay() {
   return {
-    type: HIDE_OVERLAY,
+    type: HIDE_OVERLAY
   };
 }

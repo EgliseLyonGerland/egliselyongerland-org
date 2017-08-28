@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { Jumbotron } from 'components';
+import { Jumbotron } from "components";
 
 class Wip extends Component {
   render() {

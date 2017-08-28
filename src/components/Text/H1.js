@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import Text from './Text';
+import Text from "./Text";
 
-import styles from './H1.scss';
+import styles from "./H1.scss";
 
 class H1 extends Component {
   render() {

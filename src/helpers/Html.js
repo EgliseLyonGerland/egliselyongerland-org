@@ -1,8 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom/server';
-import serialize from 'serialize-javascript';
-import Helmet from 'react-helmet';
+import React from "react";
+import PropTypes from "prop-types";
+import ReactDOM from "react-dom/server";
+import serialize from "serialize-javascript";
+import Helmet from "react-helmet";
 
 /**
  * Wrapper component containing HTML metadata and boilerplate tags.
@@ -14,7 +14,7 @@ import Helmet from 'react-helmet';
  * by the server.js file.
  */
 const Html = ({ assets, component, store }) => {
-  const content = component ? ReactDOM.renderToString(component) : '';
+  const content = component ? ReactDOM.renderToString(component) : "";
   const head = Helmet.renderStatic();
 
   return (
@@ -26,15 +26,44 @@ const Html = ({ assets, component, store }) => {
         {head.link.toComponent()}
         {head.script.toComponent()}
 
-        <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
-        <link rel="icon" type="image/png" href="/favicon-194x194.png" sizes="194x194" />
-        <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
-        <link rel="icon" type="image/png" href="/favicon-192x192.png" sizes="192x192" />
-        <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16" />
+        <link
+          rel="icon"
+          type="image/png"
+          href="/favicon-32x32.png"
+          sizes="32x32"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          href="/favicon-194x194.png"
+          sizes="194x194"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          href="/favicon-96x96.png"
+          sizes="96x96"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          href="/favicon-192x192.png"
+          sizes="192x192"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          href="/favicon-16x16.png"
+          sizes="16x16"
+        />
 
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-        <link href="https://fonts.googleapis.com/css?family=Lato:400,100,300,700,900" rel="stylesheet" type="text/css" />
+        <link
+          href="https://fonts.googleapis.com/css?family=Lato:400,100,300,700,900"
+          rel="stylesheet"
+          type="text/css"
+        />
 
         {Object.keys(assets.styles).map((style, key) =>
           <link
@@ -51,7 +80,9 @@ const Html = ({ assets, component, store }) => {
         <div id="content" dangerouslySetInnerHTML={{ __html: content }} />
         <script
           charSet="UTF-8"
-          dangerouslySetInnerHTML={{ __html: `window.__data=${serialize(store.getState())};` }}
+          dangerouslySetInnerHTML={{
+            __html: `window.__data=${serialize(store.getState())};`
+          }}
         />
         <script src={assets.javascript.main} charSet="UTF-8" />
       </body>

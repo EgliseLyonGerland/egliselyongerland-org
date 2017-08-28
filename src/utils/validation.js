@@ -1,12 +1,15 @@
-const isEmpty = value => value === undefined || value === null || value === '';
+const isEmpty = value => value === undefined || value === null || value === "";
 
-const join = (rules) => (value, data) =>
+const join = rules => (value, data) =>
   rules.map(rule => rule(value, data)).filter(error => !!error)[0];
 
 export function email(value) {
   // Let's not start a debate on email regex. This is just for an example app!
-  if (!isEmpty(value) && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
-    return 'Invalid email address';
+  if (
+    !isEmpty(value) &&
+    !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)
+  ) {
+    return "Invalid email address";
   }
 
   return true;
@@ -14,7 +17,7 @@ export function email(value) {
 
 export function required(value) {
   if (isEmpty(value)) {
-    return 'Required';
+    return "Required";
   }
 
   return true;
@@ -42,7 +45,7 @@ export function maxLength(max) {
 
 export function integer(value) {
   if (!Number.isInteger(Number(value))) {
-    return 'Must be an integer';
+    return "Must be an integer";
   }
 
   return true;
@@ -51,7 +54,7 @@ export function integer(value) {
 export function oneOf(enumeration) {
   return value => {
     if (!~enumeration.indexOf(value)) {
-      return `Must be one of: ${enumeration.join(', ')}`;
+      return `Must be one of: ${enumeration.join(", ")}`;
     }
 
     return true;
@@ -62,7 +65,7 @@ export function match(field) {
   return (value, data) => {
     if (data) {
       if (value !== data[field]) {
-        return 'Do not match';
+        return "Do not match";
       }
     }
 
@@ -73,7 +76,7 @@ export function match(field) {
 export function createValidator(rules) {
   return (data = {}) => {
     const errors = {};
-    Object.keys(rules).forEach((key) => {
+    Object.keys(rules).forEach(key => {
       // concat enables both functions and arrays of functions
       const rule = join([].concat(rules[key]));
       const error = rule(data[key], data);

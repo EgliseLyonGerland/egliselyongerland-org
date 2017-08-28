@@ -1,53 +1,62 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 
-import { get, find, findIndex } from 'lodash';
+import { get, find, findIndex } from "lodash";
 
-import { PanePicker, GridPicker, LabelPicker } from 'components';
+import { PanePicker, GridPicker, LabelPicker } from "components";
 
+const mainTabs = [
+  {
+    key: "books",
+    label: "Livres"
+  },
+  {
+    key: "chapters",
+    label: "Chapitres"
+  },
+  {
+    key: "verses",
+    label: "Versets"
+  }
+];
 
-const mainTabs = [{
-  key: 'books',
-  label: 'Livres',
-}, {
-  key: 'chapters',
-  label: 'Chapitres',
-}, {
-  key: 'verses',
-  label: 'Versets',
-}];
+const booksTabs = [
+  {
+    key: "old",
+    label: "Ancien testament"
+  },
+  {
+    key: "new",
+    label: "Nouveau testament"
+  }
+];
 
-const booksTabs = [{
-  key: 'old',
-  label: 'Ancien testament',
-}, {
-  key: 'new',
-  label: 'Nouveau testament',
-}];
-
-export default
-class BiblePicker extends Component {
+export default class BiblePicker extends Component {
   static propTypes = {
-    books: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
-      testament: PropTypes.string.isRequired,
-      chapters: PropTypes.arrayOf(PropTypes.shape({
-        number: PropTypes.number.isRequired,
-        verses: PropTypes.arrayOf(PropTypes.number).isRequired,
-      })).isRequired,
-    })).isRequired,
-    currentTestament: PropTypes.oneOf(['new', 'old']),
+    books: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+        testament: PropTypes.string.isRequired,
+        chapters: PropTypes.arrayOf(
+          PropTypes.shape({
+            number: PropTypes.number.isRequired,
+            verses: PropTypes.arrayOf(PropTypes.number).isRequired
+          })
+        ).isRequired
+      })
+    ).isRequired,
+    currentTestament: PropTypes.oneOf(["new", "old"]),
     currentBook: PropTypes.number,
     currentChapter: PropTypes.number,
     currentVerse: PropTypes.number,
     onChange: PropTypes.func,
-    readOnly: PropTypes.bool,
-  }
+    readOnly: PropTypes.bool
+  };
 
   static defaultProps = {
-    currentTestament: 'old',
-  }
+    currentTestament: "old"
+  };
 
   constructor(props) {
     super();
@@ -55,7 +64,11 @@ class BiblePicker extends Component {
     const { books, currentBook } = props;
 
     this.state = {
-      currentTestament: get(find(books, ['id', currentBook]), 'testament', 'old'),
+      currentTestament: get(
+        find(books, ["id", currentBook]),
+        "testament",
+        "old"
+      )
     };
   }
 
@@ -71,7 +84,7 @@ class BiblePicker extends Component {
     const { books, currentBook } = this.props;
 
     if (currentBook) {
-      return find(books, ['id', currentBook]);
+      return find(books, ["id", currentBook]);
     }
 
     return null;
@@ -81,9 +94,9 @@ class BiblePicker extends Component {
     const { currentChapter } = this.props;
 
     if (currentChapter) {
-      const chapters = get(this.getCurrentBook(), 'chapters', []);
+      const chapters = get(this.getCurrentBook(), "chapters", []);
 
-      return find(chapters, ['number', currentChapter]);
+      return find(chapters, ["number", currentChapter]);
     }
 
     return null;
@@ -94,33 +107,30 @@ class BiblePicker extends Component {
     const chapter = this.getCurrentChapter();
 
     if (chapter && chapter.verses.length) {
-      return 'verses';
+      return "verses";
     }
 
     if (book && book.chapters.length) {
-      return 'chapters';
+      return "chapters";
     }
 
-    return 'books';
+    return "books";
   }
 
   getPaneName(pane) {
-    const {
-      currentChapter,
-      currentVerse,
-    } = this.props;
+    const { currentChapter, currentVerse } = this.props;
 
-    if (pane === 'books') {
+    if (pane === "books") {
       const book = this.getCurrentBook();
 
-      return book ? book.name : 'Livres';
+      return book ? book.name : "Livres";
     }
 
-    if (pane === 'chapters') {
-      return currentChapter ? `Chapitre ${currentChapter}` : 'Chapitres';
+    if (pane === "chapters") {
+      return currentChapter ? `Chapitre ${currentChapter}` : "Chapitres";
     }
 
-    return currentVerse ? `Verset ${currentVerse}` : 'Versets';
+    return currentVerse ? `Verset ${currentVerse}` : "Versets";
   }
 
   getMainPanes() {
@@ -131,7 +141,7 @@ class BiblePicker extends Component {
         ...tab,
         label: this.getPaneName(tab.key),
         active: children !== null,
-        children,
+        children
       };
     });
   }
@@ -141,7 +151,7 @@ class BiblePicker extends Component {
       books,
       currentBook,
       readOnly = false,
-      onChange = () => {},
+      onChange = () => {}
     } = this.props;
 
     return (
@@ -151,7 +161,8 @@ class BiblePicker extends Component {
         labels={books
           .filter(book => book.testament === testament)
           .map(({ id, name }) => ({ key: id, label: name }))}
-        onChange={key => onChange({ book: key, chapter: undefined, verse: undefined })}
+        onChange={key =>
+          onChange({ book: key, chapter: undefined, verse: undefined })}
       />
     );
   }
@@ -165,15 +176,16 @@ class BiblePicker extends Component {
         panes={booksTabs.map(tab => ({
           ...tab,
           children: this.renderBooksPane(tab.key),
-          active: findIndex(books, ['testament', tab.key]) > -1,
+          active: findIndex(books, ["testament", tab.key]) > -1
         }))}
         current={currentTestament}
         height={400}
         tabBgColor="#F7F7F7"
         tabActiveBarColor="#CCC"
-        onChange={pane => this.setState({
-          currentTestament: pane.key
-        })}
+        onChange={pane =>
+          this.setState({
+            currentTestament: pane.key
+          })}
       />
     );
   }
@@ -186,7 +198,7 @@ class BiblePicker extends Component {
       onChange = () => {}
     } = this.props;
 
-    const chapters = get(this.getCurrentBook(), 'chapters', []);
+    const chapters = get(this.getCurrentBook(), "chapters", []);
 
     if (!chapters.length) {
       return null;
@@ -196,10 +208,12 @@ class BiblePicker extends Component {
       <GridPicker
         current={currentChapter}
         readOnly={readOnly}
-        items={chapters.map(chapter =>
-          ({ key: chapter.number, label: `${chapter.number}` })
-        )}
-        onChange={chapter => onChange({ book: currentBook, chapter, verse: undefined })}
+        items={chapters.map(chapter => ({
+          key: chapter.number,
+          label: `${chapter.number}`
+        }))}
+        onChange={chapter =>
+          onChange({ book: currentBook, chapter, verse: undefined })}
       />
     );
   }
@@ -213,7 +227,7 @@ class BiblePicker extends Component {
       onChange = () => {}
     } = this.props;
 
-    const verses = get(this.getCurrentChapter(), 'verses', []);
+    const verses = get(this.getCurrentChapter(), "verses", []);
 
     if (!verses.length) {
       return null;
@@ -223,20 +237,19 @@ class BiblePicker extends Component {
       <GridPicker
         current={currentVerse}
         readOnly={readOnly}
-        items={verses.map(verse =>
-          ({ key: verse, label: `${verse}` })
-        )}
-        onChange={verse => onChange({ book: currentBook, chapter: currentChapter, verse })}
+        items={verses.map(verse => ({ key: verse, label: `${verse}` }))}
+        onChange={verse =>
+          onChange({ book: currentBook, chapter: currentChapter, verse })}
       />
     );
   }
 
   renderMainPane(key) {
     switch (key) {
-      case 'chapters':
+      case "chapters":
         return this.renderChaptersPane();
 
-      case 'verses':
+      case "verses":
         return this.renderVersesPane();
 
       default:
@@ -252,9 +265,10 @@ class BiblePicker extends Component {
       <PanePicker
         panes={panes}
         current={currentMainPane}
-        onChange={pane => this.setState({
-          currentMainPane: pane.key
-        })}
+        onChange={pane =>
+          this.setState({
+            currentMainPane: pane.key
+          })}
       />
     );
   }

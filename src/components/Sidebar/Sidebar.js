@@ -1,30 +1,30 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 
-import { Link } from 'react-router';
+import { Link } from "react-router";
 
-import classes from 'classnames';
+import classes from "classnames";
 
-import styles from './Sidebar.scss';
+import styles from "./Sidebar.scss";
 
-export default
-class Sidebar extends Component {
-
+export default class Sidebar extends Component {
   static propTypes = {
-    links: PropTypes.arrayOf(PropTypes.shape({
-      label: PropTypes.string.isRequired,
-      path: PropTypes.string.isRequired,
-    })),
+    links: PropTypes.arrayOf(
+      PropTypes.shape({
+        label: PropTypes.string.isRequired,
+        path: PropTypes.string.isRequired
+      })
+    ),
     opened: PropTypes.bool,
     onOpenSidebarButtonClicked: PropTypes.func,
-    onCloseSidebarButtonClicked: PropTypes.func,
-  }
+    onCloseSidebarButtonClicked: PropTypes.func
+  };
 
   static defaultProps = {
     opened: false,
     onOpenSidebarButtonClicked: () => {},
-    onCloseSidebarButtonClicked: () => {},
-  }
+    onCloseSidebarButtonClicked: () => {}
+  };
 
   toggle() {
     if (this.props.opened) {
@@ -38,10 +38,12 @@ class Sidebar extends Component {
     const { links, opened } = this.props;
 
     return (
-      <div className={classes(styles.sidebar, (opened && styles.opened))}>
+      <div className={classes(styles.sidebar, opened && styles.opened)}>
         <div className={styles.content}>
           {links.map(link =>
-            <Link key={link.path} to={link.path} className={styles.link}>{link.label}</Link>
+            <Link key={link.path} to={link.path} className={styles.link}>
+              {link.label}
+            </Link>
           )}
         </div>
       </div>

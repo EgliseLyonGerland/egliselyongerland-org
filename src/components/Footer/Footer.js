@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import styles from './Footer.scss';
+import styles from "./Footer.scss";
 
 class Footer extends Component {
   render() {
     return (
       <div className={styles.footer}>
-        Copyright © {(new Date()).getFullYear()} Église Lyon Gerland.
+        Copyright © {new Date().getFullYear()} Église Lyon Gerland.
       </div>
     );
   }

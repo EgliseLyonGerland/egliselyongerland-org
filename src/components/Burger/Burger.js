@@ -1,13 +1,11 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 
-import classes from 'classnames';
+import classes from "classnames";
 
-import styles from './Burger.scss';
+import styles from "./Burger.scss";
 
-export default
-class Burger extends Component {
-
+export default class Burger extends Component {
   static propTypes = {
     size: PropTypes.number,
     weight: PropTypes.number,
@@ -16,19 +14,19 @@ class Burger extends Component {
     color: PropTypes.string,
     rounded: PropTypes.bool,
     muted: PropTypes.bool,
-    onClick: PropTypes.func,
-  }
+    onClick: PropTypes.func
+  };
 
   static defaultProps = {
     size: 3,
     weight: 2,
     width: 30,
     height: 18,
-    color: '#222',
+    color: "#222",
     rounded: false,
     muted: false,
-    onClick: () => {},
-  }
+    onClick: () => {}
+  };
 
   handleClick() {
     this.props.onClick();
@@ -37,13 +35,13 @@ class Burger extends Component {
   renderLines() {
     const lines = [];
     const { size, height, weight, color, rounded } = this.props;
-    const gutter = (height - (weight * size)) / (size - 1);
+    const gutter = (height - weight * size) / (size - 1);
 
     for (let index = 1; index <= size; index++) {
-      const isOut = (index === 1 || index === size);
-      const isIn = (index > 1 && index < size);
-      const isFirst = (index === 1);
-      const isLast = (index === size);
+      const isOut = index === 1 || index === size;
+      const isIn = index > 1 && index < size;
+      const isFirst = index === 1;
+      const isLast = index === size;
 
       const props = {
         className: classes(
@@ -52,12 +50,12 @@ class Burger extends Component {
           isOut && styles.out,
           isIn && styles.in,
           isFirst && styles.first,
-          isLast && styles.last,
+          isLast && styles.last
         ),
         style: {
           height: `${weight}px`,
-          backgroundColor: color,
-        },
+          backgroundColor: color
+        }
       };
 
       if (!isLast) {
@@ -66,15 +64,17 @@ class Burger extends Component {
 
       if (this.props.muted) {
         if (isIn) {
-          props.style.opacity = '0';
+          props.style.opacity = "0";
         }
 
         if (isFirst) {
-          props.style.transform = `translateY(${(height / 2) - (weight / 2)}px) rotate(45deg)`;
+          props.style.transform = `translateY(${height / 2 -
+            weight / 2}px) rotate(45deg)`;
         }
 
         if (isLast) {
-          props.style.transform = `translateY(-${(height / 2) - (weight / 2)}px) rotate(-45deg)`;
+          props.style.transform = `translateY(-${height / 2 -
+            weight / 2}px) rotate(-45deg)`;
         }
       }
 
@@ -92,7 +92,7 @@ class Burger extends Component {
         className={styles.burger}
         style={{
           width: `${width}px`,
-          height: `${height}px`,
+          height: `${height}px`
         }}
         onClick={() => this.handleClick()}
       >

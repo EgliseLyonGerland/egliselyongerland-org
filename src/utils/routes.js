@@ -1,4 +1,4 @@
-import qs from 'qs';
+import qs from "qs";
 
 const routes = {
   blog: (params = {}) => {
@@ -20,23 +20,22 @@ const routes = {
       ...params,
       category: undefined,
       author: undefined,
-      book: undefined,
+      book: undefined
     });
-
 
     if (query) {
       paths.push(`?${query}`);
     }
 
-    return `/blog${paths.join('')}`;
+    return `/blog${paths.join("")}`;
   },
 
-  sermons: () => (routes.blog({ category: 1 })),
-  post: (id) => (`/blog/post/${id}`),
-  church: () => ('/church'),
-  youngs: () => ('/youngs'),
-  contact: () => ('/contact'),
-  persecutedChurch: () => ('/persecuted-church'),
+  sermons: () => routes.blog({ category: 1 }),
+  post: id => `/blog/post/${id}`,
+  church: () => "/church",
+  youngs: () => "/youngs",
+  contact: () => "/contact",
+  persecutedChurch: () => "/persecuted-church"
 };
 
 export default routes;
