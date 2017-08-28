@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
-import { shuffle, keys } from "lodash";
+import { keys } from "lodash";
+import moment from "moment";
 
 import { Container, Jumbotron, Text, Hr } from "components";
 
@@ -8,7 +9,9 @@ import verses from "./verses.json";
 
 class NotFound extends Component {
   render() {
-    const book = shuffle(keys(verses))[0];
+    const books = keys(verses);
+    const index = parseInt(moment().format("DDD")) % books.length;
+    const book = books[index];
     const verse = verses[book];
 
     return (
