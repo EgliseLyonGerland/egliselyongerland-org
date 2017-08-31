@@ -9,7 +9,7 @@ import Disqus from "react-disqus-thread";
 import md5 from "md5";
 import { get } from "lodash";
 
-import { Container, Jumbotron, Image, Hr, Text } from "components";
+import { Container, Jumbotron, Image, Hr, Text, PostContent } from "components";
 
 import { load as loadPost, isLoaded as isPostLoaded } from "redux/modules/post";
 
@@ -49,6 +49,24 @@ export default class Post extends Component {
     post: null
   };
 
+  renderMetabar(post) {
+    return (
+      <Container md>
+        <div className={`${styles.metabar} row`}>
+          <div className="col-xs-6">
+            <div className={styles.postAuthor}>
+              {post.author.name}
+            </div>
+            <div className={styles.postDate}>
+              {moment(post.date).fromNow()}
+            </div>
+          </div>
+        </div>
+        <Hr nm line color="#eee" />
+      </Container>
+    );
+  }
+
   renderComments(post) {
     return (
       <div className={styles.comments}>
@@ -66,45 +84,15 @@ export default class Post extends Component {
 
   renderPost(post) {
     return (
-      <Container lg>
-        <div className="row">
-          <div className="col-md-4">
-            <Text element="div" fontSize={1} color="#555">
-              <span>
-                <span className={styles.avatar}>
-                  <Image src={post.author.picture} ratio={1} />
-                </span>
-                <Hr inline md />
-                <b>
-                  {post.author.name}
-                </b>
-              </span>
-              <Hr inline>—</Hr>
-              <span title={moment(post.date).format()}>
-                <Text
-                  fontSize={1.2}
-                  lineHeight={1.5}
-                  className="fa fa-clock-o"
-                />
-                <Hr inline sm />
-                <span>
-                  {moment(post.date).fromNow()}
-                </span>
-              </span>
-            </Text>
-          </div>
-          <div className="col-md-8">
-            <Text element="div">
-              <div
-                className={styles.text}
-                dangerouslySetInnerHTML={{ __html: post.content }}
-              />
-            </Text>
+      <div>
+        {this.renderMetabar(post)}
+        <Hr xl />
+        <Container sm>
+          <PostContent content={post.content} />
 
-            {this.renderComments(post)}
-          </div>
-        </div>
-      </Container>
+          {this.renderComments(post)}
+        </Container>
+      </div>
     );
   }
 
@@ -137,12 +125,12 @@ export default class Post extends Component {
         />
 
         <Jumbotron
+          height="500px"
           background={imageLargeUrl}
           title={title}
           overlay={0.3}
           fontSize={2.6}
         />
-        <Hr xl />
         {post && this.renderPost(post)}
       </div>
     );
