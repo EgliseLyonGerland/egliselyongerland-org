@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import { connect } from "react-redux";
 import { asyncConnect } from "redux-connect";
-import { has } from "lodash";
+import { has, reduce } from "lodash";
 import { TransitionMotion, spring } from "react-motion";
 import randomcolor from "randomcolor";
 
@@ -388,10 +388,27 @@ export default class Blog extends Component {
   render() {
     const { browser } = this.props;
 
+    const {
+      params: { category = null },
+      aggs: { categories = null }
+    } = this.props;
+
+    const title = reduce(
+      categories,
+      (prev, curr) => {
+        if (curr.id === parseInt(category, 10)) {
+          return curr.name;
+        }
+
+        return prev;
+      },
+      "Blog"
+    );
+
     return (
       <div>
-        <Helmet title="Accueil" />
-        <Jumbotron title="Blog" background={jumbotron} />
+        <Helmet title={title} />
+        <Jumbotron title={title} background={jumbotron} />
         <Hr xl />
         <Container md>
           {browser.width >= 750
