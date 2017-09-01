@@ -60,16 +60,18 @@ class Header extends Component {
     this.state = {
       sticky: false
     };
+
+    this.handleScroll = this.handleScroll.bind(this);
   }
 
   componentDidMount() {
-    window.addEventListener("scroll", this.handleScroll.bind(this));
+    window.addEventListener("scroll", this.handleScroll);
 
     this.sidebarLinks = links;
   }
 
   componentWillUnmount() {
-    window.removeEventListener("scroll", this.handleScroll.bind(this));
+    window.removeEventListener("scroll", this.handleScroll);
   }
 
   handleScroll(event) {
