@@ -31,15 +31,16 @@
     "format": "prettier-eslint --write \"src/**/*.js\" \"webpack/*.js\" ",
     "start-dev": "better-npm-run start-dev",
     "watch-client": "better-npm-run watch-client",
-    "dev": "concurrently --kill-others \"npm run watch-client\" \"npm run start-dev\""
+    "dev": "concurrently --kill-others \"npm run watch-client\" \"npm run start-dev\"",
+    "postinstall": "npm rebuild node-sass",
+    "heroku-postbuild": "npm run build"
   },
   "betterScripts": {
     "start-prod": {
       "command": "node ./bin/server.js",
       "env": {
         "NODE_PATH": "./src",
-        "NODE_ENV": "production",
-        "PORT": 8000
+        "NODE_ENV": "production"
       }
     },
     "start-dev": {
