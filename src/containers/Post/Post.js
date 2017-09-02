@@ -7,9 +7,18 @@ import Helmet from "react-helmet";
 import moment from "moment";
 import Disqus from "react-disqus-thread";
 import md5 from "md5";
-import { get } from "lodash";
+import { get, some } from "lodash";
 
-import { Container, Jumbotron, Image, Hr, Text, PostContent } from "components";
+import {
+  Container,
+  Jumbotron,
+  Image,
+  Hr,
+  H2,
+  Text,
+  PostContent,
+  AudioPlayer
+} from "components";
 
 import { load as loadPost, isLoaded as isPostLoaded } from "redux/modules/post";
 
@@ -69,16 +78,46 @@ export default class Post extends Component {
 
   renderComments(post) {
     return (
-      <div className={styles.comments}>
-        <Hr xl />
-        <Hr xl line color="#CCC" />
-        <Hr xl />
+      <Container sm>
+        <div className={styles.comments}>
+          <Hr xl />
+          <Hr xl line color="#CCC" />
+          <Hr xl />
 
-        <Disqus
-          shortname={disqus.shortname}
-          identifier={md5(`post-${post.id}`)}
-        />
-      </div>
+          <Disqus
+            shortname={disqus.shortname}
+            identifier={md5(`post-${post.id}`)}
+          />
+        </div>
+      </Container>
+    );
+  }
+
+  renderContent(post) {
+    const isPredication = some(post.categories, ["slug", "predications"]);
+    const audioUrl = get(post, "extras.audioUrl", null);
+
+    if (isPredication && audioUrl) {
+      return (
+        <div>
+          <Container xs>
+            <AudioPlayer url={audioUrl} />
+          </Container>
+          <Hr xl />
+
+          {post.content &&
+            <Container sm>
+              <H2>Transcription</H2>
+              <PostContent content={post.content} />
+            </Container>}
+        </div>
+      );
+    }
+
+    return (
+      <Container sm>
+        <PostContent content={post.content} />
+      </Container>
     );
   }
 
@@ -87,11 +126,8 @@ export default class Post extends Component {
       <div>
         {this.renderMetabar(post)}
         <Hr xl />
-        <Container sm>
-          <PostContent content={post.content} />
-
-          {this.renderComments(post)}
-        </Container>
+        {this.renderContent(post)}
+        {this.renderComments(post)}
       </div>
     );
   }

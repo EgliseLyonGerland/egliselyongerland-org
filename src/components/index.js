@@ -5,6 +5,7 @@
  *
  */
 
+export AudioPlayer from "./AudioPlayer/AudioPlayer";
 export Burger from "./Burger/Burger";
 export Button from "./Button/Button";
 export Container from "./Container/Container";
