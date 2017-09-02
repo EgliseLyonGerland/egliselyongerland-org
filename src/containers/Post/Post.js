@@ -101,8 +101,8 @@ export default class Post extends Component {
 
     const title = get(post, "title", "Chargement...");
     const tags = get(post, "tags", []);
-    const imageLargeUrl = get(post, "pictures.large", null);
-    const imageOriginalUrl = get(post, "pictures.original", null);
+    const imageLargeUrl = get(post, "picture.sizes.large.url", null);
+    const imageOriginalUrl = get(post, "picture.url", null);
 
     return (
       <div>

@@ -84,7 +84,7 @@ export default class PostsFeed extends Component {
         })}
       >
         {posts.map(post => {
-          const imageUrl = get(post, "pictures.large", null);
+          const imageUrl = get(post, "picture.sizes.small.url", null);
 
           return (
             <div className={styles.post} key={post.id}>
