@@ -6,7 +6,9 @@ class Footer extends Component {
   render() {
     return (
       <div className={styles.footer}>
-        Copyright © {new Date().getFullYear()} Église Lyon Gerland.
+        <span>
+          Copyright © {new Date().getFullYear()} Église Lyon Gerland.
+        </span>
       </div>
     );
   }
