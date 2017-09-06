@@ -32,7 +32,7 @@ const routes = {
 
   sermons: () => routes.blog({ category: 1 }),
   post: id => `/blog/post/${id}`,
-  church: () => "/church",
+  church: () => "/qui-sommes-nous",
   youngs: () => "/youngs",
   contact: () => "/contact",
   persecutedChurch: () => "/persecuted-church"
