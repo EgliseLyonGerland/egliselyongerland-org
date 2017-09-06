@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 import { Link } from "react-router";
-import { slice } from "lodash";
 import classes from "classnames";
 
 import { Sidebar, SearchButton, Burger, Container } from "components";
@@ -28,14 +27,6 @@ const links = [
     path: routes.blog()
   },
   {
-    label: "Groupe de jeune",
-    path: routes.youngs()
-  },
-  {
-    label: "L'église persécutée",
-    path: routes.persecutedChurch()
-  },
-  {
     label: "Contact",
     path: routes.contact()
   }
@@ -55,8 +46,6 @@ class Header extends Component {
   constructor(props) {
     super(props);
 
-    this.sidebarLinks = slice(links, 3);
-
     this.state = {
       sticky: false
     };
@@ -66,8 +55,6 @@ class Header extends Component {
 
   componentDidMount() {
     window.addEventListener("scroll", this.handleScroll);
-
-    this.sidebarLinks = links;
   }
 
   componentWillUnmount() {
@@ -131,42 +118,42 @@ class Header extends Component {
 
           <div className={styles.blankItem} />
 
-          {browser.width >= 860 &&
-            <div className={styles.links}>
-              {slice(links, 0, 3).map((link, index) =>
-                <div className={styles.linksItem} key={index}>
-                  <Link className={styles.link} to={link.path}>
-                    {link.label}
-                  </Link>
-                </div>
-              )}
-            </div>}
+          {browser.width >= 930
+            ? <div className={styles.links}>
+                {links.map((link, index) =>
+                  <div className={styles.linksItem} key={index}>
+                    <Link className={styles.link} to={link.path}>
+                      {link.label}
+                    </Link>
+                  </div>
+                )}
+              </div>
+            : <button
+                className={styles.burger}
+                onClick={() => this.toggleSidebar()}
+              >
+                <Burger
+                  weight={3}
+                  width={17}
+                  height={17}
+                  color="white"
+                  muted={sidebarOpened}
+                  rounded
+                />
+              </button>}
 
-          <div className={styles.search}>
+          {/* <div className={styles.search}>
             <SearchButton onClicked={() => onSearchButtonClicked()} />
-          </div>
-
-          <button
-            className={styles.burger}
-            onClick={() => this.toggleSidebar()}
-          >
-            <Burger
-              weight={3}
-              width={17}
-              height={17}
-              color="white"
-              muted={sidebarOpened}
-              rounded
-            />
-          </button>
+          </div> */}
         </Container>
 
-        <Sidebar
-          links={this.sidebarLinks}
-          opened={sidebarOpened}
-          onOpenSidebarButtonClicked={() => onOpenSidebarButtonClicked()}
-          onCloseSidebarButtonClicked={() => onCloseSidebarButtonClicked()}
-        />
+        {browser.width < 930 &&
+          <Sidebar
+            links={links}
+            opened={sidebarOpened}
+            onOpenSidebarButtonClicked={() => onOpenSidebarButtonClicked()}
+            onCloseSidebarButtonClicked={() => onCloseSidebarButtonClicked()}
+          />}
       </div>
     );
   }

@@ -33,9 +33,7 @@ const routes = {
   sermons: () => routes.blog({ category: 1 }),
   post: id => `/blog/post/${id}`,
   church: () => "/qui-sommes-nous",
-  youngs: () => "/youngs",
-  contact: () => "/contact",
-  persecutedChurch: () => "/persecuted-church"
+  contact: () => "/contact"
 };
 
 export default routes;
