@@ -1,4 +1,3 @@
-
 @import "../../theme/variables.scss";
 
 .sidebar {
@@ -11,35 +10,35 @@
   left: 0;
   visibility: hidden;
   opacity: 0;
-  transition: opacity .15s, visibility 0s .15s;
+  transition: opacity 0.15s, visibility 0s 0.15s;
   transition-timing-function: ease-in-out;
   overflow: hidden;
   z-index: $sidebar-zindex;
   display: flex;
 
   &.opened {
-    transition: visibility 0s, opacity .15s;
+    transition: visibility 0s, opacity 0.15s;
     visibility: visible;
     opacity: 1;
   }
 }
 
-  .content {
-    text-align: center;
-    margin: $header-height auto;
-  }
+.content {
+  text-align: center;
+  margin: $header-height auto;
+}
 
-  .link {
-    display: block;
-    color: white;
-    font-weight: $font-weight-regular;
-    text-decoration: none;
-    font-size: 20px;
-    text-transform: uppercase;
-    margin-bottom: 10px;
-    transition: transform .2s;
+.link {
+  display: block;
+  color: white;
+  font-weight: $font-weight-regular;
+  text-decoration: none;
+  font-size: 20px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  transition: transform 0.2s;
 
-    &:hover {
-      transform: scale(1.05);
-    }
+  &:hover {
+    transform: scale(1.05);
   }
+}

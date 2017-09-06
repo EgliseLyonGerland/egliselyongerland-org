@@ -1,5 +1,4 @@
-
-@import './variables';
+@import "./variables";
 
 $background: lighten(black, 98%);
 
@@ -28,6 +27,6 @@ $background: lighten(black, 98%);
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(white, .7);
+    background: rgba(white, 0.7);
   }
 }

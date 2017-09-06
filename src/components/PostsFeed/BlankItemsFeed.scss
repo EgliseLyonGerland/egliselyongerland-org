@@ -1,8 +1,8 @@
-
 @import "../../theme/variables.scss";
 @import "../../theme/mixins.scss";
 
-.items {}
+.items {
+}
 
 .item {
   @include clearfix();
@@ -14,7 +14,11 @@
     padding-top: ($post-feed-margin / 2) + 3;
     display: block;
     margin: 0 auto;
-    background-image: linear-gradient(to right, #CCC 33%, rgba(255,255,255,0) 0%);
+    background-image: linear-gradient(
+      to right,
+      #ccc 33%,
+      rgba(255, 255, 255, 0) 0%
+    );
     background-position: -10px bottom;
     background-size: 10px 3px;
     background-repeat: repeat-x;
@@ -32,7 +36,12 @@
   animation-iteration-count: infinite;
   animation-name: placeHolderShimmer;
   animation-timing-function: cubic-bezier(0.18, 0.89, 0.73, 1.04);
-  background: linear-gradient(to right, transparent 8%, rgba(white, 0.4) 18%, transparent 33%);
+  background: linear-gradient(
+    to right,
+    transparent 8%,
+    rgba(white, 0.4) 18%,
+    transparent 33%
+  );
   background-size: 800px 104px;
   position: relative;
 }
@@ -77,12 +86,12 @@
 
 @keyframes placeHolderShimmer {
   0% {
-    background-position: 100% 0
+    background-position: 100% 0;
   }
   80% {
-    background-position: -150% 0
+    background-position: -150% 0;
   }
   100% {
-    background-position: -150% 0
+    background-position: -150% 0;
   }
 }

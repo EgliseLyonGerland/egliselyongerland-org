@@ -1,4 +1,3 @@
-
 @import "../../theme/variables.scss";
 
 @mixin button-size($name, $size) {
@@ -17,7 +16,7 @@
   background: transparent;
   border: solid 1px;
   cursor: pointer;
-  transition: background .3s;
+  transition: background 0.3s;
   font-weight: $font-weight-light;
 
   &:hover {
@@ -37,10 +36,10 @@
   }
 }
 
-@include button-size('xxs', $button-size-xxs);
-@include button-size('xs', $button-size-xs);
-@include button-size('sm', $button-size-sm);
-@include button-size('md', $button-size-md);
-@include button-size('lg', $button-size-lg);
-@include button-size('xl', $button-size-xl);
-@include button-size('xxl', $button-size-xxl);
+@include button-size("xxs", $button-size-xxs);
+@include button-size("xs", $button-size-xs);
+@include button-size("sm", $button-size-sm);
+@include button-size("md", $button-size-md);
+@include button-size("lg", $button-size-lg);
+@include button-size("xl", $button-size-xl);
+@include button-size("xxl", $button-size-xxl);

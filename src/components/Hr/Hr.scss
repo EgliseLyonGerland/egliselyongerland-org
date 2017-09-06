@@ -1,4 +1,3 @@
-
 @import "../../theme/variables.scss";
 @import "../../theme/mixins.scss";
 
@@ -22,24 +21,24 @@
   margin: ($hr-size-md / 2) 0;
 }
 
-  .line {
-    display: block;
-    height: 4px;
-    margin-left: auto;
-    margin-right: auto;
-    background-position: -10px bottom;
-    background-size: 12px 4px;
-    background-repeat: repeat-x;
-  }
+.line {
+  display: block;
+  height: 4px;
+  margin-left: auto;
+  margin-right: auto;
+  background-position: -10px bottom;
+  background-size: 12px 4px;
+  background-repeat: repeat-x;
+}
 
-  .inline {
-    display: inline-block;
-    margin: 0 ($hr-size-md / 2);
-  }
+.inline {
+  display: inline-block;
+  margin: 0 ($hr-size-md / 2);
+}
 
-  @include hr-size('nm', $hr-size-nm);
-  @include hr-size('xs', $hr-size-xs);
-  @include hr-size('sm', $hr-size-sm);
-  @include hr-size('md', $hr-size-md);
-  @include hr-size('lg', $hr-size-lg);
-  @include hr-size('xl', $hr-size-xl);
+@include hr-size("nm", $hr-size-nm);
+@include hr-size("xs", $hr-size-xs);
+@include hr-size("sm", $hr-size-sm);
+@include hr-size("md", $hr-size-md);
+@include hr-size("lg", $hr-size-lg);
+@include hr-size("xl", $hr-size-xl);
