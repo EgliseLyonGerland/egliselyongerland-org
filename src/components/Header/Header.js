@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-
 import { connect } from "react-redux";
-
 import { Link } from "react-router";
 import classes from "classnames";
+import EventListener, { withOptions } from "react-event-listener";
 
 import { Sidebar, SearchButton, Burger, Container } from "components";
 import routes from "utils/routes";
@@ -49,25 +48,20 @@ class Header extends Component {
     this.state = {
       sticky: false
     };
-
-    this.handleScroll = this.handleScroll.bind(this);
   }
 
-  componentDidMount() {
-    window.addEventListener("scroll", this.handleScroll);
+  componentDidUpdate() {
+    this.handleScroll();
   }
 
-  componentWillUnmount() {
-    window.removeEventListener("scroll", this.handleScroll);
-  }
+  handleScroll() {
+    const itemTranslate = !Math.min(0, window.scrollY - 60);
 
-  handleScroll(event) {
-    const scrollTop = event.srcElement.body.scrollTop;
-    const itemTranslate = Math.min(0, scrollTop - 60);
-
-    this.setState({
-      sticky: !itemTranslate
-    });
+    if (this.state.sticky !== itemTranslate) {
+      this.setState({
+        sticky: itemTranslate
+      });
+    }
   }
 
   toggleSidebar() {
@@ -96,6 +90,15 @@ class Header extends Component {
 
     return (
       <div className={className}>
+        <EventListener
+          target="window"
+          onResize={this.handleResize}
+          onScroll={withOptions(() => this.handleScroll(), {
+            passive: true,
+            capture: false
+          })}
+        />
+
         <Container className={styles.body}>
           <div className={styles.brand}>
             <Link className={styles.logo} to="/">
