@@ -7,7 +7,7 @@ html {
 
 body {
   background: $app-background;
-  padding-bottom: $footer-height;
+  padding-bottom: $footer-height + 55;
   min-height: 100%;
   position: relative;
 }
