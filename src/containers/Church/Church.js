@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { reduce } from "lodash";
 import { connect } from "react-redux";
+import Helmet from "react-helmet";
 import Tabs, { Tab } from "material-ui/Tabs";
 import { withStyles } from "material-ui/styles";
 import AppBar from "material-ui/AppBar";
@@ -53,6 +54,7 @@ class Church extends Component {
 
     return (
       <div>
+        <Helmet title={currentTab.title} />
         <Jumbotron
           height="500px"
           title={currentTab.title}

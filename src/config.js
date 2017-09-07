@@ -2,6 +2,7 @@ require("babel-polyfill");
 
 const defaultTitle = "Église Lyon Gerland";
 const defaultDescription = "Église réformée évangélique de Lyon Gerland";
+const defaultImage = require("containers/Home/worship.jpg");
 
 const environment = {
   development: {
@@ -35,7 +36,7 @@ module.exports = Object.assign(
           { property: "og:site_name", content: defaultTitle },
           {
             property: "og:image",
-            content: "https://react-redux.herokuapp.com/logo.jpg"
+            content: defaultImage
           },
           { property: "og:locale", content: "fr_FR" },
           { property: "og:title", content: defaultTitle },

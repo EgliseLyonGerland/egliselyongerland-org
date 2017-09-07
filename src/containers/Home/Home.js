@@ -80,9 +80,16 @@ class Home extends Component {
   render() {
     const { posts, sermons } = this.props;
 
+    const desc =
+      "Nous sommes une église chrétienne protestante qui cherche à glorifier Dieu par la prière, par l'enseignement biblique, et par l'amour du prochain. Profondément attachés à la Bible, nous avons à cœur de diffuser son message, qui est centré sur la personne et l'oeuvre de Jésus-Christ.";
+
     return (
       <div>
-        <Helmet title="Accueil" />
+        <Helmet titleTemplate="%s">
+          <title>Église Lyon Gerland • Réformée • Évangélique</title>
+          <meta name="description" content={desc} />
+          <meta property="og:description" content={desc} />
+        </Helmet>
 
         <Jumbotron height="100vh" background={worship}>
           <Container md style={{ color: "white", textAlign: "center" }}>
