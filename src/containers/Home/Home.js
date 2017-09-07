@@ -41,7 +41,9 @@ const asyncPromises = [
       }
 
       if (!isPostsLoaded(SERMONS_KEY, getState())) {
-        promises.push(dispatch(loadPosts(SERMONS_KEY, { limit: 2 })));
+        promises.push(
+          dispatch(loadPosts(SERMONS_KEY, { limit: 2, category: 1 }))
+        );
       }
 
       if (__CLIENT__ || !promises.length) {
