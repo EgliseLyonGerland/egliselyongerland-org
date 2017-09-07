@@ -30,9 +30,8 @@ $header-zindex: 100;
 $header-logo-height: 58px;
 $header-brand-height: 36px;
 $header-sticky-height: $header-height * 0.6;
-$header-sticky-logo-scale: 0.8;
 $header-sticky-brand-scale: 0.8;
-$header-sticky-brand-translate: -5%;
+$header-sticky-brand-translate: -10px;
 
 // -- Sidebar
 $footer-height: 70px;

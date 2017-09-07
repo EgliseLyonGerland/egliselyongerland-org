@@ -97,24 +97,28 @@ class Header extends Component {
     return (
       <div className={className}>
         <Container className={styles.body}>
-          <Link to="/">
-            <img
-              className={styles.logo}
-              src={logo}
-              height="40"
-              alt="Église Lyon Gerland"
-            />
-          </Link>
+          <div className={styles.brand}>
+            <Link className={styles.logo} to="/">
+              <img src={logo} alt="Église Lyon Gerland" />
+            </Link>
 
-          {browser.width >= 600 &&
-            <Link to="/">
-              <img
-                className={styles.brand}
-                src={brand}
-                height="22"
-                alt="Église Lyon Gerland"
-              />
-            </Link>}
+            {browser.width >= 600 &&
+              <Link to="/">
+                <img
+                  className={styles.title}
+                  src={brand}
+                  height="22"
+                  alt="Église Lyon Gerland"
+                />
+              </Link>}
+
+            <div
+              className={styles.betaMark}
+              title="Ce site internet est en cours de perfectionnement. Il se peut que vous rencontriez des problèmes au cours de votre navigation et nous vous prions de nous en excuser."
+            >
+              beta
+            </div>
+          </div>
 
           <div className={styles.blankItem} />
 
