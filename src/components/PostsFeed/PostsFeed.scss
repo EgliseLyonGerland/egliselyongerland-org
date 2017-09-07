@@ -87,7 +87,13 @@
 
 .category {
   font-weight: $font-weight-regular;
-  color: #999;
+
+  &,
+  &:hover,
+  &:focus,
+  &:visited {
+    color: #999;
+  }
 }
 
 .bullet {
