@@ -18,7 +18,7 @@ class WhatWhenWhere extends Component {
           <Text>302 avenue Jean Jaurès</Text>
           <Text>69007 Lyon</Text>
           <Hr lg />
-          <Link to={routes.church()}>
+          <Link to={routes.worship()}>
             <Button>En savoir plus</Button>
           </Link>
           <Hr inline />

@@ -32,7 +32,13 @@ const routes = {
 
   sermons: () => routes.blog({ category: 1 }),
   post: id => `/blog/post/${id}`,
-  church: () => "/qui-sommes-nous",
+  church: () => routes.aboutUs(),
+  aboutUs: () => "/qui-sommes-nous",
+  ourFaith: () => "/que-croyons-nous",
+  worship: () => "/le-culte",
+  activity: () => "/activites",
+  team: () => "/l-equipe",
+  federativeLinks: () => "/liens-federatifs",
   contact: () => "/contact"
 };
 
