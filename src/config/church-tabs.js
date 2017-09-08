@@ -12,7 +12,7 @@ export default [
     slug: "qui-sommes-nous",
     title: "Qui sommes-nous ?",
     picture: aboutUsPicture,
-    component: ChurchWip
+    component: ChurchAboutUs
   },
   {
     slug: "que-croyons-nous",

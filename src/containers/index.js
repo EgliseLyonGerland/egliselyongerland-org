@@ -7,4 +7,5 @@ export Wip from "./Wip/Wip";
 
 // Church containers
 export Church from "./Church/Church";
+export ChurchAboutUs from "./Church/AboutUs";
 export ChurchWip from "./Church/Wip";
