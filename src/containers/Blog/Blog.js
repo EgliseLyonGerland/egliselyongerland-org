@@ -240,7 +240,7 @@ export default class Blog extends Component {
     }
 
     const filters = [
-      this.renderSearchFilter(),
+      // this.renderSearchFilter(),
       this.renderCategoriesFilter(),
       this.renderAuthorsFilter(),
       this.renderBibleFilter()
