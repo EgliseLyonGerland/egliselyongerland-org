@@ -4,8 +4,8 @@
   @include clearfix;
   margin-right: auto;
   margin-left: auto;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 35px;
+  padding-right: 35px;
   max-width: 1200px;
 }
 
@@ -23,4 +23,18 @@
 }
 .xl {
   max-width: 1300px;
+}
+
+@media screen and (max-width: 480px) {
+  .container {
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .container {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
 }

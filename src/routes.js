@@ -4,7 +4,16 @@ import { IndexRoute, Route } from "react-router";
 
 import churchTabs from "./config/church-tabs";
 
-import { App, Home, Blog, Post, Church, NotFound, Wip } from "containers";
+import {
+  App,
+  Blog,
+  Church,
+  Contact,
+  Home,
+  NotFound,
+  Post,
+  Wip
+} from "containers";
 
 export default () =>
   <Route path="/" component={App}>
@@ -25,7 +34,7 @@ export default () =>
     />
     <Route path="/blog/post/:postId" component={Post} />
 
-    <Route path="/contact" component={Wip} />
+    <Route path="/contact" component={Contact} />
 
     {/* Catch all route */}
     <Route path="*" component={NotFound} status={404} />

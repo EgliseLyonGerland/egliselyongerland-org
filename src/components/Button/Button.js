@@ -11,11 +11,16 @@ export default class Button extends Component {
   static propTypes = {
     children: PropTypes.any.isRequired,
     rounded: PropTypes.bool,
-    negative: PropTypes.bool
+    negative: PropTypes.bool,
+    onClick: PropTypes.func
+  };
+
+  static defaultProps = {
+    onClick: () => {}
   };
 
   render() {
-    const { children, rounded, negative } = this.props;
+    const { children, rounded, negative, onClick } = this.props;
 
     const size = SIZES.reduce(
       (prev, curr) => (this.props[curr] ? curr : prev),
@@ -28,7 +33,7 @@ export default class Button extends Component {
     });
 
     return (
-      <button className={className}>
+      <button className={className} onClick={() => onClick()}>
         {children}
       </button>
     );
