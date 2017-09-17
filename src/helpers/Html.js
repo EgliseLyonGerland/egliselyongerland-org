@@ -13,8 +13,7 @@ import Helmet from "react-helmet";
  * HTML doctype declaration, which is added to the rendered output
  * by the server.js file.
  */
-const Html = ({ assets, component, store }) => {
-  const content = component ? ReactDOM.renderToString(component) : "";
+const Html = ({ assets, content, css, store }) => {
   const head = Helmet.renderStatic();
 
   return (
@@ -54,7 +53,7 @@ const Html = ({ assets, component, store }) => {
           type="text/css"
         />
 
-        {Object.keys(assets.styles).map((style, key) =>
+        {Object.keys(assets.styles).map((style, key) => (
           <link
             href={assets.styles[style]}
             key={key}
@@ -63,7 +62,9 @@ const Html = ({ assets, component, store }) => {
             type="text/css"
             charSet="UTF-8"
           />
-        )}
+        ))}
+
+        {css && <style dangerouslySetInnerHTML={{ __html: css }} />}
       </head>
       <body>
         <div id="content" dangerouslySetInnerHTML={{ __html: content }} />
@@ -81,7 +82,8 @@ const Html = ({ assets, component, store }) => {
 
 Html.propTypes = {
   assets: PropTypes.object,
-  component: PropTypes.node,
+  content: PropTypes.string,
+  css: PropTypes.string,
   store: PropTypes.object
 };
 

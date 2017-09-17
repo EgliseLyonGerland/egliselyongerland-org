@@ -15,6 +15,13 @@ import { ReduxAsyncConnect, loadOnServer } from "redux-connect";
 import createHistory from "react-router/lib/createMemoryHistory";
 import { Provider } from "react-redux";
 
+// JSS
+import { JssProvider, SheetsRegistry } from "react-jss";
+import { create } from "jss";
+import preset from "jss-preset-default";
+import { MuiThemeProvider, createMuiTheme } from "material-ui/styles";
+import createGenerateClassName from "material-ui/styles/createGenerateClassName";
+
 import createStore from "./redux/create";
 import ApiClient from "./helpers/ApiClient";
 import Html from "./helpers/Html";
@@ -75,11 +82,24 @@ app.use((req, res) => {
           store,
           helpers: { client }
         }).then(() => {
+          const sheetsRegistry = new SheetsRegistry();
+          const theme = createMuiTheme(require("./config/theme"));
+
+          const jss = create(preset());
+          jss.options.createGenerateClassName = createGenerateClassName;
+
           const component = (
             <Provider store={store} key="provider">
-              <ReduxAsyncConnect {...renderProps} />
+              <JssProvider registry={sheetsRegistry} jss={jss}>
+                <MuiThemeProvider theme={theme} sheetsManager={new Map()}>
+                  <ReduxAsyncConnect {...renderProps} />
+                </MuiThemeProvider>
+              </JssProvider>
             </Provider>
           );
+
+          const content = ReactDOM.renderToString(component);
+          const css = sheetsRegistry.toString();
 
           res.status(200);
 
@@ -91,7 +111,8 @@ app.use((req, res) => {
               ReactDOM.renderToString(
                 <Html
                   assets={webpackIsomorphicTools.assets()}
-                  component={component}
+                  content={content}
+                  css={css}
                   store={store}
                 />
               )
