@@ -136,6 +136,7 @@ export default class Post extends Component {
     const { post } = this.props;
 
     const title = get(post, "title", "Chargement...");
+    const excerpt = get(post, "excerpt", "");
     const tags = get(post, "tags", []);
     const imageLargeUrl = get(post, "picture.sizes.large.url", null);
     const imageOriginalUrl = get(post, "picture.url", null);
@@ -150,12 +151,11 @@ export default class Post extends Component {
 
             { property: "og:type", content: "article" },
             { property: "og:title", content: title },
-            { property: "og:description", content: title },
+            { property: "og:description", content: excerpt },
             { property: "og:image", content: imageOriginalUrl },
 
             { property: "twitter:title", content: title },
-            { property: "twitter:title", content: title },
-            { property: "twitter:description", content: title },
+            { property: "twitter:description", content: excerpt },
             { property: "twitter:image", content: imageOriginalUrl }
           ]}
         />
