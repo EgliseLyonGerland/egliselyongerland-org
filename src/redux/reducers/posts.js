@@ -1,6 +1,3 @@
-// import { arrayOf } from 'normalizr';
-// import { postSchema } from 'redux/schemas';
-
 import { LOAD, LOAD_SUCCESS, LOAD_FAIL } from "redux/actions/posts";
 
 const initialPostsState = {
@@ -31,7 +28,7 @@ export default function posts(state = {}, action = {}) {
         [action.key]: {
           ...initialPostsState,
           ...state[action.key],
-          ...action.data,
+          ...action.data.result,
           loading: false,
           loaded: true
         }

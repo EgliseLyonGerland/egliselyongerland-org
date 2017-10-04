@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-
 import { connect } from "react-redux";
 import { asyncConnect } from "redux-connect";
 import { has, reduce } from "lodash";
 import { TransitionMotion, spring } from "react-motion";
 import randomcolor from "randomcolor";
+import { denormalize } from "normalizr";
 
 import { load as loadPosts } from "redux/actions/posts";
 import routes from "utils/routes";
+import { postSchema } from "redux/schemas";
 
 import Helmet from "react-helmet";
 
@@ -85,6 +86,7 @@ const LIMIT = 10;
     maxPage = Math.ceil(total / LIMIT);
   }
 
+  const entities = state.entities;
   const browser = state.browser;
   const location = state.routing.locationBeforeTransitions;
 
@@ -95,6 +97,7 @@ const LIMIT = 10;
     posts,
     aggs,
     loading,
+    entities,
     browser,
     location,
     params: { ...params, ...location.query }
@@ -116,6 +119,12 @@ export default class Blog extends Component {
   static contextTypes = {
     router: PropTypes.object
   };
+
+  getDenormalizedPosts() {
+    const { posts, entities } = this.props;
+
+    return denormalize(posts, [postSchema], entities);
+  }
 
   renderBibleFilter() {
     const { loading, params, aggs: { bibleRefs = null } } = this.props;
@@ -264,7 +273,9 @@ export default class Blog extends Component {
   }
 
   renderPosts() {
-    const { posts, loading, location: { query } } = this.props;
+    const { loading, location: { query } } = this.props;
+
+    const posts = this.getDenormalizedPosts();
 
     if (loading) {
       return (
@@ -337,7 +348,7 @@ export default class Blog extends Component {
           <TransitionMotion
             styles={[
               {
-                key: location.key,
+                key: `${location.key}`,
                 data: posts,
                 style: { x: spring(0) }
               }

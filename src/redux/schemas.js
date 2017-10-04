@@ -1,20 +1,27 @@
-import { schema, arrayOf } from "normalizr";
+import { schema } from "normalizr";
 
-const postSchema = new schema.Entity("posts", {
+const { Entity } = schema;
+
+const authorSchema = new Entity("authors", {
   idAttribute: "id"
 });
 
-const authorSchema = new schema.Entity("authors", {
+const categorySchema = new Entity("categories", {
   idAttribute: "id"
 });
 
-const categorySchema = new schema.Entity("categories", {
-  idAttribute: "id"
-});
-
-postSchema.define({
-  author: authorSchema,
-  categories: arrayOf(categorySchema)
-});
+const postSchema = new Entity(
+  "posts",
+  {
+    author: authorSchema,
+    categories: [categorySchema]
+  },
+  {
+    idAttribute: "id",
+    processStrategy: (entity, parent, key) => {
+      return { ...entity, partial: key === "data" };
+    }
+  }
+);
 
 export { postSchema, authorSchema, categorySchema };

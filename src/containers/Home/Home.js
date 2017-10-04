@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-
 import { connect } from "react-redux";
 import { asyncConnect } from "redux-connect";
 import { Link } from "react-router";
 import Helmet from "react-helmet";
 import { differenceBy } from "lodash";
+import { denormalize } from "normalizr";
+
+import { postSchema } from "redux/schemas";
 
 import {
   isLoaded as isPostsLoaded,
@@ -28,7 +30,7 @@ import worship from "./worship.jpg";
 import sunshineLeft from "./sunshine-left.svg";
 import sunshineRight from "./sunshine-right.svg";
 
-const POSTS_KEY = "home-posts";
+const LASTS_KEY = "home-lasts";
 const SERMONS_KEY = "home-sermons";
 
 const asyncPromises = [
@@ -36,8 +38,8 @@ const asyncPromises = [
     promise: ({ store: { dispatch, getState } }) => {
       const promises = [];
 
-      if (!isPostsLoaded(POSTS_KEY, getState())) {
-        promises.push(dispatch(loadPosts(POSTS_KEY, { limit: 10 })));
+      if (!isPostsLoaded(LASTS_KEY, getState())) {
+        promises.push(dispatch(loadPosts(LASTS_KEY, { limit: 10 })));
       }
 
       if (!isPostsLoaded(SERMONS_KEY, getState())) {
@@ -56,31 +58,44 @@ const asyncPromises = [
 ];
 
 const mapStateToProps = state => {
-  let posts = [];
-  let sermons = [];
-
-  if (isPostsLoaded(SERMONS_KEY, state)) {
-    sermons = state.posts[SERMONS_KEY].data;
-  }
-
-  if (isPostsLoaded(POSTS_KEY, state)) {
-    posts = differenceBy(state.posts[POSTS_KEY].data, sermons, "id");
-  }
+  const lasts = state.posts[LASTS_KEY].data;
+  const sermons = state.posts[SERMONS_KEY].data;
+  const entities = state.entities;
 
   return {
-    posts,
-    sermons
+    lasts,
+    sermons,
+    entities
   };
 };
 
 class Home extends Component {
   static propTypes = {
-    posts: PropTypes.array,
-    sermons: PropTypes.array
+    lasts: PropTypes.array,
+    sermons: PropTypes.array,
+    entities: PropTypes.object
   };
 
+  getDenormalizedPosts() {
+    const { lasts, sermons, entities } = this.props;
+
+    const denormalizedLasts = denormalize(lasts, [postSchema], entities);
+    const denormalizedSermons = denormalize(sermons, [postSchema], entities);
+
+    const filteredLasts = differenceBy(
+      denormalizedLasts,
+      denormalizedSermons,
+      "id"
+    );
+
+    return {
+      lasts: filteredLasts,
+      sermons: denormalizedSermons
+    };
+  }
+
   render() {
-    const { posts, sermons } = this.props;
+    const { lasts, sermons } = this.getDenormalizedPosts();
 
     const desc =
       "Nous sommes une église chrétienne protestante qui cherche à glorifier Dieu par la prière, par l'enseignement biblique, et par l'amour du prochain. Profondément attachés à la Bible, nous avons à cœur de diffuser son message, qui est centré sur la personne et l'oeuvre de Jésus-Christ.";
@@ -131,7 +146,7 @@ class Home extends Component {
             <div className="col-md-7">
               <H2>Derniers posts</H2>
               <Hr />
-              <PostsFeed posts={posts} />
+              <PostsFeed posts={lasts} />
               <Hr lg />
               <Link to={routes.blog()} className="pull-right">
                 <Button sm>Tous les posts</Button>

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-
 import { connect } from "react-redux";
 import { asyncConnect } from "redux-connect";
 import Helmet from "react-helmet";
@@ -8,6 +7,10 @@ import moment from "moment";
 import Disqus from "react-disqus-thread";
 import md5 from "md5";
 import { get, some } from "lodash";
+import { denormalize } from "normalizr";
+
+import { postSchema } from "redux/schemas";
+import { load as loadPost, isLoaded as isPostLoaded } from "redux/actions/post";
 
 import {
   Container,
@@ -17,8 +20,6 @@ import {
   PostContent,
   AudioPlayer
 } from "components";
-
-import { load as loadPost, isLoaded as isPostLoaded } from "redux/actions/post";
 
 import { disqus } from "../../config";
 
@@ -40,21 +41,32 @@ import styles from "./Post.scss";
   }
 ])
 @connect((state, props) => {
-  const { post } = state;
+  const { entities } = state;
   const { params: { postId } } = props;
 
+  const post = entities.posts[postId];
+
   return {
-    post: post[postId].data
+    post,
+    entities
   };
 })
 export default class Post extends Component {
   static propTypes = {
-    post: PropTypes.object
+    post: PropTypes.object,
+    entities: PropTypes.object
   };
 
   static defaultProps = {
-    post: null
+    post: null,
+    entities: null
   };
+
+  getDenormalizedPost() {
+    const { post, entities } = this.props;
+
+    return denormalize(post, postSchema, entities);
+  }
 
   renderMetabar(post) {
     return (
@@ -128,7 +140,7 @@ export default class Post extends Component {
   }
 
   render() {
-    const { post } = this.props;
+    const post = this.getDenormalizedPost();
 
     const title = get(post, "title", "Chargement...");
     const excerpt = get(post, "excerpt", "");
@@ -162,7 +174,7 @@ export default class Post extends Component {
           overlay={0.3}
           fontSize={2.6}
         />
-        {post && this.renderPost(post)}
+        {!post.partial && this.renderPost(post)}
       </div>
     );
   }
