@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { asyncConnect } from "redux-connect";
 import Helmet from "react-helmet";
 import moment from "moment";
-import Disqus from "react-disqus-thread";
 import md5 from "md5";
 import { get, some } from "lodash";
 import { denormalize } from "normalizr";
@@ -20,8 +19,6 @@ import {
   PostContent,
   AudioPlayer
 } from "components";
-
-import { disqus } from "../../config";
 
 import styles from "./Post.scss";
 
@@ -82,23 +79,6 @@ export default class Post extends Component {
     );
   }
 
-  renderComments(post) {
-    return (
-      <Container sm>
-        <div className={styles.comments}>
-          <Hr xl />
-          <Hr xl line color="#CCC" />
-          <Hr xl />
-
-          <Disqus
-            shortname={disqus.shortname}
-            identifier={md5(`post-${post.id}`)}
-          />
-        </div>
-      </Container>
-    );
-  }
-
   renderContent(post) {
     const isPredication = some(post.categories, ["slug", "predications"]);
     const audioUrl = get(post, "extras.audioUrl", null);
@@ -134,7 +114,6 @@ export default class Post extends Component {
         {this.renderMetabar(post)}
         <Hr xl />
         {this.renderContent(post)}
-        {this.renderComments(post)}
       </div>
     );
   }
