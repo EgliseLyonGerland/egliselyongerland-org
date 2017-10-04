@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Container, Text, H2, Hr } from "components";
+import { Container, Text, Hr } from "components";
 
 import theme from "config/theme";
 

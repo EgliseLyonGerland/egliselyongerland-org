@@ -57,11 +57,7 @@ class Hr extends Component {
       }
     }
 
-    return (
-      <div {...newProps}>
-        {children}
-      </div>
-    );
+    return <div {...newProps}>{children}</div>;
   }
 }
 

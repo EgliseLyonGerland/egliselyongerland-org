@@ -169,13 +169,14 @@ export default class Blog extends Component {
               routes.blog({ ...params, page: undefined, category: key })
             )}
         >
-          {label =>
+          {label => (
             <Text fontSize={1} maxLines={1} ellipsis>
               {label.label}{" "}
               <Text fontSize={0.8} element="span" color="#AAA">
                 ({label.total})
               </Text>
-            </Text>}
+            </Text>
+          )}
         </LabelPicker>
       </PickerPanel>
     );
@@ -208,13 +209,14 @@ export default class Blog extends Component {
               routes.blog({ ...params, page: undefined, author: key })
             )}
         >
-          {label =>
+          {label => (
             <Text fontSize={1} maxLines={1} ellipsis>
               {label.label}{" "}
               <Text fontSize={0.8} element="span" color="#AAA">
                 ({label.total})
               </Text>
-            </Text>}
+            </Text>
+          )}
         </LabelPicker>
       </PickerPanel>
     );
@@ -250,12 +252,12 @@ export default class Blog extends Component {
       <div>
         {filters.map(
           (filter, index) =>
-            filter
-              ? <div key={index}>
-                  {filter}
-                  <Hr lg />
-                </div>
-              : null
+            filter ? (
+              <div key={index}>
+                {filter}
+                <Hr lg />
+              </div>
+            ) : null
         )}
       </div>
     );
@@ -328,9 +330,7 @@ export default class Blog extends Component {
 
     return (
       <div className="row">
-        <div className="col-xs-5">
-          {this.renderFilters()}
-        </div>
+        <div className="col-xs-5">{this.renderFilters()}</div>
         <div className="col-xs-7">
           {this.renderNavigation()}
 
@@ -345,7 +345,7 @@ export default class Blog extends Component {
             willEnter={() => ({ x: 110 })}
             willLeave={() => ({ x: spring(-110) })}
           >
-            {interpolatedStyles =>
+            {interpolatedStyles => (
               <div
                 style={{
                   width: "100%",
@@ -353,7 +353,7 @@ export default class Blog extends Component {
                   overflowX: "hidden"
                 }}
               >
-                {interpolatedStyles.map(({ key, style, data }, index) =>
+                {interpolatedStyles.map(({ key, style, data }, index) => (
                   <div
                     key={key}
                     style={{
@@ -366,8 +366,9 @@ export default class Blog extends Component {
                   >
                     {data}
                   </div>
-                )}
-              </div>}
+                ))}
+              </div>
+            )}
           </TransitionMotion>
         </div>
       </div>
@@ -378,9 +379,7 @@ export default class Blog extends Component {
     return (
       <div>
         {this.renderPosts()}
-        <PopButton title="Filtres">
-          {this.renderFilters()}
-        </PopButton>
+        <PopButton title="Filtres">{this.renderFilters()}</PopButton>
       </div>
     );
   }

@@ -61,9 +61,9 @@ export default class PanePicker extends Component {
             defaultStyle={{ x: 0 }}
             style={{ x: spring(currentPaneIndex * 100) }}
           >
-            {style =>
+            {style => (
               <div style={{ transform: `translateX(${-style.x}%)` }}>
-                {panes.map(pane =>
+                {panes.map(pane => (
                   <div
                     key={pane.key}
                     className={styles.pane}
@@ -71,8 +71,9 @@ export default class PanePicker extends Component {
                   >
                     {pane.children}
                   </div>
-                )}
-              </div>}
+                ))}
+              </div>
+            )}
           </Motion>
         </div>
       </div>

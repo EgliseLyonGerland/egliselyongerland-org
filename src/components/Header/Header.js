@@ -5,7 +5,7 @@ import { Link } from "react-router";
 import classes from "classnames";
 import EventListener, { withOptions } from "react-event-listener";
 
-import { Sidebar, SearchButton, Burger, Container } from "components";
+import { Sidebar, /* SearchButton, */ Burger, Container } from "components";
 import routes from "utils/routes";
 
 import styles from "./Header.scss";
@@ -37,7 +37,7 @@ class Header extends Component {
   static propTypes = {
     browser: PropTypes.object.isRequired,
     sidebarOpened: PropTypes.bool,
-    onSearchButtonClicked: PropTypes.func.isRequired,
+    // onSearchButtonClicked: PropTypes.func.isRequired,
     onOpenSidebarButtonClicked: PropTypes.func.isRequired,
     onCloseSidebarButtonClicked: PropTypes.func.isRequired
   };
@@ -78,7 +78,7 @@ class Header extends Component {
     const {
       browser,
       sidebarOpened,
-      onSearchButtonClicked,
+      // onSearchButtonClicked,
       onOpenSidebarButtonClicked,
       onCloseSidebarButtonClicked
     } = this.props;
@@ -105,7 +105,7 @@ class Header extends Component {
               <img src={logo} alt="Église Lyon Gerland" />
             </Link>
 
-            {browser.width >= 600 &&
+            {browser.width >= 600 && (
               <Link to="/">
                 <img
                   className={styles.title}
@@ -113,7 +113,8 @@ class Header extends Component {
                   height="22"
                   alt="Église Lyon Gerland"
                 />
-              </Link>}
+              </Link>
+            )}
 
             <div
               className={styles.betaMark}
@@ -125,42 +126,45 @@ class Header extends Component {
 
           <div className={styles.blankItem} />
 
-          {browser.width >= 930
-            ? <div className={styles.links}>
-                {links.map((link, index) =>
-                  <div className={styles.linksItem} key={index}>
-                    <Link className={styles.link} to={link.path}>
-                      {link.label}
-                    </Link>
-                  </div>
-                )}
-              </div>
-            : <button
-                className={styles.burger}
-                onClick={() => this.toggleSidebar()}
-              >
-                <Burger
-                  weight={3}
-                  width={17}
-                  height={17}
-                  color="white"
-                  muted={sidebarOpened}
-                  rounded
-                />
-              </button>}
+          {browser.width >= 930 ? (
+            <div className={styles.links}>
+              {links.map((link, index) => (
+                <div className={styles.linksItem} key={index}>
+                  <Link className={styles.link} to={link.path}>
+                    {link.label}
+                  </Link>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <button
+              className={styles.burger}
+              onClick={() => this.toggleSidebar()}
+            >
+              <Burger
+                weight={3}
+                width={17}
+                height={17}
+                color="white"
+                muted={sidebarOpened}
+                rounded
+              />
+            </button>
+          )}
 
           {/* <div className={styles.search}>
             <SearchButton onClicked={() => onSearchButtonClicked()} />
           </div> */}
         </Container>
 
-        {browser.width < 930 &&
+        {browser.width < 930 && (
           <Sidebar
             links={links}
             opened={sidebarOpened}
             onOpenSidebarButtonClicked={() => onOpenSidebarButtonClicked()}
             onCloseSidebarButtonClicked={() => onCloseSidebarButtonClicked()}
-          />}
+          />
+        )}
       </div>
     );
   }

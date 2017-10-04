@@ -25,10 +25,11 @@ export default class TabPicker extends Component {
 
   static defaultProps = {
     activeBarColor: "red",
-    renderLabel: ({ label }) =>
+    renderLabel: ({ label }) => (
       <Text fontSize={0.9} fontWeight="medium" ellipsis maxLines={1}>
         {label}
       </Text>
+    )
   };
 
   handleChangeTab(tab) {

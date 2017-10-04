@@ -32,7 +32,7 @@ export default class BlankItemsFeed extends Component {
           [`${styles.horizontal}`]: horizontal
         })}
       >
-        {fill(new Array(items), 0).map((value, index) =>
+        {fill(new Array(items), 0).map((value, index) => (
           <div className={styles.item} key={index}>
             <div
               className={styles.picture}
@@ -53,7 +53,7 @@ export default class BlankItemsFeed extends Component {
               />
             </div>
           </div>
-        )}
+        ))}
       </div>
     );
   }

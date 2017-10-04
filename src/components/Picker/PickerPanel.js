@@ -5,17 +5,19 @@ import { Text } from "components";
 
 import styles from "./PickerPanel.scss";
 
-const PickerPanel = ({ children, title }) =>
+const PickerPanel = ({ children, title }) => (
   <div className={styles.panel}>
-    {title &&
+    {title && (
       <div className={styles.title}>
         <Text fontSize={1} fontWeight="medium">
           {title}
         </Text>
-      </div>}
+      </div>
+    )}
 
     {children}
-  </div>;
+  </div>
+);
 
 PickerPanel.propTypes = {
   children: PropTypes.any.isRequired,

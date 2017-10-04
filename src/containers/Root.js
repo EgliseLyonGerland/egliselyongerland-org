@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { Provider } from "react-redux";
 import { Router, applyRouterMiddleware } from "react-router";
 import { ReduxAsyncConnect } from "redux-connect";
@@ -19,8 +20,7 @@ export default class Root extends Component {
   static propTypes = {
     store: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired,
-    routes: React.PropTypes.oneOfType([PropTypes.array, PropTypes.object])
-      .isRequired
+    routes: PropTypes.oneOfType([PropTypes.array, PropTypes.object]).isRequired
   };
 
   render() {
@@ -32,11 +32,12 @@ export default class Root extends Component {
           <Router
             key={module.hot && new Date()}
             onUpdate={logPageView}
-            render={props =>
+            render={props => (
               <ReduxAsyncConnect
                 {...props}
                 render={applyRouterMiddleware(useScroll())}
-              />}
+              />
+            )}
             {...this.props}
           />
         </MuiThemeProvider>

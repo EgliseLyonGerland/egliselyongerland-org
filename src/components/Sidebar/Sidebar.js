@@ -40,11 +40,11 @@ export default class Sidebar extends Component {
     return (
       <div className={classes(styles.sidebar, opened && styles.opened)}>
         <div className={styles.content}>
-          {links.map(link =>
+          {links.map(link => (
             <Link key={link.path} to={link.path} className={styles.link}>
               {link.label}
             </Link>
-          )}
+          ))}
         </div>
       </div>
     );

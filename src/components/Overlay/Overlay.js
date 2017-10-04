@@ -3,11 +3,12 @@ import PropTypes from "prop-types";
 
 import styles from "./Overlay.scss";
 
-const Overlay = ({ active, onClicked }) =>
+const Overlay = ({ active, onClicked }) => (
   <div
     className={`${styles.overlay} ${active ? styles.active : ""}`}
     onClick={() => onClicked()}
-  />;
+  />
+);
 
 Overlay.propTypes = {
   active: PropTypes.bool,

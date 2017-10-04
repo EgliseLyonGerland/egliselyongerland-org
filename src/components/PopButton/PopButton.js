@@ -28,21 +28,21 @@ class PopButton extends Component {
 
     return (
       <div className={`${styles.container} ${opened ? styles.opened : ""}`}>
-        {opened
-          ? <div className={styles.content}>
-              <div className={styles.closeButton} onClick={() => this.close()}>
-                <Text className="fa fa-times" />
-              </div>
-
-              <Text fontWeight="bold">
-                {title}
-              </Text>
-              <Hr lg line />
-              {children}
+        {opened ? (
+          <div className={styles.content}>
+            <div className={styles.closeButton} onClick={() => this.close()}>
+              <Text className="fa fa-times" />
             </div>
-          : <div className={styles.button} onClick={() => this.open()}>
-              <span className="fa fa-tasks" />
-            </div>}
+
+            <Text fontWeight="bold">{title}</Text>
+            <Hr lg line />
+            {children}
+          </div>
+        ) : (
+          <div className={styles.button} onClick={() => this.open()}>
+            <span className="fa fa-tasks" />
+          </div>
+        )}
       </div>
     );
   }

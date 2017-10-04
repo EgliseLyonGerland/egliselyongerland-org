@@ -29,7 +29,7 @@ class GridPicker extends Component {
 
     return (
       <div className={classes(styles.grid, { [styles.readOnly]: readOnly })}>
-        {items.map(item =>
+        {items.map(item => (
           <div
             key={item.key}
             className={classes(styles.cell, {
@@ -39,15 +39,13 @@ class GridPicker extends Component {
               !readOnly &&
               onChange(current === item.key ? undefined : item.key)}
           >
-            <span className={styles.label}>
-              {item.label}
-            </span>
+            <span className={styles.label}>{item.label}</span>
           </div>
-        )}
+        ))}
 
-        {fill(new Array(20), 0).map((value, index) =>
+        {fill(new Array(20), 0).map((value, index) => (
           <div key={index} className={styles.cellGhost} />
-        )}
+        ))}
       </div>
     );
   }

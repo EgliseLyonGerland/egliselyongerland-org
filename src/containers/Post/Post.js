@@ -12,10 +12,8 @@ import { get, some } from "lodash";
 import {
   Container,
   Jumbotron,
-  Image,
   Hr,
   H2,
-  Text,
   PostContent,
   AudioPlayer
 } from "components";
@@ -63,12 +61,8 @@ export default class Post extends Component {
       <Container md>
         <div className={`${styles.metabar} row`}>
           <div className="col-xs-6">
-            <div className={styles.postAuthor}>
-              {post.author.name}
-            </div>
-            <div className={styles.postDate}>
-              {moment(post.date).fromNow()}
-            </div>
+            <div className={styles.postAuthor}>{post.author.name}</div>
+            <div className={styles.postDate}>{moment(post.date).fromNow()}</div>
           </div>
         </div>
         <Hr nm line color="#eee" />
@@ -105,11 +99,12 @@ export default class Post extends Component {
           </Container>
           <Hr xl />
 
-          {post.content &&
+          {post.content && (
             <Container sm>
               <H2>Transcription</H2>
               <PostContent content={post.content} />
-            </Container>}
+            </Container>
+          )}
         </div>
       );
     }

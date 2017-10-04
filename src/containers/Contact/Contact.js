@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Helmet from "react-helmet";
 
-import { Container, Jumbotron, Button, Text, Hr } from "components";
+import { Container, Jumbotron, Text, Hr } from "components";
 
 import picture from "./jumbotron.jpg";
 
@@ -15,12 +15,6 @@ class Contact extends Component {
       showForm: false
     };
   }
-
-  handleSendMessageButton() {
-    console.log("toto");
-    this.setState({ showForm: true });
-  }
-
   renderTitle(title) {
     return (
       <Text
@@ -35,8 +29,6 @@ class Contact extends Component {
   }
 
   render() {
-    const { showForm } = this.state;
-
     return (
       <div>
         <Helmet>
@@ -84,6 +76,7 @@ class Contact extends Component {
                 frameBorder="0"
                 style={{ border: 0, width: "100%", height: 450 }}
                 allowFullScreen
+                title="Location de l'église"
               />
 
               <Hr xl />
@@ -104,8 +97,6 @@ class Contact extends Component {
         </Container> */}
 
         {/* <Hr xl /> */}
-
-        {showForm && <ContactForm />}
       </div>
     );
   }

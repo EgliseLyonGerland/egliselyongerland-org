@@ -4,27 +4,18 @@ import { IndexRoute, Route } from "react-router";
 
 import churchTabs from "./config/church-tabs";
 
-import {
-  App,
-  Blog,
-  Church,
-  Contact,
-  Home,
-  NotFound,
-  Post,
-  Wip
-} from "containers";
+import { App, Blog, Church, Contact, Home, NotFound, Post } from "containers";
 
-export default () =>
+export default () => (
   <Route path="/" component={App}>
     {/* Home (main) route */}
     <IndexRoute component={Home} />
 
     {/* Church routes */}
     <Route component={Church}>
-      {churchTabs.map(tab =>
+      {churchTabs.map(tab => (
         <Route key={tab.slug} path={`/${tab.slug}`} component={tab.component} />
-      )}
+      ))}
     </Route>
 
     {/* Blog routes */}
@@ -38,4 +29,5 @@ export default () =>
 
     {/* Catch all route */}
     <Route path="*" component={NotFound} status={404} />
-  </Route>;
+  </Route>
+);

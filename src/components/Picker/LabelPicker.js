@@ -62,25 +62,26 @@ class LabelPicker extends Component {
                   : "off"}`}
               />
 
-              {children
-                ? children(label)
-                : <Text fontSize={1} maxLines={1} ellipsis>
-                    {label.label}
-                  </Text>}
+              {children ? (
+                children(label)
+              ) : (
+                <Text fontSize={1} maxLines={1} ellipsis>
+                  {label.label}
+                </Text>
+              )}
             </div>
           );
         })}
 
         {crop !== null &&
-          labels.length > crop &&
-          <div
-            className={`${styles.more} clearfix`}
-            onClick={() => this.setState({ opened: !opened })}
-          >
-            <a>
-              Afficher {opened ? "moins" : "plus"}
-            </a>
-          </div>}
+          labels.length > crop && (
+            <div
+              className={`${styles.more} clearfix`}
+              onClick={() => this.setState({ opened: !opened })}
+            >
+              <a>Afficher {opened ? "moins" : "plus"}</a>
+            </div>
+          )}
       </div>
     );
   }

@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import ReactDOM from "react-dom/server";
 import serialize from "serialize-javascript";
 import Helmet from "react-helmet";
 

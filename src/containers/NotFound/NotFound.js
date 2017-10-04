@@ -10,7 +10,7 @@ import verses from "./verses.json";
 class NotFound extends Component {
   render() {
     const books = keys(verses);
-    const index = parseInt(moment().format("DDD")) % books.length;
+    const index = parseInt(moment().format("DDD"), 10) % books.length;
     const book = books[index];
     const verse = verses[book];
 

@@ -6,7 +6,7 @@ import Tabs, { Tab } from "material-ui/Tabs";
 import { withStyles } from "material-ui/styles";
 import AppBar from "material-ui/AppBar";
 
-import { Container, Jumbotron } from "components";
+import { Jumbotron } from "components";
 
 import churchTabs from "../../config/church-tabs";
 
@@ -69,14 +69,14 @@ class Church extends Component {
             centered
             scrollable={browser.width < 750}
           >
-            {churchTabs.map(tab =>
+            {churchTabs.map(tab => (
               <Tab
                 key={tab.slug}
                 label={tab.title}
                 value={tab.slug}
                 className={classes.tab}
               />
-            )}
+            ))}
           </Tabs>
         </AppBar>
 

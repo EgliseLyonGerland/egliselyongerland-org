@@ -45,13 +45,14 @@ class Jumbotron extends Component {
         style={{ backgroundImage: `url(${background || picture})` }}
       >
         <div className={styles.content} style={{ minHeight: height || "40vh" }}>
-          {title &&
+          {title && (
             <Container md className={styles.title}>
               <Text fontSize={fontSize} color="white" fontWeight={fontWeight}>
                 {title}
               </Text>
               <Hr line />
-            </Container>}
+            </Container>
+          )}
 
           {children}
         </div>

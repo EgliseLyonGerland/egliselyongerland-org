@@ -15,11 +15,7 @@ const Container = ({ children, className, style, ...props }) => {
     className: classnames(className, styles.container, styles[size])
   };
 
-  return (
-    <div {...newProps}>
-      {children}
-    </div>
-  );
+  return <div {...newProps}>{children}</div>;
 };
 
 Container.propTypes = {

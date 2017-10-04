@@ -50,26 +50,24 @@ export default class PostsFeed extends Component {
 
     return (
       <div className={styles.taxonomies}>
-        {category &&
+        {category && (
           <Link
             to={routes.blog({ category: category.id })}
             className={classes(styles.taxonomy, styles.category)}
           >
             {this.renderBullet(randomcolor({ seed: category.name }))}
-            <span className={styles.taxonomyLabel}>
-              {category.name}
-            </span>
-          </Link>}
-        {bibleRef &&
+            <span className={styles.taxonomyLabel}>{category.name}</span>
+          </Link>
+        )}
+        {bibleRef && (
           <Link
             to={routes.blog()}
             className={classes(styles.taxonomy, styles.ref)}
           >
             {this.renderBullet()}
-            <span className={styles.taxonomyLabel}>
-              {bibleRef.raw}
-            </span>
-          </Link>}
+            <span className={styles.taxonomyLabel}>{bibleRef.raw}</span>
+          </Link>
+        )}
       </div>
     );
   }
