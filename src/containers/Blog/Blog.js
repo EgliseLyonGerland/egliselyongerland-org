@@ -7,7 +7,7 @@ import { has, reduce } from "lodash";
 import { TransitionMotion, spring } from "react-motion";
 import randomcolor from "randomcolor";
 
-import { load as loadPosts } from "redux/modules/posts";
+import { load as loadPosts } from "redux/actions/posts";
 import routes from "utils/routes";
 
 import Helmet from "react-helmet";

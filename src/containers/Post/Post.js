@@ -18,7 +18,7 @@ import {
   AudioPlayer
 } from "components";
 
-import { load as loadPost, isLoaded as isPostLoaded } from "redux/modules/post";
+import { load as loadPost, isLoaded as isPostLoaded } from "redux/actions/post";
 
 import { disqus } from "../../config";
 

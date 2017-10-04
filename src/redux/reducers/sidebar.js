@@ -1,5 +1,4 @@
-const OPEN_SIDEBAR = "OPEN_SIDEBAR";
-const CLOSE_SIDEBAR = "CLOSE_SIDEBAR";
+import { OPEN_SIDEBAR, CLOSE_SIDEBAR } from "redux/actions/sidebar";
 
 const initialState = {
   opened: false
@@ -20,16 +19,4 @@ export default function sidebar(state = initialState, action = {}) {
     default:
       return state;
   }
-}
-
-export function openSidebar() {
-  return {
-    type: OPEN_SIDEBAR
-  };
-}
-
-export function closeSidebar() {
-  return {
-    type: CLOSE_SIDEBAR
-  };
 }

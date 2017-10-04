@@ -1,8 +1,6 @@
 // import { postSchema } from 'redux/schemas';
 
-const LOAD = "POST_LOAD";
-const LOAD_SUCCESS = "POST_LOAD_SUCCESS";
-const LOAD_FAIL = "POST_LOAD_FAIL";
+import { LOAD, LOAD_SUCCESS, LOAD_FAIL } from "redux/actions/post";
 
 export default function posts(state = {}, action = {}) {
   switch (action.type) {
@@ -37,19 +35,4 @@ export default function posts(state = {}, action = {}) {
     default:
       return state;
   }
-}
-
-export function isLoaded(globalState, id) {
-  return (
-    globalState.post && globalState.post[id] && globalState.post[id].loaded
-  );
-}
-
-export function load(id) {
-  return {
-    types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
-    promise: client => client.get(`/posts/${id}`),
-    // schema: postSchema,
-    id
-  };
 }

@@ -1,4 +1,4 @@
-import { showOverlay, hideOverlay } from "redux/modules/overlay";
+import { showOverlay, hideOverlay } from "redux/actions/overlay";
 
 export default ({ dispatch }) => next => action => {
   const { overlay, overlayDelay = 0 } = action;

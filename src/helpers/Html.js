@@ -63,7 +63,7 @@ const Html = ({ assets, content, css, store }) => {
           />
         ))}
 
-        {css && <style dangerouslySetInnerHTML={{ __html: css }} />}
+        {css ? <style dangerouslySetInnerHTML={{ __html: css }} /> : null}
       </head>
       <body>
         <div id="content" dangerouslySetInnerHTML={{ __html: content }} />

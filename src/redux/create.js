@@ -3,7 +3,7 @@ import { routerMiddleware } from "react-router-redux";
 import { createResponsiveStoreEnhancer } from "redux-responsive";
 import thunk from "redux-thunk";
 
-import reducer from "./modules/reducer";
+import reducers from "./reducers";
 
 import createClientMiddleware from "./middleware/clientMiddleware";
 import overlayMiddleware from "./middleware/overlayMiddleware";
@@ -40,12 +40,12 @@ export default function createStore(history, client, data) {
     finalCreateStore = applyMiddleware(...middleware)(_createStore);
   }
 
-  const store = finalCreateStore(reducer, data);
+  const store = finalCreateStore(reducers, data);
 
   if (__DEVELOPMENT__ && module.hot) {
-    module.hot.accept("./modules/reducer", () => {
+    module.hot.accept("./reducers", () => {
       // eslint-disable-next-line global-require
-      store.replaceReducer(require("./modules/reducer"));
+      store.replaceReducer(require("./reducers"));
     });
   }
 

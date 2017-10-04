@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 
 import Helmet from "react-helmet";
 import { connect } from "react-redux";
-import * as searchbarActions from "redux/modules/searchbar";
-import * as sidebarActions from "redux/modules/sidebar";
+import * as searchbarActions from "redux/actions/searchbar";
+import * as sidebarActions from "redux/actions/sidebar";
 
 import { Header, Footer /* , Search */, Overlay } from "components";
 

@@ -1,5 +1,5 @@
-import { closeSearchbar } from "redux/modules/searchbar";
-import { closeSidebar } from "redux/modules/sidebar";
+import { closeSearchbar } from "redux/actions/searchbar";
+import { closeSidebar } from "redux/actions/sidebar";
 
 export default ({ dispatch, getState }) => next => action => {
   const state = getState();

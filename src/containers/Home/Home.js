@@ -10,7 +10,7 @@ import { differenceBy } from "lodash";
 import {
   isLoaded as isPostsLoaded,
   load as loadPosts
-} from "redux/modules/posts";
+} from "redux/actions/posts";
 import routes from "utils/routes";
 
 import {

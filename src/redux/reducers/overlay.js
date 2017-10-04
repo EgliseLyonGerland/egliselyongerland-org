@@ -1,5 +1,4 @@
-const SHOW_OVERLAY = "SHOW_OVERLAY";
-const HIDE_OVERLAY = "HIDE_OVERLAY";
+import { SHOW_OVERLAY, HIDE_OVERLAY } from "redux/actions/post";
 
 const initialState = {
   active: false
@@ -20,16 +19,4 @@ export default function overlay(state = initialState, action = {}) {
     default:
       return state;
   }
-}
-
-export function showOverlay() {
-  return {
-    type: SHOW_OVERLAY
-  };
-}
-
-export function hideOverlay() {
-  return {
-    type: HIDE_OVERLAY
-  };
 }
