@@ -6,7 +6,7 @@ class Wip extends Component {
   render() {
     return (
       <div>
-        <Jumbotron height="100vh" title="Work in progress..." />
+        <Jumbotron title="Work in progress..." />
       </div>
     );
   }

@@ -6,33 +6,66 @@
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
+  position: relative;
 
-  &.overlay {
-    position: relative;
-
-    &:before {
-      content: "";
-      position: absolute;
-      display: block;
-      height: 100%;
-      width: 100%;
-      top: 0;
-      left: 0;
-      background: rgba(black, 0.2);
-    }
+  &:before {
+    content: "";
+    position: absolute;
+    display: block;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(black, 0.2);
   }
 }
 
-.content {
+.inner {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding-top: $header-sticky-height;
   position: relative;
   background: rgba(black, 0.2);
 }
 
+.emptyRow1 {
+  min-height: $header-height;
+}
+
+.emptyRow2 {
+  height: 8vh;
+  min-height: 50px;
+}
+
+.emptyRow3 {
+  height: 10vh;
+  min-height: 40px;
+}
+
 .title {
+  display: block;
+  font-size: 44px;
+  font-weight: bold;
+  margin: 0 20px;
   text-align: center;
+  color: white;
+  max-width: 790px;
+  padding: 0 20px;
+}
+
+@media screen and (max-width: 960px) {
+  .emptyRow1 {
+    min-height: $header-sticky-height;
+  }
+}
+
+@media screen and (max-width: 640px), screen and (max-height: 640px) {
+  .title {
+    font-size: 32px;
+  }
+
+  .emptyRow3 {
+    height: 5vh;
+  }
 }

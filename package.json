@@ -1,11 +1,10 @@
 {
   "name": "react-redux-universal-hot-example",
-  "description":
-    "Example of an isomorphic (universal) webapp using react redux and hot reloading",
-  "author":
-    "Erik Rasmussen <rasmussenerik@gmail.com> (http://github.com/erikras)",
+  "description": "Example of an isomorphic (universal) webapp using react redux and hot reloading",
+  "author": "Erik Rasmussen <rasmussenerik@gmail.com> (http://github.com/erikras)",
   "license": "UNLICENSED",
   "version": "0.9.0",
+  "prettier": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/erikras/react-redux-universal-hot-example"
@@ -30,12 +29,10 @@
     "start-prod": "better-npm-run start-prod",
     "build": "better-npm-run build",
     "lint": "eslint -c .eslintrc.js src",
-    "format":
-      "prettier-eslint --write \"src/**/*.js\" \"src/**/*.scss\" \"webpack/*.js\" ",
+    "format": "prettier-eslint --write \"src/**/*.js\" \"src/**/*.scss\" \"webpack/*.js\" ",
     "start-dev": "better-npm-run start-dev",
     "watch-client": "better-npm-run watch-client",
-    "dev":
-      "concurrently --kill-others \"npm run watch-client\" \"npm run start-dev\"",
+    "dev": "concurrently --kill-others \"npm run watch-client\" \"npm run start-dev\"",
     "postinstall": "npm rebuild node-sass",
     "heroku-postbuild": "npm run build"
   },
@@ -52,7 +49,7 @@
       "env": {
         "NODE_PATH": "./src",
         "NODE_ENV": "development",
-        "PORT": 3000
+        "PORT": 3001
       }
     },
     "watch-client": {
@@ -60,12 +57,11 @@
       "env": {
         "UV_THREADPOOL_SIZE": 100,
         "NODE_PATH": "./src",
-        "PORT": 3000
+        "PORT": 3001
       }
     },
     "build": {
-      "command":
-        "webpack --colors --display-error-details --config webpack/prod.config.js",
+      "command": "webpack --colors --display-error-details --config webpack/prod.config.js",
       "env": {
         "NODE_ENV": "production"
       }
@@ -105,7 +101,8 @@
     "lodash": "4.17.4",
     "lru-memoize": "1.0.2",
     "map-props": "1.0.0",
-    "material-ui": "next",
+    "material-ui": "1.0.0-beta.22",
+    "material-ui-icons": "1.0.0-beta.15",
     "md5": "2.2.1",
     "moment": "2.18.1",
     "multireducer": "3.1.0",

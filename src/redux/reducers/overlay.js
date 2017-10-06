@@ -1,4 +1,4 @@
-import { SHOW_OVERLAY, HIDE_OVERLAY } from "redux/actions/post";
+import { SHOW_OVERLAY, HIDE_OVERLAY } from "redux/actions/overlay";
 
 const initialState = {
   active: false

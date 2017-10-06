@@ -1,4 +1,5 @@
 import { schema } from "normalizr";
+import { some } from "lodash";
 
 const { Entity } = schema;
 
@@ -19,7 +20,11 @@ const postSchema = new Entity(
   {
     idAttribute: "id",
     processStrategy: (entity, parent, key) => {
-      return { ...entity, partial: key === "data" };
+      return {
+        ...entity,
+        partial: key === "data",
+        predication: some(entity.categories, ["slug", "predications"])
+      };
     }
   }
 );

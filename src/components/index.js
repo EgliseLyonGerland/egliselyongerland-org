@@ -18,7 +18,6 @@ export Image from "./Image/Image";
 export Jumbotron from "./Jumbotron/Jumbotron";
 export Overlay from "./Overlay/Overlay";
 export PopButton from "./PopButton/PopButton";
-export PostContent from "./PostContent/PostContent";
 export PostsFeed from "./PostsFeed/PostsFeed";
 export BlankItemsFeed from "./PostsFeed/BlankItemsFeed";
 export Search from "./Search/Search";

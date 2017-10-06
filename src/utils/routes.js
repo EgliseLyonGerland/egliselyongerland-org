@@ -1,5 +1,7 @@
 import qs from "qs";
 
+import config from "config";
+
 const routes = {
   blog: (params = {}) => {
     const paths = [];
@@ -14,13 +16,18 @@ const routes = {
 
     if (params.book) {
       paths.push(`/book/${params.book}`);
+
+      if (params.chapter) {
+        paths.push(`/chapter/${params.chapter}`);
+      }
     }
 
     const query = qs.stringify({
       ...params,
       category: undefined,
       author: undefined,
-      book: undefined
+      book: undefined,
+      chapter: undefined
     });
 
     if (query) {
@@ -42,4 +49,8 @@ const routes = {
   contact: () => "/contact"
 };
 
-export default routes;
+const getShareUrl = path => {
+  return `${config.app.host}${path}`;
+};
+
+export { routes as default, getShareUrl };

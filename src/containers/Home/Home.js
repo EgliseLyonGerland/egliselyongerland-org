@@ -108,7 +108,7 @@ class Home extends Component {
           <meta property="og:description" content={desc} />
         </Helmet>
 
-        <Jumbotron height="100vh" background={worship}>
+        <Jumbotron background={worship}>
           <Container md style={{ color: "white", textAlign: "center" }}>
             <Text fontSize={4} fontWeight="thin" element="div">
               <img src={sunshineLeft} alt="" />

@@ -38,5 +38,10 @@ export default {
       A700: "#b598ff",
       contrastDefaultColor: "dark"
     }
-  }
+  },
+  gradient: () => ({
+    // background: '#4776e6',
+    // background: '-webkit-linear-gradient(to right, #4776e6, #8e54e9)',
+    background: "linear-gradient(to right, #4776e6, #8e54e9)"
+  })
 };

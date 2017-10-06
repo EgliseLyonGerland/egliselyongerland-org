@@ -6,7 +6,7 @@ const defaultDescription = "Église réformée évangélique de Lyon Gerland";
 const environment = {
   development: {
     isProduction: false,
-    apiEndpoint: "http://api.egliselyongerland.local"
+    apiEndpoint: "http://api.egliselyongerland.org"
   },
   production: {
     isProduction: true,
@@ -21,6 +21,8 @@ module.exports = Object.assign(
     app: {
       title: defaultTitle,
       description: defaultDescription,
+      domain: "egliselyongerland.org",
+      host: "http://www.egliselyongerland.org",
       head: {
         titleTemplate: `%s - ${defaultTitle}`,
         meta: [

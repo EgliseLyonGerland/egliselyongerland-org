@@ -3,24 +3,17 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { asyncConnect } from "redux-connect";
 import Helmet from "react-helmet";
-import moment from "moment";
-import md5 from "md5";
-import { get, some } from "lodash";
+import { get } from "lodash";
 import { denormalize } from "normalizr";
 
 import { postSchema } from "redux/schemas";
 import { load as loadPost, isLoaded as isPostLoaded } from "redux/actions/post";
 
-import {
-  Container,
-  Jumbotron,
-  Hr,
-  H2,
-  PostContent,
-  AudioPlayer
-} from "components";
+import Header from "./components/Header";
+import Shares from "./components/Shares";
+import PostContent from "./components/PostContent";
 
-import styles from "./Post.scss";
+import { getShareUrl } from "utils/routes";
 
 @asyncConnect([
   {
@@ -65,67 +58,19 @@ export default class Post extends Component {
     return denormalize(post, postSchema, entities);
   }
 
-  renderMetabar(post) {
-    return (
-      <Container md>
-        <div className={`${styles.metabar} row`}>
-          <div className="col-xs-6">
-            <div className={styles.postAuthor}>{post.author.name}</div>
-            <div className={styles.postDate}>{moment(post.date).fromNow()}</div>
-          </div>
-        </div>
-        <Hr nm line color="#eee" />
-      </Container>
-    );
-  }
-
-  renderContent(post) {
-    const isPredication = some(post.categories, ["slug", "predications"]);
-    const audioUrl = get(post, "extras.audioUrl", null);
-
-    if (isPredication && audioUrl) {
-      return (
-        <div>
-          <Container xs>
-            <AudioPlayer url={audioUrl} />
-          </Container>
-          <Hr xl />
-
-          {post.content && (
-            <Container sm>
-              <H2>Transcription</H2>
-              <PostContent content={post.content} />
-            </Container>
-          )}
-        </div>
-      );
-    }
-
-    return (
-      <Container sm>
-        <PostContent content={post.content} />
-      </Container>
-    );
-  }
-
-  renderPost(post) {
-    return (
-      <div>
-        {this.renderMetabar(post)}
-        <Hr xl />
-        {this.renderContent(post)}
-      </div>
-    );
-  }
-
   render() {
     const post = this.getDenormalizedPost();
 
     const title = get(post, "title", "Chargement...");
     const excerpt = get(post, "excerpt", "");
     const tags = get(post, "tags", []);
-    const imageLargeUrl = get(post, "picture.sizes.large.url", null);
-    const imageOriginalUrl = get(post, "picture.url", null);
+    const imageOriginalUrl = get(
+      post,
+      "picture.url",
+      "/images/placeholder.jpg"
+    );
+
+    const shareUrl = getShareUrl(this.props.location.pathname);
 
     return (
       <div>
@@ -146,14 +91,11 @@ export default class Post extends Component {
           ]}
         />
 
-        <Jumbotron
-          height="500px"
-          background={imageLargeUrl}
-          title={title}
-          overlay={0.3}
-          fontSize={2.6}
-        />
-        {!post.partial && this.renderPost(post)}
+        <Header post={post} url={shareUrl} />
+
+        {!post.partial && <PostContent content={post.content} />}
+
+        <Shares title={post.title} url={shareUrl} />
       </div>
     );
   }

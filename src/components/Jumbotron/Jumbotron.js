@@ -1,60 +1,47 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-import classes from "classnames";
-import { Container, Text, Hr } from "components";
-
 import styles from "./Jumbotron.scss";
 import picture from "./default.jpg";
 
+const getBonus = str => {
+  return 1 + (1 / str.length);
+}
+
 class Jumbotron extends Component {
   static propTypes = {
-    height: PropTypes.string,
     background: PropTypes.string,
     title: PropTypes.string,
-    overlay: PropTypes.number,
-    fontSize: PropTypes.number,
-    fontWeight: PropTypes.string,
     children: PropTypes.any
   };
 
   static defaultProps = {
-    overlay: 0,
-    fontSize: 4,
-    fontWeight: "bold"
+    background: null,
+    title: null,
+    children: null
   };
 
   render() {
-    const {
-      title,
-      height,
-      background,
-      overlay,
-      fontSize,
-      fontWeight,
-      children
-    } = this.props;
-
-    const className = classes(styles.jumbotron, {
-      [styles.overlay]: overlay > 0
-    });
+    const { title, background, children } = this.props;
 
     return (
       <div
-        className={className}
+        className={styles.jumbotron}
         style={{ backgroundImage: `url(${background || picture})` }}
       >
-        <div className={styles.content} style={{ minHeight: height || "40vh" }}>
+        <div className={styles.inner}>
+          <div className={styles.emptyRow1} />
+          <div className={styles.emptyRow2} />
+
           {title && (
-            <Container md className={styles.title}>
-              <Text fontSize={fontSize} color="white" fontWeight={fontWeight}>
-                {title}
-              </Text>
-              <Hr line />
-            </Container>
+            <div className={styles.title}>
+              <h1 style={{ fontSize: `${getBonus(title)}em` }}>{title}</h1>
+            </div>
           )}
 
           {children}
+
+          <div className={styles.emptyRow3} />
         </div>
       </div>
     );

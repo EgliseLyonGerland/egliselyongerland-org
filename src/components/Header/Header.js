@@ -55,7 +55,7 @@ class Header extends Component {
   }
 
   handleScroll() {
-    const itemTranslate = !Math.min(0, window.scrollY - 60);
+    const itemTranslate = !Math.min(0, window.scrollY - 30);
 
     if (this.state.sticky !== itemTranslate) {
       this.setState({

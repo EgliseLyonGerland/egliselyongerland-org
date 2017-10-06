@@ -16,7 +16,7 @@ class NotFound extends Component {
 
     return (
       <div>
-        <Jumbotron height="100vh">
+        <Jumbotron>
           <Container sm style={{ textAlign: "center" }}>
             <Text color="white" fontWeight="bold" fontSize={2}>
               {book}

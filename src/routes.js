@@ -20,7 +20,7 @@ export default () => (
 
     {/* Blog routes */}
     <Route
-      path="/blog(/category/:category)(/author/:author)(/book/:book)"
+      path="/blog(/category/:category)(/author/:author)(/book/:book(/chapter/:chapter))"
       component={Blog}
     />
     <Route path="/blog/post/:postId" component={Post} />

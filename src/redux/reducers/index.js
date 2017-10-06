@@ -12,6 +12,7 @@ import searchbar from "./searchbar";
 import sidebar from "./sidebar";
 import posts from "./posts";
 import post from "./post";
+import audio from "./audio";
 
 export default combineReducers({
   routing: routerReducer,
@@ -26,5 +27,6 @@ export default combineReducers({
   searchbar,
   sidebar,
   posts,
-  post
+  post,
+  audio
 });

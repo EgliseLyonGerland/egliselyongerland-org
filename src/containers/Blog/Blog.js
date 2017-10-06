@@ -50,8 +50,8 @@ const LIMIT = 10;
       if (has(params, "book")) {
         filters.book = params.book;
 
-        if (has(query, "chapter")) {
-          filters.chapter = query.chapter;
+        if (has(params, "chapter")) {
+          filters.chapter = params.chapter;
 
           if (has(query, "verse")) {
             filters.verse = query.verse;
