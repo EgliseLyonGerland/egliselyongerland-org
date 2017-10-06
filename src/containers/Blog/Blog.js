@@ -421,9 +421,11 @@ export default class Blog extends Component {
         <Jumbotron title={title} background={jumbotron} />
         <Hr xl />
         <Container md>
-          {browser.width >= 750
-            ? this.renderWideScreen()
-            : this.renderSmallScreen()}
+          {browser.width >= 750 ? (
+            this.renderWideScreen()
+          ) : (
+            this.renderSmallScreen()
+          )}
         </Container>
       </div>
     );

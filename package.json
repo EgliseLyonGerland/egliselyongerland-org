@@ -1,7 +1,9 @@
 {
   "name": "react-redux-universal-hot-example",
-  "description": "Example of an isomorphic (universal) webapp using react redux and hot reloading",
-  "author": "Erik Rasmussen <rasmussenerik@gmail.com> (http://github.com/erikras)",
+  "description":
+    "Example of an isomorphic (universal) webapp using react redux and hot reloading",
+  "author":
+    "Erik Rasmussen <rasmussenerik@gmail.com> (http://github.com/erikras)",
   "license": "UNLICENSED",
   "version": "0.9.0",
   "repository": {
@@ -28,10 +30,12 @@
     "start-prod": "better-npm-run start-prod",
     "build": "better-npm-run build",
     "lint": "eslint -c .eslintrc.js src",
-    "format": "prettier-eslint --write \"src/**/*.js\" \"webpack/*.js\" ",
+    "format":
+      "prettier-eslint --write \"src/**/*.js\" \"src/**/*.scss\" \"webpack/*.js\" ",
     "start-dev": "better-npm-run start-dev",
     "watch-client": "better-npm-run watch-client",
-    "dev": "concurrently --kill-others \"npm run watch-client\" \"npm run start-dev\"",
+    "dev":
+      "concurrently --kill-others \"npm run watch-client\" \"npm run start-dev\"",
     "postinstall": "npm rebuild node-sass",
     "heroku-postbuild": "npm run build"
   },
@@ -60,7 +64,8 @@
       }
     },
     "build": {
-      "command": "webpack --colors --display-error-details --config webpack/prod.config.js",
+      "command":
+        "webpack --colors --display-error-details --config webpack/prod.config.js",
       "env": {
         "NODE_ENV": "production"
       }
