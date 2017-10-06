@@ -12,8 +12,10 @@ const theme = createMuiTheme(require("../config/theme"));
 ReactGA.initialize("UA-89204847-1", { debug: __DEVELOPMENT__ });
 
 function logPageView() {
-  ReactGA.set({ page: window.location.pathname + window.location.search });
-  ReactGA.pageview(window.location.pathname + window.location.search);
+  if (!__DEVELOPMENT__) {
+    ReactGA.set({ page: window.location.pathname + window.location.search });
+    ReactGA.pageview(window.location.pathname + window.location.search);
+  }
 }
 
 export default class Root extends Component {
