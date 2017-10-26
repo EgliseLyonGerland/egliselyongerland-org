@@ -6,11 +6,11 @@ const defaultDescription = "Église réformée évangélique de Lyon Gerland";
 const environment = {
   development: {
     isProduction: false,
-    apiEndpoint: "http://api.egliselyongerland.local"
+    apiEndpoint: "https://api.egliselyongerland.local"
   },
   production: {
     isProduction: true,
-    apiEndpoint: "http://api.egliselyongerland.org"
+    apiEndpoint: "https://api.egliselyongerland.org"
   }
 }[process.env.NODE_ENV || "development"];
 
