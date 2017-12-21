@@ -12,6 +12,7 @@ import { load as loadPost, isLoaded as isPostLoaded } from "redux/actions/post";
 import Header from "./components/Header";
 import Shares from "./components/Shares";
 import PostContent from "./components/PostContent";
+import NoTranscription from "./components/NoTranscription";
 
 import { getShareUrl } from "utils/routes";
 
@@ -58,6 +59,18 @@ export default class Post extends Component {
     return denormalize(post, postSchema, entities);
   }
 
+  renderContent(post) {
+    if (post.partial) {
+      return null;
+    }
+
+    if (post.content === "" && get(post, "extras.audioUrl", null)) {
+      return <NoTranscription />;
+    }
+
+    return <PostContent content={post.content} />;
+  }
+
   render() {
     const post = this.getDenormalizedPost();
 
@@ -93,7 +106,7 @@ export default class Post extends Component {
 
         <Header post={post} url={shareUrl} />
 
-        {!post.partial && <PostContent content={post.content} />}
+        {this.renderContent(post)}
 
         <Shares title={post.title} url={shareUrl} />
       </div>

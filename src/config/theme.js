@@ -43,5 +43,9 @@ export default {
     // background: '#4776e6',
     // background: '-webkit-linear-gradient(to right, #4776e6, #8e54e9)',
     background: "linear-gradient(to right, #4776e6, #8e54e9)"
+  }),
+  borderGradient: () => ({
+    border: '#4776e6 solid 1px',
+    borderImage: "linear-gradient(to right, #4776e6, #8e54e9) 1"
   })
 };

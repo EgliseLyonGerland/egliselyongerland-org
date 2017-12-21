@@ -139,7 +139,7 @@ class PostContent extends Component {
     super(props);
 
     this.state = {
-      full: false
+      full: props.content.length < 200
     };
   }
 
