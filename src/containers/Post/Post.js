@@ -5,6 +5,7 @@ import { asyncConnect } from "redux-connect";
 import Helmet from "react-helmet";
 import { get } from "lodash";
 import { denormalize } from "normalizr";
+import moment from "moment";
 
 import { postSchema } from "redux/schemas";
 import { load as loadPost, isLoaded as isPostLoaded } from "redux/actions/post";
@@ -15,6 +16,20 @@ import PostContent from "./components/PostContent";
 import NoTranscription from "./components/NoTranscription";
 
 import { getShareUrl } from "utils/routes";
+
+const getMetaDescription = post => {
+  let excerpt = get(post, "excerpt", "");
+
+  const sermonDate = get(post, ["extras", "sermonDate"]);
+
+  if (post.predication && sermonDate) {
+    excerpt = `Prédication du ${moment(post.extras.sermonDate).format(
+      "dddd D MMMM YYYY"
+    )}. ${excerpt}`;
+  }
+
+  return excerpt;
+};
 
 @asyncConnect([
   {
@@ -75,7 +90,7 @@ export default class Post extends Component {
     const post = this.getDenormalizedPost();
 
     const title = get(post, "title", "Chargement...");
-    const excerpt = get(post, "excerpt", "");
+    const description = getMetaDescription(post);
     const tags = get(post, "tags", []);
     const imageOriginalUrl = get(
       post,
@@ -90,16 +105,16 @@ export default class Post extends Component {
         <Helmet
           title={title}
           meta={[
-            { name: "description", content: "" },
+            { name: "description", content: description },
             { property: "keywords", content: tags.join(",") },
 
             { property: "og:type", content: "article" },
             { property: "og:title", content: title },
-            { property: "og:description", content: excerpt },
+            { property: "og:description", content: description },
             { property: "og:image", content: imageOriginalUrl },
 
             { property: "twitter:title", content: title },
-            { property: "twitter:description", content: excerpt },
+            { property: "twitter:description", content: description },
             { property: "twitter:image", content: imageOriginalUrl }
           ]}
         />
