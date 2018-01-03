@@ -272,7 +272,6 @@ class AudioPlayer extends Component {
 
   update(props, init = false) {
     const currentUrl = init ? null : this.props.url;
-    const currentPlay = init ? null : this.props.play;
 
     if (props.url !== currentUrl) {
       if (!props.url) {
@@ -403,7 +402,7 @@ class AudioPlayer extends Component {
   }
 
   render() {
-    const { classes, url } = this.props;
+    const { classes } = this.props;
     const { loading, error } = this.state;
 
     return (

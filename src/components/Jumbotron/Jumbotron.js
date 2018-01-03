@@ -5,8 +5,8 @@ import styles from "./Jumbotron.scss";
 import picture from "./default.jpg";
 
 const getBonus = str => {
-  return 1 + (1 / str.length);
-}
+  return 1 + 1 / str.length;
+};
 
 class Jumbotron extends Component {
   static propTypes = {
