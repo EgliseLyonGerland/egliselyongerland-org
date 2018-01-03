@@ -40,8 +40,7 @@
     "start-prod": {
       "command": "node ./bin/server.js",
       "env": {
-        "NODE_PATH": "./src",
-        "NODE_ENV": "production"
+        "NODE_PATH": "./src"
       }
     },
     "start-dev": {
@@ -61,10 +60,7 @@
       }
     },
     "build": {
-      "command": "webpack --colors --display-error-details --config webpack/prod.config.js",
-      "env": {
-        "NODE_ENV": "production"
-      }
+      "command": "webpack --colors --display-error-details --config webpack/prod.config.js"
     }
   },
   "dependencies": {

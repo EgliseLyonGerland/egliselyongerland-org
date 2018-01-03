@@ -49,8 +49,6 @@ const routes = {
   contact: () => "/contact"
 };
 
-const getShareUrl = path => {
-  return `${config.app.host}${path}`;
-};
+const getAbsoluteUrl = path => `${config.protocol}://${config.host}${path}`;
 
-export { routes as default, getShareUrl };
+export { routes as default, getAbsoluteUrl };

@@ -15,7 +15,7 @@ import Shares from "./components/Shares";
 import PostContent from "./components/PostContent";
 import NoTranscription from "./components/NoTranscription";
 
-import { getShareUrl } from "utils/routes";
+import { getAbsoluteUrl } from "utils/routes";
 
 const getMetaDescription = post => {
   let excerpt = get(post, "excerpt", "");
@@ -98,7 +98,34 @@ export default class Post extends Component {
       "/images/placeholder.jpg"
     );
 
-    const shareUrl = getShareUrl(this.props.location.pathname);
+    const shareUrl = getAbsoluteUrl(this.props.location.pathname);
+    const logoUrl = getAbsoluteUrl("/images/logo.jpg");
+
+    const structuredData = {
+      "@context": "http://schema.org",
+      "@type": "BlogPosting",
+      headline: title,
+      description,
+      datePublished: post.date,
+      dateModified: post.date,
+      image: imageOriginalUrl,
+      author: {
+        "@type": "Person",
+        name: post.author.name
+      },
+      publisher: {
+        "@type": "Organization",
+        name: "Église Lyon Gerland",
+        logo: {
+          "@type": "ImageObject",
+          url: logoUrl
+        }
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": shareUrl
+      },
+    };
 
     return (
       <div>
@@ -117,7 +144,11 @@ export default class Post extends Component {
             { property: "twitter:description", content: description },
             { property: "twitter:image", content: imageOriginalUrl }
           ]}
-        />
+        >
+          <script type="application/ld+json">
+            {JSON.stringify(structuredData)}
+          </script>
+        </Helmet>
 
         <Header post={post} url={shareUrl} />
 

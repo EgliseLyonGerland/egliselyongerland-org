@@ -6,23 +6,26 @@ const defaultDescription = "Église réformée évangélique de Lyon Gerland";
 const environment = {
   development: {
     isProduction: false,
+    host: process.env.HOST || "localhost",
+    port: process.env.PORT,
+    protocol: "http",
     apiEndpoint: "http://api.egliselyongerland.local"
   },
   production: {
     isProduction: true,
+    host: process.env.HOST || "www.egliselyongerland.org",
+    port: process.env.PORT,
+    protocol: "https",
     apiEndpoint: "https://api.egliselyongerland.org"
   }
 }[process.env.NODE_ENV || "development"];
 
 module.exports = Object.assign(
   {
-    host: process.env.HOST || "localhost",
-    port: process.env.PORT,
     app: {
       title: defaultTitle,
       description: defaultDescription,
       domain: "egliselyongerland.org",
-      host: "http://www.egliselyongerland.org",
       head: {
         titleTemplate: `%s - ${defaultTitle}`,
         meta: [
