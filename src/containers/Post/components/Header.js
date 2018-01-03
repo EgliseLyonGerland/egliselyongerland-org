@@ -20,8 +20,6 @@ import TwitterShare from "components/Share/TwitterShare";
 
 import routes from "utils/routes";
 
-// import PlaceHolder, { Item } from "components/PlaceHolder";
-
 const styles = theme => ({
   root: {
     background: "center center",
@@ -94,21 +92,13 @@ const styles = theme => ({
   }
 });
 
-const Header = ({ post, browser, audio, url, push, openAudio, classes }) => {
-  // return (
-  //   <PlaceHolder width={700}>
-  //     <Item height={40} margin={10} />
-  //     <Item width={350} height={40} margin={60} center />
-  //     <Item width={500} height={22} center />
-  //     <HorizontalGroup>
-  //       <Item width={100} height={30} />
-  //       <Item width={100} height={30} />
-  //       <Item width={40} height={30} />
-  //       <Item width={40} height={30} />
-  //     </HorizontalGroup>
-  //   </PlaceHolder>
-  // );
+const renderDate = post => {
+  const date = get(post, ["extras", "sermonDate"], post.date);
 
+  return `le ${moment(date).format("D MMMM YYYY")}`;
+};
+
+const Header = ({ post, browser, audio, url, push, openAudio, classes }) => {
   const imageUrl = get(
     post,
     "picture.sizes.large.url",
@@ -125,9 +115,7 @@ const Header = ({ post, browser, audio, url, push, openAudio, classes }) => {
         <div className={classes.baseline}>
           Par <span className={classes.author}>{post.author.name}</span>
           <span className={classes.dash}>{" — "}</span>
-          <span style={{ display: "inline-block" }}>
-            le {moment(post.date).format("D MMMM YYYY")}
-          </span>
+          <span style={{ display: "inline-block" }}>{renderDate(post)}</span>
         </div>
         <div className={classes.links}>
           {post.categories.slice(0, 1).map(category => (
