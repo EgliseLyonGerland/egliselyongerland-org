@@ -101,7 +101,7 @@ module.exports = {
 
     new webpack.DefinePlugin({
       "process.env.NODE_ENV": '"production"',
-      "process.env.HOST": `"${process.env.HOST || null}"`,
+      "process.env.HOST": process.env.HOST ? `"${process.env.HOST}"` : null,
 
       __CLIENT__: true,
       __SERVER__: false,
