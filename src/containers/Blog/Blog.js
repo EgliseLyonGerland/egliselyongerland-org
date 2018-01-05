@@ -126,6 +126,25 @@ export default class Blog extends Component {
     return denormalize(posts, [postSchema], entities);
   }
 
+   getTitle() {
+     const {
+       params: { category = null },
+       aggs: { categories = null }
+     } = this.props;
+
+     return reduce(
+       categories,
+       (prev, curr) => {
+         if (curr.id === parseInt(category, 10)) {
+           return curr.name;
+         }
+
+         return prev;
+       },
+       "Blog"
+     );
+   }
+
   renderBibleFilter() {
     const { loading, params, aggs: { bibleRefs = null } } = this.props;
 
@@ -395,29 +414,43 @@ export default class Blog extends Component {
     );
   }
 
+  renderSeo(title) {
+    const { page, maxPage, params } = this.props;
+
+    const props = {
+      title,
+      link: [],
+      meta: []
+    };
+
+    if (page > 1) {
+      props.link.push({
+        rel: "prev",
+        href: routes.blog({ ...params, page: page - 1 })
+      });
+
+      props.meta.push({ name: "robots", content: "noindex" });
+    }
+
+    if (page < maxPage) {
+      props.link.push({
+        rel: "next",
+        href: routes.blog({ ...params, page: page + 1 })
+      });
+    }
+
+    return <Helmet {...props} />;
+  }
+
   render() {
     const { browser } = this.props;
 
-    const {
-      params: { category = null },
-      aggs: { categories = null }
-    } = this.props;
-
-    const title = reduce(
-      categories,
-      (prev, curr) => {
-        if (curr.id === parseInt(category, 10)) {
-          return curr.name;
-        }
-
-        return prev;
-      },
-      "Blog"
-    );
+    const title = this.getTitle();
 
     return (
       <div>
-        <Helmet title={title} />
+        {this.renderSeo(title)}
+
         <Jumbotron title={title} background={jumbotron} />
         <Hr xl />
         <Container md>
