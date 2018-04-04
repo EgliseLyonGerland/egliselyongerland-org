@@ -121,10 +121,10 @@ export default class Post extends Component {
           url: logoUrl
         }
       },
-      "mainEntityOfPage": {
+      mainEntityOfPage: {
         "@type": "WebPage",
         "@id": shareUrl
-      },
+      }
     };
 
     return (

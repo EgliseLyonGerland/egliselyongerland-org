@@ -36,8 +36,8 @@ class GridPicker extends Component {
               [styles.active]: current === item.key
             })}
             onClick={() =>
-              !readOnly &&
-              onChange(current === item.key ? undefined : item.key)}
+              !readOnly && onChange(current === item.key ? undefined : item.key)
+            }
           >
             <span className={styles.label}>{item.label}</span>
           </div>

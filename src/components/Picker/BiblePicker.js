@@ -162,7 +162,8 @@ export default class BiblePicker extends Component {
           .filter(book => book.testament === testament)
           .map(({ id, name }) => ({ key: id, label: name }))}
         onChange={key =>
-          onChange({ book: key, chapter: undefined, verse: undefined })}
+          onChange({ book: key, chapter: undefined, verse: undefined })
+        }
       />
     );
   }
@@ -185,7 +186,8 @@ export default class BiblePicker extends Component {
         onChange={pane =>
           this.setState({
             currentTestament: pane.key
-          })}
+          })
+        }
       />
     );
   }
@@ -213,7 +215,8 @@ export default class BiblePicker extends Component {
           label: `${chapter.number}`
         }))}
         onChange={chapter =>
-          onChange({ book: currentBook, chapter, verse: undefined })}
+          onChange({ book: currentBook, chapter, verse: undefined })
+        }
       />
     );
   }
@@ -239,7 +242,8 @@ export default class BiblePicker extends Component {
         readOnly={readOnly}
         items={verses.map(verse => ({ key: verse, label: `${verse}` }))}
         onChange={verse =>
-          onChange({ book: currentBook, chapter: currentChapter, verse })}
+          onChange({ book: currentBook, chapter: currentChapter, verse })
+        }
       />
     );
   }
@@ -268,7 +272,8 @@ export default class BiblePicker extends Component {
         onChange={pane =>
           this.setState({
             currentMainPane: pane.key
-          })}
+          })
+        }
       />
     );
   }

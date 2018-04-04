@@ -94,7 +94,8 @@ export default class App extends Component {
                 onPause={() => pauseAudio()}
               />
             </div>
-          ) : null}
+          ) : null
+        }
       </TransitionMotion>
     );
   }

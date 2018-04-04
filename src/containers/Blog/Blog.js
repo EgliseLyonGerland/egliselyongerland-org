@@ -126,24 +126,24 @@ export default class Blog extends Component {
     return denormalize(posts, [postSchema], entities);
   }
 
-   getTitle() {
-     const {
-       params: { category = null },
-       aggs: { categories = null }
-     } = this.props;
+  getTitle() {
+    const {
+      params: { category = null },
+      aggs: { categories = null }
+    } = this.props;
 
-     return reduce(
-       categories,
-       (prev, curr) => {
-         if (curr.id === parseInt(category, 10)) {
-           return curr.name;
-         }
+    return reduce(
+      categories,
+      (prev, curr) => {
+        if (curr.id === parseInt(category, 10)) {
+          return curr.name;
+        }
 
-         return prev;
-       },
-       "Blog"
-     );
-   }
+        return prev;
+      },
+      "Blog"
+    );
+  }
 
   renderBibleFilter() {
     const { loading, params, aggs: { bibleRefs = null } } = this.props;
@@ -195,7 +195,8 @@ export default class Blog extends Component {
           onChange={key =>
             router.push(
               routes.blog({ ...params, page: undefined, category: key })
-            )}
+            )
+          }
         >
           {label => (
             <Text fontSize={1} maxLines={1} ellipsis>
@@ -235,7 +236,8 @@ export default class Blog extends Component {
           onChange={key =>
             router.push(
               routes.blog({ ...params, page: undefined, author: key })
-            )}
+            )
+          }
         >
           {label => (
             <Text fontSize={1} maxLines={1} ellipsis>
@@ -339,13 +341,15 @@ export default class Blog extends Component {
             disabled={page <= 1}
             className="btn fa fa-angle-left"
             onClick={() =>
-              router.push(routes.blog({ ...params, page: page - 1 }))}
+              router.push(routes.blog({ ...params, page: page - 1 }))
+            }
           />
           <button
             disabled={page >= maxPage}
             className="btn fa fa-angle-right"
             onClick={() =>
-              router.push(routes.blog({ ...params, page: page + 1 }))}
+              router.push(routes.blog({ ...params, page: page + 1 }))
+            }
           />
         </div>
         <div className="clearfix" />
@@ -454,11 +458,9 @@ export default class Blog extends Component {
         <Jumbotron title={title} background={jumbotron} />
         <Hr xl />
         <Container md>
-          {browser.width >= 750 ? (
-            this.renderWideScreen()
-          ) : (
-            this.renderSmallScreen()
-          )}
+          {browser.width >= 750
+            ? this.renderWideScreen()
+            : this.renderSmallScreen()}
         </Container>
       </div>
     );

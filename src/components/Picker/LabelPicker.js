@@ -53,13 +53,14 @@ class LabelPicker extends Component {
               className={[styles.label, "clearfix"].join(" ")}
               onClick={() =>
                 !readOnly &&
-                onChange(label.key === current ? undefined : label.key)}
+                onChange(label.key === current ? undefined : label.key)
+              }
             >
               <Text
                 fontSize={1}
-                className={`pull-right fa fa-toggle-${current === label.key
-                  ? "on"
-                  : "off"}`}
+                className={`pull-right fa fa-toggle-${
+                  current === label.key ? "on" : "off"
+                }`}
               />
 
               {children ? (
@@ -74,14 +75,14 @@ class LabelPicker extends Component {
         })}
 
         {crop !== null &&
-        labels.length > crop && (
-          <div
-            className={`${styles.more} clearfix`}
-            onClick={() => this.setState({ opened: !opened })}
-          >
-            <a>Afficher {opened ? "moins" : "plus"}</a>
-          </div>
-        )}
+          labels.length > crop && (
+            <div
+              className={`${styles.more} clearfix`}
+              onClick={() => this.setState({ opened: !opened })}
+            >
+              <a>Afficher {opened ? "moins" : "plus"}</a>
+            </div>
+          )}
       </div>
     );
   }

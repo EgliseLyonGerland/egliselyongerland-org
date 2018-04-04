@@ -1,6 +1,6 @@
 module.exports = {
   extends: 'react-app',
-
+  plugins: ['prettier'],
   globals: {
     "__DEVELOPMENT__": true,
     "__CLIENT__": true,
@@ -9,7 +9,6 @@ module.exports = {
     "__DEVTOOLS__": true,
     "webpackIsomorphicTools": true
   },
-
   "settings": {
     "import/resolver": {
       "node": {
@@ -17,8 +16,8 @@ module.exports = {
       }
     }
   },
-
   rules: {
+    "prettier/prettier": "error",
     "jsx-a11y/href-no-hash": "off",
     "jsx-a11y/anchor-is-valid": ["warn", { "aspects": ["invalidHref"] }]
   }
