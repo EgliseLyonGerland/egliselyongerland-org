@@ -1,18 +1,55 @@
 import React from "react";
 import PropTypes from "prop-types";
-
+import { withStyles } from "material-ui";
 import classnames from "classnames";
+import { clearfix } from "utils/styles";
 
-import styles from "./Container.scss";
+const styles = theme => ({
+  container: {
+    ...clearfix(),
+    marginRight: "auto",
+    marginLeft: "auto",
+    paddingLeft: 35,
+    paddingRight: 35,
+    maxWidth: 1200
+  },
+  xs: {
+    maxWidth: 500
+  },
+  sm: {
+    maxWidth: 700
+  },
+  md: {
+    maxWidth: 900
+  },
+  lg: {
+    maxWidth: 1100
+  },
+  xl: {
+    maxWidth: 1300
+  },
+  "@media screen and (max-width: 480px)": {
+    container: {
+      paddingLeft: 25,
+      paddingRight: 25
+    }
+  },
+  "@media screen and (max-width: 640px)": {
+    container: {
+      paddingLeft: 15,
+      paddingRight: 15
+    }
+  }
+});
 
-const Container = ({ children, className, style, ...props }) => {
+const Container = ({ children, className, style, classes, ...props }) => {
   const sizes = ["xs", "sm", "md", "lg", "xl"];
   const size = sizes.reduce((prev, curr) => (props[curr] ? curr : prev), "lg");
 
   // Build new props
   const newProps = {
     style,
-    className: classnames(className, styles.container, styles[size])
+    className: classnames(className, classes.container, classes[size])
   };
 
   return <div {...newProps}>{children}</div>;
@@ -29,4 +66,4 @@ Container.propTypes = {
   xl: PropTypes.bool
 };
 
-export default Container;
+export default withStyles(styles)(Container);
