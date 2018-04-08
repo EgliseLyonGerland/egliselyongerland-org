@@ -1,46 +1,49 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
+import { withStyles } from "material-ui";
 
-import styles from "./Image.scss";
-
-class Image extends Component {
-  static propTypes = {
-    src: PropTypes.string,
-    title: PropTypes.string,
-    ratio: PropTypes.number,
-    height: PropTypes.number,
-    seoFriendly: PropTypes.bool
-  };
-
-  static defaultProps = {
-    seoFriendly: true,
-    ratio: 9 / 16
-  };
-
-  render() {
-    const {
-      // src,
-      title = "",
-      ratio,
-      height,
-      seoFriendly
-    } = this.props;
-
-    const src = this.props.src || "/images/placeholder.jpg";
-    const style = { backgroundImage: `url(${src})` };
-
-    if (height) {
-      style.height = `${height}px`;
-    } else {
-      style.paddingBottom = `${100 * ratio}%`;
-    }
-
-    return (
-      <div className={styles.image} style={style}>
-        {seoFriendly && <img className={styles.img} src={src} alt={title} />}
-      </div>
-    );
+const styles = {
+  image: {
+    background: "no-repeat center center",
+    backgroundSize: "cover",
+    height: 0,
+    lineHeight: 0
+  },
+  img: {
+    width: 0,
+    height: 0,
+    visibility: "hidden"
   }
-}
+};
 
-export default Image;
+const Image = ({ src, title = "", ratio, height, seoFriendly, classes }) => {
+  const source = src || "/images/placeholder.jpg";
+  const style = { backgroundImage: `url(${source})` };
+
+  if (height) {
+    style.height = `${height}px`;
+  } else {
+    style.paddingBottom = `${100 * ratio}%`;
+  }
+
+  return (
+    <div className={classes.image} style={style}>
+      {seoFriendly && <img className={classes.img} src={source} alt={title} />}
+    </div>
+  );
+};
+
+Image.propTypes = {
+  src: PropTypes.string,
+  title: PropTypes.string,
+  ratio: PropTypes.number,
+  height: PropTypes.number,
+  seoFriendly: PropTypes.bool
+};
+
+Image.defaultProps = {
+  seoFriendly: true,
+  ratio: 9 / 16
+};
+
+export default withStyles(styles)(Image);
