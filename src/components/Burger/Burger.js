@@ -1,11 +1,36 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { withStyles } from "material-ui";
 
-import classes from "classnames";
+import classnames from "classnames";
 
-import styles from "./Burger.scss";
+const styles = theme => ({
+  burger: {
+    border: 0,
+    padding: 0,
+    background: "none",
+    display: "block",
+    outline: 0
+  },
+  line: {
+    transitionTimingFunction: "ease-out",
+    transitionDuration: "0.2s"
+  },
+  last: {
+    marginBottom: 0
+  },
+  out: {
+    transitionProperty: "transform"
+  },
+  in: {
+    transitionProperty: "opacity"
+  },
+  rounded: {
+    borderRadius: 5
+  }
+});
 
-export default class Burger extends Component {
+class Burger extends Component {
   static propTypes = {
     size: PropTypes.number,
     weight: PropTypes.number,
@@ -34,7 +59,7 @@ export default class Burger extends Component {
 
   renderLines() {
     const lines = [];
-    const { size, height, weight, color, rounded } = this.props;
+    const { size, height, weight, color, rounded, classes } = this.props;
     const gutter = (height - weight * size) / (size - 1);
 
     for (let index = 1; index <= size; index++) {
@@ -44,13 +69,13 @@ export default class Burger extends Component {
       const isLast = index === size;
 
       const props = {
-        className: classes(
-          styles.line,
-          rounded && styles.rounded,
-          isOut && styles.out,
-          isIn && styles.in,
-          isFirst && styles.first,
-          isLast && styles.last
+        className: classnames(
+          classes.line,
+          rounded && classes.rounded,
+          isOut && classes.out,
+          isIn && classes.in,
+          isFirst && classes.first,
+          isLast && classes.last
         ),
         style: {
           height: `${weight}px`,
@@ -85,11 +110,11 @@ export default class Burger extends Component {
   }
 
   render() {
-    const { width, height } = this.props;
+    const { width, height, classes } = this.props;
 
     return (
       <span
-        className={styles.burger}
+        className={classes.burger}
         style={{
           width: `${width}px`,
           height: `${height}px`
@@ -101,3 +126,5 @@ export default class Burger extends Component {
     );
   }
 }
+
+export default withStyles(styles)(Burger);
