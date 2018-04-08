@@ -39,6 +39,9 @@ export default {
       contrastDefaultColor: "dark"
     }
   },
+  footer: {
+    height: 70
+  },
   gradient: () => ({
     // background: '#4776e6',
     // background: '-webkit-linear-gradient(to right, #4776e6, #8e54e9)',
