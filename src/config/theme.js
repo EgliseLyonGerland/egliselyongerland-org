@@ -55,6 +55,9 @@ export default {
   footer: {
     height: 70
   },
+  overlay: {
+    zindex: 100
+  },
   gradient: () => ({
     // background: '#4776e6',
     // background: '-webkit-linear-gradient(to right, #4776e6, #8e54e9)',
