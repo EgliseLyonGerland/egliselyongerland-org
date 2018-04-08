@@ -1,3 +1,5 @@
+const headerHeight = 100;
+
 export default {
   typography: {
     fontFamily: '"Lato", sans-serif',
@@ -37,6 +39,17 @@ export default {
       A400: "#c7b2ff",
       A700: "#b598ff",
       contrastDefaultColor: "dark"
+    }
+  },
+  header: {
+    height: headerHeight,
+    zindex: 100,
+    logo: { height: 58 },
+    brand: { height: 36 },
+    sticky: {
+      height: headerHeight * 0.6,
+      brandScale: 0.8,
+      brandTranslate: -10
     }
   },
   footer: {

@@ -1,51 +1,109 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
+import { withStyles } from "material-ui";
 
-import styles from "./Jumbotron.scss";
 import picture from "./default.jpg";
 
 const getBonus = str => {
   return 1 + 1 / str.length;
 };
 
-class Jumbotron extends Component {
-  static propTypes = {
-    background: PropTypes.string,
-    title: PropTypes.string,
-    children: PropTypes.any
-  };
+const styles = theme => ({
+  jumbotron: {
+    background: "#124765",
+    backgroundImage: "url(/generic-bg.jpg)",
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "center center",
+    backgroundSize: "cover",
+    position: "relative",
 
-  static defaultProps = {
-    background: null,
-    title: null,
-    children: null
-  };
-
-  render() {
-    const { title, background, children } = this.props;
-
-    return (
-      <div
-        className={styles.jumbotron}
-        style={{ backgroundImage: `url(${background || picture})` }}
-      >
-        <div className={styles.inner}>
-          <div className={styles.emptyRow1} />
-          <div className={styles.emptyRow2} />
-
-          {title && (
-            <div className={styles.title}>
-              <h1 style={{ fontSize: `${getBonus(title)}em` }}>{title}</h1>
-            </div>
-          )}
-
-          {children}
-
-          <div className={styles.emptyRow3} />
-        </div>
-      </div>
-    );
+    "&:before": {
+      content: `""`,
+      position: "absolute",
+      display: "block",
+      height: "100%",
+      width: "100%",
+      top: 0,
+      left: 0,
+      background: "rgba(0, 0, 0, 0.2)"
+    }
+  },
+  inner: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    position: "relative",
+    background: "rgba(0, 0, 0, 0.2)"
+  },
+  emptyRow1: {
+    minHeight: theme.header.height
+  },
+  emptyRow2: {
+    height: "8vh",
+    minHeight: 50
+  },
+  emptyRow3: {
+    height: "10vh",
+    minHeight: 40
+  },
+  title: {
+    display: "block",
+    fontSize: 44,
+    fontWeight: "bold",
+    margin: [[0, 20]],
+    textAlign: "center",
+    color: "white",
+    maxWidth: 790,
+    padding: [[0, 20]]
+  },
+  "@media screen and (max-width: 960px)": {
+    emptyRow1: {
+      minHeight: theme.header.sticky.height
+    }
+  },
+  "@media screen and (max-width: 640px), screen and (max-height: 640px)": {
+    title: {
+      fontSize: 32
+    },
+    emptyRow3: {
+      height: "5vh"
+    }
   }
-}
+});
 
-export default Jumbotron;
+const Jumbotron = ({ title, background, classes, children }) => (
+  <div
+    className={classes.jumbotron}
+    style={{ backgroundImage: `url(${background || picture})` }}
+  >
+    <div className={classes.inner}>
+      <div className={classes.emptyRow1} />
+      <div className={classes.emptyRow2} />
+
+      {title && (
+        <div className={classes.title}>
+          <h1 style={{ fontSize: `${getBonus(title)}em` }}>{title}</h1>
+        </div>
+      )}
+
+      {children}
+
+      <div className={classes.emptyRow3} />
+    </div>
+  </div>
+);
+
+Jumbotron.propTypes = {
+  background: PropTypes.string,
+  title: PropTypes.string,
+  children: PropTypes.any
+};
+
+Jumbotron.defaultProps = {
+  background: null,
+  title: null,
+  children: null
+};
+
+export default withStyles(styles)(Jumbotron);
