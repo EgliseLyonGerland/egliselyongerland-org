@@ -20,11 +20,11 @@ import {
   Jumbotron,
   PostsFeed,
   WhatWhenWhere,
-  Button,
   Text,
   H2,
   Hr
 } from "components";
+import Button from "components/Button/Button";
 
 import worship from "./worship.jpg";
 import sunshineLeft from "./sunshine-left.svg";
@@ -131,7 +131,7 @@ class Home extends Component {
             </Text>
             <Hr xl />
             <Link to={routes.church()}>
-              <Button lg negative>
+              <Button size="lg" color="contrast" bordered>
                 En savoir plus
               </Button>
             </Link>
@@ -149,7 +149,9 @@ class Home extends Component {
               <PostsFeed posts={lasts} />
               <Hr lg />
               <Link to={routes.blog()} className="pull-right">
-                <Button sm>Tous les posts</Button>
+                <Button size="sm" bordered>
+                  Tous les posts
+                </Button>
               </Link>
             </div>
             <div className="col-md-5">
@@ -158,7 +160,9 @@ class Home extends Component {
               <PostsFeed posts={sermons} />
               <Hr lg />
               <Link to={routes.sermons()} className="pull-right">
-                <Button sm>Toutes les prédications</Button>
+                <Button size="sm" bordered>
+                  Toutes les prédications
+                </Button>
               </Link>
             </div>
           </div>

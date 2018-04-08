@@ -4,7 +4,7 @@ import { withStyles } from "material-ui/styles";
 import { range } from "lodash";
 import classnames from "classnames";
 
-import Button from "components/Button/ButtonReloaded";
+import Button from "components/Button/Button";
 
 // import styles from "./PostContent.scss";
 

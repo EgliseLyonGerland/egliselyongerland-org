@@ -14,7 +14,7 @@ import { openAudio } from "redux/actions/audio";
 import Jumbotron from "components/Jumbotron/Jumbotron";
 import FacebookIcon from "components/Icon/FacebookIcon";
 import TwitterIcon from "components/Icon/TwitterIcon";
-import Button from "components/Button/ButtonReloaded";
+import Button from "components/Button/Button";
 import FacebookShare from "components/Share/FacebookShare";
 import TwitterShare from "components/Share/TwitterShare";
 

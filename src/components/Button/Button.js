@@ -1,41 +1,133 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
+import { Button as ButtonBase, withStyles } from "material-ui";
+import { transform, noop } from "lodash";
 
-import classes from "classnames";
+const SIZES = {
+  xxs: { fontSize: 14, height: 26 },
+  xs: { fontSize: 16, height: 32 },
+  sm: { fontSize: 18, height: 36 },
+  md: { fontSize: 20, height: 50 },
+  lg: { fontSize: 22, height: 56 },
+  xl: { fontSize: 24, height: 62 },
+  xxl: { fontSize: 26, height: 70 }
+};
 
-import styles from "./Button.scss";
+const styles = theme => ({
+  root: {
+    lineHeight: 0,
+    fontWeight: 300,
+    textTransform: "none",
+    minWidth: "auto",
+    minHeight: "auto"
+  },
+  bordered: {
+    border: [["solid", 1]]
+  },
+  raised: {
+    border: 0,
+    boxShadow: "none",
 
-const SIZES = ["xxs", "xs", "sm", "md", "lg", "xl", "xxl"];
+    "&$disabled": {
+      background: "rgba(255,255,255,0.5)"
+    }
+  },
+  disabled: {
+    background: "red"
+  },
+  ...transform(
+    SIZES,
+    (result, data, key) => {
+      const padding = Math.floor(data.height / 2.5);
 
-export default class Button extends Component {
-  static propTypes = {
-    children: PropTypes.any.isRequired,
-    rounded: PropTypes.bool,
-    negative: PropTypes.bool,
-    onClick: PropTypes.func
-  };
+      result[key] = {
+        fontSize: data.fontSize,
+        height: data.height,
+        padding: [[0, padding]]
+      };
 
-  static defaultProps = {
-    onClick: () => {}
-  };
+      result[`${key}Rounded`] = {
+        borderRadius: Math.floor(data.height / 5)
+      };
 
-  render() {
-    const { children, rounded, negative, onClick } = this.props;
+      result[`${key}Circled`] = {
+        borderRadius: data.height,
+        padding: [[0, Math.round(padding * 1.2)]]
+      };
+    },
+    {}
+  )
+});
 
-    const size = SIZES.reduce(
-      (prev, curr) => (this.props[curr] ? curr : prev),
-      "md"
-    );
+const Button = props => {
+  const {
+    children,
+    classes,
+    className,
+    bordered,
+    disabled,
+    corners,
+    size,
+    onClick,
+    ...rest
+  } = props;
 
-    const className = classes(styles.button, styles[size], {
-      [styles.rounded]: rounded,
-      [styles.negative]: negative
-    });
+  const finalClassName = [classes[size]];
 
-    return (
-      <button className={className} onClick={() => onClick()}>
-        {children}
-      </button>
-    );
+  if (bordered) {
+    finalClassName.push(classes.bordered);
   }
-}
+
+  if (disabled) {
+    finalClassName.push(classes.disabled);
+  }
+
+  switch (corners) {
+    case "rounded":
+      finalClassName.push(classes[`${size}Rounded`]);
+      break;
+    case "circled":
+      finalClassName.push(classes[`${size}Circled`]);
+      break;
+    default:
+  }
+
+  if (className) {
+    finalClassName.push(className);
+  }
+
+  return (
+    <ButtonBase
+      className={finalClassName.join(" ")}
+      classes={{
+        root: classes.root,
+        raised: classes.raised
+      }}
+      onClick={onClick}
+      disabled={disabled}
+      {...rest}
+    >
+      {children}
+    </ButtonBase>
+  );
+};
+
+Button.propTypes = {
+  children: PropTypes.node.isRequired,
+  classes: PropTypes.object.isRequired,
+  bordered: PropTypes.bool,
+  corners: PropTypes.oneOf(["squared", "rounded", "circled"]),
+  size: PropTypes.oneOf(Object.keys(SIZES)),
+  className: PropTypes.string,
+  onClick: PropTypes.func
+};
+
+Button.defaultProps = {
+  bordered: false,
+  corners: "squared",
+  size: "md",
+  className: null,
+  onClick: noop
+};
+
+export default withStyles(styles)(Button);
