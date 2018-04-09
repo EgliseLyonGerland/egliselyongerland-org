@@ -1,20 +1,29 @@
-import React, { Component } from "react";
+import React from "react";
+import { withStyles } from "material-ui";
 
 import Text from "./Text";
 
-import styles from "./H1.scss";
+const styles = {
+  h1: {
+    marginBbottom: 20,
+    color: "#555",
 
-class H1 extends Component {
-  render() {
-    return (
-      <Text
-        className={styles.h1}
-        fontSize={2}
-        fontWeight="light"
-        {...this.props}
-      />
-    );
+    "&:after": {
+      content: `""`,
+      display: "block",
+      maxWidth: 150,
+      paddingTop: 23,
+      backgroundImage:
+        "linear-gradient(to right, #555 33%, rgba(255, 255, 255, 0) 0%)",
+      backgroundPosition: "-10px bottom",
+      backgroundSize: "10px 3px",
+      backgroundRepeat: "repeat-x"
+    }
   }
-}
+};
 
-export default H1;
+const H1 = ({ classes, ...props }) => (
+  <Text className={classes.h1} fontSize={2} fontWeight="light" {...props} />
+);
+
+export default withStyles(styles)(H1);
