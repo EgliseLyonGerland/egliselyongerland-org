@@ -1,10 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { withStyles } from "material-ui";
 
-import styles from "./SearchButton.scss";
+const styles = {
+  button: {
+    textAlign: "center",
+    color: "#fff",
+    cursor: "pointer"
+  }
+};
 
-const SearchButton = ({ onClicked }) => (
-  <div className={styles.button} onClick={() => onClicked()}>
+const SearchButton = ({ onClicked, classes }) => (
+  <div className={classes.button} onClick={() => onClicked()}>
     <span className="fa fa-search" />
   </div>
 );
@@ -13,4 +20,4 @@ SearchButton.propTypes = {
   onClicked: PropTypes.func
 };
 
-export default SearchButton;
+export default withStyles(styles)(SearchButton);
