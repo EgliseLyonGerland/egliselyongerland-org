@@ -3,7 +3,15 @@ const headerHeight = 100;
 export default {
   typography: {
     fontFamily: '"Lato", sans-serif',
-    fontSize: 16
+    fontSize: 16,
+    fontWeights: {
+      thin: 100,
+      light: 300,
+      regular: 400,
+      medium: 400,
+      bold: 700,
+      black: 900
+    }
   },
   palette: {
     primary: {
