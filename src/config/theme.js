@@ -69,6 +69,16 @@ export default {
   sidebar: {
     zindex: 200
   },
+  hr: {
+    sizes: {
+      nm: 0,
+      xs: 5,
+      sm: 10,
+      md: 20,
+      lg: 40,
+      xl: 60
+    }
+  },
   gradient: () => ({
     // background: '#4776e6',
     // background: '-webkit-linear-gradient(to right, #4776e6, #8e54e9)',
