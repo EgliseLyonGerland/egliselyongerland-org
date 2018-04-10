@@ -72,11 +72,11 @@ export default {
   hr: {
     sizes: {
       nm: 0,
-      xs: 5,
-      sm: 10,
-      md: 20,
-      lg: 40,
-      xl: 60
+      xs: 8,
+      sm: 16,
+      md: 24,
+      lg: 32,
+      xl: 40
     }
   },
   gradient: () => ({

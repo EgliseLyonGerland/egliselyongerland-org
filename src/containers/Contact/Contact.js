@@ -1,11 +1,35 @@
 import React, { Component } from "react";
 import Helmet from "react-helmet";
+import { connect } from "react-redux";
+import { push } from "react-router-redux";
+import { withStyles } from "material-ui";
 
 import { Container, Jumbotron, Text, Hr } from "components";
+import Button from "components/Button/Button";
+
+import theme from "config/theme";
+import routes from "utils/routes";
 
 import picture from "./jumbotron.jpg";
 
-import theme from "config/theme";
+const styles = {
+  timeBanner: {
+    height: 100,
+    background: "#eee",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    position: "relative"
+  },
+  timeBannerText: {
+    marginTop: -8
+  },
+  timeBannerButton: {
+    position: "absolute",
+    top: "100%",
+    marginTop: -16
+  }
+};
 
 class Contact extends Component {
   constructor() {
@@ -15,12 +39,13 @@ class Contact extends Component {
       showForm: false
     };
   }
+
   renderTitle(title) {
     return (
       <Text
         element="h2"
-        fontSize={2.2}
-        fontWeight="regular"
+        fontSize={1.4}
+        fontWeight="medium"
         color={theme.palette.primary[500]}
       >
         {title}
@@ -29,6 +54,8 @@ class Contact extends Component {
   }
 
   render() {
+    const { classes, push } = this.props;
+
     return (
       <div>
         <Helmet>
@@ -36,37 +63,68 @@ class Contact extends Component {
         </Helmet>
 
         <Jumbotron title="Contact" background={picture} />
-        <Hr lg />
+
+        <div className={classes.timeBanner}>
+          <div className={classes.timeBannerText}>
+            <Text fontWeight="bold" fontSize={1.6} color="#AAAAAA">
+              Culte ouvert à tous, le dimanche à 17h.
+            </Text>
+          </div>
+          <div className={classes.timeBannerButton}>
+            <Button
+              color="primary"
+              corners="circled"
+              raised
+              shadows
+              size="xs"
+              onClick={() => push(routes.worship())}
+            >
+              En savoir plus sur le culte
+            </Button>
+          </div>
+        </div>
+
+        <Hr multiplier={12} />
 
         <Container>
           <div className="row">
             <div className="col-sm-5 col-md-6">
-              {this.renderTitle("Info")}
-              <Hr />
+              {this.renderTitle("Coordonnées")}
 
-              <Text fontSize={1.6}>
-                <b>Église Lyon Gerland</b>
+              <Hr multiplier={2} />
+
+              <Text fontSize={1.4} fontWeight="medium">
+                Église Lyon Gerland
               </Text>
               <Text color="#777">Réformée, Évangélique</Text>
-              <Hr />
+
+              <Hr multiplier={3} />
+
               <Text>302 avenue Jean Jaurès</Text>
               <Text>69007 Lyon</Text>
-              <Hr />
+
+              <Hr multiplier={3} />
+
+              <Text>Tél. : (+33) 06 79 27 38 65</Text>
               <Text>
-                <b>Métro :</b> Stade de Gerland
-              </Text>
-              <Hr lg />
-              <Text fontSize={1.2}>
-                <b>Téléphone:</b> (+33) 06.79.27.38.65
-              </Text>
-              <Text fontSize={1.2}>
-                <b>Email:</b>{" "}
+                Email :{" "}
                 <a href="mailto:contact@egliselyongerland.org">
                   contact@egliselyongerland.org
                 </a>
               </Text>
 
-              <Hr xl />
+              <Hr multiplier={6} />
+
+              {this.renderTitle("Accès")}
+
+              <Hr multiplier={2} />
+
+              <Text>
+                Métro B, arrêt <b>Stade de Gerland</b>.
+              </Text>
+              <Text>
+                Tram T2, arrêt <b>Debourg</b>.
+              </Text>
             </div>
             <div className="col-sm-7 col-md-6">
               <iframe
@@ -83,23 +141,9 @@ class Contact extends Component {
             </div>
           </div>
         </Container>
-
-        {/* <Container>
-          {this.renderTitle("Envoyer un message")}
-
-          <div style={{ maxWidth: 500, height: 330, overflow: "hidden" }}>
-            <iframe
-              src="https://egliselyongerland.typeform.com/to/FmhETZ"
-              style={{ width: "100%", height: 400, border: 0 }}
-              scrolling="no"
-            />
-          </div>
-        </Container> */}
-
-        {/* <Hr xl /> */}
       </div>
     );
   }
 }
 
-export default Contact;
+export default connect(null, { push })(withStyles(styles)(Contact));

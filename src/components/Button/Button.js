@@ -26,11 +26,13 @@ const styles = theme => ({
   },
   raised: {
     border: 0,
-    boxShadow: "none",
 
     "&$disabled": {
       background: "rgba(255,255,255,0.5)"
     }
+  },
+  noShadows: {
+    boxShadow: "none"
   },
   disabled: {
     background: "red"
@@ -65,6 +67,7 @@ const Button = props => {
     classes,
     className,
     bordered,
+    shadows,
     disabled,
     corners,
     size,
@@ -80,6 +83,10 @@ const Button = props => {
 
   if (disabled) {
     finalClassName.push(classes.disabled);
+  }
+
+  if (!shadows) {
+    finalClassName.push(classes.noShadows);
   }
 
   switch (corners) {
@@ -116,6 +123,7 @@ Button.propTypes = {
   children: PropTypes.node.isRequired,
   classes: PropTypes.object.isRequired,
   bordered: PropTypes.bool,
+  shadows: PropTypes.bool,
   corners: PropTypes.oneOf(["squared", "rounded", "circled"]),
   size: PropTypes.oneOf(Object.keys(SIZES)),
   className: PropTypes.string,
@@ -124,6 +132,7 @@ Button.propTypes = {
 
 Button.defaultProps = {
   bordered: false,
+  shadows: false,
   corners: "squared",
   size: "md",
   className: null,

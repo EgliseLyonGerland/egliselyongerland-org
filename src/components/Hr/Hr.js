@@ -1,17 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { withStyles } from "material-ui";
+import { withStyles, withTheme } from "material-ui";
 import classnames from "classnames";
 import { clearfix } from "utils/styles";
-import { transform } from "lodash";
-
-const SIZES = ["nm", "xs", "sm", "md", "lg", "xl"];
+import { reduce } from "lodash";
 
 const styles = theme => ({
   hr: {
     ...clearfix(),
-    border: 0,
-    margin: [[theme.hr.sizes.md / 2, 0]]
+    border: 0
   },
   line: {
     display: "block",
@@ -23,29 +20,8 @@ const styles = theme => ({
     backgroundRepeat: "repeat-x"
   },
   inline: {
-    display: "inline-block",
-    margin: [[0, theme.hr.sizes.md / 2]],
-
-    ...transform(
-      theme.hr.sizes,
-      (result, size, name) => {
-        result[`& \$${name}`] = {
-          margin: [[0, size / 2]]
-        };
-      },
-      {}
-    )
-  },
-  ...transform(
-    theme.hr.sizes,
-    (result, size, name) => {
-      result[name] = {
-        marginTop: size / 2,
-        marginBottom: size / 2
-      };
-    },
-    {}
-  )
+    display: "inline-block"
+  }
 });
 
 const Hr = ({
@@ -55,37 +31,51 @@ const Hr = ({
   opacity,
   inline,
   width,
+  multiplier,
   classes,
+  theme: { hr: { sizes } },
   ...props
 }) => {
-  // Check size
-  const size = SIZES.reduce((prev, curr) => (props[curr] ? curr : prev), "md");
-
-  // Build new props
-  const newProps = {};
-
-  newProps.className = classnames(
+  const className = classnames([
     classes.hr,
-    classes[size],
     line && classes.line,
     inline && classes.inline
-  );
+  ]);
+
+  const style = {};
+
+  // Resolve height
+  let height;
+
+  if (multiplier) {
+    height = multiplier * 8;
+  } else {
+    height = reduce(
+      sizes,
+      (prev, height, size) => (props[size] ? height : prev),
+      sizes.md
+    );
+  }
+
+  if (inline) {
+    style.margin = `0 ${height / 2}px`;
+  } else {
+    style.margin = `${height / 2}px 0`;
+  }
 
   if (line) {
-    newProps.style = {
-      backgroundImage: `linear-gradient(to right, ${color} 33%, transparent 0%)`
-    };
+    style.backgroundImage = `linear-gradient(to right, ${color} 33%, transparent 0%)`;
 
     if (opacity) {
-      newProps.opacity = opacity;
+      style.opacity = opacity;
     }
 
     if (width) {
-      newProps.style.width = width;
+      style.width = width;
     }
   }
 
-  return <div {...newProps}>{children}</div>;
+  return <div {...{ className, style }}>{children}</div>;
 };
 
 Hr.propTypes = {
@@ -94,7 +84,8 @@ Hr.propTypes = {
   color: PropTypes.string,
   opacity: PropTypes.number,
   inline: PropTypes.bool,
-  width: PropTypes.string
+  width: PropTypes.string,
+  multiplier: PropTypes.number
 };
 
 Hr.defaultProps = {
@@ -104,4 +95,4 @@ Hr.defaultProps = {
   inline: false
 };
 
-export default withStyles(styles)(Hr);
+export default withStyles(styles)(withTheme()(Hr));
