@@ -123,7 +123,7 @@ class Contact extends Component {
                 Métro B, arrêt <b>Stade de Gerland</b>.
               </Text>
               <Text>
-                Tram T2, arrêt <b>Debourg</b>.
+                Tram T1, arrêt <b>Debourg</b>.
               </Text>
             </div>
             <div className="col-sm-7 col-md-6">
