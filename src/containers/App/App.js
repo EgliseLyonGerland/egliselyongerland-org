@@ -58,7 +58,7 @@ export default class App extends Component {
   }
 
   renderAudio() {
-    const { audio, closeAudio, playAudio, pauseAudio, classes } = this.props;
+    const { audio, closeAudio, pauseAudio, classes } = this.props;
 
     let styles = [];
 
@@ -90,8 +90,6 @@ export default class App extends Component {
                   pauseAudio();
                   closeAudio();
                 }}
-                onPlay={() => playAudio()}
-                onPause={() => pauseAudio()}
               />
             </div>
           ) : null

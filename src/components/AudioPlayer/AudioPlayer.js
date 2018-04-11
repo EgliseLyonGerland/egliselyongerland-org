@@ -74,14 +74,17 @@ const styles = theme => ({
   },
   error: {
     position: "absolute",
-    top: "50%",
-    left: 0,
+    top: 0,
     right: 0,
-    marginTop: -11,
-    textAlign: "center",
+    bottom: 0,
+    left: 0,
+    zIndex: 1,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    pointerEvents: "none",
 
     "& span": {
-      display: "inline-block",
       background: "red",
       color: "white",
       fontSize: 14,
@@ -109,9 +112,7 @@ class AudioPlayer extends Component {
     play: PropTypes.bool,
     withShadows: PropTypes.bool,
     withClose: PropTypes.bool,
-    onClose: PropTypes.func,
-    onPlay: PropTypes.func,
-    onPause: PropTypes.func
+    onClose: PropTypes.func
   };
 
   static defaultProps = {
@@ -119,9 +120,7 @@ class AudioPlayer extends Component {
     play: false,
     withShadows: false,
     withClose: false,
-    onClose: noop,
-    onPlay: noop,
-    onPause: noop
+    onClose: noop
   };
 
   constructor(props) {
@@ -194,6 +193,7 @@ class AudioPlayer extends Component {
   }
 
   handleCanPlay() {
+    console.log("handleCanPlay");
     const { play } = this.props;
     const { player: { currentTime, duration } } = this;
 
@@ -211,6 +211,7 @@ class AudioPlayer extends Component {
   }
 
   handleTimeUpdate() {
+    console.log("handleTimeUpdate");
     if (this.state.dragging) {
       return;
     }
@@ -218,21 +219,39 @@ class AudioPlayer extends Component {
     this.setState({ currentTime: this.player.currentTime });
   }
 
-  handleError() {
+  handleError(event) {
+    const { error } = event.target;
+    const { currentTime, duration } = this.state;
+
+    // Prevent Chrome error occuring at the end
+    if (error.code === error.MEDIA_ERR_DECODE) {
+      if (duration - currentTime < 1) {
+        this.seekToEnd();
+
+        return;
+      }
+    }
+
     this.setState({
       ...this.getDefaultState(),
+      disabled: true,
       error: true
     });
   }
 
   handlePlay() {
     this.setState({
+      ended: false,
       disabled: false,
       playing: true
     });
   }
 
   handlePause() {
+    if (this.state.error) {
+      return;
+    }
+
     this.setState({
       disabled: false,
       playing: false
@@ -273,16 +292,17 @@ class AudioPlayer extends Component {
   update(props, init = false) {
     const currentUrl = init ? null : this.props.url;
 
-    if (props.url !== currentUrl) {
-      if (!props.url) {
-        this.reset();
-        return;
-      }
-
-      this.player.src = props.url;
-      this.player.load();
+    if (props.url === currentUrl) {
       return;
     }
+
+    if (!props.url) {
+      this.reset();
+      return;
+    }
+
+    this.player.src = props.url;
+    this.player.load();
 
     if (props.play !== this.state.playing) {
       props.play ? this.play() : this.pause();
@@ -297,12 +317,27 @@ class AudioPlayer extends Component {
     this.player.play().catch(noop);
   }
 
+  replay() {
+    this.player.src = this.props.url;
+    this.player.load();
+    this.seekTo(0);
+    this.play();
+  }
+
   pause() {
     this.player.pause();
   }
 
   seekTo(time) {
     this.player.currentTime = Math.floor(time);
+  }
+
+  seekToEnd() {
+    const { duration } = this.state;
+
+    this.seekTo(duration);
+    this.pause();
+    this.handleEnd();
   }
 
   renderClose() {
@@ -322,14 +357,13 @@ class AudioPlayer extends Component {
   }
 
   renderPlayingIcon() {
-    const { onPause, onPlay } = this.props;
     const { playing, ended } = this.state;
 
     if (ended) {
       return (
         <ReplayIcon
           style={{ width: 30, height: 30 }}
-          onClick={() => this.seekTo(0)}
+          onClick={() => this.replay()}
         />
       );
     }
@@ -338,7 +372,7 @@ class AudioPlayer extends Component {
       return (
         <PauseIcon
           style={{ width: 36, height: 36 }}
-          onClick={() => onPause()}
+          onClick={() => this.pause()}
         />
       );
     }
@@ -346,7 +380,7 @@ class AudioPlayer extends Component {
     return (
       <PlayArrowIcon
         style={{ width: 36, height: 36 }}
-        onClick={() => onPlay()}
+        onClick={() => this.play()}
       />
     );
   }
