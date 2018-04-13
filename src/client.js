@@ -30,7 +30,11 @@ const renderApp = renderProps =>
     <AppContainer>
       <Root {...{ store, history, ...renderProps }} />
     </AppContainer>,
-    document.getElementById("content")
+    document.getElementById("content"),
+    () => {
+      const ssStyles = document.getElementById("server-side-styles");
+      ssStyles.parentNode.removeChild(ssStyles);
+    }
   );
 
 store.dispatch(calculateResponsiveState(window));
