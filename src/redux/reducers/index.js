@@ -18,6 +18,7 @@ export default combineReducers({
   routing: routerReducer,
   reduxAsyncConnect,
   browser: createResponsiveStateReducer(app.breakpoints, {
+    initialMediaType: "md",
     extraFields: () => ({
       width: canUseDOM ? window.innerWidth : 1024
     })

@@ -34,10 +34,10 @@ const renderApp = renderProps =>
     () => {
       const ssStyles = document.getElementById("server-side-styles");
       ssStyles.parentNode.removeChild(ssStyles);
+
+      store.dispatch(calculateResponsiveState(window));
     }
   );
-
-store.dispatch(calculateResponsiveState(window));
 
 window.addEventListener("resize", () =>
   store.dispatch(calculateResponsiveState(window))
@@ -53,15 +53,4 @@ if (module.hot) {
     const nextRoutes = require("./routes");
     renderApp({ routes: nextRoutes() });
   });
-}
-
-if (process.env.NODE_ENV !== "production") {
-  window.React = React; // enable debugger
-
-  if (!get(dest, "firstChild.attributes.data-react-checksum")) {
-    console.error(
-      "Server-side React render was discarded." +
-        "Make sure that your initial render does not contain any client-side code."
-    );
-  }
 }

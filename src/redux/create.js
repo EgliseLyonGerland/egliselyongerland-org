@@ -1,4 +1,4 @@
-import { createStore as _createStore, applyMiddleware, compose } from "redux";
+import { createStore, applyMiddleware, compose } from "redux";
 import { routerMiddleware } from "react-router-redux";
 import { createResponsiveStoreEnhancer } from "redux-responsive";
 import thunk from "redux-thunk";
@@ -9,7 +9,7 @@ import createClientMiddleware from "./middleware/clientMiddleware";
 import overlayMiddleware from "./middleware/overlayMiddleware";
 import changeRouteMiddleware from "./middleware/changeRouteMiddleware";
 
-export default function createStore(history, client, data) {
+export default (history, client, data) => {
   // Sync dispatched route actions to the history
   const reduxRouterMiddleware = routerMiddleware(history);
 
@@ -21,7 +21,11 @@ export default function createStore(history, client, data) {
     reduxRouterMiddleware
   ];
 
-  let finalCreateStore;
+  let finalCreateStore = compose(
+    applyMiddleware(...middleware),
+    createResponsiveStoreEnhancer({ calculateInitialState: false })
+  )(createStore);
+
   if (__DEVELOPMENT__ && __CLIENT__ && __DEVTOOLS__) {
     // eslint-disable-next-line global-require
     const { persistState } = require("redux-devtools");
@@ -29,15 +33,12 @@ export default function createStore(history, client, data) {
     const DevTools = require("../containers/DevTools/DevTools");
 
     finalCreateStore = compose(
-      createResponsiveStoreEnhancer({ calculateInitialState: false }),
       applyMiddleware(...middleware),
       window.devToolsExtension
         ? window.devToolsExtension()
         : DevTools.instrument(),
       persistState(window.location.href.match(/[?&]debug_session=([^&]+)\b/))
-    )(_createStore);
-  } else {
-    finalCreateStore = applyMiddleware(...middleware)(_createStore);
+    )(createStore);
   }
 
   const store = finalCreateStore(reducers, data);
@@ -50,4 +51,4 @@ export default function createStore(history, client, data) {
   }
 
   return store;
-}
+};
