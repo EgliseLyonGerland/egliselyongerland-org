@@ -146,7 +146,11 @@ export default class Blog extends Component {
   }
 
   renderBibleFilter() {
-    const { loading, params, aggs: { bibleRefs = null } } = this.props;
+    const {
+      loading,
+      params,
+      aggs: { bibleRefs = null }
+    } = this.props;
 
     const { router } = this.context;
 
@@ -171,7 +175,11 @@ export default class Blog extends Component {
   }
 
   renderCategoriesFilter() {
-    const { loading, params, aggs: { categories = null } } = this.props;
+    const {
+      loading,
+      params,
+      aggs: { categories = null }
+    } = this.props;
 
     const { router } = this.context;
 
@@ -212,7 +220,11 @@ export default class Blog extends Component {
   }
 
   renderAuthorsFilter() {
-    const { loading, params, aggs: { authors = null } } = this.props;
+    const {
+      loading,
+      params,
+      aggs: { authors = null }
+    } = this.props;
 
     const { router } = this.context;
 
@@ -294,7 +306,10 @@ export default class Blog extends Component {
   }
 
   renderPosts() {
-    const { loading, location: { query } } = this.props;
+    const {
+      loading,
+      location: { query }
+    } = this.props;
 
     const posts = this.getDenormalizedPosts();
 

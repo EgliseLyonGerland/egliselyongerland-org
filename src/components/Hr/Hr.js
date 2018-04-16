@@ -33,7 +33,9 @@ const Hr = ({
   width,
   multiplier,
   classes,
-  theme: { hr: { sizes } },
+  theme: {
+    hr: { sizes }
+  },
   ...props
 }) => {
   const className = classnames([

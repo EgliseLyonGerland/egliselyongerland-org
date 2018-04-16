@@ -48,7 +48,9 @@ const getMetaDescription = post => {
 ])
 @connect((state, props) => {
   const { entities } = state;
-  const { params: { postId } } = props;
+  const {
+    params: { postId }
+  } = props;
 
   const post = entities.posts[postId];
 

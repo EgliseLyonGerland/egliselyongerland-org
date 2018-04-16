@@ -195,7 +195,9 @@ class AudioPlayer extends Component {
   handleCanPlay() {
     console.log("handleCanPlay");
     const { play } = this.props;
-    const { player: { currentTime, duration } } = this;
+    const {
+      player: { currentTime, duration }
+    } = this;
 
     this.setState(
       {
