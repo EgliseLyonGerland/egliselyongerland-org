@@ -33,7 +33,7 @@ const renderApp = renderProps =>
     document.getElementById("content"),
     () => {
       const ssStyles = document.getElementById("server-side-styles");
-      ssStyles.parentNode.removeChild(ssStyles);
+      ssStyles && ssStyles.parentNode.removeChild(ssStyles);
 
       store.dispatch(calculateResponsiveState(window));
     }
