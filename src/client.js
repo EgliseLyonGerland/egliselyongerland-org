@@ -3,7 +3,7 @@
  */
 import "babel-polyfill";
 import React from "react";
-import { render } from "react-dom";
+import { hydrate } from "react-dom";
 import { AppContainer } from "react-hot-loader";
 import { match, browserHistory } from "react-router";
 import { syncHistoryWithStore } from "react-router-redux";
@@ -26,7 +26,7 @@ const history = syncHistoryWithStore(browserHistory, store);
 const dest = document.getElementById("content");
 
 const renderApp = renderProps =>
-  render(
+  hydrate(
     <AppContainer>
       <Root {...{ store, history, ...renderProps }} />
     </AppContainer>,
