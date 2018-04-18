@@ -1,33 +1,68 @@
-import React from "react";
-
-import { IndexRoute, Route } from "react-router";
-
-import churchTabs from "./config/church-tabs";
-
 import { App, Blog, Church, Contact, Home, NotFound, Post } from "containers";
 
-export default () => (
-  <Route path="/" component={App}>
-    {/* Home (main) route */}
-    <IndexRoute component={Home} />
+import churchTabs from "./shared/config/church-tabs";
 
-    {/* Church routes */}
-    <Route component={Church}>
-      {churchTabs.map(tab => (
-        <Route key={tab.slug} path={`/${tab.slug}`} component={tab.component} />
-      ))}
-    </Route>
+const blogRoutes = [
+  "/blog",
+  "/blog/category/:category",
+  "/blog/category/:category/author/:author",
+  "/blog/category/:category/author/:author/book/:book",
+  "/blog/category/:category/author/:author/book/:book/chapter/:chapter",
+  "/blog/category/:category/author/:author/book/:book/chapter/:chapter/verse/:verse",
+  "/blog/category/:category/book/:book",
+  "/blog/category/:category/book/:book/chapter/:chapter",
+  "/blog/category/:category/book/:book/chapter/:chapter/verse/:verse",
+  "/blog/author/:author",
+  "/blog/author/:author/book/:book",
+  "/blog/author/:author/book/:book/chapter/:chapter",
+  "/blog/author/:author/book/:book/chapter/:chapter/verse/:verse",
+  "/blog/book/:book",
+  "/blog/book/:book/chapter/:chapter",
+  "/blog/book/:book/chapter/:chapter/verse/:verse"
+];
 
-    {/* Blog routes */}
-    <Route
-      path="/blog(/category/:category)(/author/:author)(/book/:book(/chapter/:chapter))"
-      component={Blog}
-    />
-    <Route path="/blog/post/:postId" component={Post} />
+const routes = [
+  {
+    component: App,
+    routes: [
+      {
+        path: "/",
+        exact: true,
+        component: Home
+      },
+      ...churchTabs.map(({ slug, component }) => ({
+        component: Church,
+        path: `/${slug}`,
+        routes: [
+          {
+            path: `/${slug}`,
+            component,
+            exact: true
+          }
+        ]
+      })),
+      ...blogRoutes.map(path => ({
+        path,
+        exact: true,
+        component: Blog
+      })),
+      {
+        path: "/blog/post/:postId",
+        // exact: true,
+        component: Post
+      },
+      {
+        path: "/contact",
+        exact: true,
+        component: Contact
+      },
+      {
+        path: "*",
+        component: NotFound,
+        status: 404
+      }
+    ]
+  }
+];
 
-    <Route path="/contact" component={Contact} />
-
-    {/* Catch all route */}
-    <Route path="*" component={NotFound} status={404} />
-  </Route>
-);
+export default routes;

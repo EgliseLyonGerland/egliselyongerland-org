@@ -1,8 +1,4 @@
-.idea/
-node_modules/
-dist/
-*.iml
-webpack-assets.json
-webpack-stats.json
+node_modules
+build
 npm-debug.log
 yarn-error.log

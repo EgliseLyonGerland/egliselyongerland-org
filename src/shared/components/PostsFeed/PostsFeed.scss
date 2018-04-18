@@ -1,0 +1,112 @@
+@import "../../theme/variables.scss";
+@import "../../theme/mixins.scss";
+
+.posts {
+}
+
+.post {
+  @include clearfix();
+  margin-bottom: $post-feed-margin / 2;
+
+  &:after {
+    content: "";
+    width: 120px;
+    padding-top: ($post-feed-margin / 2) + 3;
+    display: block;
+    margin: 0 auto;
+    background-image: linear-gradient(
+      to right,
+      #ccc 33%,
+      rgba(255, 255, 255, 0) 0%
+    );
+    background-position: -10px bottom;
+    background-size: 10px 3px;
+    background-repeat: repeat-x;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+
+    &:after {
+      visibility: hidden;
+      height: 0;
+      margin: 0;
+      padding: 0;
+    }
+  }
+}
+
+.content {
+  margin-left: $post-feed-picture-width + 30px;
+}
+
+.footer {
+  background: #f5f8f9;
+  padding: 12px;
+}
+
+.picture {
+  float: left;
+  display: block;
+  width: $post-feed-picture-width;
+}
+
+.title {
+  display: block;
+  color: #333;
+  font-size: 22px;
+  line-height: 26px;
+  font-weight: $font-weight-regular;
+}
+
+.avatar {
+  float: left;
+  vertical-align: middle;
+  width: 36px;
+  margin-right: 12px;
+  border: solid 1px #eee;
+}
+
+.taxonomies {
+  font-size: 16px;
+  font-weight: $font-weight-light;
+  height: 35px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.taxonomy {
+  color: #ccc;
+  margin-right: 12px;
+}
+
+.taxonomyLabel {
+  vertical-align: middle;
+}
+
+.category {
+  font-weight: $font-weight-regular;
+
+  &,
+  &:hover,
+  &:focus,
+  &:visited {
+    color: #999;
+  }
+}
+
+.horizontal {
+  display: flex;
+  margin: 0 -15px;
+
+  .post {
+    flex: 1 1;
+    margin: 0 15px;
+  }
+
+  .title {
+    height: 52px;
+    overflow: hidden;
+  }
+}
