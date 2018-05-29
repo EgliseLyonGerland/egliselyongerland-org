@@ -1,14 +1,27 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-
+import { withStyles } from "@material-ui/core/styles";
 import { Motion, spring } from "react-motion";
 import { findIndex } from "lodash";
 
 import { TabPicker } from "components";
 
-import styles from "./PanePicker.scss";
+const styles = theme => ({
+  root: {
+    width: "100%",
+    whiteSpace: "nowrap",
+    overflowX: "hidden"
+  },
 
-export default class PanePicker extends Component {
+  pane: {
+    width: "100%",
+    whiteSpace: "normal",
+    display: "inline-block",
+    verticalAlign: "top"
+  }
+});
+
+class PanePicker extends Component {
   static propTypes = {
     panes: PropTypes.arrayOf(
       PropTypes.shape({
@@ -32,6 +45,7 @@ export default class PanePicker extends Component {
       height,
       tabBgColor,
       tabActiveBarColor,
+      classes,
       onChange = () => {}
     } = this.props;
 
@@ -56,7 +70,7 @@ export default class PanePicker extends Component {
           onChange={tab => tab.active !== false && onChange(tab)}
         />
 
-        <div className={styles.panes}>
+        <div className={classes.root}>
           <Motion
             defaultStyle={{ x: 0 }}
             style={{ x: spring(currentPaneIndex * 100) }}
@@ -66,7 +80,7 @@ export default class PanePicker extends Component {
                 {panes.map(pane => (
                   <div
                     key={pane.key}
-                    className={styles.pane}
+                    className={classes.pane}
                     style={paneStyles}
                   >
                     {pane.children}
@@ -80,3 +94,5 @@ export default class PanePicker extends Component {
     );
   }
 }
+
+export default withStyles(styles)(PanePicker);

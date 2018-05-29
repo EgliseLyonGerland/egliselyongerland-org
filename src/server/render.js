@@ -1,7 +1,7 @@
 import React from "react";
 import { renderToString } from "react-dom/server";
 import { StaticRouter as Router } from "react-router-dom";
-import { Provider } from "react-redux";
+import { Provider as ReduxProvider } from "react-redux";
 import { ReduxAsyncConnect, loadOnServer } from "redux-connect";
 import { parse as parseUrl } from "url";
 import {
@@ -29,7 +29,7 @@ const serverRenderer = () => async (req, res) => {
   const generateClassName = createGenerateClassName();
 
   const content = renderToString(
-    <Provider store={req.store}>
+    <ReduxProvider store={req.store}>
       <JssProvider {...{ registry, generateClassName }}>
         <MuiThemeProvider theme={muiTheme} sheetsManager={new Map()}>
           <Router location={req.url} context={{}}>
@@ -37,7 +37,7 @@ const serverRenderer = () => async (req, res) => {
           </Router>
         </MuiThemeProvider>
       </JssProvider>
-    </Provider>
+    </ReduxProvider>
   );
 
   const css = registry.toString();

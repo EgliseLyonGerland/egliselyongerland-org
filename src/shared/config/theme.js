@@ -4,6 +4,7 @@ export default {
   typography: {
     fontFamily: '"Lato", sans-serif',
     fontSize: 16,
+    fontWeight: 300,
     fontWeights: {
       thin: 100,
       light: 300,
@@ -78,6 +79,19 @@ export default {
       lg: 32,
       xl: 40
     }
+  },
+  popButton: {
+    zindex: 1200,
+    size: 60,
+    margin: 15
+  },
+  postFeed: {
+    margin: 36,
+    pictureWidth: 170,
+    pictureHeight: 130
+  },
+  picker: {
+    borderColor: "#ededed"
   },
   gradient: () => ({
     // background: '#4776e6',

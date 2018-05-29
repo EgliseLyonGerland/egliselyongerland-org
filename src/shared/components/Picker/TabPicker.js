@@ -1,13 +1,41 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { findIndex } from "lodash";
+import { withStyles } from "@material-ui/core/styles";
 
 import { Text } from "components";
 
-import { findIndex } from "lodash";
+const styles = theme => ({
+  tabs: {
+    borderBottom: `${theme.picker.borderColor} solid 1px`
+  },
+  tabsContent: {
+    display: "flex"
+  },
+  tab: {
+    flexGrow: 1,
+    textAlign: "center",
+    padding: [[10, 3, 7]],
+    cursor: "pointer",
+    borderBottom: "transparent solid 3px",
 
-import styles from "./TabPicker.scss";
+    "&:hover": {
+      borderBottomColor: theme.picker.borderColor
+    }
+  },
+  tabDisabled: {
+    opacity: 0.3,
+    cursor: "default"
+  },
+  tabActiveBar: {
+    height: 3,
+    background: "red",
+    transition: "transform 0.3s ease-in-out",
+    marginTop: -3
+  }
+});
 
-export default class TabPicker extends Component {
+class TabPicker extends Component {
   static propTypes = {
     tabs: PropTypes.arrayOf(
       PropTypes.shape({
@@ -37,7 +65,14 @@ export default class TabPicker extends Component {
   }
 
   render() {
-    const { tabs, bgColor, activeBarColor, renderLabel, current } = this.props;
+    const {
+      tabs,
+      bgColor,
+      activeBarColor,
+      renderLabel,
+      current,
+      classes
+    } = this.props;
 
     const tabWidth = 100 / tabs.length;
     const currentTabIndex = Math.max(0, findIndex(tabs, ["key", current]));
@@ -49,15 +84,17 @@ export default class TabPicker extends Component {
     }
 
     return (
-      <div className={styles.tabs}>
-        <div className={styles.tabsContent} style={tabsStyles}>
+      <div className={classes.tabs}>
+        <div className={classes.tabsContent} style={tabsStyles}>
           {tabs.map(tab => {
             const { key, active = true } = tab;
 
             return (
               <div
                 key={key}
-                className={`${styles.tab} ${active ? "" : styles.tabDisabled}`}
+                className={`${classes.tab} ${
+                  active ? "" : classes.tabDisabled
+                }`}
                 style={{ width: `${tabWidth}%` }}
                 onClick={() => this.handleChangeTab(tab)}
               >
@@ -68,7 +105,7 @@ export default class TabPicker extends Component {
         </div>
 
         <div
-          className={styles.tabActiveBar}
+          className={classes.tabActiveBar}
           style={{
             width: `${tabWidth}%`,
             background: activeBarColor,
@@ -79,3 +116,5 @@ export default class TabPicker extends Component {
     );
   }
 }
+
+export default withStyles(styles)(TabPicker);

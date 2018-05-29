@@ -1,7 +1,7 @@
 import React from "react";
 import createHistory from "history/createBrowserHistory";
 import { hydrate } from "react-dom";
-import { Provider } from "react-redux";
+import { Provider as ReduxProvider } from "react-redux";
 import {
   ConnectedRouter as Router,
   routerMiddleware
@@ -36,13 +36,13 @@ const store =
   });
 
 hydrate(
-  <Provider store={store}>
+  <ReduxProvider store={store}>
     <MuiThemeProvider theme={createMuiTheme(theme)}>
       <Router history={browserHistory}>
         <ReduxAsyncConnect routes={routes} />
       </Router>
     </MuiThemeProvider>
-  </Provider>,
+  </ReduxProvider>,
   document.getElementById("app"),
   () => {
     store.dispatch(calculateResponsiveState(window));

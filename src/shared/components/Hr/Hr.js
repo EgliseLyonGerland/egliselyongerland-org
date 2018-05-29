@@ -2,12 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import { withStyles, withTheme } from "@material-ui/core";
 import classnames from "classnames";
-import { clearfix } from "utils/styles";
+import { clearFix } from "polished";
 import { reduce } from "lodash";
 
 const styles = theme => ({
   hr: {
-    ...clearfix(),
+    ...clearFix(),
     display: "block",
     border: 0
   },

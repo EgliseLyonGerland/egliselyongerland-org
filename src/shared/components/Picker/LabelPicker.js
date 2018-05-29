@@ -1,12 +1,40 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { withStyles } from "@material-ui/core/styles";
+import { lighten, rgba, clearFix } from "polished";
 
+import { Text } from "components";
 import ToggleOnIcon from "components/Icon/ToggleOnIcon";
 import ToggleOffIcon from "components/Icon/ToggleOffOutlinedIcon";
 
-import { Text } from "components";
+const styles = theme => ({
+  label: {
+    ...clearFix(),
+    padding: [[7, 15]],
+    borderBottom: [[theme.picker.borderColor, "solid", 1]],
+    cursor: "pointer",
 
-import styles from "./LabelPicker.scss";
+    "&:hover": {
+      background: lighten(0.98, "black")
+    }
+  },
+  more: {
+    textAlign: "center"
+  },
+  readOnly: {
+    position: "relative",
+
+    "&:after": {
+      content: `""`,
+      position: "absolute",
+      top: 0,
+      left: 0,
+      width: "100%",
+      height: "100%",
+      background: rgba("white", 0.7)
+    }
+  }
+});
 
 class LabelPicker extends Component {
   static propTypes = {
@@ -38,13 +66,14 @@ class LabelPicker extends Component {
       current = null,
       readOnly = false,
       children,
+      classes,
       onChange = () => {}
     } = this.props;
 
     const { opened } = this.state;
 
     return (
-      <div className={`${readOnly ? styles.readOnly : ""}`}>
+      <div className={readOnly ? classes.readOnly : ""}>
         {labels.map((label, index) => {
           if (!opened && crop !== null && index >= crop) {
             return null;
@@ -53,7 +82,7 @@ class LabelPicker extends Component {
           return (
             <div
               key={label.key}
-              className={[styles.label, "clearfix"].join(" ")}
+              className={classes.label}
               onClick={() =>
                 !readOnly &&
                 onChange(label.key === current ? undefined : label.key)
@@ -77,7 +106,7 @@ class LabelPicker extends Component {
         {crop !== null &&
           labels.length > crop && (
             <div
-              className={`${styles.more} clearfix`}
+              className={`${classes.label} ${classes.more}`}
               onClick={() => this.setState({ opened: !opened })}
             >
               <a>Afficher {opened ? "moins" : "plus"}</a>
@@ -88,4 +117,4 @@ class LabelPicker extends Component {
   }
 }
 
-export default LabelPicker;
+export default withStyles(styles)(LabelPicker);
