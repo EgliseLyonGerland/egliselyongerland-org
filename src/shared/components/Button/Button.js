@@ -4,13 +4,13 @@ import { ButtonBase, withStyles } from "@material-ui/core";
 import { transform } from "lodash";
 
 const SIZES = {
-  xxs: { fontSize: 14, height: 24, radius: 2 },
-  xs: { fontSize: 16, height: 32, radius: 3 },
-  sm: { fontSize: 16, height: 40, radius: 3 },
-  md: { fontSize: 16, height: 48, radius: 4 },
-  lg: { fontSize: 16, height: 56, radius: 4 },
-  xl: { fontSize: 18, height: 64, radius: 4 },
-  xxl: { fontSize: 20, height: 80, radius: 5 }
+  xxs: { fontSize: 14, height: 24, padding: 8, radius: 2 },
+  xs: { fontSize: 16, height: 32, padding: 16, radius: 3 },
+  sm: { fontSize: 16, height: 40, padding: 20, radius: 3 },
+  md: { fontSize: 16, height: 48, padding: 24, radius: 4 },
+  lg: { fontSize: 16, height: 56, padding: 28, radius: 4 },
+  xl: { fontSize: 18, height: 64, padding: 32, radius: 4 },
+  xxl: { fontSize: 20, height: 80, padding: 40, radius: 5 }
 };
 
 const styles = theme => ({
@@ -118,15 +118,13 @@ const styles = theme => ({
   ...transform(
     SIZES,
     (result, data, key) => {
-      const padding = Math.floor(data.height / 2);
-
       result[key] = {
         fontSize: data.fontSize,
         height: data.height,
         lineHeight: `${data.fontSize}px`,
 
         [`&$normal`]: {
-          padding: [[0, padding]]
+          padding: [[0, data.padding]]
         },
 
         [`&$rounded`]: {
@@ -134,8 +132,7 @@ const styles = theme => ({
         },
 
         [`&$circular`]: {
-          borderRadius: data.height,
-          padding: [[0, Math.round(padding * 1.2)]]
+          borderRadius: data.height
         },
 
         [`&$icon`]: {
