@@ -18,15 +18,18 @@ class NotFound extends Component {
       <div>
         <Jumbotron>
           <Container sm style={{ textAlign: "center" }}>
-            <Text color="white" fontWeight="bold" fontSize={2}>
+            <Text color="white" fontWeight="medium" fontSize={2}>
               {book}
             </Text>
             <Text color="white" fontSize={10} lineHeight={10} fontWeight="bold">
               40.4
             </Text>
             <Hr line width="50%" xl />
-            <Text color="white" fontWeight="thin" fontSize={1.6} italic>
-              “{verse}” — <small>{book} 40.4</small>
+            <Text color="white" fontWeight="light" fontSize={1.6} italic>
+              “{verse}”
+              <Text fontWeight="regular" fontSize={1.6}>
+                — {book} 40.4
+              </Text>
             </Text>
           </Container>
         </Jumbotron>

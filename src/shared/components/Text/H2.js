@@ -4,7 +4,7 @@ import H1 from "./H1";
 
 class H2 extends Component {
   render() {
-    return <H1 fontSize={1.4} fontWeight="bold" {...this.props} />;
+    return <H1 fontSize={1.4} fontWeight="medium" {...this.props} />;
   }
 }
 

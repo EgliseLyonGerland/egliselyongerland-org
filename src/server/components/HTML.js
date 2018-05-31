@@ -49,7 +49,7 @@ export default class extends Component {
           />
 
           <link
-            href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900"
+            href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700"
             rel="stylesheet"
             type="text/css"
           />

@@ -71,7 +71,7 @@ const styles = theme => ({
     },
 
     "& > blockquote": {
-      fontWeight: 400,
+      fontWeight: theme.typography.fontWeights.regular,
       fontStyle: "italic",
       color: "#555",
       maxWidth: 780,

@@ -86,7 +86,7 @@ class PopButton extends Component {
               <CloseIcon />
             </div>
 
-            <Text fontWeight="bold">{title}</Text>
+            <Text fontWeight="medium">{title}</Text>
             <Hr lg line />
             {children}
           </div>

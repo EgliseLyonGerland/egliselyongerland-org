@@ -72,7 +72,7 @@ const styles = theme => ({
     left: theme.header.logo.height - 16,
     top: 0,
     fontSize: 9,
-    fontWeight: 400,
+    fontWeight: theme.typography.fontWeights.medium,
     lineHeight: "1em",
     width: 30,
     textAlign: "center",
@@ -102,13 +102,13 @@ const styles = theme => ({
   linksItem: {
     flexGrow: 0,
     textAlign: "right",
-    marginLeft: 20
+    marginLeft: 16
   },
   link: {
     color: "white",
     textDecoration: "none",
-    textTransform: "uppercase",
-    fontWeight: theme.typography.fontWeights.normal,
+    textTransform: "capitalize",
+    fontWeight: theme.typography.fontWeights.regular,
     fontSize: 16,
 
     "&:hover": {

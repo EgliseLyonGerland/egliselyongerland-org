@@ -17,7 +17,7 @@ const styles = theme => ({
   root: {
     background: "#eee",
     transition: "background .2s",
-    fontWeight: "normal"
+    fontWeight: theme.typography.fontWeights.regular
   },
   normal: {},
   icon: {},

@@ -50,7 +50,7 @@ const styles = theme => ({
   title: {
     display: "block",
     fontSize: 44,
-    fontWeight: "bold",
+    fontWeight: theme.typography.fontWeights.light,
     margin: [[0, 20]],
     textAlign: "center",
     color: "white",

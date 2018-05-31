@@ -110,7 +110,7 @@ class Home extends Component {
 
         <Jumbotron background={worship}>
           <Container md style={{ color: "white", textAlign: "center" }}>
-            <Text fontSize={4} fontWeight="thin" element="div">
+            <Text fontSize={4} fontWeight="light" element="div">
               <img src={sunshineLeft} alt="" />
               <Hr inline />
               Bienvenue

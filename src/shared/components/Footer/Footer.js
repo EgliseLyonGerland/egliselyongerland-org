@@ -10,7 +10,7 @@ const styles = theme => ({
     height: theme.footer.height,
     background: "#1f1f1f",
     textAlign: "center",
-    fontWeight: 300,
+    fontWeight: theme.typography.fontWeights.light,
     fontSize: "1.1rem",
     position: "absolute",
     bottom: 0,

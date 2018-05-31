@@ -17,7 +17,8 @@ const styles = theme => ({
     marginRight: "auto",
     backgroundPosition: "-10px bottom",
     backgroundSize: "12px 4px",
-    backgroundRepeat: "repeat-x"
+    backgroundRepeat: "repeat-x",
+    margin: [[0, "auto"]]
   },
   inline: {
     display: "inline-block"
@@ -62,7 +63,7 @@ const Hr = ({
   if (inline) {
     style.margin = `0 ${height / 2}px`;
   } else {
-    style.margin = `${height / 2}px 0`;
+    style.margin = `${height / 2}px auto`;
   }
 
   if (line) {

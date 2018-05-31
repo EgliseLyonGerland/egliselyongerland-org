@@ -4,14 +4,14 @@ export default {
   typography: {
     fontFamily: '"Lato", sans-serif',
     fontSize: 16,
-    fontWeight: 300,
+    fontWeight: 400,
     fontWeights: {
-      thin: 100,
+      thin: 300,
       light: 300,
       regular: 400,
-      medium: 400,
+      medium: 600,
       bold: 700,
-      black: 900
+      black: 700
     }
   },
   palette: {

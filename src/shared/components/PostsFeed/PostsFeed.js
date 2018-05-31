@@ -59,9 +59,9 @@ const styles = theme => ({
   title: {
     display: "block",
     color: "#333",
-    fontSize: 22,
+    fontSize: 24,
     lineHeight: "26px",
-    fontWeight: theme.typography.fontWeights.regular
+    fontWeight: theme.typography.fontWeights.light
   },
 
   avatar: {
@@ -73,8 +73,8 @@ const styles = theme => ({
   },
 
   taxonomies: {
-    fontSize: 16,
-    fontWeight: theme.typography.fontWeights.light,
+    fontSize: 14,
+    fontWeight: theme.typography.fontWeights.regular,
     height: 35,
     overflow: "hidden",
     textOverflow: "ellipsis",

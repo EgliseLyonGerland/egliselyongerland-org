@@ -45,7 +45,7 @@ const styles = theme => ({
     marginBottom: 30
   },
   author: {
-    fontWeight: 400
+    fontWeight: theme.typography.fontWeights.regular
   },
   dash: {
     margin: [[0, 10]]
@@ -68,7 +68,7 @@ const styles = theme => ({
   audioActionLabel: {
     display: "block",
     width: 130,
-    fontWeight: 400
+    fontWeight: theme.typography.fontWeights.regular
   },
 
   "@media screen and (max-width: 640px), screen and (max-height: 640px)": {

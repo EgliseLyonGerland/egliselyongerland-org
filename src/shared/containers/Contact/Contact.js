@@ -64,7 +64,7 @@ class Contact extends Component {
 
         <div className={classes.timeBanner}>
           <div className={classes.timeBannerText}>
-            <Text fontWeight="bold" fontSize={1.6} color="#AAAAAA">
+            <Text fontWeight="medium" fontSize={1.6} color="#AAAAAA">
               Culte ouvert à tous, le dimanche à 17h.
             </Text>
           </div>
@@ -90,7 +90,7 @@ class Contact extends Component {
 
               <Hr multiplier={2} />
 
-              <Text fontSize={1.4} fontWeight="medium">
+              <Text fontSize={1.4} fontWeight="regular">
                 Église Lyon Gerland
               </Text>
               <Text color="#777">Réformée, Évangélique</Text>

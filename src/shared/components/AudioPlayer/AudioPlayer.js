@@ -60,7 +60,7 @@ const styles = theme => ({
     marginRight: 15
   },
   current: {
-    fontWeight: 400,
+    fontWeight: theme.typography.fontWeights.regular,
     marginRight: 10
   },
   total: {
@@ -88,7 +88,7 @@ const styles = theme => ({
       background: "red",
       color: "white",
       fontSize: 14,
-      fontWeight: 700,
+      fontWeight: theme.typography.fontWeights.bold,
       lineHeight: "22px",
       padding: [[0, 10]],
       borderRadius: 3

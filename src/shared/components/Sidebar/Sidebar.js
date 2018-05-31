@@ -33,7 +33,7 @@ const styles = theme => ({
   link: {
     display: "block",
     color: "white",
-    fontWeight: 400,
+    fontWeight: theme.typography.fontWeights.regular,
     textDecoration: "none",
     fontSize: 20,
     textTransform: "uppercase",
