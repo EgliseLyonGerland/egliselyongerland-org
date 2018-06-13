@@ -59,7 +59,7 @@ export default class BiblePicker extends Component {
   };
 
   constructor(props) {
-    super();
+    super(props);
 
     const { books, currentBook } = props;
 
@@ -68,15 +68,12 @@ export default class BiblePicker extends Component {
         find(books, ["id", currentBook]),
         "testament",
         "old"
-      )
+      ),
+      currentMainPane: this.getCurrentPane()
     };
   }
 
-  componentWillMount() {
-    this.setState({ currentMainPane: this.getCurrentPane() });
-  }
-
-  componentWillReceiveProps() {
+  componentDidMount() {
     this.setState({ currentMainPane: this.getCurrentPane() });
   }
 

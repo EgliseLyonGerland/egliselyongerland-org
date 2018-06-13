@@ -9,8 +9,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import { padStart, noop } from "lodash";
 import classnames from "classnames";
 import Button from "components/Button/Button";
-
-import ProgressBar from "./ProgressBar";
+import Slider from "@material-ui/lab/Slider";
 
 const SPINNER_SIZE = 24;
 
@@ -103,6 +102,30 @@ const styles = theme => ({
       borderRadius: 0,
       padding: [[0, 5]]
     }
+  },
+
+  // Slider styles
+  sliderFocused: {},
+  sliderActivated: {},
+  sliderJumped: {},
+  sliderTrackBefore: {
+    backgroundColor: "white",
+
+    "&$sliderFocused, &$sliderActivated, &$sliderJumped": {
+      backgroundColor: "white"
+    }
+  },
+  sliderThumb: {
+    backgroundColor: "white",
+
+    "&$sliderFocused": {
+      boxShadow: `0px 0px 0px 9px rgba(255, 255, 255, 0.16)`
+    }
+  },
+
+  // CircularProgress styles
+  circularProgressColorPrimary: {
+    color: "white"
   }
 });
 
@@ -154,7 +177,7 @@ class AudioPlayer extends Component {
     this.update(this.props, true);
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentDidUpdate(nextProps) {
     this.update(nextProps);
   }
 
@@ -269,7 +292,7 @@ class AudioPlayer extends Component {
     this.setState({ dragging: true });
   }
 
-  handleDragStop() {
+  handleDragEnd() {
     this.setState({ dragging: false }, () => {
       this.seekTo(this.state.currentTime);
     });
@@ -406,13 +429,20 @@ class AudioPlayer extends Component {
           </Button>
         </div>
         <div className={classes.seek}>
-          <ProgressBar
+          <Slider
             min={0}
             max={duration || 1}
             value={currentTime || 0}
             onChange={(event, value) => this.handleChange(value)}
             onDragStart={() => this.handleDragStart()}
-            onDragStop={() => this.handleDragStop()}
+            onDragEnd={() => this.handleDragEnd()}
+            classes={{
+              trackBefore: classes.sliderTrackBefore,
+              thumb: classes.sliderThumb,
+              focused: classes.sliderFocused,
+              activated: classes.sliderActivated,
+              jumped: classes.sliderJumped
+            }}
           />
         </div>
         <div className={classes.time}>
@@ -454,7 +484,7 @@ class AudioPlayer extends Component {
           <CircularProgress
             className={classes.spinner}
             size={SPINNER_SIZE}
-            color="accent"
+            classes={{ colorPrimary: classes.circularProgressColorPrimary }}
           />
         )}
 

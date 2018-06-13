@@ -47,7 +47,7 @@ const styles = theme => ({
       width: 34,
       height: 34,
       lineHeight: "34px",
-      marginTop: 13
+      margin: [[13, 0]]
     }
   },
   cellGhost: {
