@@ -9,6 +9,7 @@ import moment from "moment";
 
 import { postSchema } from "store/schemas";
 import { load as loadPost, isLoaded as isPostLoaded } from "store/actions/post";
+import { NotFound } from "containers";
 
 import Header from "./components/Header";
 import Shares from "./components/Shares";
@@ -48,30 +49,34 @@ const asyncPromises = [
 ];
 
 const mapStateToProps = (state, props) => {
-  const { entities } = state;
+  const { post, entities } = state;
   const {
     match: {
       params: { postId }
     }
   } = props;
 
-  const post = entities.posts[postId];
+  const data = entities.posts[postId];
+  const notFound = !!get(post, [postId, "error"]);
 
   return {
-    post,
-    entities
+    post: data,
+    entities,
+    notFound
   };
 };
 
 class Post extends Component {
   static propTypes = {
     post: PropTypes.object,
-    entities: PropTypes.object
+    entities: PropTypes.object,
+    notFound: PropTypes.bool
   };
 
   static defaultProps = {
     post: null,
-    entities: null
+    entities: null,
+    notFound: false
   };
 
   getDenormalizedPost() {
@@ -93,6 +98,10 @@ class Post extends Component {
   }
 
   render() {
+    if (this.props.notFound) {
+      return <NotFound />;
+    }
+
     const post = this.getDenormalizedPost();
 
     const title = get(post, "title", "Chargement...");

@@ -48,7 +48,6 @@ const routes = [
       })),
       {
         path: "/blog/post/:postId",
-        // exact: true,
         component: Post
       },
       {

@@ -28,11 +28,13 @@ const serverRenderer = () => async (req, res) => {
   const muiTheme = createMuiTheme(theme);
   const generateClassName = createGenerateClassName();
 
+  const staticContext = {};
+
   const content = renderToString(
     <ReduxProvider store={req.store}>
       <JssProvider {...{ registry, generateClassName }}>
         <MuiThemeProvider theme={muiTheme} sheetsManager={new Map()}>
-          <Router location={req.url} context={{}}>
+          <Router location={req.url} context={staticContext}>
             <ReduxAsyncConnect routes={routes} />
           </Router>
         </MuiThemeProvider>
@@ -43,23 +45,24 @@ const serverRenderer = () => async (req, res) => {
   const css = registry.toString();
   const state = JSON.stringify(store.getState());
 
-  return res.send(
-    renderToString(
-      <Html
-        styles={[
-          res.locals.assetPath("bundle.css"),
-          res.locals.assetPath("vendor.css")
-        ]}
-        scripts={[
-          res.locals.assetPath("bundle.js"),
-          res.locals.assetPath("vendor.js")
-        ]}
-        state={state}
-        css={css}
-      >
-        {content}
-      </Html>
-    )
+  return res.status(staticContext.status || 200).send(
+    "<!doctype html>" +
+      renderToString(
+        <Html
+          styles={[
+            res.locals.assetPath("bundle.css"),
+            res.locals.assetPath("vendor.css")
+          ]}
+          scripts={[
+            res.locals.assetPath("bundle.js"),
+            res.locals.assetPath("vendor.js")
+          ]}
+          state={state}
+          css={css}
+        >
+          {content}
+        </Html>
+      )
   );
 };
 
