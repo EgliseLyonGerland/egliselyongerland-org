@@ -10,6 +10,7 @@ import { ReduxAsyncConnect } from "redux-connect";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import { calculateResponsiveState } from "redux-responsive";
 import ReactGA from "react-ga";
+import "moment/locale/fr";
 
 import { configureStore } from "../shared/store";
 import routes from "../routes";

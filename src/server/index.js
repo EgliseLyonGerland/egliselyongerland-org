@@ -1,10 +1,10 @@
-// import React from 'react';
 import express from "express";
 import cors from "cors";
 import path from "path";
 import chalk from "chalk";
 import manifestHelpers from "express-manifest-helpers";
 import bodyParser from "body-parser";
+import "moment/locale/fr";
 
 import serverRender from "./render";
 import paths from "../../webpack/paths";
