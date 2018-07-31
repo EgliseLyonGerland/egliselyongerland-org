@@ -9,7 +9,6 @@ import {
 import { ReduxAsyncConnect } from "redux-connect";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import { calculateResponsiveState } from "redux-responsive";
-import ReactGA from "react-ga";
 import "moment/locale/fr";
 
 import { configureStore } from "../shared/store";
@@ -19,14 +18,15 @@ import theme from "../shared/config/theme";
 
 const browserHistory = window.browserHistory || createHistory();
 
-ReactGA.initialize("UA-89204847-1");
+if (!__DEVELOPMENT__) {
+  const ReactGA = require("react-ga");
 
-browserHistory.listen((location, action) => {
-  if (!__DEVELOPMENT__) {
+  ReactGA.initialize("UA-89204847-1");
+  browserHistory.listen((location, action) => {
     ReactGA.set({ page: location.pathname });
     ReactGA.pageview(location.pathname);
-  }
-});
+  });
+}
 
 const store =
   window.store ||

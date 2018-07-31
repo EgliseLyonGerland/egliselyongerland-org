@@ -7,8 +7,8 @@
     "build": "cross-env NODE_ENV=production node scripts/build.js",
     "start": "cross-env NODE_ENV=production node build/server/server.js",
     "dev": "cross-env NODE_ENV=development node scripts/start.js",
-    "lint": "eslint -c .eslintrc.js src",
-    "format": "prettier-eslint --write \"src/**/*.js\" \"src/**/*.scss\" \"webpack/*.js\"",
+    "lint": "eslint -c .eslintrc.js src cypress",
+    "format": "prettier-eslint --write \"{cypress,src,webpack}/**/*.{js,scss}\"",
     "postinstall": "npm rebuild node-sass",
     "heroku-postbuild": "npm run build"
   },
@@ -94,6 +94,7 @@
   "devDependencies": {
     "babel-eslint": "8.2.6",
     "bootstrap-sass": "3.3.7",
+    "cypress": "3.0.2",
     "eslint": "5.2.0",
     "eslint-config-react-app": "2.1.0",
     "eslint-loader": "2.1.0",

@@ -198,8 +198,10 @@ class Header extends Component {
       [classes.mini]: sticky || browser.width <= 960
     });
 
+    const dataCy = classnames("header", { sticky });
+
     return (
-      <div className={className}>
+      <div className={className} data-cy={dataCy}>
         <EventListener
           target="window"
           onResize={this.handleResize}
@@ -211,12 +213,12 @@ class Header extends Component {
 
         <Container className={classes.body}>
           <div className={classes.brand}>
-            <Link className={classes.logo} to="/">
+            <Link className={classes.logo} to="/" data-cy="header-logo">
               <img src={logo} alt="Église Lyon Gerland" />
             </Link>
 
             {browser.width >= 600 && (
-              <Link to="/">
+              <Link to="/" data-cy="header-brand">
                 <img
                   className={classes.title}
                   src={brand}
@@ -237,7 +239,7 @@ class Header extends Component {
           <div className={classes.blankItem} />
 
           {browser.width >= 930 ? (
-            <div className={classes.links}>
+            <div className={classes.links} data-cy="header-menu">
               {links.map((link, index) => (
                 <div className={classes.linksItem} key={index}>
                   <Link className={classes.link} to={link.path}>
@@ -250,6 +252,7 @@ class Header extends Component {
             <button
               className={classes.burger}
               onClick={() => this.toggleSidebar()}
+              data-cy="header-burger"
             >
               <Burger
                 weight={3}

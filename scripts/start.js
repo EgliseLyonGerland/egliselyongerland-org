@@ -108,7 +108,7 @@ const start = async () => {
 
   const script = nodemon({
     script: `${paths.serverBuild}/server.js`,
-    ignore: ["src", "scripts", "config", "./*.*", "build/client"]
+    ignore: ["src", "scripts", "config", "./*.*", "build/client", "cypress"]
   });
 
   script.on("restart", () => {

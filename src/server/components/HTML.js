@@ -48,11 +48,13 @@ export default class extends Component {
             href="/favicon-16x16.png"
           />
 
-          <link
-            href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700"
-            rel="stylesheet"
-            type="text/css"
-          />
+          {!__DEVELOPMENT__ && (
+            <link
+              href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700"
+              rel="stylesheet"
+              type="text/css"
+            />
+          )}
 
           <script
             dangerouslySetInnerHTML={{

@@ -77,7 +77,10 @@ class Sidebar extends Component {
     const { links, opened, classes } = this.props;
 
     return (
-      <div className={classnames(classes.sidebar, opened && classes.opened)}>
+      <div
+        className={classnames(classes.sidebar, opened && classes.opened)}
+        data-cy="sidebar"
+      >
         <div className={classes.content}>
           {links.map(link => (
             <Link key={link.path} to={link.path} className={classes.link}>
