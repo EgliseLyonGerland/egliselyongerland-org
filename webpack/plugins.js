@@ -1,6 +1,6 @@
 const webpack = require("webpack");
 const ManifestPlugin = require("webpack-manifest-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const ExtractCssChunks = require("extract-css-chunks-webpack-plugin");
 
 const env = require("./env")();
 
@@ -13,7 +13,7 @@ const client = [
     __CLIENT__: "true",
     __DEVELOPMENT__: process.env.NODE_ENV === "development"
   }),
-  new MiniCssExtractPlugin({
+  new ExtractCssChunks({
     filename:
       process.env.NODE_ENV === "development"
         ? "[name].css"
@@ -21,7 +21,8 @@ const client = [
     chunkFilename:
       process.env.NODE_ENV === "development"
         ? "[id].css"
-        : "[id].[contenthash].css"
+        : "[id].[contenthash].css",
+    hot: process.env.NODE_ENV === "development"
   }),
   new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
   new ManifestPlugin({ fileName: "manifest.json" })

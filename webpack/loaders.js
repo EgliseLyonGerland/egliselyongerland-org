@@ -1,4 +1,4 @@
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const ExtractCssChunks = require("extract-css-chunks-webpack-plugin");
 
 const createStyleLoaders = ({
   modules = true,
@@ -10,8 +10,7 @@ const createStyleLoaders = ({
     ...(exclude ? { exclude } : {}),
     ...(include ? { include } : {}),
     use: [
-      "css-hot-loader",
-      MiniCssExtractPlugin.loader,
+      ExtractCssChunks.loader,
       {
         loader: "css-loader",
         options: {
@@ -115,7 +114,7 @@ const fileLoaderServer = {
 const externalCssLoaderClient = {
   test: /\.css$/,
   include: /node_modules/,
-  use: [MiniCssExtractPlugin.loader, "css-loader"]
+  use: [ExtractCssChunks.loader, "css-loader"]
 };
 
 // Server build needs a loader to handle external .css files
