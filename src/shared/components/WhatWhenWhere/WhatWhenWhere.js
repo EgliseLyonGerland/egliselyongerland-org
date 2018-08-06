@@ -28,7 +28,8 @@ const WhatWhenWhere = ({ classes }) => (
   <div className={classes.www}>
     <div className={classes.right}>
       <H2>
-        Culte ouvert à tous,<br /> le dimanche à 17h.
+        Culte ouvert à tous,
+        <br /> le dimanche à 17h.
       </H2>
       <Text>302 avenue Jean Jaurès</Text>
       <Text>69007 Lyon</Text>
