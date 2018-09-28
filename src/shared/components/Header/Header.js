@@ -1,161 +1,155 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { NavLink as Link } from "react-router-dom";
-import classnames from "classnames";
-import EventListener, { withOptions } from "react-event-listener";
-import { withStyles } from "@material-ui/core/styles";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { NavLink as Link } from 'react-router-dom';
+import classnames from 'classnames';
+import EventListener, { withOptions } from 'react-event-listener';
+import { withStyles } from '@material-ui/core/styles';
 
-import { Sidebar, /* SearchButton, */ Burger, Container } from "components";
-import routes from "utils/routes";
+import Sidebar from 'components/Sidebar/Sidebar';
+import Burger from 'components/Burger/Burger';
+import Container from 'components/Container/Container';
+import routes from 'utils/routes';
 
-import logo from "./logo.svg";
-import brand from "./brand.svg";
+import logo from './logo.svg';
+import brand from './brand.svg';
 
 const styles = theme => ({
   header: {
-    position: "fixed",
+    position: 'fixed',
     top: 0,
     zIndex: theme.header.zindex,
-    width: "100%",
-    transition: "background 0.3s"
+    width: '100%',
+    transition: 'background 0.3s',
   },
   mini: {
-    "& $brand": {
+    '& $brand': {
       transform: `scale(${theme.header.sticky.brandScale})
-          translateX(${theme.header.sticky.brandTranslate}px)`
-    }
+          translateX(${theme.header.sticky.brandTranslate}px)`,
+    },
   },
   sticky: {
-    background: "#111",
+    background: '#111',
 
-    "& $body": {
-      height: theme.header.sticky.height
+    '& $body': {
+      height: theme.header.sticky.height,
     },
-    "& $brand": {
+    '& $brand': {
       transform: `scale(${theme.header.sticky.brandScale})
-          translateX(${theme.header.sticky.brandTranslate}px)`
+          translateX(${theme.header.sticky.brandTranslate}px)`,
     },
-    "& $logo": {
-      transform: "rotate(180deg)"
-    }
+    '& $logo': {
+      transform: 'rotate(180deg)',
+    },
   },
   body: {
-    display: "flex",
-    alignItems: "center",
+    display: 'flex',
+    alignItems: 'center',
     height: theme.header.height,
     padding: [[0, 30]],
-    transition: "height 0.3s"
+    transition: 'height 0.3s',
   },
   brand: {
-    transition: "transform 0.3s",
-    transformOrigin: "left center",
-    position: "relative"
+    transition: 'transform 0.3s',
+    transformOrigin: 'left center',
+    position: 'relative',
   },
   logo: {
-    position: "relative",
-    display: "inline-block",
+    position: 'relative',
+    display: 'inline-block',
     marginRight: 20,
-    transition: "transform 0.5s",
+    transition: 'transform 0.5s',
 
-    "&, & > img": {
-      height: theme.header.logo.height
-    }
+    '&, & > img': {
+      height: theme.header.logo.height,
+    },
   },
   betaMark: {
-    display: "block",
-    background: "#e83c3c",
+    display: 'block',
+    background: '#e83c3c',
     borderRadius: 3,
-    color: "white",
+    color: 'white',
     padding: [[2, 4]],
-    position: "absolute",
+    position: 'absolute',
     left: theme.header.logo.height - 16,
     top: 0,
     fontSize: 9,
     fontWeight: theme.typography.fontWeights.medium,
-    lineHeight: "1em",
+    lineHeight: '1em',
     width: 30,
-    textAlign: "center",
-    cursor: "default",
-    textTransform: "uppercase"
+    textAlign: 'center',
+    cursor: 'default',
+    textTransform: 'uppercase',
   },
   title: {
     height: theme.header.brand.height,
-    marginRight: 20
+    marginRight: 20,
   },
   burger: {
-    position: "relative",
+    position: 'relative',
     marginLeft: 35,
-    zIndex: theme.sidebar.zindex + 1
+    zIndex: theme.sidebar.zindex + 1,
   },
   search: {
-    display: "none",
-    marginLeft: 20
+    display: 'none',
+    marginLeft: 20,
   },
   blankItem: {
-    marginLeft: "auto"
+    marginLeft: 'auto',
   },
   links: {
-    display: "flex",
-    flexGrow: 0
+    display: 'flex',
+    flexGrow: 0,
   },
   linksItem: {
     flexGrow: 0,
-    textAlign: "right",
-    marginLeft: 16
+    textAlign: 'right',
+    marginLeft: 16,
   },
   link: {
-    color: "white",
-    textDecoration: "none",
-    textTransform: "capitalize",
+    color: 'white',
+    textDecoration: 'none',
+    textTransform: 'capitalize',
     fontWeight: theme.typography.fontWeights.regular,
     fontSize: 16,
 
-    "&:hover": {
-      textDecoration: "underline"
+    '&:hover': {
+      textDecoration: 'underline',
     },
-    "&:focus, &:visited": {
-      color: "white",
-      textDecoration: "none"
-    }
-  }
+    '&:focus, &:visited': {
+      color: 'white',
+      textDecoration: 'none',
+    },
+  },
 });
 
 const links = [
   {
     label: "L'église",
-    path: routes.church()
+    path: routes.church(),
   },
   {
-    label: "Prédications",
-    path: routes.sermons()
+    label: 'Prédications',
+    path: routes.sermons(),
   },
   {
-    label: "Blog",
-    path: routes.blog()
+    label: 'Blog',
+    path: routes.blog(),
   },
   {
-    label: "Contact",
-    path: routes.contact()
-  }
+    label: 'Contact',
+    path: routes.contact(),
+  },
 ];
 
 const mapStateToProps = state => ({ browser: state.browser });
 
 class Header extends Component {
-  static propTypes = {
-    browser: PropTypes.object.isRequired,
-    sidebarOpened: PropTypes.bool,
-    // onSearchButtonClicked: PropTypes.func.isRequired,
-    onOpenSidebarButtonClicked: PropTypes.func.isRequired,
-    onCloseSidebarButtonClicked: PropTypes.func.isRequired
-  };
-
   constructor(props) {
     super(props);
 
     this.state = {
-      sticky: false
+      sticky: false,
     };
   }
 
@@ -164,20 +158,27 @@ class Header extends Component {
   }
 
   handleScroll() {
+    const { sticky } = this.state;
     const itemTranslate = !Math.min(0, window.scrollY - 30);
 
-    if (this.state.sticky !== itemTranslate) {
+    if (sticky !== itemTranslate) {
       this.setState({
-        sticky: itemTranslate
+        sticky: itemTranslate,
       });
     }
   }
 
   toggleSidebar() {
-    if (this.props.sidebarOpened) {
-      this.props.onCloseSidebarButtonClicked();
+    const {
+      sidebarOpened,
+      onCloseSidebarButtonClicked,
+      onOpenSidebarButtonClicked,
+    } = this.props;
+
+    if (sidebarOpened) {
+      onCloseSidebarButtonClicked();
     } else {
-      this.props.onOpenSidebarButtonClicked();
+      onOpenSidebarButtonClicked();
     }
   }
 
@@ -190,12 +191,12 @@ class Header extends Component {
       sidebarOpened,
       // onSearchButtonClicked,
       onOpenSidebarButtonClicked,
-      onCloseSidebarButtonClicked
+      onCloseSidebarButtonClicked,
     } = this.props;
 
     const className = classnames(classes.header, {
       [classes.sticky]: sticky,
-      [classes.mini]: sticky || browser.width <= 960
+      [classes.mini]: sticky || browser.width <= 960,
     });
 
     return (
@@ -205,7 +206,7 @@ class Header extends Component {
           onResize={this.handleResize}
           onScroll={withOptions(() => this.handleScroll(), {
             passive: true,
-            capture: false
+            capture: false,
           })}
         />
 
@@ -238,8 +239,8 @@ class Header extends Component {
 
           {browser.width >= 930 ? (
             <div className={classes.links}>
-              {links.map((link, index) => (
-                <div className={classes.linksItem} key={index}>
+              {links.map(link => (
+                <div className={classes.linksItem} key={link.label}>
                   <Link className={classes.link} to={link.path}>
                     {link.label}
                   </Link>
@@ -248,6 +249,7 @@ class Header extends Component {
             </div>
           ) : (
             <button
+              type="button"
               className={classes.burger}
               onClick={() => this.toggleSidebar()}
             >
@@ -279,5 +281,18 @@ class Header extends Component {
     );
   }
 }
+
+Header.propTypes = {
+  browser: PropTypes.shape().isRequired,
+  sidebarOpened: PropTypes.bool,
+  // onSearchButtonClicked: PropTypes.func.isRequired,
+  onOpenSidebarButtonClicked: PropTypes.func.isRequired,
+  onCloseSidebarButtonClicked: PropTypes.func.isRequired,
+  classes: PropTypes.shape().isRequired,
+};
+
+Header.defaultProps = {
+  sidebarOpened: false,
+};
 
 export default withStyles(styles)(connect(mapStateToProps)(Header));

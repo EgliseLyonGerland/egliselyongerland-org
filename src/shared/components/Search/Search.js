@@ -1,40 +1,35 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-import styles from "./Search.scss";
+import styles from './Search.scss';
 
-export default class Search extends Component {
-  static propTypes = {
-    opened: PropTypes.bool,
-    hideButtonClicked: PropTypes.func
-  };
-
-  static defaultProps = {
-    opened: false,
-    hideButtonClicked: () => {}
-  };
-
+class Search extends Component {
   constructor() {
     super();
 
     this.state = {
-      search: ""
+      search: '',
     };
   }
 
   componentDidUpdate() {
-    if (this.props.opened) {
+    const { opened } = this.props;
+
+    if (opened) {
       this.input.focus();
     }
   }
 
   handleCloseBtn() {
-    if (this.state.search.length > 0) {
-      this.setState({ search: "" });
+    const { hideButtonClicked } = this.props;
+    const { search } = this.state;
+
+    if (search.length > 0) {
+      this.setState({ search: '' });
       return;
     }
 
-    this.props.hideButtonClicked();
+    hideButtonClicked();
   }
 
   render() {
@@ -42,7 +37,7 @@ export default class Search extends Component {
     const { search } = this.state;
 
     return (
-      <div className={`${styles.search} ${opened ? styles.opened : ""}`}>
+      <div className={`${styles.search} ${opened ? styles.opened : ''}`}>
         <div className={styles.topbar}>
           <input
             className={styles.input}
@@ -51,7 +46,7 @@ export default class Search extends Component {
             ref={ref => {
               this.input = ref;
             }}
-            value={this.state.search}
+            value={search}
             onChange={evt => {
               this.setState({ search: evt.target.value });
             }}
@@ -73,3 +68,15 @@ export default class Search extends Component {
     );
   }
 }
+
+Search.propTypes = {
+  opened: PropTypes.bool,
+  hideButtonClicked: PropTypes.func,
+};
+
+Search.defaultProps = {
+  opened: false,
+  hideButtonClicked: () => {},
+};
+
+export default Search;

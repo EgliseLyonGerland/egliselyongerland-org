@@ -1,7 +1,7 @@
-import { OPEN_SEARCHBAR, CLOSE_SEARCHBAR } from "../actions/searchbar";
+import { OPEN_SEARCHBAR, CLOSE_SEARCHBAR } from '../actions/searchbar';
 
 const initialState = {
-  opened: false
+  opened: false,
 };
 
 export default function searchbar(state = initialState, action = {}) {
@@ -9,12 +9,12 @@ export default function searchbar(state = initialState, action = {}) {
     case OPEN_SEARCHBAR:
       return {
         ...state,
-        opened: true
+        opened: true,
       };
     case CLOSE_SEARCHBAR:
       return {
         ...state,
-        opened: false
+        opened: false,
       };
     default:
       return state;

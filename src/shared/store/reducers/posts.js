@@ -1,4 +1,4 @@
-import { LOAD, LOAD_SUCCESS, LOAD_FAIL } from "../actions/posts";
+import { LOAD, LOAD_SUCCESS, LOAD_FAIL } from '../actions/posts';
 
 const initialPostsState = {
   loading: false,
@@ -7,7 +7,7 @@ const initialPostsState = {
   from: 0,
   limit: 0,
   data: [],
-  aggs: {}
+  aggs: {},
 };
 
 export default function posts(state = {}, action = {}) {
@@ -19,8 +19,8 @@ export default function posts(state = {}, action = {}) {
           ...initialPostsState,
           ...state[action.key],
           loading: true,
-          loaded: false
-        }
+          loaded: false,
+        },
       };
     case LOAD_SUCCESS:
       return {
@@ -30,8 +30,8 @@ export default function posts(state = {}, action = {}) {
           ...state[action.key],
           ...action.data.result,
           loading: false,
-          loaded: true
-        }
+          loaded: true,
+        },
       };
     case LOAD_FAIL:
       return {
@@ -41,8 +41,8 @@ export default function posts(state = {}, action = {}) {
           ...state[action.key],
           error: action.error,
           loading: false,
-          loaded: false
-        }
+          loaded: false,
+        },
       };
     default:
       return state;

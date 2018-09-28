@@ -1,77 +1,87 @@
 /* eslint-disable react/no-danger */
-import React, { Component } from "react";
-import Helmet from "react-helmet";
+import React from 'react';
+import PropTypes from 'prop-types';
+import Helmet from 'react-helmet';
 
-export default class extends Component {
-  static defaultProps = {
-    css: [],
-    scripts: [],
-    state: "{}"
-  };
+const HTML = ({ children, scripts, styles, css, state }) => {
+  const head = Helmet.renderStatic();
 
-  render() {
-    const head = Helmet.renderStatic();
-    const { children, scripts, styles, css, state } = this.props;
-    return (
-      <html lang="">
-        <head>
-          <meta charSet="utf-8" />
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
+  return (
+    <html lang="fr">
+      <head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-          {head.base.toComponent()}
-          {head.title.toComponent()}
-          {head.meta.toComponent()}
-          {head.link.toComponent()}
-          {head.script.toComponent()}
+        {head.base.toComponent()}
+        {head.title.toComponent()}
+        {head.meta.toComponent()}
+        {head.link.toComponent()}
+        {head.script.toComponent()}
 
-          {styles.map(href => {
-            return <link key={href} rel="stylesheet" href={href} />;
-          })}
+        {styles.map(href => (
+          <link key={href} rel="stylesheet" href={href} />
+        ))}
 
-          <link rel="icon" href="/favicon.ico" />
-          <link
-            rel="icon"
-            type="image/png"
-            sizes="32x32"
-            href="/favicon-32x32.png"
-          />
-          <link
-            rel="icon"
-            type="image/png"
-            sizes="96x96"
-            href="/favicon-96x96.png"
-          />
-          <link
-            rel="icon"
-            type="image/png"
-            sizes="16x16"
-            href="/favicon-16x16.png"
-          />
+        <link rel="icon" href="/favicon.ico" />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/favicon-32x32.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="96x96"
+          href="/favicon-96x96.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/favicon-16x16.png"
+        />
 
-          <link
-            href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700"
-            rel="stylesheet"
-            type="text/css"
-          />
+        <link
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700"
+          rel="stylesheet"
+          type="text/css"
+        />
 
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `window.__PRELOADED_STATE__ = ${state}`
-            }}
-          />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.__PRELOADED_STATE__ = ${state}`,
+          }}
+        />
 
-          <style
-            id="server-side-styles"
-            dangerouslySetInnerHTML={{ __html: css }}
-          />
-        </head>
-        <body>
-          <div id="app" dangerouslySetInnerHTML={{ __html: children }} />
-          {scripts.map(src => {
-            return <script key={src} src={src} />;
-          })}
-        </body>
-      </html>
-    );
-  }
-}
+        <style
+          id="server-side-styles"
+          dangerouslySetInnerHTML={{ __html: css }}
+        />
+      </head>
+      <body>
+        <div id="app" dangerouslySetInnerHTML={{ __html: children }} />
+        {scripts.map(src => (
+          <script key={src} src={src} />
+        ))}
+      </body>
+    </html>
+  );
+};
+
+HTML.propTypes = {
+  children: PropTypes.string.isRequired,
+  css: PropTypes.string,
+  styles: PropTypes.arrayOf(PropTypes.string.isRequired),
+  scripts: PropTypes.arrayOf(PropTypes.string),
+  state: PropTypes.string,
+};
+
+HTML.defaultProps = {
+  css: '',
+  styles: [],
+  scripts: [],
+  state: '{}',
+};
+
+export default HTML;

@@ -1,15 +1,11 @@
-import React, { Component } from "react";
+import React from 'react';
 
-import { Jumbotron } from "components";
+import Jumbotron from 'components/Jumbotron/Jumbotron';
 
-class Wip extends Component {
-  render() {
-    return (
-      <div>
-        <Jumbotron title="Work in progress..." />
-      </div>
-    );
-  }
-}
+const Wip = () => (
+  <div>
+    <Jumbotron title="Work in progress..." />
+  </div>
+);
 
 export default Wip;

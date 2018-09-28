@@ -1,47 +1,50 @@
-import React from "react";
-import { withStyles } from "@material-ui/core/styles";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
   root: {
-    margin: [[100, 30]]
+    margin: [[100, 30]],
   },
   content: {
     maxWidth: 500,
-    margin: [[0, "auto"]],
+    margin: [[0, 'auto']],
     padding: 20,
     fontSize: 16,
-    textAlign: "center",
+    textAlign: 'center',
     fontWeight: theme.typography.fontWeights.regular,
-    color: "#999",
-    border: "1px solid",
-    borderColor: "#e5e6e9 #dfe0e4 #d0d1d5",
-    background: "white"
+    color: '#999',
+    border: '1px solid',
+    borderColor: '#e5e6e9 #dfe0e4 #d0d1d5',
+    background: 'white',
   },
   line: {
     marginTop: 20,
 
-    "&:first-child": {
-      marginTop: 0
-    }
+    '&:first-child': {
+      marginTop: 0,
+    },
   },
-  "@media screen and (max-width: 640px)": {
+  '@media screen and (max-width: 640px)': {
     root: {
-      margin: [[50, 30]]
-    }
-  }
+      margin: [[50, 30]],
+    },
+  },
 });
 
-const NoTranscription = ({ classes }) => {
-  return (
-    <div className={classes.root}>
-      <div className={classes.content}>
-        <div className={classes.line}>
-          La transcription de cet enregistrement n'est pas actuellement
-          disponible. Merci de votre compréhension !
-        </div>
+const NoTranscription = ({ classes }) => (
+  <div className={classes.root}>
+    <div className={classes.content}>
+      <div className={classes.line}>
+        La transcription de cet enregistrement n'est pas actuellement
+        disponible. Merci de votre compréhension !
       </div>
     </div>
-  );
+  </div>
+);
+
+NoTranscription.propTypes = {
+  classes: PropTypes.shape().isRequired,
 };
 
 export default withStyles(styles)(NoTranscription);

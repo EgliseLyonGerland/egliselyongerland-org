@@ -1,6 +1,6 @@
 // import { postSchema } from 'store/schemas';
 
-import { LOAD, LOAD_SUCCESS, LOAD_FAIL } from "../actions/post";
+import { LOAD, LOAD_SUCCESS, LOAD_FAIL } from '../actions/post';
 
 export default function posts(state = {}, action = {}) {
   switch (action.type) {
@@ -10,8 +10,8 @@ export default function posts(state = {}, action = {}) {
         [action.id]: {
           loading: true,
           loaded: false,
-          data: null
-        }
+          data: null,
+        },
       };
     case LOAD_SUCCESS:
       return {
@@ -19,8 +19,8 @@ export default function posts(state = {}, action = {}) {
         [action.id]: {
           loading: false,
           loaded: true,
-          data: action.data
-        }
+          data: action.data,
+        },
       };
     case LOAD_FAIL:
       return {
@@ -29,8 +29,8 @@ export default function posts(state = {}, action = {}) {
           loading: false,
           loaded: false,
           error: action.error,
-          data: null
-        }
+          data: null,
+        },
       };
     default:
       return state;

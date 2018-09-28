@@ -1,31 +1,30 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { asyncConnect } from "redux-connect";
-import Helmet from "react-helmet";
-import { get } from "lodash";
-import { denormalize } from "normalizr";
-import moment from "moment";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { asyncConnect } from 'redux-connect';
+import Helmet from 'react-helmet';
+import { get } from 'lodash';
+import { denormalize } from 'normalizr';
+import moment from 'moment';
 
-import { postSchema } from "store/schemas";
-import { load as loadPost, isLoaded as isPostLoaded } from "store/actions/post";
-import { NotFound } from "containers";
+import { postSchema } from 'store/schemas';
+import { load as loadPost, isLoaded as isPostLoaded } from 'store/actions/post';
+import NotFound from 'containers/NotFound/NotFound';
 
-import Header from "./components/Header";
-import Shares from "./components/Shares";
-import PostContent from "./components/PostContent";
-import NoTranscription from "./components/NoTranscription";
-
-import { getAbsoluteUrl } from "utils/routes";
+import { getAbsoluteUrl } from 'utils/routes';
+import Header from './components/Header';
+import Shares from './components/Shares';
+import PostContent from './components/PostContent';
+import NoTranscription from './components/NoTranscription';
 
 const getMetaDescription = post => {
-  let excerpt = get(post, "excerpt", "");
+  let excerpt = get(post, 'excerpt', '');
 
-  const sermonDate = get(post, ["extras", "sermonDate"]);
+  const sermonDate = get(post, ['extras', 'sermonDate']);
 
   if (post.predication && sermonDate) {
     excerpt = `Prédication du ${moment(post.extras.sermonDate).format(
-      "dddd D MMMM YYYY"
+      'dddd D MMMM YYYY',
     )}. ${excerpt}`;
   }
 
@@ -44,102 +43,92 @@ const asyncPromises = [
       const result = dispatch(loadPost(postId));
 
       return __CLIENT__ ? null : result;
-    }
-  }
+    },
+  },
 ];
 
 const mapStateToProps = (state, props) => {
   const { post, entities } = state;
   const {
     match: {
-      params: { postId }
-    }
+      params: { postId },
+    },
   } = props;
 
   const data = entities.posts[postId];
-  const notFound = !!get(post, [postId, "error"]);
+  const notFound = !!get(post, [postId, 'error']);
 
   return {
     post: data,
     entities,
-    notFound
+    notFound,
   };
 };
 
+const renderContent = post => {
+  if (post.partial) {
+    return null;
+  }
+
+  if (post.content === '' && get(post, 'extras.audioUrl', null)) {
+    return <NoTranscription />;
+  }
+
+  return <PostContent content={post.content} />;
+};
+
 class Post extends Component {
-  static propTypes = {
-    post: PropTypes.object,
-    entities: PropTypes.object,
-    notFound: PropTypes.bool
-  };
-
-  static defaultProps = {
-    post: null,
-    entities: null,
-    notFound: false
-  };
-
   getDenormalizedPost() {
     const { post, entities } = this.props;
 
     return denormalize(post, postSchema, entities);
   }
 
-  renderContent(post) {
-    if (post.partial) {
-      return null;
-    }
-
-    if (post.content === "" && get(post, "extras.audioUrl", null)) {
-      return <NoTranscription />;
-    }
-
-    return <PostContent content={post.content} />;
-  }
-
   render() {
-    if (this.props.notFound) {
+    const { notFound, location } = this.props;
+
+    if (notFound) {
       return <NotFound />;
     }
 
     const post = this.getDenormalizedPost();
 
-    const title = get(post, "title", "Chargement...");
+    const title = get(post, 'title', 'Chargement...');
     const description = getMetaDescription(post);
-    const tags = get(post, "tags", []);
+    const tags = get(post, 'tags', []);
     const imageOriginalUrl = get(
       post,
-      "picture.url",
-      "/images/placeholder.jpg"
+      'picture.url',
+      '/images/placeholder.jpg',
     );
 
-    const shareUrl = getAbsoluteUrl(this.props.location.pathname);
-    const logoUrl = getAbsoluteUrl("/images/logo.jpg");
+    const shareUrl = getAbsoluteUrl(location.pathname);
+    const logoUrl = getAbsoluteUrl('/images/logo.jpg');
 
     const structuredData = {
-      "@context": "http://schema.org",
-      "@type": "BlogPosting",
+      '@context': 'http://schema.org',
+      '@type': 'BlogPosting',
       headline: title,
       description,
       datePublished: post.date,
       dateModified: post.date,
       image: imageOriginalUrl,
       author: {
-        "@type": "Person",
-        name: post.author.name
+        '@type': 'Person',
+        name: post.author.name,
       },
       publisher: {
-        "@type": "Organization",
-        name: "Église Lyon Gerland",
+        '@type': 'Organization',
+        name: 'Église Lyon Gerland',
         logo: {
-          "@type": "ImageObject",
-          url: logoUrl
-        }
+          '@type': 'ImageObject',
+          url: logoUrl,
+        },
       },
       mainEntityOfPage: {
-        "@type": "WebPage",
-        "@id": shareUrl
-      }
+        '@type': 'WebPage',
+        '@id': shareUrl,
+      },
     };
 
     return (
@@ -147,17 +136,17 @@ class Post extends Component {
         <Helmet
           title={title}
           meta={[
-            { name: "description", content: description },
-            { property: "keywords", content: tags.join(",") },
+            { name: 'description', content: description },
+            { property: 'keywords', content: tags.join(',') },
 
-            { property: "og:type", content: "article" },
-            { property: "og:title", content: title },
-            { property: "og:description", content: description },
-            { property: "og:image", content: imageOriginalUrl },
+            { property: 'og:type', content: 'article' },
+            { property: 'og:title', content: title },
+            { property: 'og:description', content: description },
+            { property: 'og:image', content: imageOriginalUrl },
 
-            { property: "twitter:title", content: title },
-            { property: "twitter:description", content: description },
-            { property: "twitter:image", content: imageOriginalUrl }
+            { property: 'twitter:title', content: title },
+            { property: 'twitter:description', content: description },
+            { property: 'twitter:image', content: imageOriginalUrl },
           ]}
         >
           <script type="application/ld+json">
@@ -167,12 +156,27 @@ class Post extends Component {
 
         <Header post={post} url={shareUrl} />
 
-        {this.renderContent(post)}
+        {renderContent(post)}
 
         <Shares title={post.title} url={shareUrl} />
       </div>
     );
   }
 }
+
+Post.propTypes = {
+  post: PropTypes.shape(),
+  entities: PropTypes.shape(),
+  notFound: PropTypes.bool,
+  location: PropTypes.shape({
+    pathname: PropTypes.string.isRequired,
+  }).isRequired,
+};
+
+Post.defaultProps = {
+  post: null,
+  entities: null,
+  notFound: false,
+};
 
 export default connect(mapStateToProps)(asyncConnect(asyncPromises)(Post));

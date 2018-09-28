@@ -1,67 +1,45 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { findIndex } from "lodash";
-import { withStyles } from "@material-ui/core/styles";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { findIndex } from 'lodash';
+import { withStyles } from '@material-ui/core/styles';
 
-import { Text } from "components";
+import Text from 'components/Text/Text';
 
 const styles = theme => ({
   tabs: {
-    borderBottom: `${theme.picker.borderColor} solid 1px`
+    borderBottom: `${theme.picker.borderColor} solid 1px`,
   },
   tabsContent: {
-    display: "flex"
+    display: 'flex',
   },
   tab: {
     flexGrow: 1,
-    textAlign: "center",
+    textAlign: 'center',
     padding: [[10, 3, 7]],
-    cursor: "pointer",
-    borderBottom: "transparent solid 3px",
+    cursor: 'pointer',
+    borderBottom: 'transparent solid 3px',
 
-    "&:hover": {
-      borderBottomColor: theme.picker.borderColor
-    }
+    '&:hover': {
+      borderBottomColor: theme.picker.borderColor,
+    },
   },
   tabDisabled: {
     opacity: 0.3,
-    cursor: "default"
+    cursor: 'default',
   },
   tabActiveBar: {
     height: 3,
-    background: "red",
-    transition: "transform 0.3s ease-in-out",
-    marginTop: -3
-  }
+    background: 'red',
+    transition: 'transform 0.3s ease-in-out',
+    marginTop: -3,
+  },
 });
 
 class TabPicker extends Component {
-  static propTypes = {
-    tabs: PropTypes.arrayOf(
-      PropTypes.shape({
-        key: PropTypes.any.isRequired,
-        label: PropTypes.string.isRequired,
-        active: PropTypes.bool
-      })
-    ).isRequired,
-    current: PropTypes.any,
-    bgColor: PropTypes.string,
-    activeBarColor: PropTypes.string,
-    renderLabel: PropTypes.func,
-    onChange: PropTypes.func.isRequired
-  };
-
-  static defaultProps = {
-    activeBarColor: "red",
-    renderLabel: ({ label }) => (
-      <Text fontSize={0.9} fontWeight="regular" ellipsis maxLines={1}>
-        {label}
-      </Text>
-    )
-  };
-
   handleChangeTab(tab) {
-    this.props.onChange(tab);
+    const { onChange } = this.props;
+
+    onChange(tab);
   }
 
   render() {
@@ -71,11 +49,11 @@ class TabPicker extends Component {
       activeBarColor,
       renderLabel,
       current,
-      classes
+      classes,
     } = this.props;
 
     const tabWidth = 100 / tabs.length;
-    const currentTabIndex = Math.max(0, findIndex(tabs, ["key", current]));
+    const currentTabIndex = Math.max(0, findIndex(tabs, ['key', current]));
 
     const tabsStyles = {};
 
@@ -93,7 +71,7 @@ class TabPicker extends Component {
               <div
                 key={key}
                 className={`${classes.tab} ${
-                  active ? "" : classes.tabDisabled
+                  active ? '' : classes.tabDisabled
                 }`}
                 style={{ width: `${tabWidth}%` }}
                 onClick={() => this.handleChangeTab(tab)}
@@ -109,12 +87,38 @@ class TabPicker extends Component {
           style={{
             width: `${tabWidth}%`,
             background: activeBarColor,
-            transform: `translateX(${currentTabIndex * 100}%)`
+            transform: `translateX(${currentTabIndex * 100}%)`,
           }}
         />
       </div>
     );
   }
 }
+
+TabPicker.propTypes = {
+  tabs: PropTypes.arrayOf(
+    PropTypes.shape({
+      key: PropTypes.any.isRequired,
+      label: PropTypes.string.isRequired,
+      active: PropTypes.bool,
+    }),
+  ).isRequired,
+  current: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+  bgColor: PropTypes.string,
+  activeBarColor: PropTypes.string,
+  renderLabel: PropTypes.func,
+  onChange: PropTypes.func.isRequired,
+  classes: PropTypes.shape().isRequired,
+};
+
+TabPicker.defaultProps = {
+  bgColor: null,
+  activeBarColor: 'red',
+  renderLabel: tab => (
+    <Text fontSize={0.9} fontWeight="regular" ellipsis maxLines={1}>
+      {tab.label}
+    </Text>
+  ),
+};
 
 export default withStyles(styles)(TabPicker);

@@ -1,27 +1,31 @@
-import React from "react";
-import { withStyles } from "@material-ui/core/styles";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
 
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
-import { Image, Text, H2, Hr } from "components";
-import Button from "components/Button/Button";
-import routes from "utils/routes";
+import Image from 'components/Image/Image';
+import Text from 'components/Text/Text';
+import H2 from 'components/Text/H2';
+import Hr from 'components/Hr/Hr';
+import Button from 'components/Button/Button';
+import routes from 'utils/routes';
 
-import MapImage from "./map.png";
+import MapImage from './map.png';
 
 const styles = {
   www: {
-    background: "#eee",
-    display: "flex",
-    alignItems: "center"
+    background: '#eee',
+    display: 'flex',
+    alignItems: 'center',
   },
   right: {
     width: 450,
-    padding: 30
+    padding: 30,
   },
   left: {
-    flexGrow: 1
-  }
+    flexGrow: 1,
+  },
 };
 
 const WhatWhenWhere = ({ classes }) => (
@@ -47,5 +51,9 @@ const WhatWhenWhere = ({ classes }) => (
     </div>
   </div>
 );
+
+WhatWhenWhere.propTypes = {
+  classes: PropTypes.shape().isRequired,
+};
 
 export default withStyles(styles)(WhatWhenWhere);

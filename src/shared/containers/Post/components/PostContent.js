@@ -1,145 +1,139 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
-import { range } from "lodash";
-import classnames from "classnames";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import { range } from 'lodash';
+import classnames from 'classnames';
 
-import Button from "components/Button/Button";
-
-// import styles from "./PostContent.scss";
+import Button from 'components/Button/Button';
 
 const headings = range(1, 6)
   .map(level => `& > h${level}`)
-  .join(",");
+  .join(',');
 
 const styles = theme => ({
   root: {
     fontSize: 20,
-    lineHeight: "38px",
-    color: "#333",
+    lineHeight: '38px',
+    color: '#333',
     padding: [[0, 40]],
     height: 800,
-    overflowY: "hidden",
-    position: "relative",
+    overflowY: 'hidden',
+    position: 'relative',
 
-    "&:after": {
+    '&:after': {
       content: "''",
-      display: "block",
-      position: "absolute",
+      display: 'block',
+      position: 'absolute',
       bottom: 0,
       left: 0,
       right: 0,
       height: 100,
       background:
-        "linear-gradient(to top, rgba(252,252,252,1) 0%, rgba(252,252,252,0) 100%)"
+        'linear-gradient(to top, rgba(252,252,252,1) 0%, rgba(252,252,252,0) 100%)',
     },
 
-    "&.full": {
-      height: "auto",
-      overflowY: "inherit",
+    '&.full': {
+      height: 'auto',
+      overflowY: 'inherit',
 
-      "&:after": {
-        display: "none"
-      }
+      '&:after': {
+        display: 'none',
+      },
     },
 
-    "& > *:first-child": {
-      marginTop: 100
+    '& > *:first-child': {
+      marginTop: 100,
     },
 
-    "& > p": {
+    '& > p': {
       maxWidth: 630,
-      margin: [[50, "auto"]]
+      margin: [[50, 'auto']],
     },
 
     [headings]: {
-      display: "block",
+      display: 'block',
       maxWidth: 350,
-      margin: [[100, "auto", 50]],
+      margin: [[100, 'auto', 50]],
       fontSize: 30,
-      textAlign: "center",
+      textAlign: 'center',
       color: theme.palette.primary[500],
 
-      "&:after": {
+      '&:after': {
         content: "''",
-        display: "block",
+        display: 'block',
         ...theme.gradient(),
         width: 140,
         height: 1,
-        margin: [[30, "auto", 0]]
-      }
+        margin: [[30, 'auto', 0]],
+      },
     },
 
-    "& > blockquote": {
+    '& > blockquote': {
       fontWeight: theme.typography.fontWeights.regular,
-      fontStyle: "italic",
-      color: "#555",
+      fontStyle: 'italic',
+      color: '#555',
       maxWidth: 780,
-      margin: [[90, "auto"]],
+      margin: [[90, 'auto']],
       fontSize: 30,
-      lineHeight: "48px",
-      textAlign: "center"
+      lineHeight: '48px',
+      textAlign: 'center',
     },
 
-    "& > p > img": {
+    '& > p > img': {
       margin: [[0, -40]],
       width: 710,
-      height: "auto",
-      maxWidth: "100vw"
-    }
+      height: 'auto',
+      maxWidth: '100vw',
+    },
   },
   more: {
     marginTop: 50,
-    textAlign: "center"
+    textAlign: 'center',
   },
 
-  "@media screen and (max-width: 640px)": {
+  '@media screen and (max-width: 640px)': {
     root: {
       padding: [[0, 20]],
       fontSize: 18,
-      lineHeight: "30px",
+      lineHeight: '30px',
 
-      "& > *:first-child": {
-        marginTop: 50
+      '& > *:first-child': {
+        marginTop: 50,
       },
 
-      "& > p": {
-        margin: [[30, "auto"]]
+      '& > p': {
+        margin: [[30, 'auto']],
       },
 
       [headings]: {
-        margin: [[50, "auto", 30]],
+        margin: [[50, 'auto', 30]],
         fontSize: 24,
 
-        "&:after": {
+        '&:after': {
           width: 110,
-          margin: [[20, "auto", 0]]
-        }
+          margin: [[20, 'auto', 0]],
+        },
       },
 
-      "& > blockquote": {
-        margin: [[50, "auto"]],
+      '& > blockquote': {
+        margin: [[50, 'auto']],
         fontSize: 20,
-        lineHeight: "28px"
+        lineHeight: '28px',
       },
 
-      "& > p > img": {
-        margin: [[0, -20]]
-      }
-    }
-  }
+      '& > p > img': {
+        margin: [[0, -20]],
+      },
+    },
+  },
 });
 
 class PostContent extends Component {
-  static propTypes = {
-    content: PropTypes.string.isRequired
-  };
-
   constructor(props) {
     super(props);
 
     this.state = {
-      full: props.content.length < 200
+      full: props.content.length < 200,
     };
   }
 
@@ -167,5 +161,10 @@ class PostContent extends Component {
     );
   }
 }
+
+PostContent.propTypes = {
+  content: PropTypes.string.isRequired,
+  classes: PropTypes.shape().isRequired,
+};
 
 export default withStyles(styles)(PostContent);

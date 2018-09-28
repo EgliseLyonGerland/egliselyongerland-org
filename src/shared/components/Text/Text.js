@@ -1,61 +1,61 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
 
-import classnames from "classnames";
+import classnames from 'classnames';
 
 const styles = theme => ({
   text: {
-    fontWeight: theme.typography.fontWeights.light
+    fontWeight: theme.typography.fontWeights.light,
   },
   thin: {
-    fontWeight: theme.typography.fontWeights.thin
+    fontWeight: theme.typography.fontWeights.thin,
   },
   light: {
-    fontWeight: theme.typography.fontWeights.light
+    fontWeight: theme.typography.fontWeights.light,
   },
   regular: {
-    fontWeight: theme.typography.fontWeights.regular
+    fontWeight: theme.typography.fontWeights.regular,
   },
   medium: {
-    fontWeight: theme.typography.fontWeights.medium
+    fontWeight: theme.typography.fontWeights.medium,
   },
   bold: {
-    fontWeight: theme.typography.fontWeights.bold
+    fontWeight: theme.typography.fontWeights.bold,
   },
   black: {
-    fontWeight: theme.typography.fontWeights.black
+    fontWeight: theme.typography.fontWeights.black,
   },
   left: {
-    textAlign: "left"
+    textAlign: 'left',
   },
   right: {
-    textAlign: "right"
+    textAlign: 'right',
   },
   center: {
-    textAlign: "center"
+    textAlign: 'center',
   },
   justify: {
-    textAlign: "justify"
+    textAlign: 'justify',
   },
   ellipsis: {
-    textOverflow: "ellipsis",
-    whiteSpace: "nowrap"
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
   },
   fade: {
-    position: "relative",
+    position: 'relative',
 
-    "&:after": {
-      content: `""`,
-      position: `absolute`,
+    '&:after': {
+      content: '""',
+      position: 'absolute',
       bottom: 0,
       left: 0,
       right: 0,
       height: 40,
-      backgroundImage: "linear-gradient(to bottom, transparent 0%, white 100%)",
-      backgroundRepeat: "repeat-x"
-    }
-  }
+      backgroundImage: 'linear-gradient(to bottom, transparent 0%, white 100%)',
+      backgroundRepeat: 'repeat-x',
+    },
+  },
 });
 
 const Text = ({
@@ -83,21 +83,21 @@ const Text = ({
 
   const style = {
     fontSize: fontSize + unit,
-    lineHeight: lineHeight + unit
+    lineHeight: lineHeight + unit,
   };
 
   if (minLines) {
     style.minHeight = lineHeight * minLines + unit;
-    style.overflow = "hidden";
+    style.overflow = 'hidden';
   }
 
   if (maxLines) {
     style.maxHeight = lineHeight * maxLines + unit;
-    style.overflow = "hidden";
+    style.overflow = 'hidden';
   }
 
   if (italic) {
-    style.fontStyle = "italic";
+    style.fontStyle = 'italic';
   }
 
   if (color) {
@@ -106,11 +106,11 @@ const Text = ({
 
   const classNames = [className, classes.text];
 
-  if (fontWeight !== "light") {
+  if (fontWeight !== 'light') {
     classNames.push(classes[fontWeight]);
   }
 
-  if (align !== "left") {
+  if (align !== 'left') {
     classNames.push(classes[align]);
   }
 
@@ -126,44 +126,51 @@ const Text = ({
     element,
     {
       className: classnames(classNames),
-      style
+      style,
     },
-    children
+    children,
   );
 };
 
 Text.propTypes = {
-  children: PropTypes.any,
-  element: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
+  element: PropTypes.string,
   className: PropTypes.string,
   fontSize: PropTypes.number,
   fontWeight: PropTypes.oneOf([
-    "thin",
-    "light",
-    "regular",
-    "medium",
-    "bold",
-    "black"
+    'thin',
+    'light',
+    'regular',
+    'medium',
+    'bold',
+    'black',
   ]),
   lineHeight: PropTypes.number,
   italic: PropTypes.bool,
   color: PropTypes.string,
   minLines: PropTypes.number,
   maxLines: PropTypes.number,
-  align: PropTypes.oneOf(["left", "center", "right", "justify"]),
+  align: PropTypes.oneOf(['left', 'center', 'right', 'justify']),
   ellipsis: PropTypes.bool,
   fadeLastLine: PropTypes.bool,
-  unit: PropTypes.string
+  unit: PropTypes.string,
+  classes: PropTypes.shape().isRequired,
 };
 
 Text.defaultProps = {
-  element: "p",
+  element: 'p',
+  className: null,
   fontSize: 1.3,
-  fontWeight: "light",
-  align: "left",
+  fontWeight: 'light',
+  lineHeight: null,
+  italic: false,
+  color: null,
+  minLines: null,
+  maxLines: null,
+  align: 'left',
   ellipsis: false,
   fadeLastLine: false,
-  unit: "rem"
+  unit: 'rem',
 };
 
 export default withStyles(styles)(Text);

@@ -1,37 +1,35 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { asyncConnect } from "redux-connect";
-import { Link } from "react-router-dom";
-import Helmet from "react-helmet";
-import { differenceBy } from "lodash";
-import { denormalize } from "normalizr";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { asyncConnect } from 'redux-connect';
+import { Link } from 'react-router-dom';
+import Helmet from 'react-helmet';
+import { differenceBy } from 'lodash';
+import { denormalize } from 'normalizr';
 
-import { postSchema } from "store/schemas";
+import { postSchema } from 'store/schemas';
 
 import {
   isLoaded as isPostsLoaded,
-  load as loadPosts
-} from "store/actions/posts";
-import routes from "utils/routes";
+  load as loadPosts,
+} from 'store/actions/posts';
+import routes from 'utils/routes';
 
-import {
-  Container,
-  Jumbotron,
-  PostsFeed,
-  WhatWhenWhere,
-  Text,
-  H2,
-  Hr
-} from "components";
-import Button from "components/Button/Button";
+import Container from 'components/Container/Container';
+import Jumbotron from 'components/Jumbotron/Jumbotron';
+import PostsFeed from 'components/PostsFeed/PostsFeed';
+import WhatWhenWhere from 'components/WhatWhenWhere/WhatWhenWhere';
+import Text from 'components/Text/Text';
+import H2 from 'components/Text/H2';
+import Hr from 'components/Hr/Hr';
+import Button from 'components/Button/Button';
 
-import worship from "./worship.jpg";
-import sunshineLeft from "./sunshine-left.svg";
-import sunshineRight from "./sunshine-right.svg";
+import worship from './worship.jpg';
+import sunshineLeft from './sunshine-left.svg';
+import sunshineRight from './sunshine-right.svg';
 
-const LASTS_KEY = "home-lasts";
-const SERMONS_KEY = "home-sermons";
+const LASTS_KEY = 'home-lasts';
+const SERMONS_KEY = 'home-sermons';
 
 const asyncPromises = [
   {
@@ -44,7 +42,7 @@ const asyncPromises = [
 
       if (!isPostsLoaded(SERMONS_KEY, getState())) {
         promises.push(
-          dispatch(loadPosts(SERMONS_KEY, { limit: 2, category: 1 }))
+          dispatch(loadPosts(SERMONS_KEY, { limit: 2, category: 1 })),
         );
       }
 
@@ -53,29 +51,23 @@ const asyncPromises = [
       }
 
       return Promise.all(promises);
-    }
-  }
+    },
+  },
 ];
 
 const mapStateToProps = state => {
   const lasts = state.posts[LASTS_KEY].data;
   const sermons = state.posts[SERMONS_KEY].data;
-  const entities = state.entities;
+  const { entities } = state;
 
   return {
     lasts,
     sermons,
-    entities
+    entities,
   };
 };
 
 class Home extends Component {
-  static propTypes = {
-    lasts: PropTypes.array,
-    sermons: PropTypes.array,
-    entities: PropTypes.object
-  };
-
   getDenormalizedPosts() {
     const { lasts, sermons, entities } = this.props;
 
@@ -85,12 +77,12 @@ class Home extends Component {
     const filteredLasts = differenceBy(
       denormalizedLasts,
       denormalizedSermons,
-      "id"
+      'id',
     );
 
     return {
       lasts: filteredLasts,
-      sermons: denormalizedSermons
+      sermons: denormalizedSermons,
     };
   }
 
@@ -109,7 +101,7 @@ class Home extends Component {
         </Helmet>
 
         <Jumbotron background={worship}>
-          <Container md style={{ color: "white", textAlign: "center" }}>
+          <Container md style={{ color: 'white', textAlign: 'center' }}>
             <Text fontSize={4} fontWeight="light" element="div">
               <img src={sunshineLeft} alt="" />
               <Hr inline />
@@ -167,5 +159,11 @@ class Home extends Component {
     );
   }
 }
+
+Home.propTypes = {
+  lasts: PropTypes.arrayOf(PropTypes.string).isRequired,
+  sermons: PropTypes.arrayOf(PropTypes.string).isRequired,
+  entities: PropTypes.shape().isRequired,
+};
 
 export default connect(mapStateToProps)(asyncConnect(asyncPromises)(Home));

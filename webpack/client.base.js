@@ -1,32 +1,35 @@
-const path = require("path");
-const paths = require("./paths");
-const { client: clientLoaders } = require("./loaders");
-const resolvers = require("./resolvers");
-const plugins = require("./plugins");
+const path = require('path');
+const paths = require('./paths');
+const { client: clientLoaders } = require('./loaders');
+const resolvers = require('./resolvers');
+const plugins = require('./plugins');
 
 module.exports = {
-  name: "client",
-  target: "web",
+  name: 'client',
+  target: 'web',
   entry: {
-    bundle: ["@babel/polyfill", path.resolve(__dirname, "../src/client/index.js")]
+    bundle: [
+      '@babel/polyfill',
+      path.resolve(__dirname, '../src/client/index.js'),
+    ],
   },
   output: {
     path: paths.clientBuild,
-    filename: "bundle.js",
+    filename: 'bundle.js',
     publicPath: paths.publicPath,
-    chunkFilename: "[name].[chunkhash:8].chunk.js"
+    chunkFilename: '[name].[chunkhash:8].chunk.js',
   },
   module: {
-    rules: clientLoaders
+    rules: clientLoaders,
   },
   resolve: { ...resolvers },
   plugins: [...plugins.shared, ...plugins.client],
   node: {
-    dgram: "empty",
-    fs: "empty",
-    net: "empty",
-    tls: "empty",
-    child_process: "empty"
+    dgram: 'empty',
+    fs: 'empty',
+    net: 'empty',
+    tls: 'empty',
+    child_process: 'empty',
   },
   optimization: {
     namedModules: true,
@@ -36,11 +39,11 @@ module.exports = {
       cacheGroups: {
         commons: {
           test: /[\\/]node_modules[\\/]/,
-          name: "vendor",
-          chunks: "all"
-        }
-      }
-    }
+          name: 'vendor',
+          chunks: 'all',
+        },
+      },
+    },
   },
   stats: {
     cached: false,
@@ -52,6 +55,6 @@ module.exports = {
     modules: false,
     reasons: false,
     timings: true,
-    version: false
-  }
+    version: false,
+  },
 };

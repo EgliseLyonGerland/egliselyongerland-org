@@ -1,5 +1,5 @@
-import React from "react";
-import createSvgIcon from "@material-ui/icons/utils/createSvgIcon";
+import React from 'react';
+import createSvgIcon from '@material-ui/icons/utils/createSvgIcon';
 
 export default createSvgIcon(
   <g>
@@ -9,5 +9,5 @@ export default createSvgIcon(
     />
     <path d="M7,9c-1.66,0-3,1.34-3,3c0,1.66,1.34,3,3,3s3-1.34,3-3C10,10.34,8.66,9,7,9z" />
   </g>,
-  "ToggleOffOutlined"
+  'ToggleOffOutlined',
 );

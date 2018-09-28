@@ -1,21 +1,21 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
-import { lighten } from "polished";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import { lighten } from 'polished';
 
-import { Text } from "components";
+import Text from 'components/Text/Text';
 
 const styles = theme => ({
   panel: {
-    border: [[1, "solid"]],
-    borderColor: [["#e5e6e9", "#dfe0e4", "#d0d1d5"]],
-    background: "white"
+    border: [[1, 'solid']],
+    borderColor: [['#e5e6e9', '#dfe0e4', '#d0d1d5']],
+    background: 'white',
   },
   title: {
-    borderBottom: [[theme.picker.borderColor, "solid", 1]],
+    borderBottom: [[theme.picker.borderColor, 'solid', 1]],
     background: lighten(0.05, theme.picker.borderColor),
-    padding: [[7, 15]]
-  }
+    padding: [[7, 15]],
+  },
 });
 
 const PickerPanel = ({ children, title, classes }) => (
@@ -33,8 +33,13 @@ const PickerPanel = ({ children, title, classes }) => (
 );
 
 PickerPanel.propTypes = {
-  children: PropTypes.any.isRequired,
-  title: PropTypes.string
+  children: PropTypes.node.isRequired,
+  title: PropTypes.string,
+  classes: PropTypes.shape().isRequired,
+};
+
+PickerPanel.defaultProps = {
+  title: null,
 };
 
 export default withStyles(styles)(PickerPanel);

@@ -1,8 +1,8 @@
-import { normalize } from "normalizr";
+import { normalize } from 'normalizr';
 
 export default function clientMiddleware(client) {
   return ({ dispatch, getState }) => next => action => {
-    if (typeof action === "function") {
+    if (typeof action === 'function') {
       return action(dispatch, getState);
     }
 
@@ -19,13 +19,13 @@ export default function clientMiddleware(client) {
       result => {
         let data = result;
 
-        if (typeof schema !== "undefined") {
+        if (typeof schema !== 'undefined') {
           data = normalize(result, schema);
         }
 
         return next({ ...rest, data, type: SUCCESS });
       },
-      error => next({ ...rest, error, type: FAILURE })
+      error => next({ ...rest, error, type: FAILURE }),
     );
 
     return actionPromise;

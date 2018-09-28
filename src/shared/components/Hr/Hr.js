@@ -1,29 +1,29 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { withStyles, withTheme } from "@material-ui/core";
-import classnames from "classnames";
-import { clearFix } from "polished";
-import { reduce } from "lodash";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { withStyles, withTheme } from '@material-ui/core';
+import classnames from 'classnames';
+import { clearFix } from 'polished';
+import { reduce } from 'lodash';
 
-const styles = theme => ({
+const styles = {
   hr: {
     ...clearFix(),
-    display: "block",
-    border: 0
+    display: 'block',
+    border: 0,
   },
   line: {
     height: 4,
-    marginLeft: "auto",
-    marginRight: "auto",
-    backgroundPosition: "-10px bottom",
-    backgroundSize: "12px 4px",
-    backgroundRepeat: "repeat-x",
-    margin: [[0, "auto"]]
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    backgroundPosition: '-10px bottom',
+    backgroundSize: '12px 4px',
+    backgroundRepeat: 'repeat-x',
+    margin: [[0, 'auto']],
   },
   inline: {
-    display: "inline-block"
-  }
-});
+    display: 'inline-block',
+  },
+};
 
 const Hr = ({
   children,
@@ -35,14 +35,14 @@ const Hr = ({
   multiplier,
   classes,
   theme: {
-    hr: { sizes }
+    hr: { sizes },
   },
   ...props
 }) => {
   const className = classnames([
     classes.hr,
     line && classes.line,
-    inline && classes.inline
+    inline && classes.inline,
   ]);
 
   const style = {};
@@ -55,8 +55,8 @@ const Hr = ({
   } else {
     height = reduce(
       sizes,
-      (prev, height, size) => (props[size] ? height : prev),
-      sizes.md
+      (acc, curr, size) => (props[size] ? curr : acc),
+      sizes.md,
     );
   }
 
@@ -82,20 +82,23 @@ const Hr = ({
 };
 
 Hr.propTypes = {
-  children: PropTypes.any,
+  children: PropTypes.node,
   line: PropTypes.bool,
   color: PropTypes.string,
   opacity: PropTypes.number,
   inline: PropTypes.bool,
   width: PropTypes.string,
-  multiplier: PropTypes.number
+  multiplier: PropTypes.number,
 };
 
 Hr.defaultProps = {
+  children: null,
+  width: null,
+  multiplier: null,
   line: false,
-  color: "white",
+  color: 'white',
   opacity: 1,
-  inline: false
+  inline: false,
 };
 
 export default withStyles(styles)(withTheme()(Hr));

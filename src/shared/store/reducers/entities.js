@@ -1,10 +1,10 @@
-import merge from "lodash/merge";
+import merge from 'lodash/merge';
 
 // See store/schemas.js
 const initialState = {
   posts: {},
   authors: {},
-  categories: {}
+  categories: {},
 };
 
 export default function entities(state = initialState, action) {

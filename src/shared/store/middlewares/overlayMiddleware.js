@@ -1,9 +1,9 @@
-import { showOverlay, hideOverlay } from "../actions/overlay";
+import { showOverlay, hideOverlay } from '../actions/overlay';
 
 export default ({ dispatch }) => next => action => {
   const { overlay, overlayDelay = 0 } = action;
 
-  if (typeof overlay === "undefined") {
+  if (typeof overlay === 'undefined') {
     return next(action);
   }
 

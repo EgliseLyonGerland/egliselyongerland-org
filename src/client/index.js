@@ -1,27 +1,27 @@
-import React from "react";
-import createHistory from "history/createBrowserHistory";
-import { hydrate } from "react-dom";
-import { Provider as ReduxProvider } from "react-redux";
+import React from 'react';
+import createHistory from 'history/createBrowserHistory';
+import { hydrate } from 'react-dom';
+import { Provider as ReduxProvider } from 'react-redux';
 import {
   ConnectedRouter as Router,
-  routerMiddleware
-} from "react-router-redux";
-import { ReduxAsyncConnect } from "redux-connect";
-import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
-import { calculateResponsiveState } from "redux-responsive";
-import ReactGA from "react-ga";
-import "moment/locale/fr";
+  routerMiddleware,
+} from 'react-router-redux';
+import { ReduxAsyncConnect } from 'redux-connect';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { calculateResponsiveState } from 'redux-responsive';
+import ReactGA from 'react-ga';
+import 'moment/locale/fr';
 
-import { configureStore } from "../shared/store";
-import routes from "../routes";
-import ApiClient from "../shared/helpers/ApiClient";
-import theme from "../shared/config/theme";
+import { configureStore } from '../shared/store';
+import routes from '../routes';
+import ApiClient from '../shared/helpers/ApiClient';
+import theme from '../shared/config/theme';
 
 const browserHistory = window.browserHistory || createHistory();
 
-ReactGA.initialize("UA-89204847-1");
+ReactGA.initialize('UA-89204847-1');
 
-browserHistory.listen((location, action) => {
+browserHistory.listen(location => {
   if (!__DEVELOPMENT__) {
     ReactGA.set({ page: location.pathname });
     ReactGA.pageview(location.pathname);
@@ -31,9 +31,10 @@ browserHistory.listen((location, action) => {
 const store =
   window.store ||
   configureStore({
+    // eslint-disable-next-line no-underscore-dangle
     initialState: window.__PRELOADED_STATE__,
     middleware: [routerMiddleware(browserHistory)],
-    client: new ApiClient()
+    client: new ApiClient(),
   });
 
 hydrate(
@@ -44,20 +45,23 @@ hydrate(
       </Router>
     </MuiThemeProvider>
   </ReduxProvider>,
-  document.getElementById("app"),
+  document.getElementById('app'),
   () => {
     store.dispatch(calculateResponsiveState(window));
 
-    const ssStyles = document.getElementById("server-side-styles");
-    ssStyles && ssStyles.parentNode.removeChild(ssStyles);
-  }
+    const ssStyles = document.getElementById('server-side-styles');
+
+    if (ssStyles) {
+      ssStyles.parentNode.removeChild(ssStyles);
+    }
+  },
 );
 
-window.addEventListener("resize", () =>
-  store.dispatch(calculateResponsiveState(window))
+window.addEventListener('resize', () =>
+  store.dispatch(calculateResponsiveState(window)),
 );
 
-if (process.env.NODE_ENV === "development") {
+if (process.env.NODE_ENV === 'development') {
   if (module.hot) {
     module.hot.accept();
   }

@@ -1,37 +1,35 @@
-import React, { Component, Fragment } from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { asyncConnect } from "redux-connect";
-import { get, has, reduce } from "lodash";
-import { TransitionMotion, spring } from "react-motion";
-import { denormalize } from "normalizr";
-import Grid from "@material-ui/core/Grid";
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { asyncConnect } from 'redux-connect';
+import { get, has, reduce, map } from 'lodash';
+import { TransitionMotion, spring } from 'react-motion';
+import { denormalize } from 'normalizr';
+import Grid from '@material-ui/core/Grid';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
-import { load as loadPosts } from "store/actions/posts";
-import routes from "utils/routes";
-import { postSchema } from "store/schemas";
-import Button from "components/Button/Button";
+import { load as loadPosts } from 'store/actions/posts';
+import routes from 'utils/routes';
+import { postSchema } from 'store/schemas';
 
-import Helmet from "react-helmet";
+import Helmet from 'react-helmet';
 
-import {
-  Jumbotron,
-  PickerPanel,
-  BiblePicker,
-  LabelPicker,
-  PopButton,
-  PostsFeed,
-  BlankItemsFeed,
-  Container,
-  Text,
-  Hr
-} from "components";
+import Jumbotron from 'components/Jumbotron/Jumbotron';
+import PickerPanel from 'components/Picker/PickerPanel';
+import BiblePicker from 'components/Picker/BiblePicker';
+import LabelPicker from 'components/Picker/LabelPicker';
+import PopButton from 'components/PopButton/PopButton';
+import PostsFeed from 'components/PostsFeed/PostsFeed';
+import BlankItemsFeed from 'components/PostsFeed/BlankItemsFeed';
+import Container from 'components/Container/Container';
+import Text from 'components/Text/Text';
+import Hr from 'components/Hr/Hr';
+import Button from 'components/Button/Button';
 
-import jumbotron from "./jumbotron.jpg";
+import jumbotron from './jumbotron.jpg';
 
-const POSTS_KEY = "blog";
+const POSTS_KEY = 'blog';
 const LIMIT = 10;
 
 const asyncPromises = [
@@ -39,44 +37,44 @@ const asyncPromises = [
     promise: ({
       match: { params },
       location: { search },
-      store: { dispatch }
+      store: { dispatch },
     }) => {
       const query = new URLSearchParams(search);
 
       const filters = {
         limit: LIMIT,
-        aggs: 1
+        aggs: 1,
       };
 
-      if (has(params, "category")) {
+      if (has(params, 'category')) {
         filters.category = params.category;
       }
 
-      if (has(params, "author")) {
+      if (has(params, 'author')) {
         filters.author = params.author;
       }
 
-      if (has(params, "book")) {
+      if (has(params, 'book')) {
         filters.book = params.book;
 
-        if (has(params, "chapter")) {
+        if (has(params, 'chapter')) {
           filters.chapter = params.chapter;
 
-          if (query.has("verse")) {
-            filters.verse = query.get("verse");
+          if (query.has('verse')) {
+            filters.verse = query.get('verse');
           }
         }
       }
 
-      if (query.has("page")) {
-        filters.from = (query.get("page") - 1) * LIMIT;
+      if (query.has('page')) {
+        filters.from = (query.get('page') - 1) * LIMIT;
       }
 
       const result = dispatch(loadPosts(POSTS_KEY, filters));
 
       return __CLIENT__ ? null : result;
-    }
-  }
+    },
+  },
 ];
 
 const mapStateToProps = (state, { match: { params, search } }) => {
@@ -85,13 +83,13 @@ const mapStateToProps = (state, { match: { params, search } }) => {
   const { from = 0, total = 1, data = null, aggs = {}, loading = false } = get(
     state.posts,
     POSTS_KEY,
-    {}
+    {},
   );
 
   const page = Math.ceil(from / LIMIT) + 1;
   const maxPage = Math.ceil(total / LIMIT);
-  const entities = state.entities;
-  const browser = state.browser;
+  const { entities } = state;
+  const { browser } = state;
 
   return {
     page,
@@ -102,27 +100,21 @@ const mapStateToProps = (state, { match: { params, search } }) => {
     loading,
     entities,
     browser,
-    params: { ...params, ...query }
+    params: { ...params, ...query },
   };
 };
 
+// const renderSearchFilter = () => (
+//   <div>
+//     <input
+//       className="form-control"
+//       type="text"
+//       placeholder="Saisissez votre recherche"
+//     />
+//   </div>
+// );
+
 class Blog extends Component {
-  static propTypes = {
-    page: PropTypes.number,
-    maxPage: PropTypes.number,
-    total: PropTypes.number,
-    posts: PropTypes.array,
-    aggs: PropTypes.object,
-    loading: PropTypes.bool,
-    browser: PropTypes.object,
-    location: PropTypes.object,
-    params: PropTypes.object
-  };
-
-  static contextTypes = {
-    router: PropTypes.object
-  };
-
   getDenormalizedPosts() {
     const { posts, entities } = this.props;
 
@@ -132,7 +124,7 @@ class Blog extends Component {
   getTitle() {
     const {
       params: { category = null },
-      aggs: { categories = null }
+      aggs: { categories = null },
     } = this.props;
 
     return reduce(
@@ -144,7 +136,7 @@ class Blog extends Component {
 
         return prev;
       },
-      "Blog"
+      'Blog',
     );
   }
 
@@ -153,7 +145,7 @@ class Blog extends Component {
       loading,
       params,
       aggs: { bibleRefs = null },
-      history
+      history,
     } = this.props;
 
     if (!bibleRefs || !bibleRefs.length) {
@@ -181,7 +173,7 @@ class Blog extends Component {
       loading,
       params,
       aggs: { categories = null },
-      history
+      history,
     } = this.props;
 
     if (categories === null) {
@@ -199,17 +191,17 @@ class Blog extends Component {
           labels={categories.map(category => ({
             key: category.id,
             label: category.name,
-            total: category.total
+            total: category.total,
           }))}
           onChange={key =>
             history.push(
-              routes.blog({ ...params, page: undefined, category: key })
+              routes.blog({ ...params, page: undefined, category: key }),
             )
           }
         >
           {label => (
             <Text fontSize={1} maxLines={1} ellipsis>
-              {label.label}{" "}
+              {label.label}{' '}
               <Text fontSize={0.8} element="span" color="#AAA">
                 ({label.total})
               </Text>
@@ -225,7 +217,7 @@ class Blog extends Component {
       loading,
       params,
       aggs: { authors = null },
-      history
+      history,
     } = this.props;
 
     if (authors === null) {
@@ -243,17 +235,17 @@ class Blog extends Component {
           labels={authors.map(author => ({
             key: author.id,
             label: author.name,
-            total: author.total
+            total: author.total,
           }))}
           onChange={key =>
             history.push(
-              routes.blog({ ...params, page: undefined, author: key })
+              routes.blog({ ...params, page: undefined, author: key }),
             )
           }
         >
           {label => (
             <Text fontSize={1} maxLines={1} ellipsis>
-              {label.label}{" "}
+              {label.label}{' '}
               <Text fontSize={0.8} element="span" color="#AAA">
                 ({label.total})
               </Text>
@@ -264,18 +256,6 @@ class Blog extends Component {
     );
   }
 
-  renderSearchFilter() {
-    return (
-      <div>
-        <input
-          className="form-control"
-          type="text"
-          placeholder="Saisissez votre recherche"
-        />
-      </div>
-    );
-  }
-
   renderFilters() {
     const { aggs } = this.props;
 
@@ -283,23 +263,24 @@ class Blog extends Component {
       return <Text>Chargement...</Text>;
     }
 
-    const filters = [
-      // this.renderSearchFilter(),
-      this.renderCategoriesFilter(),
-      this.renderAuthorsFilter(),
-      this.renderBibleFilter()
-    ];
+    const filters = {
+      // renderSearchFilter(),
+      categories: this.renderCategoriesFilter(),
+      authors: this.renderAuthorsFilter(),
+      bible: this.renderBibleFilter(),
+    };
 
     return (
       <div>
-        {filters.map(
-          (filter, index) =>
+        {map(
+          filters,
+          (filter, name) =>
             filter ? (
-              <div key={index}>
+              <div key={name}>
                 {filter}
                 <Hr lg />
               </div>
-            ) : null
+            ) : null,
         )}
       </div>
     );
@@ -332,7 +313,7 @@ class Blog extends Component {
       <Fragment>
         <Grid container alignItems="center" justify="space-between">
           <Grid item>
-            {total} {total > 1 ? "articles" : "article"}
+            {total} {total > 1 ? 'articles' : 'article'}
             <Hr inline />
             page {page}/{maxPage}
           </Grid>
@@ -367,7 +348,7 @@ class Blog extends Component {
 
   renderWideScreen() {
     const {
-      location: { pathname, search }
+      location: { pathname, search },
     } = this.props;
     const posts = this.renderPosts();
 
@@ -382,8 +363,8 @@ class Blog extends Component {
               {
                 key: pathname + search,
                 data: posts,
-                style: { x: spring(0) }
-              }
+                style: { x: spring(0) },
+              },
             ]}
             willEnter={() => ({ x: 110 })}
             willLeave={() => ({ x: spring(-110) })}
@@ -391,20 +372,20 @@ class Blog extends Component {
             {interpolatedStyles => (
               <div
                 style={{
-                  width: "100%",
-                  whiteSpace: "nowrap",
-                  overflowX: "hidden"
+                  width: '100%',
+                  whiteSpace: 'nowrap',
+                  overflowX: 'hidden',
                 }}
               >
                 {interpolatedStyles.map(({ key, style, data }, index) => (
                   <div
                     key={key}
                     style={{
-                      width: "100%",
-                      whiteSpace: "normal",
-                      display: "inline-block",
-                      verticalAlign: "top",
-                      transform: `translateX(${style.x - index * 100}%)`
+                      width: '100%',
+                      whiteSpace: 'normal',
+                      display: 'inline-block',
+                      verticalAlign: 'top',
+                      transform: `translateX(${style.x - index * 100}%)`,
                     }}
                   >
                     {data}
@@ -433,22 +414,22 @@ class Blog extends Component {
     const props = {
       title,
       link: [],
-      meta: []
+      meta: [],
     };
 
     if (page > 1) {
       props.link.push({
-        rel: "prev",
-        href: routes.blog({ ...params, page: page - 1 })
+        rel: 'prev',
+        href: routes.blog({ ...params, page: page - 1 }),
       });
 
-      props.meta.push({ name: "robots", content: "noindex" });
+      props.meta.push({ name: 'robots', content: 'noindex' });
     }
 
     if (page < maxPage) {
       props.link.push({
-        rel: "next",
-        href: routes.blog({ ...params, page: page + 1 })
+        rel: 'next',
+        href: routes.blog({ ...params, page: page + 1 }),
       });
     }
 
@@ -475,5 +456,21 @@ class Blog extends Component {
     );
   }
 }
+
+Blog.propTypes = {
+  page: PropTypes.number.isRequired,
+  maxPage: PropTypes.number.isRequired,
+  total: PropTypes.number.isRequired,
+  posts: PropTypes.arrayOf(PropTypes.string).isRequired,
+  aggs: PropTypes.shape().isRequired,
+  loading: PropTypes.bool.isRequired,
+  browser: PropTypes.shape().isRequired,
+  location: PropTypes.shape().isRequired,
+  params: PropTypes.shape().isRequired,
+};
+
+Blog.contextTypes = {
+  router: PropTypes.shape(),
+};
 
 export default connect(mapStateToProps)(asyncConnect(asyncPromises)(Blog));

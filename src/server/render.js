@@ -1,25 +1,25 @@
-import React from "react";
-import { renderToString } from "react-dom/server";
-import { StaticRouter as Router } from "react-router-dom";
-import { Provider as ReduxProvider } from "react-redux";
-import { ReduxAsyncConnect, loadOnServer } from "redux-connect";
-import { parse as parseUrl } from "url";
+import React from 'react';
+import { renderToString } from 'react-dom/server';
+import { StaticRouter as Router } from 'react-router-dom';
+import { Provider as ReduxProvider } from 'react-redux';
+import { ReduxAsyncConnect, loadOnServer } from 'redux-connect';
+import { parse as parseUrl } from 'url';
 import {
   MuiThemeProvider,
   createMuiTheme,
-  createGenerateClassName
-} from "@material-ui/core/styles";
+  createGenerateClassName,
+} from '@material-ui/core/styles';
 
 // JSS
-import { SheetsRegistry } from "react-jss/lib/jss";
-import JssProvider from "react-jss/lib/JssProvider";
+import { SheetsRegistry } from 'react-jss/lib/jss';
+import JssProvider from 'react-jss/lib/JssProvider';
 
-import Html from "./components/HTML";
-import routes from "../routes";
-import theme from "../shared/config/theme";
+import Html from './components/HTML';
+import routes from '../routes';
+import theme from '../shared/config/theme';
 
 const serverRenderer = () => async (req, res) => {
-  const store = req.store;
+  const { store } = req;
   const location = parseUrl(req.url);
 
   await loadOnServer({ store, location, routes });
@@ -39,30 +39,29 @@ const serverRenderer = () => async (req, res) => {
           </Router>
         </MuiThemeProvider>
       </JssProvider>
-    </ReduxProvider>
+    </ReduxProvider>,
   );
 
   const css = registry.toString();
   const state = JSON.stringify(store.getState());
 
   return res.status(staticContext.status || 200).send(
-    "<!doctype html>" +
-      renderToString(
-        <Html
-          styles={[
-            res.locals.assetPath("bundle.css"),
-            res.locals.assetPath("vendor.css")
-          ]}
-          scripts={[
-            res.locals.assetPath("bundle.js"),
-            res.locals.assetPath("vendor.js")
-          ]}
-          state={state}
-          css={css}
-        >
-          {content}
-        </Html>
-      )
+    `<!doctype html>${renderToString(
+      <Html
+        styles={[
+          res.locals.assetPath('bundle.css'),
+          res.locals.assetPath('vendor.css'),
+        ]}
+        scripts={[
+          res.locals.assetPath('bundle.js'),
+          res.locals.assetPath('vendor.js'),
+        ]}
+        state={state}
+        css={css}
+      >
+        {content}
+      </Html>,
+    )}`,
   );
 };
 

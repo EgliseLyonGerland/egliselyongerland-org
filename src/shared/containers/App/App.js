@@ -1,101 +1,89 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import Helmet from "react-helmet";
-import { connect } from "react-redux";
-import { TransitionMotion, spring, presets } from "react-motion";
-import { withStyles } from "@material-ui/core/styles";
-import { renderRoutes } from "react-router-config";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import Helmet from 'react-helmet';
+import { connect } from 'react-redux';
+import { TransitionMotion, spring, presets } from 'react-motion';
+import { withStyles } from '@material-ui/core/styles';
+import { renderRoutes } from 'react-router-config';
 
-import * as searchbarActions from "store/actions/searchbar";
-import * as sidebarActions from "store/actions/sidebar";
-import { closeAudio, playAudio, pauseAudio } from "store/actions/audio";
-import { Header, Footer /* , Search */, Overlay } from "components";
-import AudioPlayer from "components/AudioPlayer/AudioPlayer";
-import ScrollToTop from "components/Scroll/ScrollToTop";
+import * as searchbarActions from 'store/actions/searchbar';
+import * as sidebarActions from 'store/actions/sidebar';
+import { closeAudio, pauseAudio } from 'store/actions/audio';
+import Header from 'components/Header/Header';
+import Footer from 'components/Footer/Footer';
+import Overlay from 'components/Overlay/Overlay';
+import AudioPlayer from 'components/AudioPlayer/AudioPlayer';
+import ScrollToTop from 'components/Scroll/ScrollToTop';
 
-import config from "../../config";
+import config from '../../config';
 
-import "url-search-params-polyfill";
+import 'url-search-params-polyfill';
 
-import "../../theme/bootstrap.scss";
-import "../../theme/base.scss";
+import '../../theme/bootstrap.scss';
+import '../../theme/base.scss';
 
 const styles = {
   player: {
-    position: "fixed",
-    width: "100%",
-    display: "flex",
-    justifyContent: "center",
+    position: 'fixed',
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'center',
     zIndex: 1000,
-    marginBottom: 30
+    marginBottom: 30,
   },
 
-  "@media screen and (max-width: 640px)": {
+  '@media screen and (max-width: 640px)': {
     player: {
-      marginBottom: 0
-    }
-  }
+      marginBottom: 0,
+    },
+  },
 };
 
 const mapStateToProps = state => ({
   overlay: state.overlay,
   audio: state.audio,
   // isSearchbarOpened: state.searchbar.opened,
-  isSidebarOpened: state.sidebar.opened
+  isSidebarOpened: state.sidebar.opened,
 });
 
 const mapDispatchToProps = {
   ...searchbarActions,
   ...sidebarActions,
-  closeAudio,
-  playAudio,
-  pauseAudio
+  closeAudioAction: closeAudio,
+  pauseAudioAction: pauseAudio,
 };
 
 class App extends Component {
-  static propTypes = {
-    // children: PropTypes.object.isRequired,
-    overlay: PropTypes.object.isRequired,
-    // isSearchbarOpened: PropTypes.bool.isRequired,
-    openSearchbar: PropTypes.func.isRequired,
-    // closeSearchbar: PropTypes.func.isRequired,
-    isSidebarOpened: PropTypes.bool.isRequired,
-    openSidebar: PropTypes.func.isRequired,
-    closeSidebar: PropTypes.func.isRequired
-  };
-
-  static getInitialData() {
-    return new Promise(resolve => setTimeout(resolve, 2000));
-  }
-
   handleOverlayClicked() {
+    const { closeSidebar } = this.props;
+
     // this.props.closeSearchbar();
-    this.props.closeSidebar();
+    closeSidebar();
   }
 
   renderAudio() {
-    const { audio, closeAudio, pauseAudio, classes } = this.props;
+    const { audio, closeAudioAction, pauseAudioAction, classes } = this.props;
 
-    let styles = [];
+    const defaultStyles = [];
 
     if (audio.opened) {
-      styles.push({
-        key: "audio-player",
-        style: { bottom: spring(0, presets.stiff) }
+      defaultStyles.push({
+        key: 'audio-player',
+        style: { bottom: spring(0, presets.stiff) },
       });
     }
 
     return (
       <TransitionMotion
-        styles={styles}
+        styles={defaultStyles}
         willEnter={() => ({ bottom: -200 })}
         willLeave={() => ({ bottom: spring(-200, presets.stiff) })}
       >
-        {([config]) =>
-          config ? (
+        {([interpolatedStyles]) =>
+          interpolatedStyles ? (
             <div
               className={classes.player}
-              style={{ bottom: config.style.bottom }}
+              style={{ bottom: interpolatedStyles.style.bottom }}
             >
               <AudioPlayer
                 url={audio.url}
@@ -103,8 +91,8 @@ class App extends Component {
                 withShadows
                 withClose
                 onClose={() => {
-                  pauseAudio();
-                  closeAudio();
+                  pauseAudioAction();
+                  closeAudioAction();
                 }}
               />
             </div>
@@ -123,7 +111,7 @@ class App extends Component {
       // closeSearchbar,
       openSidebar,
       closeSidebar,
-      route
+      route,
     } = this.props;
 
     return (
@@ -149,9 +137,22 @@ class App extends Component {
   }
 }
 
+App.propTypes = {
+  // children: PropTypes.object.isRequired,
+  overlay: PropTypes.shape().isRequired,
+  // isSearchbarOpened: PropTypes.bool.isRequired,
+  openSearchbar: PropTypes.func.isRequired,
+  // closeSearchbar: PropTypes.func.isRequired,
+  isSidebarOpened: PropTypes.bool.isRequired,
+  openSidebar: PropTypes.func.isRequired,
+  closeSidebar: PropTypes.func.isRequired,
+};
+
+App.getInitialData = () => new Promise(resolve => setTimeout(resolve, 2000));
+
 export default withStyles(styles)(
   connect(
     mapStateToProps,
-    mapDispatchToProps
-  )(App)
+    mapDispatchToProps,
+  )(App),
 );

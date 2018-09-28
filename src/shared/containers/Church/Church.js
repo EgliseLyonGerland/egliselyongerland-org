@@ -1,19 +1,20 @@
-import React, { Component } from "react";
-import { reduce } from "lodash";
-import { connect } from "react-redux";
-import Helmet from "react-helmet";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
-import { withStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import { renderRoutes } from "react-router-config";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { reduce } from 'lodash';
+import { connect } from 'react-redux';
+import Helmet from 'react-helmet';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import { withStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import { renderRoutes } from 'react-router-config';
 
-import { Jumbotron } from "components";
+import Jumbotron from 'components/Jumbotron/Jumbotron';
 
-import churchTabs from "../../config/church-tabs";
+import churchTabs from '../../config/church-tabs';
 
-const getTab = slug => {
-  return reduce(
+const getTab = slug =>
+  reduce(
     churchTabs,
     (prev, curr) => {
       if (curr.slug === slug) {
@@ -22,19 +23,18 @@ const getTab = slug => {
 
       return prev;
     },
-    churchTabs[0]
+    churchTabs[0],
   );
-};
 
 const styles = theme => ({
   tabs: {
-    background: theme.palette.primary[500]
+    background: theme.palette.primary[500],
   },
   tab: {
     height: 70,
-    textTransform: "none",
-    minWidth: "auto"
-  }
+    textTransform: 'none',
+    minWidth: 'auto',
+  },
 });
 
 const mapStateToProps = state => ({ browser: state.browser });
@@ -47,7 +47,9 @@ class Church extends Component {
   }
 
   handleTabChange(event, slug) {
-    this.props.history.push(`/${slug}`);
+    const { history } = this.props;
+
+    history.push(`/${slug}`);
   }
 
   render() {
@@ -87,5 +89,15 @@ class Church extends Component {
     );
   }
 }
+
+Church.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
+  location: PropTypes.shape().isRequired,
+  classes: PropTypes.shape().isRequired,
+  browser: PropTypes.shape().isRequired,
+  route: PropTypes.shape().isRequired,
+};
 
 export default connect(mapStateToProps)(withStyles(styles)(Church));

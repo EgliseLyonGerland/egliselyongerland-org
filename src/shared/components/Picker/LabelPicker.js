@@ -1,61 +1,48 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
-import { lighten, rgba, clearFix } from "polished";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import { lighten, rgba, clearFix } from 'polished';
+import { noop } from 'lodash';
 
-import { Text } from "components";
-import ToggleOnIcon from "components/Icon/ToggleOnIcon";
-import ToggleOffIcon from "components/Icon/ToggleOffOutlinedIcon";
+import Text from 'components/Text/Text';
+import ToggleOnIcon from 'components/Icon/ToggleOnIcon';
+import ToggleOffIcon from 'components/Icon/ToggleOffOutlinedIcon';
 
 const styles = theme => ({
   label: {
     ...clearFix(),
     padding: [[7, 15]],
-    borderBottom: [[theme.picker.borderColor, "solid", 1]],
-    cursor: "pointer",
+    borderBottom: [[theme.picker.borderColor, 'solid', 1]],
+    cursor: 'pointer',
 
-    "&:hover": {
-      background: lighten(0.98, "black")
-    }
+    '&:hover': {
+      background: lighten(0.98, 'black'),
+    },
   },
   more: {
-    textAlign: "center"
+    textAlign: 'center',
   },
   readOnly: {
-    position: "relative",
+    position: 'relative',
 
-    "&:after": {
+    '&:after': {
       content: `""`,
-      position: "absolute",
+      position: 'absolute',
       top: 0,
       left: 0,
-      width: "100%",
-      height: "100%",
-      background: rgba("white", 0.7)
-    }
-  }
+      width: '100%',
+      height: '100%',
+      background: rgba('white', 0.7),
+    },
+  },
 });
 
 class LabelPicker extends Component {
-  static propTypes = {
-    labels: PropTypes.arrayOf(
-      PropTypes.shape({
-        key: PropTypes.any.isRequired,
-        label: PropTypes.string.isRequired
-      })
-    ).isRequired,
-    current: PropTypes.any,
-    children: PropTypes.func,
-    readOnly: PropTypes.bool,
-    crop: PropTypes.number,
-    onChange: PropTypes.func
-  };
-
   constructor() {
     super();
 
     this.state = {
-      opened: false
+      opened: false,
     };
   }
 
@@ -67,13 +54,13 @@ class LabelPicker extends Component {
       readOnly = false,
       children,
       classes,
-      onChange = () => {}
+      onChange,
     } = this.props;
 
     const { opened } = this.state;
 
     return (
-      <div className={readOnly ? classes.readOnly : ""}>
+      <div className={readOnly ? classes.readOnly : ''}>
         {labels.map((label, index) => {
           if (!opened && crop !== null && index >= crop) {
             return null;
@@ -109,12 +96,34 @@ class LabelPicker extends Component {
               className={`${classes.label} ${classes.more}`}
               onClick={() => this.setState({ opened: !opened })}
             >
-              <a>Afficher {opened ? "moins" : "plus"}</a>
+              <a>Afficher {opened ? 'moins' : 'plus'}</a>
             </div>
           )}
       </div>
     );
   }
 }
+
+LabelPicker.propTypes = {
+  labels: PropTypes.arrayOf(
+    PropTypes.shape({
+      key: PropTypes.any.isRequired,
+      label: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
+  current: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+  children: PropTypes.func,
+  readOnly: PropTypes.bool,
+  crop: PropTypes.number,
+  onChange: PropTypes.func,
+  classes: PropTypes.shape().isRequired,
+};
+
+LabelPicker.defaultProps = {
+  onChange: noop,
+  children: null,
+  readOnly: false,
+  crop: null,
+};
 
 export default withStyles(styles)(LabelPicker);

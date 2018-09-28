@@ -1,6 +1,6 @@
-import qs from "qs";
+import qs from 'qs';
 
-import config from "config";
+import config from 'config';
 
 const routes = {
   blog: (params = {}) => {
@@ -27,26 +27,26 @@ const routes = {
       category: undefined,
       author: undefined,
       book: undefined,
-      chapter: undefined
+      chapter: undefined,
     });
 
     if (query) {
       paths.push(`?${query}`);
     }
 
-    return `/blog${paths.join("")}`;
+    return `/blog${paths.join('')}`;
   },
 
   sermons: () => routes.blog({ category: 1 }),
   post: id => `/blog/post/${id}`,
   church: () => routes.aboutUs(),
-  aboutUs: () => "/qui-sommes-nous",
-  ourFaith: () => "/que-croyons-nous",
-  worship: () => "/le-culte",
-  activity: () => "/activites",
-  team: () => "/l-equipe",
-  federativeLinks: () => "/liens-federatifs",
-  contact: () => "/contact"
+  aboutUs: () => '/qui-sommes-nous',
+  ourFaith: () => '/que-croyons-nous',
+  worship: () => '/le-culte',
+  activity: () => '/activites',
+  team: () => '/l-equipe',
+  federativeLinks: () => '/liens-federatifs',
+  contact: () => '/contact',
 };
 
 const getAbsoluteUrl = path => `${config.protocol}://${config.host}${path}`;

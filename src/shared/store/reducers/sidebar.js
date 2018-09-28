@@ -1,7 +1,7 @@
-import { OPEN_SIDEBAR, CLOSE_SIDEBAR } from "../actions/sidebar";
+import { OPEN_SIDEBAR, CLOSE_SIDEBAR } from '../actions/sidebar';
 
 const initialState = {
-  opened: false
+  opened: false,
 };
 
 export default function sidebar(state = initialState, action = {}) {
@@ -9,12 +9,12 @@ export default function sidebar(state = initialState, action = {}) {
     case OPEN_SIDEBAR:
       return {
         ...state,
-        opened: true
+        opened: true,
       };
     case CLOSE_SIDEBAR:
       return {
         ...state,
-        opened: false
+        opened: false,
       };
     default:
       return state;

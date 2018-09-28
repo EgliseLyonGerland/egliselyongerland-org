@@ -1,7 +1,7 @@
-import { SHOW_OVERLAY, HIDE_OVERLAY } from "../actions/overlay";
+import { SHOW_OVERLAY, HIDE_OVERLAY } from '../actions/overlay';
 
 const initialState = {
-  active: false
+  active: false,
 };
 
 export default function overlay(state = initialState, action = {}) {
@@ -9,12 +9,12 @@ export default function overlay(state = initialState, action = {}) {
     case SHOW_OVERLAY:
       return {
         ...state,
-        active: true
+        active: true,
       };
     case HIDE_OVERLAY:
       return {
         ...state,
-        active: false
+        active: false,
       };
     default:
       return state;

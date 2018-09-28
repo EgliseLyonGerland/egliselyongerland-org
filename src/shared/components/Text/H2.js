@@ -1,11 +1,7 @@
-import React, { Component } from "react";
+import React from 'react';
 
-import H1 from "./H1";
+import H1 from './H1';
 
-class H2 extends Component {
-  render() {
-    return <H1 fontSize={1.4} fontWeight="medium" {...this.props} />;
-  }
-}
+const H2 = props => <H1 fontSize={1.4} fontWeight="medium" {...props} />;
 
 export default H2;

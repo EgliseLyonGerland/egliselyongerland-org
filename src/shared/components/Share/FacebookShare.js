@@ -1,6 +1,7 @@
-import React from "react";
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import Share from "./Share";
+import Share from './Share';
 
 const FacebookShare = ({ children, url }) => (
   <Share
@@ -12,5 +13,10 @@ const FacebookShare = ({ children, url }) => (
     {children}
   </Share>
 );
+
+FacebookShare.propTypes = {
+  children: PropTypes.node.isRequired,
+  url: PropTypes.string.isRequired,
+};
 
 export default FacebookShare;

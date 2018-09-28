@@ -1,108 +1,117 @@
-import React from "react";
-import { withStyles } from "@material-ui/core/styles";
-import moment from "moment";
-import { get } from "lodash";
-import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import moment from 'moment';
+import { get } from 'lodash';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
-import Icon from "@material-ui/core/Icon";
-import PlayArrowIcon from "@material-ui/icons/PlayArrow";
-import CloudDownloadIcon from "@material-ui/icons/CloudDownload";
+import Icon from '@material-ui/core/Icon';
+import PlayArrowIcon from '@material-ui/icons/PlayArrow';
+import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
 
-import { openAudio } from "store/actions/audio";
-import Jumbotron from "components/Jumbotron/Jumbotron";
-import FacebookIcon from "components/Icon/FacebookIcon";
-import TwitterIcon from "components/Icon/TwitterIcon";
-import Button from "components/Button/Button";
-import FacebookShare from "components/Share/FacebookShare";
-import TwitterShare from "components/Share/TwitterShare";
+import { openAudio } from 'store/actions/audio';
+import Jumbotron from 'components/Jumbotron/Jumbotron';
+import FacebookIcon from 'components/Icon/FacebookIcon';
+import TwitterIcon from 'components/Icon/TwitterIcon';
+import Button from 'components/Button/Button';
+import FacebookShare from 'components/Share/FacebookShare';
+import TwitterShare from 'components/Share/TwitterShare';
 
-import routes from "utils/routes";
+import routes from 'utils/routes';
 
 const styles = theme => ({
   root: {
-    background: "center center",
-    backgroundSize: "cover",
+    background: 'center center',
+    backgroundSize: 'cover',
     minHeight: 700,
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center"
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   inner: {
-    color: "rgba(255,255,255,0.95)",
-    textAlign: "center",
+    color: 'rgba(255,255,255,0.95)',
+    textAlign: 'center',
     maxWidth: 790,
-    padding: [[0, 20]]
+    padding: [[0, 20]],
   },
   separator: {
     ...theme.gradient(),
     width: 260,
     height: 1,
-    margin: [[30, "auto"]]
+    margin: [[30, 'auto']],
   },
   baseline: {
     fontSize: 22,
-    marginBottom: 30
+    marginBottom: 30,
   },
   author: {
-    fontWeight: theme.typography.fontWeights.regular
+    fontWeight: theme.typography.fontWeights.regular,
   },
   dash: {
-    margin: [[0, 10]]
+    margin: [[0, 10]],
   },
   links: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    flexWrap: "wrap"
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexWrap: 'wrap',
   },
   link: {
-    margin: [[0, 8, 20]]
+    margin: [[0, 8, 20]],
   },
   audioActions: {
-    marginTop: 60
+    marginTop: 60,
   },
   audioAction: {
-    margin: [[0, 10]]
+    margin: [[0, 10]],
   },
   audioActionLabel: {
-    display: "block",
+    display: 'block',
     width: 130,
-    fontWeight: theme.typography.fontWeights.regular
+    fontWeight: theme.typography.fontWeights.regular,
   },
 
-  "@media screen and (max-width: 640px), screen and (max-height: 640px)": {
+  '@media screen and (max-width: 640px), screen and (max-height: 640px)': {
     separator: {
       width: 140,
-      margin: [[20, "auto"]]
+      margin: [[20, 'auto']],
     },
     baseline: {
-      fontSize: 18
+      fontSize: 18,
     },
     link: {
-      margin: [[0, 5, 20]]
+      margin: [[0, 5, 20]],
     },
     audioActions: {
-      marginTop: 30
-    }
-  }
+      marginTop: 30,
+    },
+  },
 });
 
 const renderDate = post => {
-  const date = get(post, ["extras", "sermonDate"], post.date);
+  const date = get(post, ['extras', 'sermonDate'], post.date);
 
-  return `le ${moment(date).format("D MMMM YYYY")}`;
+  return `le ${moment(date).format('D MMMM YYYY')}`;
 };
 
-const Header = ({ post, browser, audio, url, history, openAudio, classes }) => {
+const Header = ({
+  post,
+  browser,
+  audio,
+  url,
+  history,
+  openAudioAction,
+  classes,
+}) => {
   const imageUrl = get(
     post,
-    "picture.sizes.large.url",
-    "/images/placeholder.jpg"
+    'picture.sizes.large.url',
+    '/images/placeholder.jpg',
   );
-  const audioUrl = get(post, "extras.audioUrl", null);
+  const audioUrl = get(post, 'extras.audioUrl', null);
 
-  const buttonSize = browser.width <= 640 ? "xxs" : "xs";
+  const buttonSize = browser.width <= 640 ? 'xxs' : 'xs';
 
   return (
     <Jumbotron background={imageUrl} title={post.title}>
@@ -110,8 +119,8 @@ const Header = ({ post, browser, audio, url, history, openAudio, classes }) => {
         <div className={classes.separator} />
         <div className={classes.baseline}>
           Par <span className={classes.author}>{post.author.name}</span>
-          <span className={classes.dash}>{" — "}</span>
-          <span style={{ display: "inline-block" }}>{renderDate(post)}</span>
+          <span className={classes.dash}> — </span>
+          <span style={{ display: 'inline-block' }}>{renderDate(post)}</span>
         </div>
         <div className={classes.links}>
           {post.categories.slice(0, 1).map(category => (
@@ -133,7 +142,7 @@ const Header = ({ post, browser, audio, url, history, openAudio, classes }) => {
               key={ref.raw}
               onClick={() => {
                 history.push(
-                  routes.blog({ book: ref.bookId, chapter: ref.chapterStart })
+                  routes.blog({ book: ref.bookId, chapter: ref.chapterStart }),
                 );
               }}
               className={classes.link}
@@ -173,7 +182,7 @@ const Header = ({ post, browser, audio, url, history, openAudio, classes }) => {
         {audioUrl && (
           <div className={classes.audioActions}>
             <Button
-              onClick={() => openAudio(audioUrl, true)}
+              onClick={() => openAudioAction(audioUrl, true)}
               className={classes.audioAction}
               mode="plain"
               color="primary"
@@ -184,7 +193,7 @@ const Header = ({ post, browser, audio, url, history, openAudio, classes }) => {
                 <PlayArrowIcon />
               </Icon>
               <span className={classes.audioActionLabel}>
-                {audio.url === audioUrl ? "A l'écoute" : "Écouter"}
+                {audio.url === audioUrl ? "A l'écoute" : 'Écouter'}
               </span>
             </Button>
 
@@ -209,9 +218,19 @@ const Header = ({ post, browser, audio, url, history, openAudio, classes }) => {
   );
 };
 
+Header.propTypes = {
+  post: PropTypes.shape().isRequired,
+  browser: PropTypes.shape().isRequired,
+  audio: PropTypes.shape().isRequired,
+  url: PropTypes.string.isRequired,
+  history: PropTypes.shape().isRequired,
+  openAudioAction: PropTypes.func.isRequired,
+  classes: PropTypes.shape().isRequired,
+};
+
 export default connect(
   ({ browser, audio }) => ({ browser, audio }),
   {
-    openAudio
-  }
+    openAudioAction: openAudio,
+  },
 )(withRouter(withStyles(styles)(Header)));
