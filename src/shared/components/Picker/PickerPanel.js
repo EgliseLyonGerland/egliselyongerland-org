@@ -34,8 +34,8 @@ const PickerPanel = ({ children, title, classes }) => (
 
 PickerPanel.propTypes = {
   children: PropTypes.node.isRequired,
-  title: PropTypes.string,
   classes: PropTypes.shape().isRequired,
+  title: PropTypes.string,
 };
 
 PickerPanel.defaultProps = {

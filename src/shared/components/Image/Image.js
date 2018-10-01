@@ -34,12 +34,12 @@ const Image = ({ src, title = '', ratio, height, seoFriendly, classes }) => {
 };
 
 Image.propTypes = {
+  classes: PropTypes.shape().isRequired,
+  height: PropTypes.number,
+  ratio: PropTypes.number,
+  seoFriendly: PropTypes.bool,
   src: PropTypes.string,
   title: PropTypes.string,
-  ratio: PropTypes.number,
-  height: PropTypes.number,
-  seoFriendly: PropTypes.bool,
-  classes: PropTypes.shape().isRequired,
 };
 
 Image.defaultProps = {

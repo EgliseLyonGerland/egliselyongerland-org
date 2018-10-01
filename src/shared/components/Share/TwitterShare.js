@@ -19,8 +19,8 @@ const TwitterShare = ({ children, url, text }) => (
 
 TwitterShare.propTypes = {
   children: PropTypes.node.isRequired,
-  url: PropTypes.string.isRequired,
   text: PropTypes.string,
+  url: PropTypes.string.isRequired,
 };
 
 TwitterShare.defaultProps = {

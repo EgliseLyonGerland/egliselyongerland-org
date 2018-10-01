@@ -101,10 +101,10 @@ const BlankItemsFeed = ({ items, color, horizontal, classes }) => (
 );
 
 BlankItemsFeed.propTypes = {
-  items: PropTypes.number.isRequired,
+  classes: PropTypes.shape().isRequired,
   color: PropTypes.string,
   horizontal: PropTypes.bool,
-  classes: PropTypes.shape().isRequired,
+  items: PropTypes.number.isRequired,
 };
 
 BlankItemsFeed.defaultProps = {

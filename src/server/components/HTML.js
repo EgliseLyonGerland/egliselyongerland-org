@@ -72,9 +72,9 @@ const HTML = ({ children, scripts, styles, css, state }) => {
 HTML.propTypes = {
   children: PropTypes.string.isRequired,
   css: PropTypes.string,
-  styles: PropTypes.arrayOf(PropTypes.string.isRequired),
   scripts: PropTypes.arrayOf(PropTypes.string),
   state: PropTypes.string,
+  styles: PropTypes.arrayOf(PropTypes.string.isRequired),
 };
 
 HTML.defaultProps = {

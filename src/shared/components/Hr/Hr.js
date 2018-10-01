@@ -83,12 +83,12 @@ const Hr = ({
 
 Hr.propTypes = {
   children: PropTypes.node,
-  line: PropTypes.bool,
   color: PropTypes.string,
-  opacity: PropTypes.number,
   inline: PropTypes.bool,
-  width: PropTypes.string,
+  line: PropTypes.bool,
   multiplier: PropTypes.number,
+  opacity: PropTypes.number,
+  width: PropTypes.string,
 };
 
 Hr.defaultProps = {

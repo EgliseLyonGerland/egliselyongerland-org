@@ -212,13 +212,13 @@ const Button = ({
 
 Button.propTypes = {
   children: PropTypes.node.isRequired,
+  className: PropTypes.string,
+  color: PropTypes.oneOf(['primary', 'secondary', 'white']),
+  corners: PropTypes.oneOf(['straight', 'rounded', 'circular']),
+  disabled: PropTypes.bool,
+  mode: PropTypes.oneOf(['plain', 'outlined', 'ghost']),
   size: PropTypes.oneOf(Object.keys(SIZES)),
   type: PropTypes.oneOf(['normal', 'icon']),
-  corners: PropTypes.oneOf(['straight', 'rounded', 'circular']),
-  color: PropTypes.oneOf(['primary', 'secondary', 'white']),
-  mode: PropTypes.oneOf(['plain', 'outlined', 'ghost']),
-  disabled: PropTypes.bool,
-  className: PropTypes.string,
 };
 
 Button.defaultProps = {

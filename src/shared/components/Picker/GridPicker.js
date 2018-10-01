@@ -79,16 +79,16 @@ const GridPicker = ({ items, current, readOnly, classes, onChange }) => (
 );
 
 GridPicker.propTypes = {
+  classes: PropTypes.shape().isRequired,
+  current: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
   items: PropTypes.arrayOf(
     PropTypes.shape({
       key: PropTypes.any.isRequired,
       label: PropTypes.string.isRequired,
     }),
   ),
-  current: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
-  readOnly: PropTypes.bool,
   onChange: PropTypes.func,
-  classes: PropTypes.shape().isRequired,
+  readOnly: PropTypes.bool,
 };
 
 GridPicker.defaultProps = {

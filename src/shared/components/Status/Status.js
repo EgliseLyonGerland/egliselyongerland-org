@@ -16,8 +16,8 @@ const Status = ({ code, children }) => (
 );
 
 Status.propTypes = {
-  code: PropTypes.number.isRequired,
   children: PropTypes.node.isRequired,
+  code: PropTypes.number.isRequired,
 };
 
 export default Status;

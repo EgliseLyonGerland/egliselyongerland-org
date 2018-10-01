@@ -36,6 +36,15 @@
         "ignoreCase": true,
         "reservedFirst": true
       }
+    ],
+    "react/sort-prop-types": [
+      "error",
+      {
+        "ignoreCase": true,
+        "callbacksLast": false,
+        "requiredFirst": false,
+        "sortShapeProp": true
+      }
     ]
   },
   "globals": {

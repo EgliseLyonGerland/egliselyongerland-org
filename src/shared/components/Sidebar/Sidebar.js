@@ -79,16 +79,16 @@ class Sidebar extends Component {
 }
 
 Sidebar.propTypes = {
+  classes: PropTypes.shape().isRequired,
   links: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.string.isRequired,
       path: PropTypes.string.isRequired,
     }),
   ).isRequired,
-  opened: PropTypes.bool,
-  onOpenSidebarButtonClicked: PropTypes.func,
   onCloseSidebarButtonClicked: PropTypes.func,
-  classes: PropTypes.shape().isRequired,
+  onOpenSidebarButtonClicked: PropTypes.func,
+  opened: PropTypes.bool,
 };
 
 Sidebar.defaultProps = {

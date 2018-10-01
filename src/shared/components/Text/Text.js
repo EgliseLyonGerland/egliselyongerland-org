@@ -133,9 +133,14 @@ const Text = ({
 };
 
 Text.propTypes = {
+  align: PropTypes.oneOf(['left', 'center', 'right', 'justify']),
   children: PropTypes.node.isRequired,
-  element: PropTypes.string,
+  classes: PropTypes.shape().isRequired,
   className: PropTypes.string,
+  color: PropTypes.string,
+  element: PropTypes.string,
+  ellipsis: PropTypes.bool,
+  fadeLastLine: PropTypes.bool,
   fontSize: PropTypes.number,
   fontWeight: PropTypes.oneOf([
     'thin',
@@ -145,16 +150,11 @@ Text.propTypes = {
     'bold',
     'black',
   ]),
-  lineHeight: PropTypes.number,
   italic: PropTypes.bool,
-  color: PropTypes.string,
-  minLines: PropTypes.number,
+  lineHeight: PropTypes.number,
   maxLines: PropTypes.number,
-  align: PropTypes.oneOf(['left', 'center', 'right', 'justify']),
-  ellipsis: PropTypes.bool,
-  fadeLastLine: PropTypes.bool,
+  minLines: PropTypes.number,
   unit: PropTypes.string,
-  classes: PropTypes.shape().isRequired,
 };
 
 Text.defaultProps = {

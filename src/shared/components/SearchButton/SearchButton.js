@@ -18,8 +18,8 @@ const SearchButton = ({ onClicked, classes }) => (
 );
 
 SearchButton.propTypes = {
-  onClicked: PropTypes.func,
   classes: PropTypes.shape().isRequired,
+  onClicked: PropTypes.func,
 };
 
 SearchButton.defaultProps = {

@@ -284,11 +284,11 @@ class Header extends Component {
 
 Header.propTypes = {
   browser: PropTypes.shape().isRequired,
-  sidebarOpened: PropTypes.bool,
-  // onSearchButtonClicked: PropTypes.func.isRequired,
-  onOpenSidebarButtonClicked: PropTypes.func.isRequired,
-  onCloseSidebarButtonClicked: PropTypes.func.isRequired,
   classes: PropTypes.shape().isRequired,
+  // onSearchButtonClicked: PropTypes.func.isRequired,
+  onCloseSidebarButtonClicked: PropTypes.func.isRequired,
+  onOpenSidebarButtonClicked: PropTypes.func.isRequired,
+  sidebarOpened: PropTypes.bool,
 };
 
 Header.defaultProps = {

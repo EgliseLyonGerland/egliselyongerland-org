@@ -255,15 +255,15 @@ class BiblePicker extends Component {
 BiblePicker.propTypes = {
   books: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
-      testament: PropTypes.string.isRequired,
       chapters: PropTypes.arrayOf(
         PropTypes.shape({
           number: PropTypes.number.isRequired,
           verses: PropTypes.arrayOf(PropTypes.number).isRequired,
         }),
       ).isRequired,
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      testament: PropTypes.string.isRequired,
     }),
   ).isRequired,
   currentBook: PropTypes.number,

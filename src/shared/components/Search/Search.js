@@ -70,8 +70,8 @@ class Search extends Component {
 }
 
 Search.propTypes = {
-  opened: PropTypes.bool,
   hideButtonClicked: PropTypes.func,
+  opened: PropTypes.bool,
 };
 
 Search.defaultProps = {

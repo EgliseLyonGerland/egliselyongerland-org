@@ -139,13 +139,13 @@ class App extends Component {
 
 App.propTypes = {
   // children: PropTypes.object.isRequired,
-  overlay: PropTypes.shape().isRequired,
-  // isSearchbarOpened: PropTypes.bool.isRequired,
-  openSearchbar: PropTypes.func.isRequired,
-  // closeSearchbar: PropTypes.func.isRequired,
-  isSidebarOpened: PropTypes.bool.isRequired,
-  openSidebar: PropTypes.func.isRequired,
   closeSidebar: PropTypes.func.isRequired,
+  // isSearchbarOpened: PropTypes.bool.isRequired,
+  isSidebarOpened: PropTypes.bool.isRequired,
+  // closeSearchbar: PropTypes.func.isRequired,
+  openSearchbar: PropTypes.func.isRequired,
+  openSidebar: PropTypes.func.isRequired,
+  overlay: PropTypes.shape().isRequired,
 };
 
 App.getInitialData = () => new Promise(resolve => setTimeout(resolve, 2000));

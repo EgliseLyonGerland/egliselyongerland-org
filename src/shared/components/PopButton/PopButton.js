@@ -102,9 +102,9 @@ class PopButton extends Component {
 }
 
 PopButton.propTypes = {
-  title: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
   classes: PropTypes.shape().isRequired,
+  title: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles)(PopButton);

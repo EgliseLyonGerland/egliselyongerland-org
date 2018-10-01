@@ -91,12 +91,12 @@ class Church extends Component {
 }
 
 Church.propTypes = {
+  browser: PropTypes.shape().isRequired,
+  classes: PropTypes.shape().isRequired,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
   location: PropTypes.shape().isRequired,
-  classes: PropTypes.shape().isRequired,
-  browser: PropTypes.shape().isRequired,
   route: PropTypes.shape().isRequired,
 };
 

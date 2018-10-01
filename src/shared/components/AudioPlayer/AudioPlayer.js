@@ -506,12 +506,12 @@ class AudioPlayer extends Component {
 }
 
 AudioPlayer.propTypes = {
-  url: PropTypes.string,
-  play: PropTypes.bool,
-  withShadows: PropTypes.bool,
-  withClose: PropTypes.bool,
-  onClose: PropTypes.func,
   classes: PropTypes.shape().isRequired,
+  onClose: PropTypes.func,
+  play: PropTypes.bool,
+  url: PropTypes.string,
+  withClose: PropTypes.bool,
+  withShadows: PropTypes.bool,
 };
 
 AudioPlayer.defaultProps = {

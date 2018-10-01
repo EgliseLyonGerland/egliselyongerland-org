@@ -31,13 +31,13 @@ const Item = ({ width, height, margin, right, center, inline, classes }) => {
 };
 
 Item.propTypes = {
-  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  center: PropTypes.bool,
+  classes: PropTypes.shape().isRequired,
   height: PropTypes.number,
+  inline: PropTypes.bool,
   margin: PropTypes.number,
   right: PropTypes.bool,
-  center: PropTypes.bool,
-  inline: PropTypes.bool,
-  classes: PropTypes.shape().isRequired,
+  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
 Item.defaultProps = {

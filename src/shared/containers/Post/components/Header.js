@@ -219,13 +219,13 @@ const Header = ({
 };
 
 Header.propTypes = {
-  post: PropTypes.shape().isRequired,
-  browser: PropTypes.shape().isRequired,
   audio: PropTypes.shape().isRequired,
-  url: PropTypes.string.isRequired,
+  browser: PropTypes.shape().isRequired,
+  classes: PropTypes.shape().isRequired,
   history: PropTypes.shape().isRequired,
   openAudioAction: PropTypes.func.isRequired,
-  classes: PropTypes.shape().isRequired,
+  post: PropTypes.shape().isRequired,
+  url: PropTypes.string.isRequired,
 };
 
 export default connect(

@@ -165,12 +165,12 @@ class Post extends Component {
 }
 
 Post.propTypes = {
-  post: PropTypes.shape(),
   entities: PropTypes.shape(),
-  notFound: PropTypes.bool,
   location: PropTypes.shape({
     pathname: PropTypes.string.isRequired,
   }).isRequired,
+  notFound: PropTypes.bool,
+  post: PropTypes.shape(),
 };
 
 Post.defaultProps = {

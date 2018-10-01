@@ -94,9 +94,9 @@ const Jumbotron = ({ title, background, classes, children }) => (
 
 Jumbotron.propTypes = {
   background: PropTypes.string,
-  title: PropTypes.string,
   children: PropTypes.node,
   classes: PropTypes.shape().isRequired,
+  title: PropTypes.string,
 };
 
 Jumbotron.defaultProps = {

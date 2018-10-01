@@ -458,15 +458,15 @@ class Blog extends Component {
 }
 
 Blog.propTypes = {
-  page: PropTypes.number.isRequired,
-  maxPage: PropTypes.number.isRequired,
-  total: PropTypes.number.isRequired,
-  posts: PropTypes.arrayOf(PropTypes.string).isRequired,
   aggs: PropTypes.shape().isRequired,
-  loading: PropTypes.bool.isRequired,
   browser: PropTypes.shape().isRequired,
+  loading: PropTypes.bool.isRequired,
   location: PropTypes.shape().isRequired,
+  maxPage: PropTypes.number.isRequired,
+  page: PropTypes.number.isRequired,
   params: PropTypes.shape().isRequired,
+  posts: PropTypes.arrayOf(PropTypes.string).isRequired,
+  total: PropTypes.number.isRequired,
 };
 
 Blog.contextTypes = {

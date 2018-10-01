@@ -71,20 +71,20 @@ const PanePicker = ({
 };
 
 PanePicker.propTypes = {
+  classes: PropTypes.shape().isRequired,
+  current: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+  height: PropTypes.number,
+  onChange: PropTypes.func,
   panes: PropTypes.arrayOf(
     PropTypes.shape({
+      active: PropTypes.bool,
+      children: PropTypes.any,
       key: PropTypes.any.isRequired,
       label: PropTypes.string.isRequired,
-      children: PropTypes.any,
-      active: PropTypes.bool,
     }),
   ).isRequired,
-  current: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
-  onChange: PropTypes.func,
-  tabBgColor: PropTypes.string,
   tabActiveBarColor: PropTypes.string,
-  height: PropTypes.number,
-  classes: PropTypes.shape().isRequired,
+  tabBgColor: PropTypes.string,
 };
 
 PanePicker.defaultProps = {

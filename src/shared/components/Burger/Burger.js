@@ -108,14 +108,14 @@ class Burger extends Component {
 }
 
 Burger.propTypes = {
+  color: PropTypes.string,
+  height: PropTypes.number,
+  muted: PropTypes.bool,
+  onClick: PropTypes.func,
+  rounded: PropTypes.bool,
   size: PropTypes.number,
   weight: PropTypes.number,
   width: PropTypes.number,
-  height: PropTypes.number,
-  color: PropTypes.string,
-  rounded: PropTypes.bool,
-  muted: PropTypes.bool,
-  onClick: PropTypes.func,
 };
 
 Burger.defaultProps = {

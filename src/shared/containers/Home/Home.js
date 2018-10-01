@@ -161,9 +161,9 @@ class Home extends Component {
 }
 
 Home.propTypes = {
+  entities: PropTypes.shape().isRequired,
   lasts: PropTypes.arrayOf(PropTypes.string).isRequired,
   sermons: PropTypes.arrayOf(PropTypes.string).isRequired,
-  entities: PropTypes.shape().isRequired,
 };
 
 export default connect(mapStateToProps)(asyncConnect(asyncPromises)(Home));

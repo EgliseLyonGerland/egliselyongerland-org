@@ -176,19 +176,19 @@ class PostsFeed extends Component {
 }
 
 PostsFeed.propTypes = {
+  classes: PropTypes.shape().isRequired,
+  horizontal: PropTypes.bool,
   posts: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
       categories: PropTypes.arrayOf(
         PropTypes.shape({
           name: PropTypes.string.isRequired,
         }),
       ),
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
     }),
   ).isRequired,
-  horizontal: PropTypes.bool,
-  classes: PropTypes.shape().isRequired,
 };
 
 PostsFeed.defaultProps = {

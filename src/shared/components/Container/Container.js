@@ -57,14 +57,14 @@ const Container = ({ children, className, style, classes, ...props }) => {
 
 Container.propTypes = {
   children: PropTypes.node.isRequired,
-  className: PropTypes.string,
-  style: PropTypes.shape(),
-  xs: PropTypes.bool,
-  sm: PropTypes.bool,
-  md: PropTypes.bool,
-  lg: PropTypes.bool,
-  xl: PropTypes.bool,
   classes: PropTypes.shape().isRequired,
+  className: PropTypes.string,
+  lg: PropTypes.bool,
+  md: PropTypes.bool,
+  sm: PropTypes.bool,
+  style: PropTypes.shape(),
+  xl: PropTypes.bool,
+  xs: PropTypes.bool,
 };
 
 Container.defaultProps = {

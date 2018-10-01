@@ -32,8 +32,8 @@ const Overlay = ({ active, onClicked, classes }) => (
 
 Overlay.propTypes = {
   active: PropTypes.bool,
-  onClicked: PropTypes.func,
   classes: PropTypes.shape().isRequired,
+  onClicked: PropTypes.func,
 };
 
 Overlay.defaultProps = {

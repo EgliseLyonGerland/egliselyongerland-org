@@ -77,9 +77,9 @@ const Shares = ({ title, url, classes }) => (
 );
 
 Shares.propTypes = {
+  classes: PropTypes.shape().isRequired,
   title: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
-  classes: PropTypes.shape().isRequired,
 };
 
 export default withStyles(styles)(Shares);

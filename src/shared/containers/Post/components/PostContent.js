@@ -163,8 +163,8 @@ class PostContent extends Component {
 }
 
 PostContent.propTypes = {
-  content: PropTypes.string.isRequired,
   classes: PropTypes.shape().isRequired,
+  content: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles)(PostContent);

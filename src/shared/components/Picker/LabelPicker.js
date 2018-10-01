@@ -105,18 +105,18 @@ class LabelPicker extends Component {
 }
 
 LabelPicker.propTypes = {
+  children: PropTypes.func,
+  classes: PropTypes.shape().isRequired,
+  crop: PropTypes.number,
+  current: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
   labels: PropTypes.arrayOf(
     PropTypes.shape({
       key: PropTypes.any.isRequired,
       label: PropTypes.string.isRequired,
     }),
   ).isRequired,
-  current: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
-  children: PropTypes.func,
-  readOnly: PropTypes.bool,
-  crop: PropTypes.number,
   onChange: PropTypes.func,
-  classes: PropTypes.shape().isRequired,
+  readOnly: PropTypes.bool,
 };
 
 LabelPicker.defaultProps = {

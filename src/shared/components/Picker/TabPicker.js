@@ -96,19 +96,19 @@ class TabPicker extends Component {
 }
 
 TabPicker.propTypes = {
+  activeBarColor: PropTypes.string,
+  bgColor: PropTypes.string,
+  classes: PropTypes.shape().isRequired,
+  current: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+  onChange: PropTypes.func.isRequired,
+  renderLabel: PropTypes.func,
   tabs: PropTypes.arrayOf(
     PropTypes.shape({
+      active: PropTypes.bool,
       key: PropTypes.any.isRequired,
       label: PropTypes.string.isRequired,
-      active: PropTypes.bool,
     }),
   ).isRequired,
-  current: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
-  bgColor: PropTypes.string,
-  activeBarColor: PropTypes.string,
-  renderLabel: PropTypes.func,
-  onChange: PropTypes.func.isRequired,
-  classes: PropTypes.shape().isRequired,
 };
 
 TabPicker.defaultProps = {
