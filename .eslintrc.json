@@ -27,7 +27,16 @@
     "jsx-a11y/media-has-caption": "off",
     "jsx-a11y/anchor-is-valid": ["warn", { "aspects": ["invalidHref"] }],
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-    "react/no-unescaped-entities": "off"
+    "react/no-unescaped-entities": "off",
+    "react/jsx-sort-props": [
+      "error",
+      {
+        "callbacksLast": true,
+        "shorthandLast": true,
+        "ignoreCase": true,
+        "reservedFirst": true
+      }
+    ]
   },
   "globals": {
     "__DEVELOPMENT__": true,

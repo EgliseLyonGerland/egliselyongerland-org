@@ -134,7 +134,6 @@ class Post extends Component {
     return (
       <div>
         <Helmet
-          title={title}
           meta={[
             { name: 'description', content: description },
             { property: 'keywords', content: tags.join(',') },
@@ -148,6 +147,7 @@ class Post extends Component {
             { property: 'twitter:description', content: description },
             { property: 'twitter:image', content: imageOriginalUrl },
           ]}
+          title={title}
         >
           <script type="application/ld+json">
             {JSON.stringify(structuredData)}

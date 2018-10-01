@@ -10,7 +10,7 @@ const HTML = ({ children, scripts, styles, css, state }) => {
     <html lang="fr">
       <head>
         <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
 
         {head.base.toComponent()}
         {head.title.toComponent()}
@@ -19,27 +19,27 @@ const HTML = ({ children, scripts, styles, css, state }) => {
         {head.script.toComponent()}
 
         {styles.map(href => (
-          <link key={href} rel="stylesheet" href={href} />
+          <link key={href} href={href} rel="stylesheet" />
         ))}
 
-        <link rel="icon" href="/favicon.ico" />
+        <link href="/favicon.ico" rel="icon" />
         <link
-          rel="icon"
-          type="image/png"
-          sizes="32x32"
           href="/favicon-32x32.png"
+          rel="icon"
+          sizes="32x32"
+          type="image/png"
         />
         <link
-          rel="icon"
-          type="image/png"
-          sizes="96x96"
           href="/favicon-96x96.png"
+          rel="icon"
+          sizes="96x96"
+          type="image/png"
         />
         <link
-          rel="icon"
-          type="image/png"
-          sizes="16x16"
           href="/favicon-16x16.png"
+          rel="icon"
+          sizes="16x16"
+          type="image/png"
         />
 
         <link
@@ -55,12 +55,12 @@ const HTML = ({ children, scripts, styles, css, state }) => {
         />
 
         <style
-          id="server-side-styles"
           dangerouslySetInnerHTML={{ __html: css }}
+          id="server-side-styles"
         />
       </head>
       <body>
-        <div id="app" dangerouslySetInnerHTML={{ __html: children }} />
+        <div dangerouslySetInnerHTML={{ __html: children }} id="app" />
         {scripts.map(src => (
           <script key={src} src={src} />
         ))}

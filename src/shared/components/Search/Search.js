@@ -40,12 +40,12 @@ class Search extends Component {
       <div className={`${styles.search} ${opened ? styles.opened : ''}`}>
         <div className={styles.topbar}>
           <input
-            className={styles.input}
-            type="text"
-            placeholder="Que recherchez-vous ?"
             ref={ref => {
               this.input = ref;
             }}
+            className={styles.input}
+            placeholder="Que recherchez-vous ?"
+            type="text"
             value={search}
             onChange={evt => {
               this.setState({ search: evt.target.value });

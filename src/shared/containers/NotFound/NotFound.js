@@ -19,23 +19,23 @@ const NotFound = () => {
   return (
     <Status code={404}>
       <Jumbotron>
-        <Container sm style={{ textAlign: 'center' }}>
-          <Text color="white" fontWeight="medium" fontSize={2}>
+        <Container style={{ textAlign: 'center' }} sm>
+          <Text color="white" fontSize={2} fontWeight="medium">
             {book}
           </Text>
-          <Text color="white" fontSize={10} lineHeight={10} fontWeight="bold">
+          <Text color="white" fontSize={10} fontWeight="bold" lineHeight={10}>
             40.4
           </Text>
-          <Hr line width="50%" xl />
+          <Hr width="50%" line xl />
           <Text
-            element="div"
             color="white"
-            fontWeight="light"
+            element="div"
             fontSize={1.6}
+            fontWeight="light"
             italic
           >
             “{verse}”
-            <Text fontWeight="regular" fontSize={1.6}>
+            <Text fontSize={1.6} fontWeight="regular">
               — {book} 40.4
               {book} 40.4
               {book} 40.4

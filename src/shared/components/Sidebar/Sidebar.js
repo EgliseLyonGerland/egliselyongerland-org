@@ -68,7 +68,7 @@ class Sidebar extends Component {
       <div className={classnames(classes.sidebar, opened && classes.opened)}>
         <div className={classes.content}>
           {links.map(link => (
-            <Link key={link.path} to={link.path} className={classes.link}>
+            <Link key={link.path} className={classes.link} to={link.path}>
               {link.label}
             </Link>
           ))}

@@ -125,16 +125,16 @@ class PostsFeed extends Component {
       <div className={classes.taxonomies}>
         {category && (
           <Link
-            to={routes.blog({ category: category.id })}
             className={classnames(classes.taxonomy, classes.category)}
+            to={routes.blog({ category: category.id })}
           >
             <span className={classes.taxonomyLabel}>{category.name}</span>
           </Link>
         )}
         {bibleRef && (
           <Link
-            to={routes.blog()}
             className={classnames(classes.taxonomy, classes.ref)}
+            to={routes.blog()}
           >
             <span className={classes.taxonomyLabel}>{bibleRef.raw}</span>
           </Link>
@@ -156,9 +156,9 @@ class PostsFeed extends Component {
           const imageUrl = get(post, 'picture.sizes.small.url', null);
 
           return (
-            <div className={classes.post} key={post.id}>
+            <div key={post.id} className={classes.post}>
               <Link className={classes.picture} to={routes.post(post.id)}>
-                <Image src={imageUrl} height={130} />
+                <Image height={130} src={imageUrl} />
               </Link>
 
               <div className={classes.content}>

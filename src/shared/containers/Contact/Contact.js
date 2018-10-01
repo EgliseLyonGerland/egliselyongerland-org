@@ -35,10 +35,10 @@ const styles = {
 
 const renderTitle = title => (
   <Text
+    color={theme.palette.primary[500]}
     element="h2"
     fontSize={1.4}
     fontWeight="medium"
-    color={theme.palette.primary[500]}
   >
     {title}
   </Text>
@@ -50,19 +50,19 @@ const Contact = ({ classes, history }) => (
       <title>Contact</title>
     </Helmet>
 
-    <Jumbotron title="Contact" background={picture} />
+    <Jumbotron background={picture} title="Contact" />
 
     <div className={classes.timeBanner}>
       <div className={classes.timeBannerText}>
-        <Text fontWeight="medium" fontSize={1.6} color="#AAAAAA">
+        <Text color="#AAAAAA" fontSize={1.6} fontWeight="medium">
           Culte ouvert à tous, le dimanche à 17h.
         </Text>
       </div>
       <div className={classes.timeBannerButton}>
         <Button
-          mode="plain"
           color="primary"
           corners="circular"
+          mode="plain"
           size="xs"
           onClick={() => history.push(routes.worship())}
         >
@@ -115,13 +115,13 @@ const Contact = ({ classes, history }) => (
         </div>
         <div className="col-sm-7 col-md-6">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2785.120360872194!2d4.8296063158166875!3d45.72868097910506!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47f4ea28fb13f6bf%3A0x23df16c38cf568e9!2zw4lnbGlzZSBMeW9uIEdlcmxhbmQgKFLDqWZvcm3DqWUgw4l2YW5nw6lsaXF1ZSk!5e0!3m2!1sfr!2sfr!4v1505047371132"
-            width="100%"
-            height="450"
             frameBorder="0"
+            height="450"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2785.120360872194!2d4.8296063158166875!3d45.72868097910506!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47f4ea28fb13f6bf%3A0x23df16c38cf568e9!2zw4lnbGlzZSBMeW9uIEdlcmxhbmQgKFLDqWZvcm3DqWUgw4l2YW5nw6lsaXF1ZSk!5e0!3m2!1sfr!2sfr!4v1505047371132"
             style={{ border: 0, width: '100%', height: 450 }}
-            allowFullScreen
             title="Location de l'église"
+            width="100%"
+            allowFullScreen
           />
 
           <Hr xl />

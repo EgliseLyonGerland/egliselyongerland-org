@@ -60,25 +60,25 @@ class Church extends Component {
       <div>
         <Helmet title={currentTab.title} />
         <Jumbotron
+          background={currentTab.picture}
           height="500px"
           title={currentTab.title}
-          background={currentTab.picture}
         />
 
-        <AppBar position="static" elevation={0}>
+        <AppBar elevation={0} position="static">
           <Tabs
             className={classes.tabs}
-            value={currentTab.slug}
-            onChange={this.handleTabChange}
-            centered
             scrollable={browser.width < 750}
+            value={currentTab.slug}
+            centered
+            onChange={this.handleTabChange}
           >
             {churchTabs.map(tab => (
               <Tab
                 key={tab.slug}
+                className={classes.tab}
                 label={tab.title}
                 value={tab.slug}
-                className={classes.tab}
               />
             ))}
           </Tabs>

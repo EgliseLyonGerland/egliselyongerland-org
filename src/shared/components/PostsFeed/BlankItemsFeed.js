@@ -79,7 +79,7 @@ const styles = theme => ({
 const BlankItemsFeed = ({ items, color, horizontal, classes }) => (
   <div className={horizontal ? classes.horizontal : ''}>
     {range(0, items).map(value => (
-      <div className={classes.item} key={value}>
+      <div key={value} className={classes.item}>
         <div className={classes.picture} style={{ backgroundColor: color }} />
         <div className={classes.content}>
           <div

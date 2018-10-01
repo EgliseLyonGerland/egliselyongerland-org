@@ -96,18 +96,18 @@ class Home extends Component {
       <div>
         <Helmet titleTemplate="%s">
           <title>Église Lyon Gerland • Réformée • Évangélique</title>
-          <meta name="description" content={desc} />
-          <meta property="og:description" content={desc} />
+          <meta content={desc} name="description" />
+          <meta content={desc} property="og:description" />
         </Helmet>
 
         <Jumbotron background={worship}>
-          <Container md style={{ color: 'white', textAlign: 'center' }}>
-            <Text fontSize={4} fontWeight="light" element="div">
-              <img src={sunshineLeft} alt="" />
+          <Container style={{ color: 'white', textAlign: 'center' }} md>
+            <Text element="div" fontSize={4} fontWeight="light">
+              <img alt="" src={sunshineLeft} />
               <Hr inline />
               Bienvenue
               <Hr inline />
-              <img src={sunshineRight} alt="" />
+              <img alt="" src={sunshineRight} />
             </Text>
             <Hr lg />
             <Text fontSize={1.6}>
@@ -123,7 +123,7 @@ class Home extends Component {
             </Text>
             <Hr xl />
             <Link to={routes.church()}>
-              <Button size="lg" color="white">
+              <Button color="white" size="lg">
                 En savoir plus
               </Button>
             </Link>
@@ -140,7 +140,7 @@ class Home extends Component {
               <Hr />
               <PostsFeed posts={lasts} />
               <Hr lg />
-              <Link to={routes.blog()} className="pull-right">
+              <Link className="pull-right" to={routes.blog()}>
                 <Button size="sm">Tous les posts</Button>
               </Link>
             </div>
@@ -149,7 +149,7 @@ class Home extends Component {
               <Hr />
               <PostsFeed posts={sermons} />
               <Hr lg />
-              <Link to={routes.sermons()} className="pull-right">
+              <Link className="pull-right" to={routes.sermons()}>
                 <Button size="sm">Toutes les prédications</Button>
               </Link>
             </div>

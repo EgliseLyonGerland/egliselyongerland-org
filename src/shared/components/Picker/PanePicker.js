@@ -43,10 +43,10 @@ const PanePicker = ({
   return (
     <div>
       <TabPicker
-        tabs={panes}
-        current={current}
-        bgColor={tabBgColor}
         activeBarColor={tabActiveBarColor}
+        bgColor={tabBgColor}
+        current={current}
+        tabs={panes}
         onChange={tab => tab.active !== false && onChange(tab)}
       />
 

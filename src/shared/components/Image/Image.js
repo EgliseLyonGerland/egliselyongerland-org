@@ -28,7 +28,7 @@ const Image = ({ src, title = '', ratio, height, seoFriendly, classes }) => {
 
   return (
     <div className={classes.image} style={style}>
-      {seoFriendly && <img className={classes.img} src={source} alt={title} />}
+      {seoFriendly && <img alt={title} className={classes.img} src={source} />}
     </div>
   );
 };

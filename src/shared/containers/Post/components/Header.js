@@ -126,12 +126,12 @@ const Header = ({
           {post.categories.slice(0, 1).map(category => (
             <Button
               key={category.slug}
-              onClick={() => {
-                history.push(routes.blog({ category: category.id }));
-              }}
               className={classes.link}
               color="white"
               size={buttonSize}
+              onClick={() => {
+                history.push(routes.blog({ category: category.id }));
+              }}
             >
               {category.name}
             </Button>
@@ -140,15 +140,15 @@ const Header = ({
           {post.bibleRefs.slice(0, 1).map(ref => (
             <Button
               key={ref.raw}
+              className={classes.link}
+              color="white"
+              corners="rounded"
+              size={buttonSize}
               onClick={() => {
                 history.push(
                   routes.blog({ book: ref.bookId, chapter: ref.chapterStart }),
                 );
               }}
-              className={classes.link}
-              color="white"
-              corners="rounded"
-              size={buttonSize}
             >
               {ref.raw}
             </Button>
@@ -156,23 +156,23 @@ const Header = ({
 
           <FacebookShare url={url}>
             <Button
-              type="icon"
-              mode="ghost"
-              color="white"
-              className={classes.link}
               aria-label="Facebook"
+              className={classes.link}
+              color="white"
+              mode="ghost"
+              type="icon"
             >
               <FacebookIcon />
             </Button>
           </FacebookShare>
 
-          <TwitterShare url={url} text={post.title}>
+          <TwitterShare text={post.title} url={url}>
             <Button
-              type="icon"
-              mode="ghost"
-              color="white"
-              className={classes.link}
               aria-label="Twitter"
+              className={classes.link}
+              color="white"
+              mode="ghost"
+              type="icon"
             >
               <TwitterIcon />
             </Button>
@@ -182,12 +182,12 @@ const Header = ({
         {audioUrl && (
           <div className={classes.audioActions}>
             <Button
-              onClick={() => openAudioAction(audioUrl, true)}
               className={classes.audioAction}
-              mode="plain"
               color="primary"
               corners="circular"
               disabled={audio.url === audioUrl}
+              mode="plain"
+              onClick={() => openAudioAction(audioUrl, true)}
             >
               <Icon>
                 <PlayArrowIcon />
@@ -199,11 +199,11 @@ const Header = ({
 
             {browser.greaterThan.md && (
               <Button
-                onClick={() => window.open(audioUrl)}
                 className={classes.audioAction}
                 color="white"
                 corners="circular"
                 size="md"
+                onClick={() => window.open(audioUrl)}
               >
                 <Icon>
                   <CloudDownloadIcon />

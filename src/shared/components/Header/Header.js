@@ -213,16 +213,16 @@ class Header extends Component {
         <Container className={classes.body}>
           <div className={classes.brand}>
             <Link className={classes.logo} to="/">
-              <img src={logo} alt="Église Lyon Gerland" />
+              <img alt="Église Lyon Gerland" src={logo} />
             </Link>
 
             {browser.width >= 600 && (
               <Link to="/">
                 <img
-                  className={classes.title}
-                  src={brand}
-                  height="22"
                   alt="Église Lyon Gerland"
+                  className={classes.title}
+                  height="22"
+                  src={brand}
                 />
               </Link>
             )}
@@ -240,7 +240,7 @@ class Header extends Component {
           {browser.width >= 930 ? (
             <div className={classes.links}>
               {links.map(link => (
-                <div className={classes.linksItem} key={link.label}>
+                <div key={link.label} className={classes.linksItem}>
                   <Link className={classes.link} to={link.path}>
                     {link.label}
                   </Link>
@@ -249,16 +249,16 @@ class Header extends Component {
             </div>
           ) : (
             <button
-              type="button"
               className={classes.burger}
+              type="button"
               onClick={() => this.toggleSidebar()}
             >
               <Burger
+                color="white"
+                height={17}
+                muted={sidebarOpened}
                 weight={3}
                 width={17}
-                height={17}
-                color="white"
-                muted={sidebarOpened}
                 rounded
               />
             </button>
@@ -273,8 +273,8 @@ class Header extends Component {
           <Sidebar
             links={links}
             opened={sidebarOpened}
-            onOpenSidebarButtonClicked={() => onOpenSidebarButtonClicked()}
             onCloseSidebarButtonClicked={() => onCloseSidebarButtonClicked()}
+            onOpenSidebarButtonClicked={() => onOpenSidebarButtonClicked()}
           />
         )}
       </div>

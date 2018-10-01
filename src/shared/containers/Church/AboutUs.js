@@ -6,9 +6,9 @@ import Hr from 'components/Hr/Hr';
 import theme from 'config/theme';
 
 const renderTitle = (prefix, suffix) => (
-  <Text element="h2" fontSize={40} unit="px" color={theme.palette.primary[500]}>
+  <Text color={theme.palette.primary[500]} element="h2" fontSize={40} unit="px">
     {prefix}{' '}
-    <Text element="span" fontSize={40} unit="px" italic fontWeight="regular">
+    <Text element="span" fontSize={40} fontWeight="regular" unit="px" italic>
       {suffix}
     </Text>
   </Text>

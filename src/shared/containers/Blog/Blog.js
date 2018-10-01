@@ -156,10 +156,10 @@ class Blog extends Component {
       <PickerPanel title="Référence biblique">
         <BiblePicker
           books={bibleRefs}
-          readOnly={loading}
           currentBook={parseInt(params.book, 10)}
           currentChapter={parseInt(params.chapter, 10)}
           currentVerse={parseInt(params.verse, 10)}
+          readOnly={loading}
           onChange={data => {
             history.push(routes.blog({ ...params, ...data, page: undefined }));
           }}
@@ -186,13 +186,13 @@ class Blog extends Component {
       <PickerPanel title="Catégorie">
         <LabelPicker
           crop={10}
-          readOnly={readOnly}
           current={parseInt(params.category, 10)}
           labels={categories.map(category => ({
             key: category.id,
             label: category.name,
             total: category.total,
           }))}
+          readOnly={readOnly}
           onChange={key =>
             history.push(
               routes.blog({ ...params, page: undefined, category: key }),
@@ -202,7 +202,7 @@ class Blog extends Component {
           {label => (
             <Text fontSize={1} maxLines={1} ellipsis>
               {label.label}{' '}
-              <Text fontSize={0.8} element="span" color="#AAA">
+              <Text color="#AAA" element="span" fontSize={0.8}>
                 ({label.total})
               </Text>
             </Text>
@@ -230,13 +230,13 @@ class Blog extends Component {
       <PickerPanel title="Auteur">
         <LabelPicker
           crop={10}
-          readOnly={readOnly}
           current={parseInt(params.author, 10)}
           labels={authors.map(author => ({
             key: author.id,
             label: author.name,
             total: author.total,
           }))}
+          readOnly={readOnly}
           onChange={key =>
             history.push(
               routes.blog({ ...params, page: undefined, author: key }),
@@ -246,7 +246,7 @@ class Blog extends Component {
           {label => (
             <Text fontSize={1} maxLines={1} ellipsis>
               {label.label}{' '}
-              <Text fontSize={0.8} element="span" color="#AAA">
+              <Text color="#AAA" element="span" fontSize={0.8}>
                 ({label.total})
               </Text>
             </Text>
@@ -292,7 +292,7 @@ class Blog extends Component {
     const posts = this.getDenormalizedPosts();
 
     if (loading) {
-      return <BlankItemsFeed items={7} color="#4776e6" />;
+      return <BlankItemsFeed color="#4776e6" items={7} />;
     }
 
     if (posts.length) {
@@ -311,7 +311,7 @@ class Blog extends Component {
 
     return (
       <Fragment>
-        <Grid container alignItems="center" justify="space-between">
+        <Grid alignItems="center" justify="space-between" container>
           <Grid item>
             {total} {total > 1 ? 'articles' : 'article'}
             <Hr inline />
@@ -319,9 +319,9 @@ class Blog extends Component {
           </Grid>
           <Grid item>
             <Button
-              type="icon"
-              mode="ghost"
               disabled={page <= 1}
+              mode="ghost"
+              type="icon"
               onClick={() =>
                 history.push(routes.blog({ ...params, page: page - 1 }))
               }
@@ -330,9 +330,9 @@ class Blog extends Component {
             </Button>
             <Hr multiplier={1} inline />
             <Button
-              type="icon"
-              mode="ghost"
               disabled={page >= maxPage}
+              mode="ghost"
+              type="icon"
               onClick={() =>
                 history.push(routes.blog({ ...params, page: page + 1 }))
               }
@@ -445,7 +445,7 @@ class Blog extends Component {
       <div>
         {this.renderSeo(title)}
 
-        <Jumbotron title={title} background={jumbotron} />
+        <Jumbotron background={jumbotron} title={title} />
         <Hr xl />
         <Container md>
           {browser.width >= 750

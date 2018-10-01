@@ -130,10 +130,10 @@ class BiblePicker extends Component {
     return (
       <LabelPicker
         current={currentBook}
-        readOnly={readOnly}
         labels={books
           .filter(book => book.testament === testament)
           .map(({ id, name }) => ({ key: id, label: name }))}
+        readOnly={readOnly}
         onChange={key =>
           onChange({ book: key, chapter: undefined, verse: undefined })
         }
@@ -147,15 +147,15 @@ class BiblePicker extends Component {
 
     return (
       <PanePicker
+        current={currentTestament}
+        height={400}
         panes={booksTabs.map(tab => ({
           ...tab,
           children: this.renderBooksPane(tab.key),
           active: findIndex(books, ['testament', tab.key]) > -1,
         }))}
-        current={currentTestament}
-        height={400}
-        tabBgColor="#F7F7F7"
         tabActiveBarColor="#CCC"
+        tabBgColor="#F7F7F7"
         onChange={pane =>
           this.setState({
             currentTestament: pane.key,
@@ -182,11 +182,11 @@ class BiblePicker extends Component {
     return (
       <GridPicker
         current={currentChapter}
-        readOnly={readOnly}
         items={chapters.map(chapter => ({
           key: chapter.number,
           label: `${chapter.number}`,
         }))}
+        readOnly={readOnly}
         onChange={chapter =>
           onChange({ book: currentBook, chapter, verse: undefined })
         }
@@ -212,8 +212,8 @@ class BiblePicker extends Component {
     return (
       <GridPicker
         current={currentVerse}
-        readOnly={readOnly}
         items={verses.map(verse => ({ key: verse, label: `${verse}` }))}
+        readOnly={readOnly}
         onChange={verse =>
           onChange({ book: currentBook, chapter: currentChapter, verse })
         }
@@ -240,8 +240,8 @@ class BiblePicker extends Component {
 
     return (
       <PanePicker
-        panes={panes}
         current={currentMainPane}
+        panes={panes}
         onChange={pane =>
           this.setState({
             currentMainPane: pane.key,

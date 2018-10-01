@@ -67,7 +67,7 @@ const Shares = ({ title, url, classes }) => (
         <span className={classes.label}>Partager</span>
       </ButtonBase>
     </FacebookShare>
-    <TwitterShare url={url} text={title}>
+    <TwitterShare text={title} url={url}>
       <ButtonBase className={classes.button}>
         <TwitterIcon className={classes.icon} />
         <span className={classes.label}>Tweeter</span>

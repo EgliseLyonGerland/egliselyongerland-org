@@ -374,9 +374,9 @@ class AudioPlayer extends Component {
     return (
       <div>
         <Button
-          type="icon"
           color="white"
           mode="ghost"
+          type="icon"
           onClick={() => onClose()}
         >
           <CloseIcon style={{ width: 24, height: 24 }} />
@@ -425,18 +425,12 @@ class AudioPlayer extends Component {
         })}
       >
         <div>
-          <Button type="icon" color="white" mode="ghost" disabled={disabled}>
+          <Button color="white" disabled={disabled} mode="ghost" type="icon">
             {this.renderPlayingIcon()}
           </Button>
         </div>
         <div className={classes.seek}>
           <Slider
-            min={0}
-            max={duration || 1}
-            value={currentTime || 0}
-            onChange={(event, value) => this.handleChange(value)}
-            onDragStart={() => this.handleDragStart()}
-            onDragEnd={() => this.handleDragEnd()}
             classes={{
               trackAfter: classes.sliderTrackAfter,
               trackBefore: classes.sliderTrackBefore,
@@ -445,6 +439,12 @@ class AudioPlayer extends Component {
               activated: classes.sliderActivated,
               jumped: classes.sliderJumped,
             }}
+            max={duration || 1}
+            min={0}
+            value={currentTime || 0}
+            onChange={(event, value) => this.handleChange(value)}
+            onDragEnd={() => this.handleDragEnd()}
+            onDragStart={() => this.handleDragStart()}
           />
         </div>
         <div className={classes.time}>
@@ -489,9 +489,9 @@ class AudioPlayer extends Component {
 
         {loading && (
           <CircularProgress
+            classes={{ colorPrimary: classes.circularProgressColorPrimary }}
             className={classes.spinner}
             size={SPINNER_SIZE}
-            classes={{ colorPrimary: classes.circularProgressColorPrimary }}
           />
         )}
 

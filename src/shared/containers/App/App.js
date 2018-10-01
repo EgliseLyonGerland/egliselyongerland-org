@@ -86,10 +86,10 @@ class App extends Component {
               style={{ bottom: interpolatedStyles.style.bottom }}
             >
               <AudioPlayer
-                url={audio.url}
                 play={audio.playing}
-                withShadows
+                url={audio.url}
                 withClose
+                withShadows
                 onClose={() => {
                   pauseAudioAction();
                   closeAudioAction();
@@ -121,9 +121,9 @@ class App extends Component {
         <ScrollToTop />
         <Header
           sidebarOpened={isSidebarOpened}
-          onSearchButtonClicked={() => openSearchbar()}
-          onOpenSidebarButtonClicked={() => openSidebar()}
           onCloseSidebarButtonClicked={() => closeSidebar()}
+          onOpenSidebarButtonClicked={() => openSidebar()}
+          onSearchButtonClicked={() => openSearchbar()}
         />
         {/* <Search
           opened={isSearchbarOpened}

@@ -47,7 +47,7 @@ const WhatWhenWhere = ({ classes }) => (
       </Link>
     </div>
     <div className={classes.left}>
-      <Image src={MapImage} height={450} />
+      <Image height={450} src={MapImage} />
     </div>
   </div>
 );

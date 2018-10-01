@@ -33,8 +33,8 @@ const serverRenderer = () => async (req, res) => {
   const content = renderToString(
     <ReduxProvider store={req.store}>
       <JssProvider {...{ registry, generateClassName }}>
-        <MuiThemeProvider theme={muiTheme} sheetsManager={new Map()}>
-          <Router location={req.url} context={staticContext}>
+        <MuiThemeProvider sheetsManager={new Map()} theme={muiTheme}>
+          <Router context={staticContext} location={req.url}>
             <ReduxAsyncConnect routes={routes} />
           </Router>
         </MuiThemeProvider>
@@ -48,16 +48,16 @@ const serverRenderer = () => async (req, res) => {
   return res.status(staticContext.status || 200).send(
     `<!doctype html>${renderToString(
       <Html
-        styles={[
-          res.locals.assetPath('bundle.css'),
-          res.locals.assetPath('vendor.css'),
-        ]}
+        css={css}
         scripts={[
           res.locals.assetPath('bundle.js'),
           res.locals.assetPath('vendor.js'),
         ]}
         state={state}
-        css={css}
+        styles={[
+          res.locals.assetPath('bundle.css'),
+          res.locals.assetPath('vendor.css'),
+        ]}
       >
         {content}
       </Html>,
