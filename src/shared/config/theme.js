@@ -55,6 +55,9 @@ export default {
     zindex: 100,
     logo: { height: 58 },
     brand: { height: 36 },
+    mini: {
+      height: headerHeight * 0.8,
+    },
     sticky: {
       height: headerHeight * 0.6,
       brandScale: 0.8,

@@ -14,6 +14,11 @@ import routes from 'utils/routes';
 import logo from './logo.svg';
 import brand from './brand.svg';
 
+const miniStyles = theme => ({
+  transform: `scale(${theme.header.sticky.brandScale})
+        translateX(${theme.header.sticky.brandTranslate}px)`,
+});
+
 const styles = theme => ({
   header: {
     position: 'fixed',
@@ -22,21 +27,14 @@ const styles = theme => ({
     width: '100%',
     transition: 'background 0.3s',
   },
-  mini: {
-    '& $brand': {
-      transform: `scale(${theme.header.sticky.brandScale})
-          translateX(${theme.header.sticky.brandTranslate}px)`,
-    },
-  },
   sticky: {
     background: '#111',
 
+    '& $brand': {
+      ...miniStyles(theme),
+    },
     '& $body': {
       height: theme.header.sticky.height,
-    },
-    '& $brand': {
-      transform: `scale(${theme.header.sticky.brandScale})
-          translateX(${theme.header.sticky.brandTranslate}px)`,
     },
     '& $logo': {
       transform: 'rotate(180deg)',
@@ -48,11 +46,19 @@ const styles = theme => ({
     height: theme.header.height,
     padding: [[0, 30]],
     transition: 'height 0.3s',
+
+    '@media (max-width: 929px)': {
+      height: theme.header.mini.height,
+    },
   },
   brand: {
     transition: 'transform 0.3s',
     transformOrigin: 'left center',
     position: 'relative',
+
+    '@media (max-width: 929px)': {
+      ...miniStyles(theme),
+    },
   },
   logo: {
     position: 'relative',
@@ -82,6 +88,11 @@ const styles = theme => ({
     textTransform: 'uppercase',
   },
   title: {
+    '@media (max-width: 599px)': {
+      display: 'none',
+    },
+  },
+  titleImg: {
     height: theme.header.brand.height,
     marginRight: 20,
   },
@@ -89,6 +100,11 @@ const styles = theme => ({
     position: 'relative',
     marginLeft: 35,
     zIndex: theme.sidebar.zindex + 1,
+    display: 'none',
+
+    '@media (max-width: 929px)': {
+      display: 'block',
+    },
   },
   search: {
     display: 'none',
@@ -100,6 +116,10 @@ const styles = theme => ({
   links: {
     display: 'flex',
     flexGrow: 0,
+
+    '@media (max-width: 929px)': {
+      display: 'none',
+    },
   },
   linksItem: {
     flexGrow: 0,
@@ -196,7 +216,6 @@ class Header extends Component {
 
     const className = classnames(classes.header, {
       [classes.sticky]: sticky,
-      [classes.mini]: sticky || browser.width <= 960,
     });
 
     return (
@@ -215,17 +234,14 @@ class Header extends Component {
             <Link className={classes.logo} to="/">
               <img alt="Église Lyon Gerland" src={logo} />
             </Link>
-
-            {browser.width >= 600 && (
-              <Link to="/">
-                <img
-                  alt="Église Lyon Gerland"
-                  className={classes.title}
-                  height="22"
-                  src={brand}
-                />
-              </Link>
-            )}
+            <Link className={classes.title} to="/">
+              <img
+                alt="Église Lyon Gerland"
+                className={classes.titleImg}
+                height="22"
+                src={brand}
+              />
+            </Link>
 
             <div
               className={classes.betaMark}
@@ -237,32 +253,30 @@ class Header extends Component {
 
           <div className={classes.blankItem} />
 
-          {browser.width >= 930 ? (
-            <div className={classes.links}>
-              {links.map(link => (
-                <div key={link.label} className={classes.linksItem}>
-                  <Link className={classes.link} to={link.path}>
-                    {link.label}
-                  </Link>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <button
-              className={classes.burger}
-              type="button"
-              onClick={() => this.toggleSidebar()}
-            >
-              <Burger
-                color="white"
-                height={17}
-                muted={sidebarOpened}
-                weight={3}
-                width={17}
-                rounded
-              />
-            </button>
-          )}
+          <div className={classes.links}>
+            {links.map(link => (
+              <div key={link.label} className={classes.linksItem}>
+                <Link className={classes.link} to={link.path}>
+                  {link.label}
+                </Link>
+              </div>
+            ))}
+          </div>
+
+          <button
+            className={classes.burger}
+            type="button"
+            onClick={() => this.toggleSidebar()}
+          >
+            <Burger
+              color="white"
+              height={17}
+              muted={sidebarOpened}
+              weight={3}
+              width={17}
+              rounded
+            />
+          </button>
 
           {/* <div className={classes.search}>
             <SearchButton onClicked={() => onSearchButtonClicked()} />

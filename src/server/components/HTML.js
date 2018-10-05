@@ -10,7 +10,10 @@ const HTML = ({ children, scripts, styles, css, state }) => {
     <html lang="fr">
       <head>
         <meta charSet="utf-8" />
-        <meta content="width=device-width, initial-scale=1" name="viewport" />
+        <meta
+          content="width=device-width, initial-scale=1, user-scalable=no"
+          name="viewport"
+        />
 
         {head.base.toComponent()}
         {head.title.toComponent()}
