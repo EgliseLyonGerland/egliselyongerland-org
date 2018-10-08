@@ -8,7 +8,6 @@ import {
 } from 'react-router-redux';
 import { ReduxAsyncConnect } from 'redux-connect';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import { calculateResponsiveState } from 'redux-responsive';
 import ReactGA from 'react-ga';
 import 'moment/locale/fr';
 
@@ -47,18 +46,12 @@ hydrate(
   </ReduxProvider>,
   document.getElementById('app'),
   () => {
-    store.dispatch(calculateResponsiveState(window));
-
     const ssStyles = document.getElementById('server-side-styles');
 
     if (ssStyles) {
       ssStyles.parentNode.removeChild(ssStyles);
     }
   },
-);
-
-window.addEventListener('resize', () =>
-  store.dispatch(calculateResponsiveState(window)),
 );
 
 if (process.env.NODE_ENV === 'development') {

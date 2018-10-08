@@ -9,7 +9,6 @@ import { denormalize } from 'normalizr';
 import { withStyles } from '@material-ui/core/styles';
 
 import { postSchema } from 'store/schemas';
-import mq from 'utils/mq';
 import {
   isLoaded as isPostsLoaded,
   load as loadPosts,
@@ -67,38 +66,39 @@ const mapStateToProps = state => {
   };
 };
 
-const styles = {
+const styles = theme => ({
   welcome: {
     fontSize: '4rem',
-
-    ...mq.sm.lte({
-      fontSize: '3rem',
-    }),
-    ...mq.xs.lte({
-      fontSize: '2.4rem',
-      fontWeight: 500,
-    }),
   },
   sunshine: {
     margin: [[0, 24]],
-
-    ...mq.xs.lte({
-      height: '2.4rem',
-      margin: [[0, 16]],
-    }),
   },
   text: {
     fontSize: '1.6rem',
-
-    ...mq.sm.lte({
+  },
+  [theme.breakpoints.down('sm')]: {
+    welcome: {
+      fontSize: '3rem',
+    },
+    text: {
       fontSize: '1.4rem',
-    }),
-    ...mq.xs.lte({
+    },
+  },
+  [theme.breakpoints.down('xs')]: {
+    welcome: {
+      fontSize: '2.4rem',
+      fontWeight: 500,
+    },
+    sunshine: {
+      height: '2.4rem',
+      margin: [[0, 16]],
+    },
+    text: {
       fontSize: '1.2rem',
       fontWeight: 500,
-    }),
+    },
   },
-};
+});
 
 @asyncConnect(asyncPromises)
 @connect(mapStateToProps)

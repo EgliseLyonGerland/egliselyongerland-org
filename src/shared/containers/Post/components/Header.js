@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import moment from 'moment';
 import { get } from 'lodash';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 
 import Icon from '@material-ui/core/Icon';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
@@ -95,142 +96,150 @@ const renderDate = post => {
   return `le ${moment(date).format('D MMMM YYYY')}`;
 };
 
-const Header = ({
-  post,
-  browser,
-  audio,
-  url,
-  history,
-  openAudioAction,
-  classes,
-}) => {
-  const imageUrl = get(
-    post,
-    'picture.sizes.large.url',
-    '/images/placeholder.jpg',
-  );
-  const audioUrl = get(post, 'extras.audioUrl', null);
+@connect(
+  ({ audio }) => ({ audio }),
+  { openAudioAction: openAudio },
+)
+@withStyles(styles)
+@withWidth()
+@withRouter
+class Header extends Component {
+  static propTypes = {
+    audio: PropTypes.shape().isRequired,
+    classes: PropTypes.shape().isRequired,
+    history: PropTypes.shape().isRequired,
+    openAudioAction: PropTypes.func.isRequired,
+    post: PropTypes.shape().isRequired,
+    url: PropTypes.string.isRequired,
+    width: PropTypes.string.isRequired,
+  };
 
-  const buttonSize = browser.width <= 640 ? 'xxs' : 'xs';
+  render() {
+    const {
+      post,
+      width,
+      audio,
+      url,
+      history,
+      openAudioAction,
+      classes,
+    } = this.props;
+    const imageUrl = get(
+      post,
+      'picture.sizes.large.url',
+      '/images/placeholder.jpg',
+    );
+    const audioUrl = get(post, 'extras.audioUrl', null);
 
-  return (
-    <Jumbotron background={imageUrl} title={post.title}>
-      <div className={classes.inner}>
-        <div className={classes.separator} />
-        <div className={classes.baseline}>
-          Par <span className={classes.author}>{post.author.name}</span>
-          <span className={classes.dash}> — </span>
-          <span style={{ display: 'inline-block' }}>{renderDate(post)}</span>
-        </div>
-        <div className={classes.links}>
-          {post.categories.slice(0, 1).map(category => (
-            <Button
-              key={category.slug}
-              className={classes.link}
-              color="white"
-              size={buttonSize}
-              onClick={() => {
-                history.push(routes.blog({ category: category.id }));
-              }}
-            >
-              {category.name}
-            </Button>
-          ))}
+    const buttonSize = isWidthUp('sm', width) ? 'xs' : 'xxs';
 
-          {post.bibleRefs.slice(0, 1).map(ref => (
-            <Button
-              key={ref.raw}
-              className={classes.link}
-              color="white"
-              corners="rounded"
-              size={buttonSize}
-              onClick={() => {
-                history.push(
-                  routes.blog({ book: ref.bookId, chapter: ref.chapterStart }),
-                );
-              }}
-            >
-              {ref.raw}
-            </Button>
-          ))}
+    return (
+      <Jumbotron background={imageUrl} title={post.title}>
+        <div className={classes.inner}>
+          <div className={classes.separator} />
+          <div className={classes.baseline}>
+            Par <span className={classes.author}>{post.author.name}</span>
+            <span className={classes.dash}> — </span>
+            <span style={{ display: 'inline-block' }}>{renderDate(post)}</span>
+          </div>
+          <div className={classes.links}>
+            {post.categories.slice(0, 1).map(category => (
+              <Button
+                key={category.slug}
+                className={classes.link}
+                color="white"
+                size={buttonSize}
+                onClick={() => {
+                  history.push(routes.blog({ category: category.id }));
+                }}
+              >
+                {category.name}
+              </Button>
+            ))}
 
-          <FacebookShare url={url}>
-            <Button
-              aria-label="Facebook"
-              className={classes.link}
-              color="white"
-              mode="ghost"
-              type="icon"
-            >
-              <FacebookIcon />
-            </Button>
-          </FacebookShare>
+            {post.bibleRefs.slice(0, 1).map(ref => (
+              <Button
+                key={ref.raw}
+                className={classes.link}
+                color="white"
+                corners="rounded"
+                size={buttonSize}
+                onClick={() => {
+                  history.push(
+                    routes.blog({
+                      book: ref.bookId,
+                      chapter: ref.chapterStart,
+                    }),
+                  );
+                }}
+              >
+                {ref.raw}
+              </Button>
+            ))}
 
-          <TwitterShare text={post.title} url={url}>
-            <Button
-              aria-label="Twitter"
-              className={classes.link}
-              color="white"
-              mode="ghost"
-              type="icon"
-            >
-              <TwitterIcon />
-            </Button>
-          </TwitterShare>
-        </div>
+            <FacebookShare url={url}>
+              <Button
+                aria-label="Facebook"
+                className={classes.link}
+                color="white"
+                mode="ghost"
+                type="icon"
+              >
+                <FacebookIcon />
+              </Button>
+            </FacebookShare>
 
-        {audioUrl && (
-          <div className={classes.audioActions}>
-            <Button
-              className={classes.audioAction}
-              color="primary"
-              corners="circular"
-              disabled={audio.url === audioUrl}
-              mode="plain"
-              onClick={() => openAudioAction(audioUrl, true)}
-            >
-              <Icon>
-                <PlayArrowIcon />
-              </Icon>
-              <span className={classes.audioActionLabel}>
-                {audio.url === audioUrl ? "A l'écoute" : 'Écouter'}
-              </span>
-            </Button>
+            <TwitterShare text={post.title} url={url}>
+              <Button
+                aria-label="Twitter"
+                className={classes.link}
+                color="white"
+                mode="ghost"
+                type="icon"
+              >
+                <TwitterIcon />
+              </Button>
+            </TwitterShare>
+          </div>
 
-            {browser.greaterThan.md && (
+          {audioUrl && (
+            <div className={classes.audioActions}>
               <Button
                 className={classes.audioAction}
-                color="white"
+                color="primary"
                 corners="circular"
-                size="md"
-                onClick={() => window.open(audioUrl)}
+                disabled={audio.url === audioUrl}
+                mode="plain"
+                onClick={() => openAudioAction(audioUrl, true)}
               >
                 <Icon>
-                  <CloudDownloadIcon />
+                  <PlayArrowIcon />
                 </Icon>
-                <span className={classes.audioActionLabel}>Télécharger</span>
+                <span className={classes.audioActionLabel}>
+                  {audio.url === audioUrl ? "A l'écoute" : 'Écouter'}
+                </span>
               </Button>
-            )}
-          </div>
-        )}
-      </div>
-    </Jumbotron>
-  );
-};
 
-Header.propTypes = {
-  audio: PropTypes.shape().isRequired,
-  browser: PropTypes.shape().isRequired,
-  classes: PropTypes.shape().isRequired,
-  history: PropTypes.shape().isRequired,
-  openAudioAction: PropTypes.func.isRequired,
-  post: PropTypes.shape().isRequired,
-  url: PropTypes.string.isRequired,
-};
+              {isWidthUp('md', width) && (
+                <Button
+                  className={classes.audioAction}
+                  color="white"
+                  corners="circular"
+                  size="md"
+                  onClick={() => window.open(audioUrl)}
+                >
+                  <Icon>
+                    <CloudDownloadIcon />
+                  </Icon>
+                  <span className={classes.audioActionLabel}>Télécharger</span>
+                </Button>
+              )}
+            </div>
+          )}
+        </div>
+      </Jumbotron>
+    );
+  }
+}
 
-export default connect(
-  ({ browser, audio }) => ({ browser, audio }),
-  {
-    openAudioAction: openAudio,
-  },
-)(withRouter(withStyles(styles)(Header)));
+export default Header;

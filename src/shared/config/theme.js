@@ -4,6 +4,22 @@ import secondary from './palettes/secondary.json';
 const headerHeight = 100;
 
 export default {
+  breakpoints: {
+    keys: ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'],
+    values: {
+      xs: 0,
+      sm: 480,
+      md: 640,
+      lg: 960,
+      xl: 1280,
+      xll: 1440,
+    },
+  },
+  props: {
+    MuiWithWidth: {
+      initialWidth: 'lg',
+    },
+  },
   typography: {
     fontFamily: '"Lato", sans-serif',
     fontSize: 16,

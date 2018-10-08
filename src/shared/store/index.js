@@ -1,7 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
-import { createResponsiveStoreEnhancer } from 'redux-responsive';
 
 import createClientMiddleware from './middlewares/clientMiddleware';
 import overlayMiddleware from './middlewares/overlayMiddleware';
@@ -31,10 +30,7 @@ export const configureStore = ({
   const store = createStore(
     rootReducer,
     initialState,
-    composeEnhancers(
-      applyMiddleware(...middlewares.concat(...middleware)),
-      createResponsiveStoreEnhancer({ calculateInitialState: false }),
-    ),
+    composeEnhancers(applyMiddleware(...middlewares.concat(...middleware))),
   );
 
   if (process.env.NODE_ENV !== 'production') {

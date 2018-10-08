@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { reduce } from 'lodash';
-import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -30,6 +29,14 @@ const styles = theme => ({
   tabs: {
     background: theme.palette.primary[500],
   },
+  tabsFlexContainer: {
+    // Petit hack permettant de contrer le fait que le composant Tabs ne
+    // permet de cumuller les options `scrollable` et `centered`
+    // https://github.com/mui-org/material-ui/issues/10235
+    '@media screen and (min-width: 800px)': {
+      justifyContent: 'center',
+    },
+  },
   tab: {
     height: 70,
     textTransform: 'none',
@@ -37,9 +44,17 @@ const styles = theme => ({
   },
 });
 
-const mapStateToProps = state => ({ browser: state.browser });
-
+@withStyles(styles)
 class Church extends Component {
+  static propTypes = {
+    classes: PropTypes.shape().isRequired,
+    history: PropTypes.shape({
+      push: PropTypes.func.isRequired,
+    }).isRequired,
+    location: PropTypes.shape().isRequired,
+    route: PropTypes.shape().isRequired,
+  };
+
   constructor() {
     super();
 
@@ -53,7 +68,7 @@ class Church extends Component {
   }
 
   render() {
-    const { location, classes, browser, route } = this.props;
+    const { location, classes, route } = this.props;
     const currentTab = getTab(location.pathname.substr(1));
 
     return (
@@ -67,10 +82,13 @@ class Church extends Component {
 
         <AppBar elevation={0} position="static">
           <Tabs
+            classes={{
+              flexContainer: classes.tabsFlexContainer,
+            }}
             className={classes.tabs}
-            scrollable={browser.width < 750}
+            scrollButtons="off"
             value={currentTab.slug}
-            centered
+            scrollable
             onChange={this.handleTabChange}
           >
             {churchTabs.map(tab => (
@@ -90,14 +108,4 @@ class Church extends Component {
   }
 }
 
-Church.propTypes = {
-  browser: PropTypes.shape().isRequired,
-  classes: PropTypes.shape().isRequired,
-  history: PropTypes.shape({
-    push: PropTypes.func.isRequired,
-  }).isRequired,
-  location: PropTypes.shape().isRequired,
-  route: PropTypes.shape().isRequired,
-};
-
-export default connect(mapStateToProps)(withStyles(styles)(Church));
+export default Church;

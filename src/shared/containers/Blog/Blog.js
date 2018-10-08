@@ -8,6 +8,7 @@ import { denormalize } from 'normalizr';
 import Grid from '@material-ui/core/Grid';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 
 import { load as loadPosts } from 'store/actions/posts';
 import routes from 'utils/routes';
@@ -89,7 +90,6 @@ const mapStateToProps = (state, { match: { params, search } }) => {
   const page = Math.ceil(from / LIMIT) + 1;
   const maxPage = Math.ceil(total / LIMIT);
   const { entities } = state;
-  const { browser } = state;
 
   return {
     page,
@@ -99,7 +99,6 @@ const mapStateToProps = (state, { match: { params, search } }) => {
     aggs,
     loading,
     entities,
-    browser,
     params: { ...params, ...query },
   };
 };
@@ -114,7 +113,26 @@ const mapStateToProps = (state, { match: { params, search } }) => {
 //   </div>
 // );
 
+@asyncConnect(asyncPromises)
+@connect(mapStateToProps)
+@withWidth()
 class Blog extends Component {
+  static propTypes = {
+    aggs: PropTypes.shape().isRequired,
+    loading: PropTypes.bool.isRequired,
+    location: PropTypes.shape().isRequired,
+    maxPage: PropTypes.number.isRequired,
+    page: PropTypes.number.isRequired,
+    params: PropTypes.shape().isRequired,
+    posts: PropTypes.arrayOf(PropTypes.string).isRequired,
+    total: PropTypes.number.isRequired,
+    width: PropTypes.string.isRequired,
+  };
+
+  static contextTypes = {
+    router: PropTypes.shape(),
+  };
+
   getDenormalizedPosts() {
     const { posts, entities } = this.props;
 
@@ -437,7 +455,7 @@ class Blog extends Component {
   }
 
   render() {
-    const { browser } = this.props;
+    const { width } = this.props;
 
     const title = this.getTitle();
 
@@ -448,7 +466,7 @@ class Blog extends Component {
         <Jumbotron background={jumbotron} title={title} />
         <Hr xl />
         <Container md>
-          {browser.width >= 750
+          {isWidthUp('md', width)
             ? this.renderWideScreen()
             : this.renderSmallScreen()}
         </Container>
@@ -457,20 +475,4 @@ class Blog extends Component {
   }
 }
 
-Blog.propTypes = {
-  aggs: PropTypes.shape().isRequired,
-  browser: PropTypes.shape().isRequired,
-  loading: PropTypes.bool.isRequired,
-  location: PropTypes.shape().isRequired,
-  maxPage: PropTypes.number.isRequired,
-  page: PropTypes.number.isRequired,
-  params: PropTypes.shape().isRequired,
-  posts: PropTypes.arrayOf(PropTypes.string).isRequired,
-  total: PropTypes.number.isRequired,
-};
-
-Blog.contextTypes = {
-  router: PropTypes.shape(),
-};
-
-export default connect(mapStateToProps)(asyncConnect(asyncPromises)(Blog));
+export default Blog;

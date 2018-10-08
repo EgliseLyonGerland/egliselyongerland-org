@@ -1,10 +1,6 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 import { reducer as reduxAsyncConnect } from 'redux-connect';
-import { createResponsiveStateReducer } from 'redux-responsive';
-import { canUseDOM } from 'exenv';
-
-import { app } from '../../config';
 
 import entities from './entities';
 import overlay from './overlay';
@@ -17,12 +13,6 @@ import audio from './audio';
 export default combineReducers({
   routing: routerReducer,
   reduxAsyncConnect,
-  browser: createResponsiveStateReducer(app.breakpoints, {
-    initialMediaType: 'md',
-    extraFields: () => ({
-      width: canUseDOM ? window.innerWidth : 1024,
-    }),
-  }),
   entities,
   overlay,
   searchbar,

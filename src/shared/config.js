@@ -1,5 +1,3 @@
-const _ = require('lodash');
-
 const defaultTitle = 'Église Lyon Gerland';
 const defaultDescription = 'Église réformée évangélique de Lyon Gerland';
 
@@ -19,28 +17,6 @@ const environment = {
     apiEndpoint: 'https://api.egliselyongerland.org',
   },
 }[process.env.NODE_ENV || 'development'];
-
-const breakpoints = {
-  xs: 500,
-  sm: 700,
-  md: 1000,
-  lg: 1280,
-  xl: 1400,
-};
-
-const breakpointNames = _.keys(breakpoints);
-const breakpointSizes = _.values(breakpoints);
-const breakpointMinSizes = [0, ...breakpointSizes];
-const breakpointMaxSizes = _.map(breakpointSizes, value => value - 1);
-
-const breakpointRanges = _.reduce(
-  breakpointNames,
-  (acc, name, index) => ({
-    ...acc,
-    [name]: [breakpointMinSizes[index], breakpointMaxSizes[index]],
-  }),
-  {},
-);
 
 module.exports = Object.assign(
   {
@@ -64,9 +40,6 @@ module.exports = Object.assign(
           { property: 'twitter:site', content: 'EREdeLyon' },
         ],
       },
-      breakpoints,
-      breakpointNames,
-      breakpointRanges,
     },
   },
   environment,

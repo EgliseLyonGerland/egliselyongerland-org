@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import { NavLink as Link } from 'react-router-dom';
 import classnames from 'classnames';
 import EventListener, { withOptions } from 'react-event-listener';
 import { withStyles } from '@material-ui/core/styles';
+import withWidth, { isWidthDown } from '@material-ui/core/withWidth';
 
 import Sidebar from 'components/Sidebar/Sidebar';
 import Burger from 'components/Burger/Burger';
@@ -46,19 +46,11 @@ const styles = theme => ({
     height: theme.header.height,
     padding: [[0, 30]],
     transition: 'height 0.3s',
-
-    '@media (max-width: 929px)': {
-      height: theme.header.mini.height,
-    },
   },
   brand: {
     transition: 'transform 0.3s',
     transformOrigin: 'left center',
     position: 'relative',
-
-    '@media (max-width: 929px)': {
-      ...miniStyles(theme),
-    },
   },
   logo: {
     position: 'relative',
@@ -87,11 +79,7 @@ const styles = theme => ({
     cursor: 'default',
     textTransform: 'uppercase',
   },
-  title: {
-    '@media (max-width: 599px)': {
-      display: 'none',
-    },
-  },
+  title: {},
   titleImg: {
     height: theme.header.brand.height,
     marginRight: 20,
@@ -101,10 +89,6 @@ const styles = theme => ({
     marginLeft: 35,
     zIndex: theme.sidebar.zindex + 1,
     display: 'none',
-
-    '@media (max-width: 929px)': {
-      display: 'block',
-    },
   },
   search: {
     display: 'none',
@@ -116,10 +100,6 @@ const styles = theme => ({
   links: {
     display: 'flex',
     flexGrow: 0,
-
-    '@media (max-width: 929px)': {
-      display: 'none',
-    },
   },
   linksItem: {
     flexGrow: 0,
@@ -139,6 +119,25 @@ const styles = theme => ({
     '&:focus, &:visited': {
       color: 'white',
       textDecoration: 'none',
+    },
+  },
+  [theme.breakpoints.down('md')]: {
+    brand: {
+      ...miniStyles(theme),
+    },
+    body: {
+      height: theme.header.mini.height,
+    },
+    burger: {
+      display: 'block',
+    },
+    links: {
+      display: 'none',
+    },
+  },
+  [theme.breakpoints.down('sm')]: {
+    title: {
+      display: 'none',
     },
   },
 });
@@ -162,9 +161,22 @@ const links = [
   },
 ];
 
-const mapStateToProps = state => ({ browser: state.browser });
-
+@withStyles(styles)
+@withWidth()
 class Header extends Component {
+  static propTypes = {
+    classes: PropTypes.shape().isRequired,
+    onCloseSidebarButtonClicked: PropTypes.func.isRequired,
+    // onSearchButtonClicked: PropTypes.func.isRequired,
+    onOpenSidebarButtonClicked: PropTypes.func.isRequired,
+    sidebarOpened: PropTypes.bool,
+    width: PropTypes.string.isRequired,
+  };
+
+  static defaultProps = {
+    sidebarOpened: false,
+  };
+
   constructor(props) {
     super(props);
 
@@ -206,7 +218,7 @@ class Header extends Component {
     const { sticky } = this.state;
 
     const {
-      browser,
+      width,
       classes,
       sidebarOpened,
       // onSearchButtonClicked,
@@ -283,7 +295,7 @@ class Header extends Component {
           </div> */}
         </Container>
 
-        {browser.width < 930 && (
+        {isWidthDown('md', width) && (
           <Sidebar
             links={links}
             opened={sidebarOpened}
@@ -296,17 +308,4 @@ class Header extends Component {
   }
 }
 
-Header.propTypes = {
-  browser: PropTypes.shape().isRequired,
-  classes: PropTypes.shape().isRequired,
-  // onSearchButtonClicked: PropTypes.func.isRequired,
-  onCloseSidebarButtonClicked: PropTypes.func.isRequired,
-  onOpenSidebarButtonClicked: PropTypes.func.isRequired,
-  sidebarOpened: PropTypes.bool,
-};
-
-Header.defaultProps = {
-  sidebarOpened: false,
-};
-
-export default withStyles(styles)(connect(mapStateToProps)(Header));
+export default Header;
