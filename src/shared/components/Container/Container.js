@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import classnames from 'classnames';
 import { clearFix } from 'polished';
 
-const styles = {
+const styles = theme => ({
   container: {
     ...clearFix(),
     marginRight: 'auto',
@@ -28,19 +28,19 @@ const styles = {
   xl: {
     maxWidth: 1300,
   },
-  '@media screen and (max-width: 480px)': {
+  [theme.breakpoints.down('xs')]: {
     container: {
       paddingLeft: 25,
       paddingRight: 25,
     },
   },
-  '@media screen and (max-width: 640px)': {
+  [theme.breakpoints.down('sm')]: {
     container: {
       paddingLeft: 15,
       paddingRight: 15,
     },
   },
-};
+});
 
 const Container = ({ children, className, style, classes, ...props }) => {
   const sizes = ['xs', 'sm', 'md', 'lg', 'xl'];

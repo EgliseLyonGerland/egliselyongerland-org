@@ -22,7 +22,7 @@ import 'url-search-params-polyfill';
 import '../../theme/bootstrap.scss';
 import '../../theme/base.scss';
 
-const styles = {
+const styles = theme => ({
   player: {
     position: 'fixed',
     width: '100%',
@@ -32,12 +32,12 @@ const styles = {
     marginBottom: 30,
   },
 
-  '@media screen and (max-width: 640px)': {
+  [theme.breakpoints.down('sm')]: {
     player: {
       marginBottom: 0,
     },
   },
-};
+});
 
 const mapStateToProps = state => ({
   overlay: state.overlay,

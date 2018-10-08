@@ -94,7 +94,7 @@ const styles = theme => ({
     },
   },
 
-  '@media screen and (max-width: 640px)': {
+  [theme.breakpoints.down('sm')]: {
     root: {
       maxWidth: 'none',
     },

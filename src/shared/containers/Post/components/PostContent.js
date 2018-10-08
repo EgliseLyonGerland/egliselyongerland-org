@@ -91,7 +91,7 @@ const styles = theme => ({
     textAlign: 'center',
   },
 
-  '@media screen and (max-width: 640px)': {
+  [theme.breakpoints.down('sm')]: {
     root: {
       padding: [[0, 20]],
       fontSize: 18,

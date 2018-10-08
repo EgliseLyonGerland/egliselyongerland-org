@@ -55,12 +55,12 @@ const styles = theme => ({
     maxWidth: 790,
     padding: [[0, 20]],
   },
-  '@media screen and (max-width: 960px)': {
+  [theme.breakpoints.down('md')]: {
     emptyRow1: {
       minHeight: theme.header.sticky.height,
     },
   },
-  '@media screen and (max-width: 640px), screen and (max-height: 640px)': {
+  [theme.breakpoints.down('sm')]: {
     title: {
       fontSize: 32,
     },

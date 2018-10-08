@@ -8,7 +8,7 @@ import TwitterIcon from 'components/Icon/TwitterIcon';
 import FacebookShare from 'components/Share/FacebookShare';
 import TwitterShare from 'components/Share/TwitterShare';
 
-const styles = {
+const styles = theme => ({
   root: {
     marginTop: 100,
     display: 'flex',
@@ -39,7 +39,7 @@ const styles = {
     color: '#DDD',
     transition: 'color 0.3s',
   },
-  '@media screen and (max-width: 640px)': {
+  [theme.breakpoints.down('sm')]: {
     button: {
       margin: [[0, 10]],
       padding: [[10, 10]],
@@ -49,7 +49,7 @@ const styles = {
       height: 50,
     },
   },
-  '@media screen and (max-width: 480px)': {
+  [theme.breakpoints.down('xs')]: {
     root: {
       marginTop: 50,
     },
@@ -57,7 +57,7 @@ const styles = {
       display: 'none',
     },
   },
-};
+});
 
 const Shares = ({ title, url, classes }) => (
   <div className={classes.root}>

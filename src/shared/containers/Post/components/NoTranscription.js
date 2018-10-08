@@ -25,7 +25,7 @@ const styles = theme => ({
       marginTop: 0,
     },
   },
-  '@media screen and (max-width: 640px)': {
+  [theme.breakpoints.down('sm')]: {
     root: {
       margin: [[50, 30]],
     },

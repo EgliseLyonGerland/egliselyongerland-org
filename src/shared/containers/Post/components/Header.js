@@ -73,7 +73,7 @@ const styles = theme => ({
     fontWeight: theme.typography.fontWeights.regular,
   },
 
-  '@media screen and (max-width: 640px), screen and (max-height: 640px)': {
+  [theme.breakpoints.down('sm')]: {
     separator: {
       width: 140,
       margin: [[20, 'auto']],
