@@ -131,13 +131,11 @@
   "lint-staged": {
     "*.js": [
       "prettier-eslint --write",
-      "eslint",
-      "git add"
+      "eslint"
     ],
     "*.{json,md,css,scc}": [
       "prettier-eslint --write",
-      "prettier-eslint --list-different",
-      "git add"
+      "prettier-eslint --list-different"
     ]
   }
 }

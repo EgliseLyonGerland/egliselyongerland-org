@@ -3,45 +3,81 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import classnames from 'classnames';
+import { rem } from 'polished';
 
 const styles = theme => ({
-  sidebar: {
-    background: '#124765',
-    color: 'white',
+  wrapper: {
     position: 'fixed',
     top: 0,
     right: 0,
     bottom: 0,
     left: 0,
-    visibility: 'hidden',
-    opacity: 0,
-    transition: 'opacity 0.15s, visibility 0s 0.15s',
-    transitionTimingFunction: 'ease-in-out',
-    overflow: 'hidden',
     zIndex: theme.sidebar.zindex,
     display: 'flex',
+    alignItems: 'center',
+    visibility: 'hidden',
+    transition: 'visibility 0s 1s',
   },
-  opened: {
-    transition: 'visibility 0s, opacity 0.15s',
-    visibility: 'visible',
-    opacity: 1,
+  background: {
+    position: 'absolute',
+    background: theme.palette.primary[500],
+    top: theme.header.mini.height / 2,
+    right: theme.header.mini.height / 2,
+    zIndex: theme.sidebar.zindex + 1,
+    transition: 'transform',
+    transitionDuration: '.6s',
+    transitionTimingFunction: 'cubic-bezier(1, 0.25, 0.75, 1)',
+    width: 'calc(200vw + 200vh)',
+    height: 'calc(200vw + 200vh)',
+    borderRadius: '100%',
+    transform: 'translate(50%, -50%) scale(0)',
   },
   content: {
-    textAlign: 'center',
-    margin: [[theme.header.height, 'auto']],
+    position: 'relative',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    margin: [[theme.header.height, '10vw']],
+    zIndex: theme.sidebar.zindex + 2,
+  },
+  linkWrapper: {
+    transition: 'transform 0.2s, opacity .2s',
+    transitionTimingFunction: 'cubic-bezier(0.535, 0.010, 0.265, 1.550)',
+    opacity: 0,
+    transform: 'scale(0.9)',
   },
   link: {
     display: 'block',
-    color: 'white',
-    fontWeight: theme.typography.fontWeights.regular,
-    textDecoration: 'none',
-    fontSize: 20,
-    textTransform: 'uppercase',
-    marginBottom: 10,
+    fontSize: '8vw',
+    fontWeight: theme.typography.fontWeights.bold,
     transition: 'transform 0.2s',
+    transitionTimingFunction: 'cubic-bezier(0.535, 0.010, 0.265, 1.550)',
 
     '&:hover': {
       transform: 'scale(1.05)',
+    },
+
+    '&, &:active, &:visited': {
+      color: 'white',
+      textDecoration: 'none',
+    },
+
+    [theme.breakpoints.up('md')]: {
+      fontSize: rem(56),
+    },
+  },
+  opened: {
+    visibility: 'visible',
+    transition: 'visibility 0s 0s',
+
+    '& $background': {
+      transform: 'translate(50%, -50%) scale(1)',
+      transitionDuration: '1s',
+      transitionTimingFunction: 'cubic-bezier(0.56, 0.34, 0, 1)',
+    },
+    '& $linkWrapper': {
+      opacity: 1,
+      transform: 'scale(1)',
     },
   },
 });
@@ -65,12 +101,21 @@ class Sidebar extends Component {
     const { links, opened, classes } = this.props;
 
     return (
-      <div className={classnames(classes.sidebar, opened && classes.opened)}>
+      <div className={classnames(classes.wrapper, opened && classes.opened)}>
+        <div className={classes.background} />
         <div className={classes.content}>
-          {links.map(link => (
-            <Link key={link.path} className={classes.link} to={link.path}>
-              {link.label}
-            </Link>
+          {links.map((link, index) => (
+            <div
+              key={link.path}
+              className={classes.linkWrapper}
+              style={{
+                transitionDelay: `${index * 0.1 + (opened ? 0.4 : 0)}s`,
+              }}
+            >
+              <Link className={classes.link} to={link.path}>
+                {link.label}
+              </Link>
+            </div>
           ))}
         </div>
       </div>

@@ -282,6 +282,7 @@ class Header extends Component {
           >
             <Burger
               color="white"
+              delay={[0.5, 0.8]}
               height={17}
               muted={sidebarOpened}
               weight={3}

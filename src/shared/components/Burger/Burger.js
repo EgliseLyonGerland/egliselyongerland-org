@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import { isArray } from 'lodash';
 
 import classnames from 'classnames';
 
@@ -13,17 +14,17 @@ const styles = {
     outline: 0,
   },
   line: {
-    transitionTimingFunction: 'ease-out',
-    transitionDuration: '0.2s',
+    transitionTimingFunction: 'cubic-bezier(0.535, 0.010, 0.265, 1.550)',
+    transitionDuration: '0.5s',
   },
   last: {
     marginBottom: 0,
   },
   out: {
-    transitionProperty: 'transform',
+    transitionProperty: 'background, transform',
   },
   in: {
-    transitionProperty: 'opacity',
+    transitionProperty: 'background, opacity',
   },
   rounded: {
     borderRadius: 5,
@@ -39,7 +40,17 @@ class Burger extends Component {
 
   renderLines() {
     const lines = [];
-    const { size, height, weight, color, rounded, muted, classes } = this.props;
+    const {
+      size,
+      height,
+      weight,
+      color,
+      mutedColor,
+      rounded,
+      muted,
+      classes,
+      delay,
+    } = this.props;
     const gutter = (height - weight * size) / (size - 1);
 
     for (let index = 1; index <= size; index += 1) {
@@ -59,9 +70,17 @@ class Burger extends Component {
         ),
         style: {
           height: `${weight}px`,
-          backgroundColor: color,
+          backgroundColor: muted && mutedColor ? mutedColor : color,
         },
       };
+
+      if (delay) {
+        if (isArray) {
+          props.style.transitionDelay = `${muted ? delay[0] : delay[1]}s`;
+        } else {
+          props.style.transitionDelay = `${delay}s`;
+        }
+      }
 
       if (!isLast) {
         props.style.marginBottom = `${gutter}px`;
@@ -109,8 +128,13 @@ class Burger extends Component {
 
 Burger.propTypes = {
   color: PropTypes.string,
+  delay: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.arrayOf(PropTypes.number),
+  ]),
   height: PropTypes.number,
   muted: PropTypes.bool,
+  mutedColor: PropTypes.string,
   onClick: PropTypes.func,
   rounded: PropTypes.bool,
   size: PropTypes.number,
@@ -124,6 +148,8 @@ Burger.defaultProps = {
   width: 30,
   height: 18,
   color: '#222',
+  delay: null,
+  mutedColor: null,
   rounded: false,
   muted: false,
   onClick: () => {},
