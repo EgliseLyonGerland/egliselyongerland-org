@@ -20,6 +20,7 @@ import FacebookShare from 'components/Share/FacebookShare';
 import TwitterShare from 'components/Share/TwitterShare';
 
 import routes from 'utils/routes';
+import createResponsiveButton from 'utils/createResponsiveButton.hoc';
 
 const styles = theme => ({
   root: {
@@ -96,6 +97,8 @@ const renderDate = post => {
   return `le ${moment(date).format('D MMMM YYYY')}`;
 };
 
+const LinkButton = createResponsiveButton({ xs: 'xxs', sm: 'xs' });
+
 @connect(
   ({ audio }) => ({ audio }),
   { openAudioAction: openAudio },
@@ -131,8 +134,6 @@ class Header extends Component {
     );
     const audioUrl = get(post, 'extras.audioUrl', null);
 
-    const buttonSize = isWidthUp('sm', width) ? 'xs' : 'xxs';
-
     return (
       <Jumbotron background={imageUrl} title={post.title}>
         <div className={classes.inner}>
@@ -144,26 +145,24 @@ class Header extends Component {
           </div>
           <div className={classes.links}>
             {post.categories.slice(0, 1).map(category => (
-              <Button
+              <LinkButton
                 key={category.slug}
                 className={classes.link}
                 color="white"
-                size={buttonSize}
                 onClick={() => {
                   history.push(routes.blog({ category: category.id }));
                 }}
               >
                 {category.name}
-              </Button>
+              </LinkButton>
             ))}
 
             {post.bibleRefs.slice(0, 1).map(ref => (
-              <Button
+              <LinkButton
                 key={ref.raw}
                 className={classes.link}
                 color="white"
                 corners="rounded"
-                size={buttonSize}
                 onClick={() => {
                   history.push(
                     routes.blog({
@@ -174,7 +173,7 @@ class Header extends Component {
                 }}
               >
                 {ref.raw}
-              </Button>
+              </LinkButton>
             ))}
 
             <FacebookShare url={url}>
@@ -220,20 +219,23 @@ class Header extends Component {
                 </span>
               </Button>
 
-              {isWidthUp('md', width) && (
-                <Button
-                  className={classes.audioAction}
-                  color="white"
-                  corners="circular"
-                  size="md"
-                  onClick={() => window.open(audioUrl)}
-                >
-                  <Icon>
-                    <CloudDownloadIcon />
-                  </Icon>
-                  <span className={classes.audioActionLabel}>Télécharger</span>
-                </Button>
-              )}
+              {__CLIENT__ &&
+                isWidthUp('md', width) && (
+                  <Button
+                    className={classes.audioAction}
+                    color="white"
+                    corners="circular"
+                    size="md"
+                    onClick={() => window.open(audioUrl)}
+                  >
+                    <Icon>
+                      <CloudDownloadIcon />
+                    </Icon>
+                    <span className={classes.audioActionLabel}>
+                      Télécharger
+                    </span>
+                  </Button>
+                )}
             </div>
           )}
         </div>

@@ -9,10 +9,10 @@ export default {
     values: {
       xs: 0,
       sm: 480,
-      md: 640,
+      md: 720,
       lg: 960,
       xl: 1280,
-      xll: 1440,
+      xxl: 1440,
     },
   },
   props: {

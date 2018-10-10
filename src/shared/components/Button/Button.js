@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ButtonBase, withStyles } from '@material-ui/core';
-import { transform } from 'lodash';
+import { reduce } from 'lodash';
 
 const SIZES = {
   xxs: {
@@ -47,6 +47,33 @@ const SIZES = {
     radius: 5,
   },
 };
+
+export const stylesBySize = reduce(
+  SIZES,
+  (acc, data, key) => ({
+    ...acc,
+    [key]: {
+      fontSize: data.fontSize,
+      height: data.height,
+      lineHeight: `${data.fontSize}px`,
+
+      '&$normal': {
+        padding: [[0, data.padding]],
+      },
+      '&$rounded': {
+        borderRadius: data.radius,
+      },
+      '&$circular': {
+        borderRadius: data.height,
+      },
+      '&$icon': {
+        width: data.height,
+        borderRadius: data.height,
+      },
+    },
+  }),
+  {},
+);
 
 const styles = theme => ({
   root: {
@@ -150,35 +177,7 @@ const styles = theme => ({
       },
     },
   },
-  ...transform(
-    SIZES,
-    (result, data, key) => {
-      // eslint-disable-next-line no-param-reassign
-      result[key] = {
-        fontSize: data.fontSize,
-        height: data.height,
-        lineHeight: `${data.fontSize}px`,
-
-        '&$normal': {
-          padding: [[0, data.padding]],
-        },
-
-        '&$rounded': {
-          borderRadius: data.radius,
-        },
-
-        '&$circular': {
-          borderRadius: data.height,
-        },
-
-        '&$icon': {
-          width: data.height,
-          borderRadius: data.height,
-        },
-      };
-    },
-    {},
-  ),
+  ...stylesBySize,
 });
 
 const Button = ({
@@ -217,7 +216,10 @@ Button.propTypes = {
   corners: PropTypes.oneOf(['straight', 'rounded', 'circular']),
   disabled: PropTypes.bool,
   mode: PropTypes.oneOf(['plain', 'outlined', 'ghost']),
-  size: PropTypes.oneOf(Object.keys(SIZES)),
+  size: PropTypes.oneOfType([
+    PropTypes.oneOf(Object.keys(SIZES)),
+    PropTypes.shape(),
+  ]),
   type: PropTypes.oneOf(['normal', 'icon']),
 };
 
