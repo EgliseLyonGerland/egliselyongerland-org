@@ -76,7 +76,7 @@ const styles = theme => ({
   text: {
     fontSize: '1.6rem',
   },
-  [theme.breakpoints.down('sm')]: {
+  [theme.breakpoints.down('xs')]: {
     welcome: {
       fontSize: '3rem',
     },
@@ -84,7 +84,7 @@ const styles = theme => ({
       fontSize: '1.4rem',
     },
   },
-  [theme.breakpoints.down('xs')]: {
+  [theme.breakpoints.down('xxs')]: {
     welcome: {
       fontSize: '2.4rem',
       fontWeight: 500,

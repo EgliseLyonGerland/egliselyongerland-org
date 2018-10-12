@@ -5,14 +5,15 @@ const headerHeight = 100;
 
 export default {
   breakpoints: {
-    keys: ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'],
+    keys: ['xxs', 'xs', 'sm', 'md', 'lg', 'xl', 'xxl'],
     values: {
-      xs: 0,
-      sm: 480,
-      md: 720,
-      lg: 960,
-      xl: 1280,
-      xxl: 1440,
+      xxs: 0,
+      xs: 480,
+      sm: 720,
+      md: 960,
+      lg: 1280,
+      xl: 1440,
+      xxl: 1920,
     },
   },
   props: {

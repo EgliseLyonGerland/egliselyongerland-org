@@ -94,7 +94,7 @@ const styles = theme => ({
     },
   },
 
-  [theme.breakpoints.down('sm')]: {
+  [theme.breakpoints.down('xs')]: {
     root: {
       maxWidth: 'none',
     },

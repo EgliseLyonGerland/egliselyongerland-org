@@ -32,7 +32,7 @@ const styles = theme => ({
     marginBottom: 30,
   },
 
-  [theme.breakpoints.down('sm')]: {
+  [theme.breakpoints.down('xs')]: {
     player: {
       marginBottom: 0,
     },

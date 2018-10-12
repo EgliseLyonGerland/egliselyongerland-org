@@ -466,7 +466,7 @@ class Blog extends Component {
         <Jumbotron background={jumbotron} title={title} />
         <Hr xl />
         <Container md>
-          {isWidthUp('md', width)
+          {isWidthUp('sm', width)
             ? this.renderWideScreen()
             : this.renderSmallScreen()}
         </Container>

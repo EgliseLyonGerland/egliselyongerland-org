@@ -25,7 +25,7 @@ const styles = theme => ({
       marginTop: 0,
     },
   },
-  [theme.breakpoints.down('sm')]: {
+  [theme.breakpoints.down('xs')]: {
     root: {
       margin: [[50, 30]],
     },

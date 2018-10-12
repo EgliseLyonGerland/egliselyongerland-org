@@ -39,7 +39,7 @@ const styles = theme => ({
     color: '#DDD',
     transition: 'color 0.3s',
   },
-  [theme.breakpoints.down('sm')]: {
+  [theme.breakpoints.down('xs')]: {
     button: {
       margin: [[0, 10]],
       padding: [[10, 10]],
@@ -49,7 +49,7 @@ const styles = theme => ({
       height: 50,
     },
   },
-  [theme.breakpoints.down('xs')]: {
+  [theme.breakpoints.down('xxs')]: {
     root: {
       marginTop: 50,
     },

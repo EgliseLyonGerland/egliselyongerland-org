@@ -55,12 +55,12 @@ const styles = theme => ({
     maxWidth: 790,
     padding: [[0, 20]],
   },
-  [theme.breakpoints.down('md')]: {
+  [theme.breakpoints.down('sm')]: {
     emptyRow1: {
       minHeight: theme.header.sticky.height,
     },
   },
-  [theme.breakpoints.down('sm')]: {
+  [theme.breakpoints.down('xs')]: {
     title: {
       fontSize: 32,
     },

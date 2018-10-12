@@ -121,7 +121,7 @@ const styles = theme => ({
       textDecoration: 'none',
     },
   },
-  [theme.breakpoints.down('md')]: {
+  [theme.breakpoints.down('sm')]: {
     brand: {
       ...miniStyles(theme),
     },
@@ -135,7 +135,7 @@ const styles = theme => ({
       display: 'none',
     },
   },
-  [theme.breakpoints.down('sm')]: {
+  [theme.breakpoints.down('xs')]: {
     title: {
       display: 'none',
     },
@@ -296,7 +296,7 @@ class Header extends Component {
           </div> */}
         </Container>
 
-        {isWidthDown('md', width) && (
+        {isWidthDown('sm', width) && (
           <Sidebar
             links={links}
             opened={sidebarOpened}

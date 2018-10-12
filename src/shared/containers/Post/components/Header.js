@@ -74,7 +74,7 @@ const styles = theme => ({
     fontWeight: theme.typography.fontWeights.regular,
   },
 
-  [theme.breakpoints.down('sm')]: {
+  [theme.breakpoints.down('xs')]: {
     separator: {
       width: 140,
       margin: [[20, 'auto']],
@@ -97,7 +97,7 @@ const renderDate = post => {
   return `le ${moment(date).format('D MMMM YYYY')}`;
 };
 
-const LinkButton = createResponsiveButton({ xs: 'xxs', sm: 'xs' });
+const LinkButton = createResponsiveButton({ xxs: 'xxs', xs: 'xs' });
 
 @connect(
   ({ audio }) => ({ audio }),
@@ -220,7 +220,7 @@ class Header extends Component {
               </Button>
 
               {__CLIENT__ &&
-                isWidthUp('md', width) && (
+                isWidthUp('sm', width) && (
                   <Button
                     className={classes.audioAction}
                     color="white"

@@ -91,7 +91,7 @@ const styles = theme => ({
     textAlign: 'center',
   },
 
-  [theme.breakpoints.down('sm')]: {
+  [theme.breakpoints.down('xs')]: {
     root: {
       padding: [[0, 20]],
       fontSize: 18,

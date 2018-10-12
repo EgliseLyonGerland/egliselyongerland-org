@@ -62,7 +62,7 @@ const styles = theme => ({
       textDecoration: 'none',
     },
 
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('sm')]: {
       fontSize: rem(56),
     },
   },
