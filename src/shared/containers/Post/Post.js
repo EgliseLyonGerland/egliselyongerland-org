@@ -5,7 +5,8 @@ import { asyncConnect } from 'redux-connect';
 import Helmet from 'react-helmet';
 import { get } from 'lodash';
 import { denormalize } from 'normalizr';
-import moment from 'moment';
+import format from 'date-fns/format';
+import locale from 'date-fns/locale/fr';
 
 import { postSchema } from 'store/schemas';
 import { load as loadPost, isLoaded as isPostLoaded } from 'store/actions/post';
@@ -23,8 +24,10 @@ const getMetaDescription = post => {
   const sermonDate = get(post, ['extras', 'sermonDate']);
 
   if (post.predication && sermonDate) {
-    excerpt = `Prédication du ${moment(post.extras.sermonDate).format(
+    excerpt = `Prédication du ${format(
+      post.extras.sermonDate,
       'dddd D MMMM YYYY',
+      { locale },
     )}. ${excerpt}`;
   }
 

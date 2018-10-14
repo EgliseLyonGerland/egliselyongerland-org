@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import moment from 'moment';
 import { get } from 'lodash';
+import format from 'date-fns/format';
+import locale from 'date-fns/locale/fr';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
@@ -94,7 +95,7 @@ const styles = theme => ({
 const renderDate = post => {
   const date = get(post, ['extras', 'sermonDate'], post.date);
 
-  return `le ${moment(date).format('D MMMM YYYY')}`;
+  return `le ${format(date, 'D MMMM YYYY', { locale })}`;
 };
 
 const LinkButton = createResponsiveButton({ xxs: 'xxs', xs: 'xs' });

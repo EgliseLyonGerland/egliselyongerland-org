@@ -1,6 +1,7 @@
 import React from 'react';
 import { keys } from 'lodash';
-import moment from 'moment';
+import keys from 'lodash/keys';
+import format from 'date-fns/format';
 
 import Container from 'components/Container/Container';
 import Jumbotron from 'components/Jumbotron/Jumbotron';
@@ -12,7 +13,7 @@ import verses from './verses.json';
 
 const NotFound = () => {
   const books = keys(verses);
-  const index = parseInt(moment().format('DDD'), 10) % books.length;
+  const index = parseInt(format(new Date(), 'DDD'), 10) % books.length;
   const book = books[index];
   const verse = verses[book];
 
@@ -37,10 +38,6 @@ const NotFound = () => {
             “{verse}”
             <Text fontSize={1.6} fontWeight="regular">
               — {book} 40.4
-              {book} 40.4
-              {book} 40.4
-              {book} 40.4
-              {book} 40.4
             </Text>
           </Text>
         </Container>
