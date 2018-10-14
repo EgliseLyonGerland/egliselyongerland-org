@@ -1,5 +1,4 @@
 import React from 'react';
-import { keys } from 'lodash';
 import keys from 'lodash/keys';
 import format from 'date-fns/format';
 

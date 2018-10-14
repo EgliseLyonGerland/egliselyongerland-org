@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink as Link } from 'react-router-dom';
-import { get } from 'lodash';
+import get from 'lodash/get';
 import classnames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
-import { clearFix } from 'polished';
+import clearFix from 'polished/lib/mixins/clearFix';
 
 import Image from 'components/Image/Image';
 import routes from 'utils/routes';

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { get } from 'lodash';
 import format from 'date-fns/format';
 import locale from 'date-fns/locale/fr';
+import get from 'lodash/get';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import withWidth, { isWidthUp } from '@material-ui/core/withWidth';

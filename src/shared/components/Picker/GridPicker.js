@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { range, noop } from 'lodash';
+import range from 'lodash/range';
+import noop from 'lodash/noop';
 import classnames from 'classnames';
-import { lighten, rgba } from 'polished';
+import lighten from 'polished/lib/color/lighten';
+import rgba from 'polished/lib/color/rgba';
 
 const styles = theme => ({
   grid: {

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import classnames from 'classnames';
-import { rem } from 'polished';
+import rem from 'polished/lib/helpers/rem';
 
 const styles = theme => ({
   wrapper: {

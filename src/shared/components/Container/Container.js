@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import classnames from 'classnames';
-import { clearFix } from 'polished';
+import clearFix from 'polished/lib/mixins/clearFix';
 
 const styles = theme => ({
   container: {

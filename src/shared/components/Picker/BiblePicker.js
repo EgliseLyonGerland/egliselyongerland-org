@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
-import { get, find, findIndex, noop } from 'lodash';
+import get from 'lodash/get';
+import find from 'lodash/find';
+import findIndex from 'lodash/findIndex';
+import noop from 'lodash/noop';
 
 import PanePicker from 'components/Picker/PanePicker';
 import GridPicker from 'components/Picker/GridPicker';

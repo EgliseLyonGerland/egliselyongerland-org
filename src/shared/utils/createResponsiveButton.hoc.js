@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Button, { stylesBySize } from 'components/Button/Button';
 import { withStyles } from '@material-ui/core/styles';
-import { reduce } from 'lodash';
+import reduce from 'lodash/reduce';
 
 export default sizes => {
   const styles = theme => ({

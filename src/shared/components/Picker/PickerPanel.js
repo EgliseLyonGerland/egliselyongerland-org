@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { lighten } from 'polished';
+import lighten from 'polished/lib/color/lighten';
 
 import Text from 'components/Text/Text';
 

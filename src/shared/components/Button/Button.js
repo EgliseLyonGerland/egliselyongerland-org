@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ButtonBase, withStyles } from '@material-ui/core';
-import { reduce } from 'lodash';
+import { withStyles } from '@material-ui/core/styles';
+import ButtonBase from '@material-ui/core/ButtonBase';
+import reduce from 'lodash/reduce';
 
 const SIZES = {
   xxs: {

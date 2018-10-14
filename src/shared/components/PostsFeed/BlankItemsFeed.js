@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { range } from 'lodash';
+import range from 'lodash/range';
 import classnames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
-import { clearFix } from 'polished';
+import clearFix from 'polished/lib/mixins/clearFix';
 
 const styles = theme => ({
   item: {

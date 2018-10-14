@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { asyncConnect } from 'redux-connect';
 import Helmet from 'react-helmet';
-import { get } from 'lodash';
+import get from 'lodash/get';
 import { denormalize } from 'normalizr';
 import format from 'date-fns/format';
 import locale from 'date-fns/locale/fr';

@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, withTheme } from '@material-ui/core';
+import { withStyles, withTheme } from '@material-ui/core/styles';
 import classnames from 'classnames';
-import { clearFix } from 'polished';
-import { reduce } from 'lodash';
+import clearFix from 'polished/lib/mixins/clearFix';
+import reduce from 'lodash/reduce';
 
 const styles = {
   hr: {

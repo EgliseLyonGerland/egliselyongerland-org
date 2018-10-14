@@ -1,4 +1,4 @@
-import { toArray } from 'lodash';
+import toArray from 'lodash/toArray';
 
 export function getCategoryBySlug(categories, slug) {
   return toArray(categories).reduce((previous, current) => {

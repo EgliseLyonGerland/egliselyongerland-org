@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { asyncConnect } from 'redux-connect';
 import { Link } from 'react-router-dom';
 import Helmet from 'react-helmet';
-import { differenceBy } from 'lodash';
+import differenceBy from 'lodash/differenceBy';
 import { denormalize } from 'normalizr';
 import { withStyles } from '@material-ui/core/styles';
 

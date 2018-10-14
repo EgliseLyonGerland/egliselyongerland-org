@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { findIndex } from 'lodash';
+import findIndex from 'lodash/findIndex';
 import { withStyles } from '@material-ui/core/styles';
 
 import Text from 'components/Text/Text';

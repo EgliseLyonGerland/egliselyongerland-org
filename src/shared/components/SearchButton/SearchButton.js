@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { noop } from 'lodash';
+import noop from 'lodash/noop';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = {

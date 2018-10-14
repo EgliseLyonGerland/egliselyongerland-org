@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { range } from 'lodash';
+import range from 'lodash/range';
 import classnames from 'classnames';
 
 import Button from 'components/Button/Button';

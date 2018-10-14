@@ -1,5 +1,5 @@
 import { schema } from 'normalizr';
-import { some } from 'lodash';
+import some from 'lodash/some';
 
 const { Entity } = schema;
 

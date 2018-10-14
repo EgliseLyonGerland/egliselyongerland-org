@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { Motion, spring } from 'react-motion';
-import { findIndex, noop } from 'lodash';
+import findIndex from 'lodash/findIndex';
+import noop from 'lodash/noop';
 
 import TabPicker from 'components/Picker/TabPicker';
 

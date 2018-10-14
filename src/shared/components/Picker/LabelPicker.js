@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { lighten, rgba, clearFix } from 'polished';
-import { noop } from 'lodash';
+import lighten from 'polished/lib/color/lighten';
+import rgba from 'polished/lib/color/rgba';
+import clearFix from 'polished/lib/mixins/clearFix';
+import noop from 'lodash/noop';
 
 import Text from 'components/Text/Text';
 import ToggleOnIcon from 'components/Icon/ToggleOnIcon';
