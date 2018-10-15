@@ -1,10 +1,10 @@
-const webpack = require("webpack");
-const rimraf = require("rimraf");
-const webpackConfig = require("../webpack")(
-  process.env.NODE_ENV || "production"
+const webpack = require('webpack');
+const rimraf = require('rimraf');
+const webpackConfig = require('../webpack')(
+  process.env.NODE_ENV || 'production',
 );
-const paths = require("../webpack/paths");
-const { logMessage, compilerPromise } = require("./utils");
+const paths = require('../webpack/paths');
+const { logMessage, compilerPromise } = require('./utils');
 
 const build = async () => {
   rimraf.sync(paths.clientBuild);
@@ -22,14 +22,12 @@ const build = async () => {
   serverCompiler.watch({}, (error, stats) => {
     if (!error && !stats.hasErrors()) {
       console.log(stats.toString(serverConfig.stats));
-      return;
     }
   });
 
   clientCompiler.watch({}, (error, stats) => {
     if (!error && !stats.hasErrors()) {
       console.log(stats.toString(clientConfig.stats));
-      return;
     }
   });
 
@@ -37,10 +35,10 @@ const build = async () => {
   try {
     await serverPromise;
     await clientPromise;
-    logMessage("Done!", "info");
+    logMessage('Done!', 'info');
     process.exit();
   } catch (error) {
-    logMessage(error, "error");
+    logMessage(error, 'error');
   }
 };
 
