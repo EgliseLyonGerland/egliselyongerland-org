@@ -15,6 +15,8 @@ const compilerPromise = compiler =>
       if (!stats.hasErrors()) {
         return resolve();
       }
+
+      stats.compilation.errors.forEach(error => logMessage(error, 'error'));
       return reject(new Error('Compilation failed'));
     });
   });
