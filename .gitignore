@@ -1,5 +1,6 @@
 node_modules
-build
+build/client
+build/server
 npm-debug.log
 yarn-error.log
 .eslintcache

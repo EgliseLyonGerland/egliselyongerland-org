@@ -9,6 +9,7 @@ import {
 import { ReduxAsyncConnect } from 'redux-connect';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import ReactGA from 'react-ga';
+import Loadable from 'react-loadable';
 
 import { configureStore } from '../shared/store';
 import routes from '../routes';
@@ -35,23 +36,25 @@ const store =
     client: new ApiClient(),
   });
 
-hydrate(
-  <ReduxProvider store={store}>
-    <MuiThemeProvider theme={createMuiTheme(theme)}>
-      <Router history={browserHistory}>
-        <ReduxAsyncConnect routes={routes} />
-      </Router>
-    </MuiThemeProvider>
-  </ReduxProvider>,
-  document.getElementById('app'),
-  () => {
-    const ssStyles = document.getElementById('server-side-styles');
+Loadable.preloadReady().then(() => {
+  hydrate(
+    <ReduxProvider store={store}>
+      <MuiThemeProvider theme={createMuiTheme(theme)}>
+        <Router history={browserHistory}>
+          <ReduxAsyncConnect routes={routes} />
+        </Router>
+      </MuiThemeProvider>
+    </ReduxProvider>,
+    document.getElementById('app'),
+    () => {
+      const ssStyles = document.getElementById('server-side-styles');
 
-    if (ssStyles) {
-      ssStyles.parentNode.removeChild(ssStyles);
-    }
-  },
-);
+      if (ssStyles) {
+        ssStyles.parentNode.removeChild(ssStyles);
+      }
+    },
+  );
+});
 
 if (process.env.NODE_ENV === 'development') {
   if (module.hot) {

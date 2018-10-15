@@ -74,6 +74,7 @@
     "react-hot-loader": "4.3.11",
     "react-inline-css": "2.3.1",
     "react-jss": "8.6.1",
+    "react-loadable": "5.5.0",
     "react-motion": "0.5.2",
     "react-redux": "5.0.7",
     "react-router": "4.3.1",

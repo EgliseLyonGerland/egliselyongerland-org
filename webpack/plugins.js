@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
 const ReplaceInFileWebpackPlugin = require('replace-in-file-webpack-plugin');
+const { ReactLoadablePlugin } = require('react-loadable/webpack');
 
 const env = require('./env')();
 
@@ -42,6 +43,9 @@ const client = [
         ? '[id].css'
         : '[id].[contenthash].css',
     hot: process.env.NODE_ENV === 'development',
+  }),
+  new ReactLoadablePlugin({
+    filename: path.join(__dirname, `../build/client/react-loadable.json`),
   }),
   new ManifestPlugin({ fileName: 'manifest.json' }),
 ];

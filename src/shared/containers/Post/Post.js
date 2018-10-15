@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { asyncConnect } from 'redux-connect';
 import Helmet from 'react-helmet';
 import get from 'lodash/get';
 import { denormalize } from 'normalizr';
@@ -9,7 +7,6 @@ import format from 'date-fns/format';
 import locale from 'date-fns/locale/fr';
 
 import { postSchema } from 'store/schemas';
-import { load as loadPost, isLoaded as isPostLoaded } from 'store/actions/post';
 import NotFound from 'containers/NotFound/NotFound';
 
 import { getAbsoluteUrl } from 'utils/routes';
@@ -33,40 +30,6 @@ const getMetaDescription = post => {
   }
 
   return excerpt;
-};
-
-const asyncPromises = [
-  {
-    promise: ({ match: { params }, store: { dispatch, getState } }) => {
-      const { postId } = params;
-
-      if (isPostLoaded(getState(), postId)) {
-        return null;
-      }
-
-      const result = dispatch(loadPost(postId));
-
-      return __CLIENT__ ? null : result;
-    },
-  },
-];
-
-const mapStateToProps = (state, props) => {
-  const { post, entities } = state;
-  const {
-    match: {
-      params: { postId },
-    },
-  } = props;
-
-  const data = entities.posts[postId];
-  const notFound = !!get(post, [postId, 'error']);
-
-  return {
-    post: data,
-    entities,
-    notFound,
-  };
 };
 
 const renderContent = post => {
@@ -183,4 +146,4 @@ Post.defaultProps = {
   notFound: false,
 };
 
-export default connect(mapStateToProps)(asyncConnect(asyncPromises)(Post));
+export default Post;

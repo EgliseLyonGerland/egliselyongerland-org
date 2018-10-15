@@ -10,6 +10,10 @@ import {
   createGenerateClassName,
 } from '@material-ui/core/styles';
 
+// react-loadable
+import Loadable from 'react-loadable';
+import { getBundles } from 'react-loadable/webpack';
+
 // JSS
 import { SheetsRegistry } from 'react-jss/lib/jss';
 import JssProvider from 'react-jss/lib/JssProvider';
@@ -17,6 +21,7 @@ import JssProvider from 'react-jss/lib/JssProvider';
 import Html from './components/HTML';
 import routes from '../routes';
 import theme from '../shared/config/theme';
+import stats from '../../build/client/react-loadable.json';
 
 const serverRenderer = () => async (req, res) => {
   const { store } = req;
@@ -28,33 +33,41 @@ const serverRenderer = () => async (req, res) => {
   const muiTheme = createMuiTheme(theme);
   const generateClassName = createGenerateClassName();
 
+  const modules = [];
   const staticContext = {};
 
   const content = renderToString(
-    <ReduxProvider store={req.store}>
-      <JssProvider {...{ registry, generateClassName }}>
-        <MuiThemeProvider sheetsManager={new Map()} theme={muiTheme}>
-          <Router context={staticContext} location={req.url}>
-            <ReduxAsyncConnect routes={routes} />
-          </Router>
-        </MuiThemeProvider>
-      </JssProvider>
-    </ReduxProvider>,
+    <Loadable.Capture report={moduleName => modules.push(moduleName)}>
+      <ReduxProvider store={req.store}>
+        <JssProvider {...{ registry, generateClassName }}>
+          <MuiThemeProvider sheetsManager={new Map()} theme={muiTheme}>
+            <Router context={staticContext} location={req.url}>
+              <ReduxAsyncConnect routes={routes} />
+            </Router>
+          </MuiThemeProvider>
+        </JssProvider>
+      </ReduxProvider>
+    </Loadable.Capture>,
   );
 
   const css = registry.toString();
   const state = JSON.stringify(store.getState());
+  const bundles = getBundles(stats, modules);
+  const styles = bundles.filter(bundle => bundle.file.endsWith('.css'));
+  const scripts = bundles.filter(bundle => bundle.file.endsWith('.js'));
 
   return res.status(staticContext.status || 200).send(
     `<!doctype html>${renderToString(
       <Html
         css={css}
         scripts={[
+          ...scripts.map(({ publicPath }) => publicPath),
           res.locals.assetPath('bundle.js'),
           res.locals.assetPath('vendor.js'),
         ]}
         state={state}
         styles={[
+          ...styles.map(({ publicPath }) => publicPath),
           res.locals.assetPath('bundle.css'),
           res.locals.assetPath('vendor.css'),
         ]}

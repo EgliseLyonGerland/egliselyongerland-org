@@ -4,6 +4,7 @@ import path from 'path';
 import chalk from 'chalk';
 import manifestHelpers from 'express-manifest-helpers';
 import bodyParser from 'body-parser';
+import Loadable from 'react-loadable';
 
 import serverRender from './render';
 import paths from '../../webpack/paths';
@@ -62,11 +63,15 @@ app.use((err, req, res, next) =>
   }),
 );
 
-app.listen(process.env.PORT || 8500, () => {
-  console.log(
-    `[${new Date().toISOString()}]`,
-    chalk.blue(`App is running: http://localhost:${process.env.PORT || 8500}`),
-  );
+Loadable.preloadAll().then(() => {
+  app.listen(process.env.PORT || 8500, () => {
+    console.log(
+      `[${new Date().toISOString()}]`,
+      chalk.blue(
+        `App is running: http://localhost:${process.env.PORT || 8500}`,
+      ),
+    );
+  });
 });
 
 export default app;

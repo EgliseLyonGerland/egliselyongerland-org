@@ -1,5 +1,4 @@
-import ChurchAboutUs from 'containers/Church/AboutUs';
-import ChurchWip from 'containers/Church/Wip';
+import loadable from 'react-loadable';
 
 import aboutUsPicture from 'containers/Church/jumbotrons/about-us.jpg';
 import activityPicture from 'containers/Church/jumbotrons/activity.jpg';
@@ -8,41 +7,51 @@ import worshipPicture from 'containers/Church/jumbotrons/worship.jpg';
 import teamPicture from 'containers/Church/jumbotrons/team.jpg';
 import federativeLinksPicture from 'containers/Church/jumbotrons/federative-links.jpg';
 
+const AsyncChurchWip = loadable({
+  loader: () =>
+    import(/* webpackChunkName: "church-wip" */ 'containers/Church/Wip'),
+  loading: () => null,
+});
+
 export default [
   {
     slug: 'qui-sommes-nous',
     title: 'Qui sommes-nous ?',
     picture: aboutUsPicture,
-    component: ChurchAboutUs,
+    component: loadable({
+      loader: () =>
+        import(/* webpackChunkName: "church-aboutus" */ 'containers/Church/AboutUs'),
+      loading: () => null,
+    }),
   },
   {
     slug: 'que-croyons-nous',
     title: 'Que croyons-nous ?',
     picture: ourFaithPicture,
-    component: ChurchWip,
+    component: AsyncChurchWip,
   },
   {
     slug: 'le-culte',
     title: 'Le culte',
     picture: worshipPicture,
-    component: ChurchWip,
+    component: AsyncChurchWip,
   },
   {
     slug: 'activites',
     title: 'Activités',
     picture: activityPicture,
-    component: ChurchWip,
+    component: AsyncChurchWip,
   },
   {
     slug: 'l-equipe',
     title: "L'équipe",
     picture: teamPicture,
-    component: ChurchWip,
+    component: AsyncChurchWip,
   },
   {
     slug: 'liens-federatifs',
     title: 'Liens fédératifs',
     picture: federativeLinksPicture,
-    component: ChurchWip,
+    component: AsyncChurchWip,
   },
 ];

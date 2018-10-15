@@ -1,11 +1,8 @@
+import loadable from 'react-loadable';
 import App from 'containers/App/App';
-import Blog from 'containers/Blog/Blog';
-import Church from 'containers/Church/Church';
-import Contact from 'containers/Contact/Contact';
-import Home from 'containers/Home/Home';
-import NotFound from 'containers/NotFound/NotFound';
-import Post from 'containers/Post/Post';
-
+import Home from 'containers/Home/HomeConnector';
+import Blog from 'containers/Blog/BlogConnector';
+import Post from 'containers/Post/PostConnector';
 import churchTabs from './shared/config/church-tabs';
 
 const blogRoutes = [
@@ -37,7 +34,11 @@ const routes = [
         component: Home,
       },
       ...churchTabs.map(({ slug, component }) => ({
-        component: Church,
+        component: loadable({
+          loader: () =>
+            import(/* webpackChunkName: "church" */ 'containers/Church/Church'),
+          loading: () => null,
+        }),
         path: `/${slug}`,
         routes: [
           {
@@ -59,11 +60,19 @@ const routes = [
       {
         path: '/contact',
         exact: true,
-        component: Contact,
+        component: loadable({
+          loader: () =>
+            import(/* webpackChunkName: "contact" */ 'containers/Contact/Contact'),
+          loading: () => null,
+        }),
       },
       {
         path: '*',
-        component: NotFound,
+        component: loadable({
+          loader: () =>
+            import(/* webpackChunkName: "notFound" */ 'containers/NotFound/NotFound'),
+          loading: () => null,
+        }),
         status: 404,
       },
     ],

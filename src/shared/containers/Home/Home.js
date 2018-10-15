@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { asyncConnect } from 'redux-connect';
 import { Link } from 'react-router-dom';
 import Helmet from 'react-helmet';
 import differenceBy from 'lodash/differenceBy';
@@ -9,10 +7,6 @@ import { denormalize } from 'normalizr';
 import { withStyles } from '@material-ui/core/styles';
 
 import { postSchema } from 'store/schemas';
-import {
-  isLoaded as isPostsLoaded,
-  load as loadPosts,
-} from 'store/actions/posts';
 import routes from 'utils/routes';
 
 import Container from 'components/Container/Container';
@@ -26,45 +20,6 @@ import Button from 'components/Button/Button';
 import worship from './worship.jpg';
 import sunshineLeft from './sunshine-left.svg';
 import sunshineRight from './sunshine-right.svg';
-
-const LASTS_KEY = 'home-lasts';
-const SERMONS_KEY = 'home-sermons';
-
-const asyncPromises = [
-  {
-    promise: ({ store: { dispatch, getState } }) => {
-      const promises = [];
-
-      if (!isPostsLoaded(LASTS_KEY, getState())) {
-        promises.push(dispatch(loadPosts(LASTS_KEY, { limit: 10 })));
-      }
-
-      if (!isPostsLoaded(SERMONS_KEY, getState())) {
-        promises.push(
-          dispatch(loadPosts(SERMONS_KEY, { limit: 2, category: 1 })),
-        );
-      }
-
-      if (__CLIENT__ || !promises.length) {
-        return null;
-      }
-
-      return Promise.all(promises);
-    },
-  },
-];
-
-const mapStateToProps = state => {
-  const lasts = state.posts[LASTS_KEY].data;
-  const sermons = state.posts[SERMONS_KEY].data;
-  const { entities } = state;
-
-  return {
-    lasts,
-    sermons,
-    entities,
-  };
-};
 
 const styles = theme => ({
   welcome: {
@@ -100,8 +55,6 @@ const styles = theme => ({
   },
 });
 
-@asyncConnect(asyncPromises)
-@connect(mapStateToProps)
 @withStyles(styles)
 class Home extends Component {
   static propTypes = {
