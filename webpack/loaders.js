@@ -59,6 +59,52 @@ const createStyleLoaders = ({
   },
 });
 
+const createImageLoader = side => ({
+  test: /\.(png|jpe?g|gif|svg)$/,
+  use: [
+    {
+      loader: 'file-loader',
+      options: {
+        name: 'assets/[name].[hash:8].[ext]',
+        ...(side === 'server' ? { emitFile: false } : {}),
+      },
+    },
+    {
+      loader: 'image-webpack-loader',
+      options: {
+        mozjpeg: {
+          enabled: false,
+          progressive: true,
+          quality: 65,
+        },
+        optipng: {
+          enabled: false,
+        },
+        pngquant: {
+          quality: '65-90',
+          speed: 4,
+        },
+        gifsicle: {
+          interlaced: false,
+        },
+      },
+    },
+  ],
+});
+
+const createScriptLoader = side => ({
+  exclude: [/\.(js|css|mjs|html|json)$/],
+  use: [
+    {
+      loader: 'file-loader',
+      options: {
+        name: 'assets/[name].[hash:8].[ext]',
+        ...(side === 'server' ? { emitFile: false } : {}),
+      },
+    },
+  ],
+});
+
 const babelLoader = {
   test: /\.(js|jsx)$/,
   exclude: /node_modules/,
@@ -66,52 +112,17 @@ const babelLoader = {
 };
 
 const styleLoaders = createStyleLoaders({ exclude: /node_modules/ });
+
 const styleThemeLoaders = createStyleLoaders({
   modules: false,
   include: /theme/,
 });
 
-const urlLoaderClient = {
-  test: /\.(png|jpe?g|gif|svg)$/,
-  loader: require.resolve('url-loader'),
-  options: {
-    limit: 2048,
-    name: 'assets/[name].[hash:8].[ext]',
-  },
-};
+const imageLoaderClient = createImageLoader('client');
+const imageLoaderServer = createImageLoader('server');
 
-const urlLoaderServer = {
-  ...urlLoaderClient,
-  options: {
-    ...urlLoaderClient.options,
-    emitFile: false,
-  },
-};
-
-const fileLoaderClient = {
-  exclude: [/\.(js|css|mjs|html|json)$/],
-  use: [
-    {
-      loader: 'file-loader',
-      options: {
-        name: 'assets/[name].[hash:8].[ext]',
-      },
-    },
-  ],
-};
-
-const fileLoaderServer = {
-  exclude: [/\.(js|css|mjs|html|json)$/],
-  use: [
-    {
-      loader: 'file-loader',
-      options: {
-        name: 'assets/[name].[hash:8].[ext]',
-        emitFile: false,
-      },
-    },
-  ],
-};
+const scriptLoaderClient = createScriptLoader('client');
+const scriptLoaderServer = createScriptLoader('server');
 
 // Write css files from node_modules to its own vendor.css file
 const externalCssLoaderClient = {
@@ -133,8 +144,8 @@ const client = [
       babelLoader,
       styleThemeLoaders.client,
       styleLoaders.client,
-      urlLoaderClient,
-      fileLoaderClient,
+      imageLoaderClient,
+      scriptLoaderClient,
       externalCssLoaderClient,
     ],
   },
@@ -145,8 +156,8 @@ const server = [
       babelLoader,
       styleThemeLoaders.server,
       styleLoaders.server,
-      urlLoaderServer,
-      fileLoaderServer,
+      imageLoaderServer,
+      scriptLoaderServer,
       externalCssLoaderServer,
     ],
   },

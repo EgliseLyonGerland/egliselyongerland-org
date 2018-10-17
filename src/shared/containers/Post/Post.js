@@ -13,6 +13,7 @@ import { load as loadPost, isLoaded as isPostLoaded } from 'store/actions/post';
 import NotFound from 'containers/NotFound/NotFound';
 
 import { getAbsoluteUrl } from 'utils/routes';
+import logoPicutre from 'images/logo.jpg';
 import Header from './components/Header';
 import Shares from './components/Shares';
 import PostContent from './components/PostContent';
@@ -106,7 +107,7 @@ class Post extends Component {
     );
 
     const shareUrl = getAbsoluteUrl(location.pathname);
-    const logoUrl = getAbsoluteUrl('/images/logo.jpg');
+    const logoUrl = getAbsoluteUrl(logoPicutre);
 
     const structuredData = {
       '@context': 'http://schema.org',

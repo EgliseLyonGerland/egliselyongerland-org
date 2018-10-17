@@ -45,6 +45,7 @@
     "file-loader": "2.0.0",
     "history": "4.7.2",
     "hoist-non-react-statics": "3.0.1",
+    "image-webpack-loader": "4.4.0",
     "invariant": "2.2.4",
     "json-loader": "0.5.7",
     "lodash": "4.17.11",

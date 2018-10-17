@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 
+import placeholderPicture from 'images/placeholder.jpg';
+
 const styles = {
   image: {
     background: 'no-repeat center center',
@@ -16,9 +18,15 @@ const styles = {
   },
 };
 
-const Image = ({ src, title = '', ratio, height, seoFriendly, classes }) => {
-  const source = src || '/images/placeholder.jpg';
-  const style = { backgroundImage: `url(${source})` };
+const Image = ({
+  src = placeholderPicture,
+  title = '',
+  ratio,
+  height,
+  seoFriendly,
+  classes,
+}) => {
+  const style = { backgroundImage: `url(${src})` };
 
   if (height) {
     style.height = `${height}px`;
@@ -28,7 +36,7 @@ const Image = ({ src, title = '', ratio, height, seoFriendly, classes }) => {
 
   return (
     <div className={classes.image} style={style}>
-      {seoFriendly && <img alt={title} className={classes.img} src={source} />}
+      {seoFriendly && <img alt={title} className={classes.img} src={src} />}
     </div>
   );
 };
