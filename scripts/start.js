@@ -12,6 +12,8 @@ const { logMessage, compilerPromise } = require('./utils');
 
 const app = express();
 
+const WEBPACK_HOST = process.env.WEBPACK_HOST || 'localhost';
+
 const WEBPACK_PORT =
   process.env.WEBPACK_PORT ||
   (!Number.isNaN(Number(process.env.PORT))
@@ -24,7 +26,7 @@ const start = async () => {
 
   const [clientConfig, serverConfig] = webpackConfig;
   clientConfig.entry.bundle = [
-    `webpack-hot-middleware/client?path=http://localhost:${WEBPACK_PORT}/__webpack_hmr`,
+    `webpack-hot-middleware/client?path=http://${WEBPACK_HOST}:${WEBPACK_PORT}/__webpack_hmr`,
     ...clientConfig.entry.bundle,
   ];
 
@@ -35,14 +37,14 @@ const start = async () => {
   const { publicPath } = clientConfig.output;
 
   clientConfig.output.publicPath = [
-    `http://localhost:${WEBPACK_PORT}`,
+    `http://${WEBPACK_HOST}:${WEBPACK_PORT}`,
     publicPath,
   ]
     .join('/')
     .replace(/([^:+])\/+/g, '$1/');
 
   serverConfig.output.publicPath = [
-    `http://localhost:${WEBPACK_PORT}`,
+    `http://${WEBPACK_HOST}:${WEBPACK_PORT}`,
     publicPath,
   ]
     .join('/')

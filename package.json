@@ -6,8 +6,8 @@
     "build": "cross-env NODE_ENV=production node scripts/build.js",
     "start": "cross-env NODE_ENV=production node build/server/server.js",
     "dev": "cross-env NODE_ENV=development node scripts/start.js",
-    "lint": "eslint --cache src webpack",
-    "format": "prettier-eslint --write '{src,webpack}/**/*.{js,json,scss,md}'",
+    "lint": "eslint --cache src webpack scripts",
+    "format": "prettier-eslint --write '{src,webpack,scripts}/**/*.{js,json,scss,md}'",
     "postinstall": "npm rebuild node-sass",
     "heroku-postbuild": "npm run build"
   },
@@ -84,6 +84,7 @@
     "redux-connect": "8.0.0",
     "redux-thunk": "2.3.0",
     "replace-in-file-webpack-plugin": "1.0.6",
+    "rimraf": "2.6.2",
     "sass-loader": "7.1.0",
     "serialize-javascript": "1.5.0",
     "style-loader": "0.23.0",
