@@ -6,11 +6,15 @@ const ReplaceInFileWebpackPlugin = require('replace-in-file-webpack-plugin');
 
 const env = require('./env')();
 
+const createBreakpointsPath = path.parse(
+  require.resolve('@material-ui/core/styles/createBreakpoints.js'),
+);
+
 const shared = [
   new ReplaceInFileWebpackPlugin([
     {
-      dir: path.join(__dirname, '../node_modules/@material-ui/core/styles'),
-      files: ['createBreakpoints.js'],
+      dir: createBreakpointsPath.dir,
+      files: [createBreakpointsPath.base],
       rules: [
         {
           search: "var keys = ['xs', 'sm', 'md', 'lg', 'xl'];",
