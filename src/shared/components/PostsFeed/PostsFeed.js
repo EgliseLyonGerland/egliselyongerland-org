@@ -5,6 +5,7 @@ import get from 'lodash/get';
 import classnames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import clearFix from 'polished/lib/mixins/clearFix';
+import LazyLoad from 'react-lazyload';
 
 import Image from 'components/Image/Image';
 import routes from 'utils/routes';
@@ -158,7 +159,9 @@ class PostsFeed extends Component {
           return (
             <div key={post.id} className={classes.post}>
               <Link className={classes.picture} to={routes.post(post.id)}>
-                <Image height={130} src={imageUrl} />
+                <LazyLoad height={130}>
+                  <Image height={130} src={imageUrl} />
+                </LazyLoad>
               </Link>
 
               <div className={classes.content}>
