@@ -1,4 +1,6 @@
 const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
+const babelClientConfig = require('./babel.client');
+const babelServerConfig = require('./babel.server');
 
 const createStyleLoaders = ({
   modules = true,
@@ -106,9 +108,22 @@ const createScriptLoader = side => ({
 });
 
 const babelLoader = {
-  test: /\.(js|jsx)$/,
-  exclude: /node_modules/,
-  loader: 'babel-loader',
+  client: {
+    test: /\.(js|jsx)$/,
+    exclude: /node_modules/,
+    use: {
+      loader: 'babel-loader',
+      options: babelClientConfig,
+    },
+  },
+  server: {
+    test: /\.(js|jsx)$/,
+    exclude: /node_modules/,
+    use: {
+      loader: 'babel-loader',
+      options: babelServerConfig,
+    },
+  },
 };
 
 const styleLoaders = createStyleLoaders({ exclude: /node_modules/ });
@@ -118,47 +133,54 @@ const styleThemeLoaders = createStyleLoaders({
   include: /theme/,
 });
 
-const imageLoaderClient = createImageLoader('client');
-const imageLoaderServer = createImageLoader('server');
-
-const scriptLoaderClient = createScriptLoader('client');
-const scriptLoaderServer = createScriptLoader('server');
-
-// Write css files from node_modules to its own vendor.css file
-const externalCssLoaderClient = {
-  test: /\.css$/,
-  include: /node_modules/,
-  use: [ExtractCssChunks.loader, 'css-loader'],
+const imageLoader = {
+  client: createImageLoader('client'),
+  server: createImageLoader('server'),
 };
 
-// Server build needs a loader to handle external .css files
-const externalCssLoaderServer = {
-  test: /\.css$/,
-  include: /node_modules/,
-  loader: 'css-loader/locals',
+const scriptLoader = {
+  client: createScriptLoader('client'),
+  server: createScriptLoader('server'),
+};
+
+const externalCssLoader = {
+  // Write css files from node_modules to its own vendor.css file
+  client: {
+    test: /\.css$/,
+    include: /node_modules/,
+    use: [ExtractCssChunks.loader, 'css-loader'],
+  },
+
+  // Server build needs a loader to handle external .css files
+  server: {
+    test: /\.css$/,
+    include: /node_modules/,
+    loader: 'css-loader/locals',
+  },
 };
 
 const client = [
   {
     oneOf: [
-      babelLoader,
+      babelLoader.client,
       styleThemeLoaders.client,
       styleLoaders.client,
-      imageLoaderClient,
-      scriptLoaderClient,
-      externalCssLoaderClient,
+      imageLoader.client,
+      scriptLoader.client,
+      externalCssLoader.client,
     ],
   },
 ];
+
 const server = [
   {
     oneOf: [
-      babelLoader,
+      babelLoader.server,
       styleThemeLoaders.server,
       styleLoaders.server,
-      imageLoaderServer,
-      scriptLoaderServer,
-      externalCssLoaderServer,
+      imageLoader.server,
+      scriptLoader.server,
+      externalCssLoader.server,
     ],
   },
 ];
