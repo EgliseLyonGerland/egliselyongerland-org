@@ -6,13 +6,13 @@ import reduce from 'lodash/reduce';
 
 const SIZES = {
   xxs: {
-    fontSize: 14,
+    fontSize: 12,
     height: 24,
-    padding: 8,
+    padding: 12,
     radius: 2,
   },
   xs: {
-    fontSize: 16,
+    fontSize: 14,
     height: 32,
     padding: 16,
     radius: 3,
@@ -36,15 +36,15 @@ const SIZES = {
     radius: 4,
   },
   xl: {
-    fontSize: 18,
+    fontSize: 20,
     height: 64,
-    padding: 32,
+    padding: 40,
     radius: 4,
   },
   xxl: {
-    fontSize: 20,
+    fontSize: 24,
     height: 80,
-    padding: 40,
+    padding: 56,
     radius: 5,
   },
 };
@@ -98,7 +98,7 @@ const styles = theme => ({
       color: 'white',
 
       '&:hover': {
-        background: theme.palette.primary[700],
+        background: theme.palette.primary[600],
       },
     },
     '&$secondary': {
@@ -106,7 +106,7 @@ const styles = theme => ({
       color: 'white',
 
       '&:hover': {
-        background: theme.palette.secondary[700],
+        background: theme.palette.secondary[600],
       },
     },
     '&$white': {

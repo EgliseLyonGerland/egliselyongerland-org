@@ -22,7 +22,8 @@ export default {
     },
   },
   typography: {
-    fontFamily: '"Lato", sans-serif',
+    useNextVariants: true,
+    fontFamily: '"Open Sans", sans-serif',
     fontSize: 16,
     fontWeight: 400,
     fontWeights: {
@@ -37,6 +38,12 @@ export default {
   palette: {
     primary,
     secondary,
+    text: {
+      primary: '#444',
+      secondary: '#777',
+      disabled: '#aaa',
+      hint: '#aaa',
+    },
   },
   header: {
     height: headerHeight,
@@ -93,4 +100,8 @@ export default {
     border: '#4776e6 solid 1px',
     borderImage: 'linear-gradient(to right, #4776e6, #8e54e9) 1',
   }),
+  mixins: {
+    withHover:
+      '@media (any-hover: hover), (-moz-touch-enabled: 0), (-ms-high-contrast: none)',
+  },
 };

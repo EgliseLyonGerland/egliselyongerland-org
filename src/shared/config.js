@@ -7,6 +7,7 @@ const environment = {
     host: process.env.HOST || 'localhost',
     port: process.env.PORT,
     protocol: 'http',
+    // apiEndpoint: 'http://api.egliselyongerland.local',
     apiEndpoint: 'https://api.egliselyongerland.org',
   },
   production: {
