@@ -2,29 +2,11 @@ const path = require('path');
 const webpack = require('webpack');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
-const ReplaceInFileWebpackPlugin = require('replace-in-file-webpack-plugin');
 const { ReactLoadablePlugin } = require('react-loadable/webpack');
 
 const env = require('./env')();
 
-const createBreakpointsPath = path.parse(
-  require.resolve('@material-ui/core/styles/createBreakpoints.js'),
-);
-
-const shared = [
-  new ReplaceInFileWebpackPlugin([
-    {
-      dir: createBreakpointsPath.dir,
-      files: [createBreakpointsPath.base],
-      rules: [
-        {
-          search: "var keys = ['xs', 'sm', 'md', 'lg', 'xl'];",
-          replace: "var keys = ['xxs', 'xs', 'sm', 'md', 'lg', 'xl', 'xxl'];",
-        },
-      ],
-    },
-  ]),
-];
+const shared = [];
 
 const client = [
   new webpack.DefinePlugin(env.stringified),
