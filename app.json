@@ -1,0 +1,25 @@
+{
+  "addons": [
+
+  ],
+  "description": "Lyon-Gerland church website",
+  "env": {
+    "HOST": {
+      "required": true
+    },
+    "NPM_CONFIG_PRODUCTION": {
+      "required": true
+    },
+    "YARN_PRODUCTION": {
+      "required": true
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "name": "egliselyongerland-org",
+  "scripts": {
+  }
+}
