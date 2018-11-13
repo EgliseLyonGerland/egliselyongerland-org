@@ -8,7 +8,6 @@ import withWidth, { isWidthDown } from '@material-ui/core/withWidth';
 
 import Sidebar from 'components/Sidebar/Sidebar';
 import Burger from 'components/Burger/Burger';
-import Container from 'components/Container/Container';
 import routes from 'utils/routes';
 
 import logo from './logo.svg';
@@ -21,19 +20,17 @@ const miniStyles = theme => ({
 
 const styles = theme => ({
   header: {
-    position: 'fixed',
+    position: 'sticky',
     top: 0,
     zIndex: theme.header.zindex,
     width: '100%',
-    transition: 'background 0.3s',
   },
   sticky: {
-    background: '#111',
-
     '& $brand': {
       ...miniStyles(theme),
     },
     '& $body': {
+      background: '#111',
       height: theme.header.sticky.height,
     },
     '& $logo': {
@@ -41,11 +38,13 @@ const styles = theme => ({
     },
   },
   body: {
+    position: 'absolute',
+    width: '100%',
     display: 'flex',
     alignItems: 'center',
     height: theme.header.height,
-    padding: [[0, 30]],
-    transition: 'height 0.3s',
+    padding: [[0, 48]],
+    transition: 'height 0.3s, background 0.3s',
   },
   brand: {
     transition: 'transform 0.3s',
@@ -90,10 +89,6 @@ const styles = theme => ({
     zIndex: theme.sidebar.zindex + 1,
     display: 'none',
   },
-  search: {
-    display: 'none',
-    marginLeft: 20,
-  },
   blankItem: {
     marginLeft: 'auto',
   },
@@ -104,14 +99,14 @@ const styles = theme => ({
   linksItem: {
     flexGrow: 0,
     textAlign: 'right',
-    marginLeft: 16,
+    marginLeft: 24,
   },
   link: {
     color: 'white',
     textDecoration: 'none',
     textTransform: 'capitalize',
-    fontWeight: theme.typography.fontWeights.regular,
     fontSize: 16,
+    fontWeight: theme.typography.fontWeights.medium,
 
     '&:hover': {
       textDecoration: 'underline',
@@ -127,6 +122,7 @@ const styles = theme => ({
     },
     body: {
       height: theme.header.mini.height,
+      padding: [[0, 24]],
     },
     burger: {
       display: 'block',
@@ -167,7 +163,6 @@ class Header extends Component {
   static propTypes = {
     classes: PropTypes.shape().isRequired,
     onCloseSidebarButtonClicked: PropTypes.func.isRequired,
-    // onSearchButtonClicked: PropTypes.func.isRequired,
     onOpenSidebarButtonClicked: PropTypes.func.isRequired,
     sidebarOpened: PropTypes.bool,
     width: PropTypes.string.isRequired,
@@ -221,7 +216,6 @@ class Header extends Component {
       width,
       classes,
       sidebarOpened,
-      // onSearchButtonClicked,
       onOpenSidebarButtonClicked,
       onCloseSidebarButtonClicked,
     } = this.props;
@@ -241,7 +235,7 @@ class Header extends Component {
           })}
         />
 
-        <Container className={classes.body}>
+        <div className={classes.body}>
           <div className={classes.brand}>
             <Link className={classes.logo} to="/">
               <img alt="Église Lyon Gerland" src={logo} />
@@ -290,11 +284,7 @@ class Header extends Component {
               rounded
             />
           </button>
-
-          {/* <div className={classes.search}>
-            <SearchButton onClicked={() => onSearchButtonClicked()} />
-          </div> */}
-        </Container>
+        </div>
 
         {isWidthDown('sm', width) && (
           <Sidebar
