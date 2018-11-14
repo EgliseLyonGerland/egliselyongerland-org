@@ -22,7 +22,7 @@ const styles = theme => ({
     justifyContent: 'center',
     zIndex: 5,
     position: 'relative',
-    minHeight: '30vw',
+    height: '30vw',
     maxHeight: 550,
   },
   left: {
@@ -86,6 +86,11 @@ const styles = theme => ({
   button: {
     display: 'inline-block',
     marginRight: 16,
+  },
+  [theme.breakpoints.down('lg')]: {
+    root: {
+      height: 'auto',
+    },
   },
   [theme.breakpoints.between('sm', 'md')]: {
     h2: {
