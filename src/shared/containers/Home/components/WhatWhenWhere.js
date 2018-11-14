@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import { rem, rgba } from 'polished';
-import Plx from 'react-plx';
+import { Parallax } from 'react-scroll-parallax';
 
 import Image from 'components/Image/Image';
 import Hr from 'components/Hr/Hr';
@@ -133,21 +133,6 @@ const styles = theme => ({
   },
 });
 
-const mapParallaxData = [
-  {
-    start: '0',
-    duration: '150vh',
-    properties: [
-      {
-        startValue: 0,
-        endValue: -mapFloodSize,
-        unit: 'px',
-        property: 'translateY',
-      },
-    ],
-  },
-];
-
 const ActionButton = createResponsiveButton(
   { xxs: 'xs', xs: 'sm', md: 'md' },
   'WhatWhenWhereActionButton',
@@ -191,7 +176,13 @@ class WhatWhenWhere extends Component {
         </div>
         <RevealQueue>
           <div className={classes.right}>
-            <Plx className={classes.map} parallaxData={mapParallaxData}>
+            <Parallax
+              className={classes.map}
+              offsetYMax={-20}
+              offsetYMin={0}
+              styleInner={{ height: '100%' }}
+              slowerScrollRate
+            >
               <Image height="100%" src={mapImage} />
               <div
                 className={classes.mapLink}
@@ -202,7 +193,7 @@ class WhatWhenWhere extends Component {
                   Voir le plan
                 </MapButton>
               </div>
-            </Plx>
+            </Parallax>
           </div>
         </RevealQueue>
       </div>

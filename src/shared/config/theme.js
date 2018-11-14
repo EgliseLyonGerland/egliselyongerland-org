@@ -23,7 +23,7 @@ export default {
   },
   typography: {
     useNextVariants: true,
-    fontFamily: '"Open Sans", sans-serif',
+    fontFamily: `'Source Sans Pro', sans-serif`,
     fontSize: 16,
     fontWeight: 400,
     fontWeights: {

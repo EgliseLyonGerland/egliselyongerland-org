@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
-import Plx from 'react-plx';
+import { Parallax, ParallaxBanner } from 'react-scroll-parallax';
 import { rem } from 'polished';
 
 import RevealQueue from 'components/Animation/RevealQueue';
@@ -34,14 +34,6 @@ const styles = ({ palette: { primary }, typography, breakpoints }) => ({
       opacity: 0.9,
       zIndex: 1,
     },
-  },
-  image: {
-    position: 'absolute',
-    width: '100%',
-    height: 'calc(100vh + 200px)',
-    objectFit: 'cover',
-    backfaceVisibility: 'hidden',
-    filter: 'none',
   },
   inner: {
     width: '60%',
@@ -79,46 +71,6 @@ const styles = ({ palette: { primary }, typography, breakpoints }) => ({
   },
 });
 
-const parallaxDataBackground = [
-  {
-    start: 0,
-    end: '100vh',
-    properties: [
-      {
-        startValue: 0,
-        endValue: 40,
-        unit: 'vh',
-        property: 'translateY',
-      },
-    ],
-  },
-];
-
-const parallaxDataInner = [
-  {
-    start: 0,
-    end: '100vh',
-    properties: [
-      {
-        startValue: 0,
-        endValue: 40,
-        property: 'translateY',
-      },
-    ],
-  },
-  {
-    start: 0,
-    end: '50vh',
-    properties: [
-      {
-        startValue: 1,
-        endValue: 0,
-        property: 'opacity',
-      },
-    ],
-  },
-];
-
 const ActionButton = createResponsiveButton(
   { xxs: 'md', sm: 'lg' },
   'JumbotronActionButton',
@@ -144,13 +96,26 @@ const fixHeight = ref => {
 
 const Jumbotron = ({ classes }) => (
   <div ref={fixHeight} className={classes.wrapper}>
-    <Plx
-      className={classes.image}
-      parallaxData={parallaxDataBackground}
-      src={worship}
-      tagName="img"
+    <ParallaxBanner
+      layers={[
+        {
+          image: worship,
+          amount: 0.2,
+          slowerScrollRate: true,
+          expanded: false,
+        },
+      ]}
+      style={{
+        height: '100vh',
+        position: 'absolute',
+      }}
     />
-    <Plx className={classes.inner} parallaxData={parallaxDataInner}>
+    <Parallax
+      className={classes.inner}
+      offsetYMax={50}
+      offsetYMin={-50}
+      slowerScrollRate
+    >
       <RevealQueue>
         {words.map((word, index) => (
           <div key={word} className={classes.words}>
@@ -165,7 +130,7 @@ const Jumbotron = ({ classes }) => (
           </Link>
         </div>
       </RevealQueue>
-    </Plx>
+    </Parallax>
   </div>
 );
 
