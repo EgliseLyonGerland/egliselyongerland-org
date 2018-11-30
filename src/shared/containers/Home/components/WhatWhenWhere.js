@@ -178,10 +178,9 @@ class WhatWhenWhere extends Component {
           <div className={classes.right}>
             <Parallax
               className={classes.map}
-              offsetYMax={-20}
-              offsetYMin={0}
+              offsetYMax={0}
+              offsetYMin={-40}
               styleInner={{ height: '100%' }}
-              slowerScrollRate
             >
               <Image height="100%" src={mapImage} />
               <div

@@ -7,6 +7,13 @@ class RevealQueue extends Component {
 
   static propTypes = {
     children: PropTypes.node.isRequired,
+    delay: PropTypes.number,
+    speed: PropTypes.number,
+  };
+
+  static defaultProps = {
+    delay: 0,
+    speed: 0.5,
   };
 
   state = {
@@ -17,19 +24,29 @@ class RevealQueue extends Component {
     this.handleScroll();
   }
 
-  getTransitionStyle(index) {
+  getDelay(index) {
+    const { delay } = this.props;
     const { display } = this.state;
 
     if (display) {
-      const delay = index * 0.2;
-
-      return `transform .5s ${delay}s, opacity .5s ${delay}s, visibility 0s ${delay}s`;
+      return index * 0.2 + delay;
     }
 
-    const delay = (this.childRefs.length - index) * 0.1;
+    return (this.childRefs.length - index) * 0.1 + delay;
+  }
 
-    return `transform .5s ${delay}s, opacity .5s ${delay}s, visibility 0s ${delay +
-      0.5}s`;
+  getTransitionStyle(index) {
+    const { speed } = this.props;
+    const { display } = this.state;
+
+    const delay = this.getDelay(index);
+    const visibilityDeplay = display ? delay : delay + speed;
+
+    const transform = `transform ${speed}s ${delay}s`;
+    const opacity = `opacity ${speed}s ${delay}s`;
+    const visibility = `visibility ${speed}s ${visibilityDeplay}s`;
+
+    return `${transform}, ${opacity}, ${visibility}`;
   }
 
   handleScroll = () => {

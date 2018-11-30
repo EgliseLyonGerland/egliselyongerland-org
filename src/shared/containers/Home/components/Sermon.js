@@ -33,9 +33,9 @@ const styles = theme => ({
     marginTop: -56,
   },
   ref: {
+    display: 'block',
     fontWeight: theme.typography.fontWeights.bold,
-    letterSpacing: -1,
-    marginRight: 8,
+    fontSize: rem(16),
   },
   title: {
     fontWeight: theme.typography.fontWeights.regular,
@@ -158,15 +158,7 @@ class Sermon extends PureComponent {
     }
 
     const bookId = get(data, ['bibleRefs', 0, 'bookId']);
-    const bookName = get(data, ['bibleRefs', 0, 'bookName']);
     const chapterStart = get(data, ['bibleRefs', 0, 'chapterStart']);
-    const chapterEnd = get(data, ['bibleRefs', 0, 'chapterEnd']);
-
-    let formattedRef = `${bookName} ${chapterStart}`;
-
-    if (chapterEnd !== chapterStart) {
-      formattedRef = `${bookName} ${chapterStart}-${chapterEnd}`;
-    }
 
     return (
       <article className={classnames(classes.root, className)}>
@@ -180,16 +172,16 @@ class Sermon extends PureComponent {
         </NavLink>
 
         <div className={classes.headlines}>
-          <Link
-            className={classes.ref}
-            to={`${routes.blog({
-              book: bookId,
-              chapter: chapterStart,
-            })}`}
-          >
-            {formattedRef}
-          </Link>
-
+          <div className={classes.ref}>
+            <Link
+              to={`${routes.blog({
+                book: bookId,
+                chapter: chapterStart,
+              })}`}
+            >
+              {get(data, ['bibleRefs', 0, 'raw'])}
+            </Link>
+          </div>
           <Link
             className={classes.title}
             dangerouslySetInnerHTML={{ __html: title }}

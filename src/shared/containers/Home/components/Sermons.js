@@ -149,7 +149,7 @@ class Sermons extends Component {
             </RevealQueue>
           </div>
         </div>
-        <RevealQueue>
+        <RevealQueue delay={1}>
           {data.map(sermon => (
             <div key={sermon.id} className={classes.box}>
               <Sermon data={sermon} />
