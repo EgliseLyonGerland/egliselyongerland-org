@@ -183,15 +183,16 @@ class WhatWhenWhere extends Component {
               styleInner={{ height: '100%' }}
             >
               <Image height="100%" src={mapImage} />
-              <div
+              <a
                 className={classes.mapLink}
                 href="https://goo.gl/maps/KqaN3u1ciiR2"
+                rel="noopener noreferrer"
                 target="_blank"
               >
                 <MapButton color="primary" corners="circular">
                   Voir le plan
                 </MapButton>
-              </div>
+              </a>
             </Parallax>
           </div>
         </RevealQueue>
