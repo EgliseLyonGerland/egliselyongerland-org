@@ -57,7 +57,7 @@ const styles = theme => ({
     height: '100%',
     background: rgba('white', 0.3),
     fontSize: 32,
-    fontWeight: 'normal',
+    fontWeight: theme.typography.fontWeights.regular,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',

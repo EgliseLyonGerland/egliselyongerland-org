@@ -11,7 +11,7 @@ import createResponsiveButton from 'utils/createResponsiveButton.hoc';
 
 import worship from '../images/worship.jpg';
 
-const styles = ({ palette: { primary }, typography, breakpoints }) => ({
+const styles = ({ palette: { primary }, breakpoints }) => ({
   wrapper: {
     position: 'relative',
     display: 'flex',
@@ -36,54 +36,43 @@ const styles = ({ palette: { primary }, typography, breakpoints }) => ({
     },
   },
   inner: {
-    width: '60%',
     position: 'relative',
     zIndex: 2,
-    fontSize: rem(60),
-    lineHeight: 1.2,
     margin: [[32, 40]],
     color: 'white',
+    maxWidth: 500,
   },
-  word: {
+  text: {
+    fontSize: rem(60),
+    lineHeight: 1.2,
+    letterSpacing: -1,
     display: 'inline-block',
-    marginRight: 16,
-    fontWeight: typography.fontWeights.medium,
+    margin: [[0, 4]],
   },
   button: {
     marginTop: 32,
   },
   [breakpoints.down('xs')]: {
-    inner: {
-      width: '80%',
+    text: {
+      fontSize: '8.5vmin',
     },
   },
   [breakpoints.down('xxs')]: {
     wrapper: {
       justifyContent: 'flex-start',
     },
-    inner: {
-      width: '100%',
-      fontSize: '11vmin',
-    },
-    word: {
+    text: {
       display: 'block',
+      fontSize: '10vmin',
+      letterSpacing: 'normal',
     },
   },
 });
 
 const ActionButton = createResponsiveButton(
-  { xxs: 'md', sm: 'lg' },
+  { xxs: 'sm', sm: 'lg' },
   'JumbotronActionButton',
 );
-
-const words = [
-  'une',
-  'église',
-  'chrétienne,',
-  'protestante,',
-  'réformée,',
-  'évangélique.',
-];
 
 const fixHeight = ref => {
   if (ref) {
@@ -117,16 +106,15 @@ const Jumbotron = ({ classes }) => (
       slowerScrollRate
     >
       <RevealQueue>
-        {words.map((word, index) => (
-          <div key={word} className={classes.words}>
-            <span style={{ opacity: 1 - index * 0.1 }}>{word}</span>
-          </div>
-        ))}
+        <span className={classes.text}>Une</span>
+        <span className={classes.text}>bonne</span>
+        <span className={classes.text}>nouvelle</span>
+        <span className={classes.text}>à connaitre</span>
+        <span className={classes.text}>et à faire</span>
+        <span className={classes.text}>connaitre.</span>
         <div className={classes.button}>
           <Link to={routes.church()}>
-            <ActionButton color="white" corners="circular">
-              En savoir plus
-            </ActionButton>
+            <ActionButton color="white">En savoir plus</ActionButton>
           </Link>
         </div>
       </RevealQueue>
