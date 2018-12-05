@@ -61,6 +61,9 @@ const styles = ({ palette: { primary }, breakpoints }) => ({
     wrapper: {
       justifyContent: 'flex-start',
     },
+    inner: {
+      marginTop: 64,
+    },
     text: {
       display: 'block',
       fontSize: '10vmin',

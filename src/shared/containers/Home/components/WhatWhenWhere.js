@@ -121,6 +121,9 @@ const styles = theme => ({
     },
   },
   [theme.breakpoints.down('xxs')]: {
+    root: {
+      marginBottom: mapFloodSize / 2,
+    },
     right: {
       margin: 0,
     },
