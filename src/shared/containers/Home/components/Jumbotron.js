@@ -47,7 +47,7 @@ const styles = ({ palette: { primary }, breakpoints }) => ({
     lineHeight: 1.2,
     letterSpacing: -1,
     display: 'inline-block',
-    margin: [[0, 8]],
+    marginRight: 16,
   },
   button: {
     marginTop: 32,
@@ -65,7 +65,7 @@ const styles = ({ palette: { primary }, breakpoints }) => ({
       display: 'block',
       fontSize: '10vmin',
       letterSpacing: 'normal',
-      margin: [[0, 4]],
+      marginRight: 8,
     },
   },
 });
