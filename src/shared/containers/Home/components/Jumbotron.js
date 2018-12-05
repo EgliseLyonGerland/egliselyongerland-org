@@ -47,7 +47,7 @@ const styles = ({ palette: { primary }, breakpoints }) => ({
     lineHeight: 1.2,
     letterSpacing: -1,
     display: 'inline-block',
-    margin: [[0, 4]],
+    margin: [[0, 8]],
   },
   button: {
     marginTop: 32,
@@ -65,6 +65,7 @@ const styles = ({ palette: { primary }, breakpoints }) => ({
       display: 'block',
       fontSize: '10vmin',
       letterSpacing: 'normal',
+      margin: [[0, 4]],
     },
   },
 });
@@ -74,17 +75,8 @@ const ActionButton = createResponsiveButton(
   'JumbotronActionButton',
 );
 
-const fixHeight = ref => {
-  if (ref) {
-    /* eslint-disable no-param-reassign */
-    ref.style.height = `${ref.offsetHeight}px`;
-    ref.style.minHeight = `inherit`;
-    /* eslint-enable no-param-reassign */
-  }
-};
-
 const Jumbotron = ({ classes }) => (
-  <div ref={fixHeight} className={classes.wrapper}>
+  <div className={classes.wrapper}>
     <ParallaxBanner
       layers={[
         {
