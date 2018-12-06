@@ -50,6 +50,10 @@ class RevealQueue extends Component {
   }
 
   handleScroll = () => {
+    if (!this.childRefs[0]) {
+      return;
+    }
+
     const screenHeight = window.screen.height;
     const { top } = this.childRefs[0].getBoundingClientRect();
 
