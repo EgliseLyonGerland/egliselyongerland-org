@@ -8,7 +8,7 @@ const getBonus = str => 1 + 1 / str.length;
 
 const styles = theme => ({
   jumbotron: {
-    background: '#124765',
+    background: theme.palette.primary[500],
     backgroundImage: 'url(/generic-bg.jpg)',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center center',
@@ -33,6 +33,7 @@ const styles = theme => ({
     justifyContent: 'center',
     position: 'relative',
     background: 'rgba(0, 0, 0, 0.2)',
+    minHeight: '50vh',
   },
   emptyRow1: {
     minHeight: theme.header.height,
@@ -55,14 +56,25 @@ const styles = theme => ({
     maxWidth: 790,
     padding: [[0, 20]],
   },
+  '@media (orientation: landscape)': {
+    inner: {
+      minHeight: '70vh',
+    },
+  },
+  '@media (min-height: 700px)': {
+    inner: {
+      minHeight: 540,
+    },
+  },
   [theme.breakpoints.down('sm')]: {
     emptyRow1: {
-      minHeight: theme.header.sticky.height,
+      minHeight: theme.header.sticky.height / 2,
     },
   },
   [theme.breakpoints.down('xs')]: {
     title: {
-      fontSize: 32,
+      fontSize: 24,
+      fontWeight: theme.typography.fontWeights.regular,
     },
     emptyRow3: {
       height: '5vh',

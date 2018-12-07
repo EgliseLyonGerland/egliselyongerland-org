@@ -48,7 +48,7 @@ const styles = theme => ({
   },
   link: {
     display: 'block',
-    fontSize: '8vw',
+    fontSize: '8vmin',
     fontWeight: theme.typography.fontWeights.bold,
     transition: 'transform 0.2s',
     transitionTimingFunction: 'cubic-bezier(0.535, 0.010, 0.265, 1.550)',
