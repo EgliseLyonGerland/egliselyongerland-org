@@ -3,7 +3,7 @@ import Button, { stylesBySize } from 'components/Button/Button';
 import { withStyles } from '@material-ui/core/styles';
 import reduce from 'lodash/reduce';
 
-export default sizes => {
+export default (sizes, displayName = 'ResponsiveButton') => {
   const styles = theme => ({
     ...reduce(
       sizes,
@@ -23,7 +23,7 @@ export default sizes => {
     ),
   });
 
-  @withStyles(styles)
+  @withStyles(styles, { name: displayName })
   class ResponsiveButton extends Component {
     render() {
       return <Button {...this.props} />;

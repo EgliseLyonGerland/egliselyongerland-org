@@ -70,10 +70,13 @@ const styles = theme => ({
   },
 });
 
-const Jumbotron = ({ title, background, classes, children }) => (
+const Jumbotron = ({ background, title, gravity, classes, children }) => (
   <div
     className={classes.jumbotron}
-    style={{ backgroundImage: `url(${background || picture})` }}
+    style={{
+      backgroundImage: `url(${background || picture})`,
+      backgroundPosition: gravity,
+    }}
   >
     <div className={classes.inner}>
       <div className={classes.emptyRow1} />
@@ -96,6 +99,16 @@ Jumbotron.propTypes = {
   background: PropTypes.string,
   children: PropTypes.node,
   classes: PropTypes.shape().isRequired,
+  gravity: PropTypes.oneOf([
+    'top left',
+    'top right',
+    'top center',
+    'bottom left',
+    'bottom right',
+    'bottom center',
+    'center center',
+    'center',
+  ]),
   title: PropTypes.string,
 };
 
@@ -103,6 +116,7 @@ Jumbotron.defaultProps = {
   background: null,
   title: null,
   children: null,
+  gravity: 'center',
 };
 
 export default withStyles(styles)(Jumbotron);

@@ -7,7 +7,7 @@ import { withStyles } from '@material-ui/core/styles';
 import clearFix from 'polished/lib/mixins/clearFix';
 import LazyLoad from 'react-lazyload';
 
-import Image from 'components/Image/Image';
+import BackgroundImage from 'components/Image/BackgroundImage';
 import routes from 'utils/routes';
 
 const styles = theme => ({
@@ -160,7 +160,7 @@ class PostsFeed extends Component {
             <div key={post.id} className={classes.post}>
               <Link className={classes.picture} to={routes.post(post.id)}>
                 <LazyLoad height={130}>
-                  <Image height={130} src={imageUrl} />
+                  <BackgroundImage height={130} src={imageUrl} />
                 </LazyLoad>
               </Link>
 
