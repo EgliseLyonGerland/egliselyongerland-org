@@ -8,6 +8,7 @@ import {
 } from 'react-router-redux';
 import { ReduxAsyncConnect } from 'redux-connect';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { ParallaxProvider } from 'react-scroll-parallax';
 import ReactGA from 'react-ga';
 import Loadable from 'react-loadable';
 
@@ -40,9 +41,11 @@ Loadable.preloadReady().then(() => {
   hydrate(
     <ReduxProvider store={store}>
       <MuiThemeProvider theme={createMuiTheme(theme)}>
-        <Router history={browserHistory}>
-          <ReduxAsyncConnect routes={routes} />
-        </Router>
+        <ParallaxProvider>
+          <Router history={browserHistory}>
+            <ReduxAsyncConnect routes={routes} />
+          </Router>
+        </ParallaxProvider>
       </MuiThemeProvider>
     </ReduxProvider>,
     document.getElementById('app'),

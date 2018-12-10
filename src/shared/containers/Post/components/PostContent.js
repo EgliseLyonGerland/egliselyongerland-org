@@ -29,7 +29,7 @@ const styles = theme => ({
       right: 0,
       height: 100,
       background:
-        'linear-gradient(to top, rgba(252,252,252,1) 0%, rgba(252,252,252,0) 100%)',
+        'linear-gradient(to top, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%)',
     },
 
     '&.full': {

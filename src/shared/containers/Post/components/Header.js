@@ -98,7 +98,10 @@ const renderDate = post => {
   return `le ${format(date, 'D MMMM YYYY', { locale })}`;
 };
 
-const LinkButton = createResponsiveButton({ xxs: 'xxs', xs: 'xs' });
+const LinkButton = createResponsiveButton(
+  { xxs: 'xxs', xs: 'xs' },
+  'PostHeaderLinkButton',
+);
 
 @connect(
   ({ audio }) => ({ audio }),
