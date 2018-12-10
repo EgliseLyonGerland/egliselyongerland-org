@@ -12,8 +12,9 @@ const headings = range(1, 6)
 
 const styles = theme => ({
   root: {
-    fontSize: 20,
-    lineHeight: '38px',
+    fontSize: '1.1rem',
+    fontWeight: theme.typography.fontWeights.regular,
+    lineHeight: '1.5',
     color: '#333',
     padding: [[0, 40]],
     height: 800,
@@ -47,7 +48,7 @@ const styles = theme => ({
 
     '& > p': {
       maxWidth: 630,
-      margin: [[50, 'auto']],
+      margin: [[32, 'auto']],
     },
 
     [headings]: {
@@ -94,15 +95,9 @@ const styles = theme => ({
   [theme.breakpoints.down('xs')]: {
     root: {
       padding: [[0, 20]],
-      fontSize: 18,
-      lineHeight: '30px',
 
       '& > *:first-child': {
         marginTop: 50,
-      },
-
-      '& > p': {
-        margin: [[30, 'auto']],
       },
 
       [headings]: {
