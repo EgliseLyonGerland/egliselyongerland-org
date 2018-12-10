@@ -108,7 +108,7 @@ const Jumbotron = ({ classes }) => (
         <span className={classes.text}>et à faire</span>
         <span className={classes.text}>connaître.</span>
         <div className={classes.button}>
-          <Link to={routes.church()}>
+          <Link to={routes.discover()}>
             <ActionButton color="white">En savoir plus</ActionButton>
           </Link>
         </div>

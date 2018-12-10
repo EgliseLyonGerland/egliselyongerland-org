@@ -109,7 +109,7 @@ const Image = ({
       style={style}
     >
       {lazyload ? (
-        <LazyLoad height="100%" offset={100}>
+        <LazyLoad height="100%" offset={500}>
           {img}
         </LazyLoad>
       ) : (
