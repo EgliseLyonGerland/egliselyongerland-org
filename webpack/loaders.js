@@ -40,12 +40,13 @@ const createStyleLoaders = ({
     ...(include ? { include } : {}),
     use: [
       {
-        loader: 'css-loader/locals',
+        loader: 'css-loader',
         options: {
           camelCase: true,
           importLoaders: 1,
           modules,
           localIdentName: '[name]__[local]--[hash:base64:5]',
+          exportOnlyLocals: true,
         },
       },
       {
