@@ -67,6 +67,15 @@ const routes = [
         }),
       },
       {
+        path: '/decouvrir',
+        exact: true,
+        component: loadable({
+          loader: () =>
+            import(/* webpackChunkName: "discover" */ 'containers/Discover/Discover'),
+          loading: () => null,
+        }),
+      },
+      {
         path: '*',
         component: loadable({
           loader: () =>

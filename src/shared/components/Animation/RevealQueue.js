@@ -8,12 +8,14 @@ class RevealQueue extends Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
     delay: PropTypes.number,
+    offset: PropTypes.number,
     speed: PropTypes.number,
   };
 
   static defaultProps = {
     delay: 0,
     speed: 0.5,
+    offset: 65,
   };
 
   state = {
@@ -54,10 +56,11 @@ class RevealQueue extends Component {
       return;
     }
 
+    const { offset } = this.props;
     const screenHeight = window.screen.height;
     const { top } = this.childRefs[0].getBoundingClientRect();
 
-    if (top < (screenHeight / 3) * 2) {
+    if (top < (screenHeight * offset) / 100) {
       this.show();
     } else {
       this.hide();

@@ -5,13 +5,19 @@ import classnames from 'classnames';
 import clearFix from 'polished/lib/mixins/clearFix';
 
 const styles = theme => ({
-  container: {
+  root: {
     ...clearFix(),
-    marginRight: 'auto',
-    marginLeft: 'auto',
-    paddingLeft: 35,
-    paddingRight: 35,
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  inner: {
+    width: '100%',
     maxWidth: 1200,
+    margin: [[0, 32]],
+    boxSizing: 'content-box',
+  },
+  withPaddings: {
+    padding: 32,
   },
   xs: {
     maxWidth: 500,
@@ -28,31 +34,52 @@ const styles = theme => ({
   xl: {
     maxWidth: 1300,
   },
-  [theme.breakpoints.down('xs')]: {
-    container: {
-      paddingLeft: 25,
-      paddingRight: 25,
+  [theme.breakpoints.down('sm')]: {
+    inner: {
+      margin: [[0, 24]],
+    },
+    withPaddings: {
+      padding: 24,
     },
   },
-  [theme.breakpoints.down('sm')]: {
-    container: {
-      paddingLeft: 15,
-      paddingRight: 15,
+  [theme.breakpoints.down('xs')]: {
+    inner: {
+      margin: [[0, 16]],
     },
+    withPaddings: {
+      padding: 16,
+    },
+  },
+  noMargins: {
+    marginLeft: 0,
+    marginRight: 0,
   },
 });
 
-const Container = ({ children, className, style, classes, ...props }) => {
+const Container = ({
+  children,
+  className,
+  style,
+  classes,
+  noMargins,
+  withPaddings,
+  ...props
+}) => {
   const sizes = ['xs', 'sm', 'md', 'lg', 'xl'];
   const size = sizes.reduce((prev, curr) => (props[curr] ? curr : prev), 'lg');
 
-  // Build new props
-  const newProps = {
-    style,
-    className: classnames(className, classes.container, classes[size]),
-  };
-
-  return <div {...newProps}>{children}</div>;
+  return (
+    <div className={classnames(classes.root, className)} style={style}>
+      <div
+        className={classnames(classes.inner, classes[size], {
+          [classes.noMargins]: noMargins,
+          [classes.withPaddings]: withPaddings,
+        })}
+      >
+        {children}
+      </div>
+    </div>
+  );
 };
 
 Container.propTypes = {
@@ -61,8 +88,10 @@ Container.propTypes = {
   className: PropTypes.string,
   lg: PropTypes.bool,
   md: PropTypes.bool,
+  noMargins: PropTypes.bool,
   sm: PropTypes.bool,
   style: PropTypes.shape(),
+  withPaddings: PropTypes.bool,
   xl: PropTypes.bool,
   xs: PropTypes.bool,
 };
@@ -70,6 +99,8 @@ Container.propTypes = {
 Container.defaultProps = {
   className: null,
   style: null,
+  noMargins: false,
+  withPaddings: false,
   xs: false,
   sm: false,
   md: false,
