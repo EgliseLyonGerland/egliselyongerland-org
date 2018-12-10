@@ -9,6 +9,7 @@ import {
   createMuiTheme,
   createGenerateClassName,
 } from '@material-ui/core/styles';
+import { ParallaxProvider } from 'react-scroll-parallax';
 
 // react-loadable
 import Loadable from 'react-loadable';
@@ -41,9 +42,11 @@ const serverRenderer = () => async (req, res) => {
       <ReduxProvider store={req.store}>
         <JssProvider {...{ registry, generateClassName }}>
           <MuiThemeProvider sheetsManager={new Map()} theme={muiTheme}>
-            <Router context={staticContext} location={req.url}>
-              <ReduxAsyncConnect routes={routes} />
-            </Router>
+            <ParallaxProvider>
+              <Router context={staticContext} location={req.url}>
+                <ReduxAsyncConnect routes={routes} />
+              </Router>
+            </ParallaxProvider>
           </MuiThemeProvider>
         </JssProvider>
       </ReduxProvider>

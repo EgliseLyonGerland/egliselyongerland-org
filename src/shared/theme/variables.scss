@@ -3,16 +3,16 @@ $cyan: #33e0ff;
 $humility: #777;
 
 // Bootstrap Variables
-$text-color: #333;
+$text-color: #444;
 
 $font-size-base: 16px;
 $font-weight-base: 300;
-$font-family-sans-serif: "Source Sans Pro", sans-serif;
+$font-family-sans-serif: 'Source Sans Pro', sans-serif;
 
 // App variables
 
 // -- App
-$app-background: #fcfcfc;
+$app-background: #fff;
 
 // -- Font weights
 $font-weight-thin: 100;
@@ -70,4 +70,4 @@ $post-feed-margin: 36px;
 $post-feed-picture-width: 170px;
 $post-feed-picture-height: 130px;
 
-@import "~bootstrap-sass/assets/stylesheets/bootstrap/_variables";
+@import '~bootstrap-sass/assets/stylesheets/bootstrap/_variables';
