@@ -33,21 +33,19 @@ const routes = [
         exact: true,
         component: Home,
       },
-      ...churchTabs.map(({ slug, component }) => ({
+      {
+        path: `/(${churchTabs.map(({ slug }) => slug).join('|')})`,
         component: loadable({
           loader: () =>
             import(/* webpackChunkName: "church" */ 'containers/Church/Church'),
           loading: () => null,
         }),
-        path: `/${slug}`,
-        routes: [
-          {
-            path: `/${slug}`,
-            component,
-            exact: true,
-          },
-        ],
-      })),
+        routes: churchTabs.map(({ slug, component }) => ({
+          path: `/${slug}`,
+          component,
+          exact: true,
+        })),
+      },
       ...blogRoutes.map(path => ({
         path,
         exact: true,

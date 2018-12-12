@@ -25,9 +25,9 @@ const getTab = slug =>
     churchTabs[0],
   );
 
-const styles = theme => ({
-  tabs: {
-    background: theme.palette.primary[500],
+const styles = {
+  tabsWrapper: {
+    borderBottom: [['#EEE', 'solid', 1]],
   },
   tabsFlexContainer: {
     // Petit hack permettant de contrer le fait que le composant Tabs ne
@@ -42,7 +42,7 @@ const styles = theme => ({
     textTransform: 'none',
     minWidth: 'auto',
   },
-});
+};
 
 @withStyles(styles)
 class Church extends Component {
@@ -80,13 +80,19 @@ class Church extends Component {
           title={currentTab.title}
         />
 
-        <AppBar elevation={0} position="static">
+        <AppBar
+          className={classes.tabsWrapper}
+          color="default"
+          elevation={0}
+          position="static"
+        >
           <Tabs
             classes={{
               flexContainer: classes.tabsFlexContainer,
             }}
-            className={classes.tabs}
+            indicatorColor="primary"
             scrollButtons="off"
+            textColor="primary"
             value={currentTab.slug}
             scrollable
             onChange={this.handleTabChange}
