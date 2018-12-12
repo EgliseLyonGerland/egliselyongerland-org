@@ -213,15 +213,13 @@ class Blog extends Component {
 
     return (
       <div>
-        {map(
-          filters,
-          (filter, name) =>
-            filter ? (
-              <div key={name}>
-                {filter}
-                <Hr lg />
-              </div>
-            ) : null,
+        {map(filters, (filter, name) =>
+          filter ? (
+            <div key={name}>
+              {filter}
+              <Hr lg />
+            </div>
+          ) : null,
         )}
       </div>
     );

@@ -220,23 +220,20 @@ class Header extends Component {
                 </span>
               </Button>
 
-              {__CLIENT__ &&
-                isWidthUp('sm', width) && (
-                  <Button
-                    className={classes.audioAction}
-                    color="white"
-                    corners="circular"
-                    size="md"
-                    onClick={() => window.open(audioUrl)}
-                  >
-                    <Icon>
-                      <CloudDownloadIcon />
-                    </Icon>
-                    <span className={classes.audioActionLabel}>
-                      Télécharger
-                    </span>
-                  </Button>
-                )}
+              {__CLIENT__ && isWidthUp('sm', width) && (
+                <Button
+                  className={classes.audioAction}
+                  color="white"
+                  corners="circular"
+                  size="md"
+                  onClick={() => window.open(audioUrl)}
+                >
+                  <Icon>
+                    <CloudDownloadIcon />
+                  </Icon>
+                  <span className={classes.audioActionLabel}>Télécharger</span>
+                </Button>
+              )}
             </div>
           )}
         </div>

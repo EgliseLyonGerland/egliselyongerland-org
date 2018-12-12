@@ -92,15 +92,14 @@ class LabelPicker extends Component {
           );
         })}
 
-        {crop !== null &&
-          labels.length > crop && (
-            <div
-              className={`${classes.label} ${classes.more}`}
-              onClick={() => this.setState({ opened: !opened })}
-            >
-              <a>Afficher {opened ? 'moins' : 'plus'}</a>
-            </div>
-          )}
+        {crop !== null && labels.length > crop && (
+          <div
+            className={`${classes.label} ${classes.more}`}
+            onClick={() => this.setState({ opened: !opened })}
+          >
+            <a>Afficher {opened ? 'moins' : 'plus'}</a>
+          </div>
+        )}
       </div>
     );
   }
