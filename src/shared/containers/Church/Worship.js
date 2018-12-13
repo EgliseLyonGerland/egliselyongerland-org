@@ -87,13 +87,13 @@ const AboutUs = () => (
           intelligence, foi et respect, le chant des psaumes avec la grâce dans
           le cœur, comme aussi une juste administration et une digne réception
           des sacrements institués par Christ."
-          <Typography color="textSecondary">
+          <Typography color="textSecondary" component="span">
             <em>(Confession de foi de Westminster, article XXI.5)</em>
           </Typography>
         </Typography>
-        <Typography color="inherit" paragraph>
+        <Typography paragraph>
           "Quoi que vous fassiez, faites tout pour la gloire de Dieu."
-          <Typography color="textSecondary">
+          <Typography color="textSecondary" component="span">
             <em>(1 Corinthiens 10.31)</em>
           </Typography>
         </Typography>
