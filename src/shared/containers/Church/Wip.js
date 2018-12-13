@@ -1,18 +1,19 @@
 import React from 'react';
 
 import Container from 'components/Container/Container';
-import Text from 'components/Text/Text';
-import Hr from 'components/Hr/Hr';
+import RevealQueue from 'components/Animation/RevealQueue';
+import Typography from 'components/Typography/Typography';
 
 const Wip = () => (
   <Container md>
-    <Hr xl />
-    <Text align="center" fontSize={3}>
-      Work in progress...
-    </Text>
-    <Hr sm />
-    <Text align="center">Patience, cette page sera bientôt prête !</Text>
-    <Hr xl />
+    <RevealQueue delay={0.2} offset={100}>
+      <Typography align="center" variant="h5" gutterBottom>
+        Work in progress...
+      </Typography>
+      <Typography align="center" color="textSecondary">
+        Patience, cette page sera bientôt prête !
+      </Typography>
+    </RevealQueue>
   </Container>
 );
 
