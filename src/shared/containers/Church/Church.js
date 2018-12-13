@@ -25,7 +25,10 @@ const getTab = slug =>
     churchTabs[0],
   );
 
-const styles = {
+const styles = ({ breakpoints }) => ({
+  inner: {
+    margin: [[88, 0]],
+  },
   tabsWrapper: {
     borderBottom: [['#EEE', 'solid', 1]],
   },
@@ -42,7 +45,12 @@ const styles = {
     textTransform: 'none',
     minWidth: 'auto',
   },
-};
+  [breakpoints.down('xs')]: {
+    inner: {
+      margin: [[40, 0]],
+    },
+  },
+});
 
 @withStyles(styles)
 class Church extends Component {
@@ -72,7 +80,7 @@ class Church extends Component {
     const currentTab = getTab(location.pathname.substr(1));
 
     return (
-      <div>
+      <>
         <Helmet title={currentTab.title} />
         <Jumbotron
           background={currentTab.picture}
@@ -108,8 +116,8 @@ class Church extends Component {
           </Tabs>
         </AppBar>
 
-        {renderRoutes(route.routes)}
-      </div>
+        <div className={classes.inner}>{renderRoutes(route.routes)}</div>
+      </>
     );
   }
 }
