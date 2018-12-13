@@ -20,7 +20,7 @@ import { SheetsRegistry } from 'react-jss/lib/jss';
 import JssProvider from 'react-jss/lib/JssProvider';
 
 import Html from './components/HTML';
-import routes from '../routes';
+import routes from '../shared/config/routes';
 import theme from '../shared/config/theme';
 import stats from '../../build/client/react-loadable.json';
 

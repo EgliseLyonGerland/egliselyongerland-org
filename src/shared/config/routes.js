@@ -3,7 +3,7 @@ import App from 'containers/App/App';
 import Home from 'containers/Home/HomeConnector';
 import Blog from 'containers/Blog/BlogConnector';
 import Post from 'containers/Post/PostConnector';
-import churchTabs from './shared/config/church-tabs';
+import churchTabs from 'config/church-tabs';
 
 const blogRoutes = [
   '/blog',
