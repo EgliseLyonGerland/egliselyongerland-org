@@ -79,58 +79,56 @@ const Discover = ({ classes }) => (
 
     <div className={classes.inner}>
       <RevealQueue delay={0.5} offset={100}>
-        <div>
-          <Container sm>
-            <h2 className={classes.title}>
-              La Bible est un livre <em>extraordinaire</em>
-            </h2>
-            <Typography variant="body1" paragraph>
-              Que l’on soit croyant ou non, le moins qu’on puisse dire, c’est
-              que la Bible est un livre complètement à part dans toute
-              l’histoire de la littérature ! Un livre unique du point de vue de
-              sa composition, de sa distribution, de sa conservation, de son
-              influence…
-            </Typography>
-            <Typography variant="body1" paragraph>
-              Mais si la Bible est un livre extraordinaire, c’est surtout parce
-              qu’elle contient un message extraordinaire. Un message
-              incontournable, même !
-            </Typography>
-          </Container>
-        </div>
-        <div className={classes.imageWrapper}>
-          <Container noMargins>
-            <Image ratio="16/9" src={bibleImage} />
-          </Container>
-        </div>
-        <div className={classes.discoverWrapper}>
-          <Container classes={{ inner: classes.discoverInner }} sm withPaddings>
-            <h2 className={classes.title}>
-              Découvrir <em>la Bible</em>
-            </h2>
-            <Typography variant="body1">
-              À l’Église Lyon Gerland, nous vous proposons de suivre un
-              parcours-découverte qui vous permettra de vous familiariser avec
-              ce « livre à part ».
-            </Typography>
-            <Typography variant="body1">
-              Intéressé(e) ? Faites-le nous savoir !
-            </Typography>
-            <div className={classes.buttonWrapper}>
-              <Link to={routes.contact()}>
-                <Button>Contact</Button>
-              </Link>
-            </div>
-            <Typography variant="body1">
-              Au plaisir de découvrir la Bible ensemble,
-              <br />
-              <br />
-              <b>Alexandre</b>
-              <br />
-              <em>Pasteur</em>
-            </Typography>
-          </Container>
-        </div>
+        <Container sm>
+          <h2 className={classes.title}>
+            La Bible est un livre <em>extraordinaire</em>
+          </h2>
+          <Typography variant="body1" paragraph>
+            Que l’on soit croyant ou non, le moins qu’on puisse dire, c’est que
+            la Bible est un livre complètement à part dans toute l’histoire de
+            la littérature ! Un livre unique du point de vue de sa composition,
+            de sa distribution, de sa conservation, de son influence…
+          </Typography>
+          <Typography variant="body1" paragraph>
+            Mais si la Bible est un livre extraordinaire, c’est surtout parce
+            qu’elle contient un message extraordinaire. Un message
+            incontournable, même !
+          </Typography>
+        </Container>
+        <Container className={classes.imageWrapper} noMargins>
+          <Image ratio="16/9" src={bibleImage} />
+        </Container>
+        <Container
+          classes={{ inner: classes.discoverInner }}
+          className={classes.discoverWrapper}
+          sm
+          withPaddings
+        >
+          <h2 className={classes.title}>
+            Découvrir <em>la Bible</em>
+          </h2>
+          <Typography variant="body1">
+            À l’Église Lyon Gerland, nous vous proposons de suivre un
+            parcours-découverte qui vous permettra de vous familiariser avec ce
+            « livre à part ».
+          </Typography>
+          <Typography variant="body1">
+            Intéressé(e) ? Faites-le nous savoir !
+          </Typography>
+          <div className={classes.buttonWrapper}>
+            <Link to={routes.contact()}>
+              <Button>Contact</Button>
+            </Link>
+          </div>
+          <Typography variant="body1">
+            Au plaisir de découvrir la Bible ensemble,
+            <br />
+            <br />
+            <b>Alexandre</b>
+            <br />
+            <em>Pasteur</em>
+          </Typography>
+        </Container>
       </RevealQueue>
     </div>
   </div>
