@@ -26,7 +26,6 @@ const AboutUs = () => (
           À l’Église Lyon Gerland, la rencontre du dimanche est ouverte à tous,
           et dure 1h30 environ. Nous cherchons à ce que ce rendez-vous soit :
         </Typography>
-
         <Typography component="ul" paragraph>
           <li>
             centré sur Dieu, car c’est lui qui nous invite à lui rendre un culte
@@ -41,13 +40,7 @@ const AboutUs = () => (
             le monde.
           </li>
         </Typography>
-        <Typography paragraph>
-          Une semaine sur deux, un club biblique est proposé aux enfants de 4 à
-          10 ans, pendant le temps de la prédication. Un enseignement tiré de la
-          Bible leur est proposé de façon adaptée à leur âge. Il y a aussi un
-          espace garderie sur place pour les plus jeunes (0-3 ans). Un programme
-          d’éveil à la foi leur est également proposé.
-        </Typography>
+        <Typography paragraph>Que s’y passe-t-il habituellement ?</Typography>
         <Typography component="ul" paragraph>
           <li>
             Nous chantons ensemble des chants d’origine récente ou plus
@@ -77,6 +70,13 @@ const AboutUs = () => (
           </li>
         </Typography>
         <Typography paragraph>
+          Une semaine sur deux, un club biblique est proposé aux enfants de 4 à
+          10 ans, pendant le temps de la prédication. Un enseignement tiré de la
+          Bible leur est proposé de façon adaptée à leur âge. Il y a aussi un
+          espace garderie sur place pour les plus jeunes (0-3 ans). Un programme
+          d’éveil à la foi leur est également proposé.
+        </Typography>
+        <Typography paragraph>
           N’hésitez pas à nous rendre visite un dimanche. Vous êtes les
           bienvenus !
         </Typography>
@@ -91,7 +91,7 @@ const AboutUs = () => (
             <em>(Confession de foi de Westminster, article XXI.5)</em>
           </Typography>
         </Typography>
-        <Typography paragraph>
+        <Typography color="inherit" paragraph>
           "Quoi que vous fassiez, faites tout pour la gloire de Dieu."
           <Typography color="textSecondary">
             <em>(1 Corinthiens 10.31)</em>
