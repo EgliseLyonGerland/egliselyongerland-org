@@ -13,7 +13,7 @@ import ReactGA from 'react-ga';
 import Loadable from 'react-loadable';
 
 import { configureStore } from '../shared/store';
-import routes from '../routes';
+import routes from '../shared/config/routes';
 import ApiClient from '../shared/helpers/ApiClient';
 import theme from '../shared/config/theme';
 
