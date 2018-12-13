@@ -34,7 +34,11 @@ export default [
     slug: 'le-culte',
     title: 'Le culte',
     picture: worshipPicture,
-    component: AsyncChurchWip,
+    component: loadable({
+      loader: () =>
+        import(/* webpackChunkName: "church-worship" */ 'containers/Church/Worship'),
+      loading: () => null,
+    }),
   },
   {
     slug: 'activites',
