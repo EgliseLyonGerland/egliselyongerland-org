@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import EventListener, { withOptions } from 'react-event-listener';
 
@@ -56,9 +57,12 @@ class RevealQueue extends Component {
       return;
     }
 
+    // eslint-disable-next-line react/no-find-dom-node
+    const node = ReactDOM.findDOMNode(this.childRefs[0]);
+
     const { offset } = this.props;
     const screenHeight = window.screen.height;
-    const { top } = this.childRefs[0].getBoundingClientRect();
+    const { top } = node.getBoundingClientRect();
 
     if (top < (screenHeight * offset) / 100) {
       this.show();
