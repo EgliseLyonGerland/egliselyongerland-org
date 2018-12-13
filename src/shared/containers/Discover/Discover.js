@@ -83,13 +83,13 @@ const Discover = ({ classes }) => (
           <h2 className={classes.title}>
             La Bible est un livre <em>extraordinaire</em>
           </h2>
-          <Typography variant="body1" paragraph>
+          <Typography paragraph>
             Que l’on soit croyant ou non, le moins qu’on puisse dire, c’est que
             la Bible est un livre complètement à part dans toute l’histoire de
             la littérature ! Un livre unique du point de vue de sa composition,
             de sa distribution, de sa conservation, de son influence…
           </Typography>
-          <Typography variant="body1" paragraph>
+          <Typography paragraph>
             Mais si la Bible est un livre extraordinaire, c’est surtout parce
             qu’elle contient un message extraordinaire. Un message
             incontournable, même !
@@ -107,20 +107,18 @@ const Discover = ({ classes }) => (
           <h2 className={classes.title}>
             Découvrir <em>la Bible</em>
           </h2>
-          <Typography variant="body1">
+          <Typography>
             À l’Église Lyon Gerland, nous vous proposons de suivre un
             parcours-découverte qui vous permettra de vous familiariser avec ce
             « livre à part ».
           </Typography>
-          <Typography variant="body1">
-            Intéressé(e) ? Faites-le nous savoir !
-          </Typography>
+          <Typography>Intéressé(e) ? Faites-le nous savoir !</Typography>
           <div className={classes.buttonWrapper}>
             <Link to={routes.contact()}>
               <Button>Contact</Button>
             </Link>
           </div>
-          <Typography variant="body1">
+          <Typography>
             Au plaisir de découvrir la Bible ensemble,
             <br />
             <br />

@@ -22,14 +22,14 @@ const AboutUs = () => (
     <Container sm>
       {renderTitle('Notre église est', 'chrétienne.')}
       <Hr />
-      <Typography variant="body1" paragraph>
+      <Typography paragraph>
         Comme son nom l’indique, l’Église chrétienne est la communauté des
         disciples de Jésus-Christ. Cette communauté de croyants s’organise en
         assemblées locales (aussi appelées “paroisses”, ou “églises” avec un “e”
         minuscule), pour célébrer un culte à Dieu, pour s’instruire dans la
         Bible, et pour s’encourager mutuellement dans la foi.
       </Typography>
-      <Typography variant="body1" paragraph>
+      <Typography paragraph>
         En tant que chrétiens, nous affirmons donc notre attachement à
         Jésus-Christ, qui est pleinement homme et pleinement Dieu, et nous le
         reconnaissons comme étant le seul Chef de l’Église. En communion avec
@@ -45,7 +45,7 @@ const AboutUs = () => (
     <Container sm>
       {renderTitle('Notre église est', 'protestante.')}
       <Hr />
-      <Typography variant="body1" paragraph>
+      <Typography paragraph>
         Vers la fin du Moyen-Âge, de plus en plus de chrétiens en Europe ont
         cherché à dénoncer les dérives et les abus de l’Église établie
         (catholique romaine), qui avait vu apparaître en son sein des doctrines
@@ -54,7 +54,7 @@ const AboutUs = () => (
         latin) l’enseignement inaltéré de la Bible, considérée comme révélation
         spéciale, infaillible et suffisante de Dieu.
       </Typography>
-      <Typography variant="body1" paragraph>
+      <Typography paragraph>
         Ce mouvement de réforme a été très influent en Europe au XVIe siècle,
         avant d’être confronté, dans certains pays comme la France, à une
         violente opposition. Notre église s’inscrivant dans la continuité
@@ -69,7 +69,7 @@ const AboutUs = () => (
     <Container sm>
       {renderTitle('Notre église est', 'réformée.')}
       <Hr />
-      <Typography variant="body1" paragraph>
+      <Typography paragraph>
         À l’origine, les églises protestantes étaient appelées “réformées”, car
         elles avaient voulu se “réformer” par un retour aux doctrines et aux
         pratiques enseignées dans la Bible. Au fil du temps, la famille dite
@@ -79,7 +79,7 @@ const AboutUs = () => (
         un lien plus serré (historique ou théologique) avec les premières
         églises protestantes du XVIe siècle.
       </Typography>
-      <Typography variant="body1" paragraph>
+      <Typography paragraph>
         Ainsi, en tant qu’église réformée, nous affirmons notre attachement aux
         principes de la réforme calviniste et aux confessions de foi
         historiques, comme la Confession de foi de La Rochelle (1559), le
@@ -93,7 +93,7 @@ const AboutUs = () => (
     <Container sm>
       {renderTitle('Notre église est', 'évangélique.')}
       <Hr />
-      <Typography variant="body1" paragraph>
+      <Typography paragraph>
         Les églises dites “évangéliques” sont en principe caractérisées par
         l’importance qu’elles accordent à la Bible comme norme de la foi. Elles
         insistent sur la possibilité, et la nécessité, pour chacun d’avoir une
@@ -103,7 +103,7 @@ const AboutUs = () => (
         croix (prenant sur lui le poids des fautes de tous les croyants) et pour
         ressusciter le troisième jour (triomphant ainsi du mal et de la mort).
       </Typography>
-      <Typography variant="body1" paragraph>
+      <Typography paragraph>
         En tant qu’église évangélique, nous affirmons que tous ceux qui se
         confient en Jésus pour le pardon de leurs fautes (appelées “péchés” dans
         la Bible) sont assurément réconciliés avec Dieu pour l’éternité ; nous
