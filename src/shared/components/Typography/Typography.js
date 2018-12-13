@@ -15,6 +15,11 @@ const Typography = ({ classes, ...rest }) => (
 
 Typography.propTypes = {
   classes: PropTypes.shape().isRequired,
+  variant: PropTypes.string,
+};
+
+Typography.defaultProps = {
+  variant: 'body1',
 };
 
 export default withStyles(styles)(Typography);
