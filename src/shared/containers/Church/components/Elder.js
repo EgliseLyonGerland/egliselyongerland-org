@@ -22,7 +22,7 @@ const styles = ({ typography, palette }) => ({
     fontWeight: typography.fontWeights.regular,
     color: palette.primary[500],
     textAlign: 'left',
-    marginBottom: 40,
+    marginBottom: 32,
 
     '&::after': {
       content: '""',
@@ -30,7 +30,7 @@ const styles = ({ typography, palette }) => ({
       width: 90,
       height: 1,
       backgroundColor: palette.primary[500],
-      margin: [[32, 0, 0]],
+      margin: [[24, 0, 0]],
     },
   },
   backgroundWrapper: {},

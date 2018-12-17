@@ -14,7 +14,10 @@ const styles = () => ({});
 const Staff = (/* { classes } */) => (
   <>
     <Elder name="Alexandre Sarran" picture={alexPicture} first>
-      <Typography>
+      <Typography variant="subtitle1">
+        <b>Pasteur</b>
+      </Typography>
+      <Typography paragraph>
         Alexandre est diplômé en musicologie (Université Lumière{' '}
         <span style={{ whiteSpace: 'nowrap' }}>Lyon 2</span>) et en théologie
         (Faculté Jean Calvin, Aix-en-Provence), il éprouve beaucoup de joie à
@@ -28,7 +31,10 @@ const Staff = (/* { classes } */) => (
     </Elder>
     <Hr xl />
     <Elder name="Jonah Haddad" picture={jonahPicture} inverted>
-      <Typography>
+      <Typography variant="subtitle1">
+        <b>Ancien</b>
+      </Typography>
+      <Typography paragraph>
         Jonah a fait des études de philosophie qui l'ont conduit jusqu'à la
         maîtrise, puis il a fait un master en théologie à distance avec la
         Faculté de Théologie Évangélique de Louvain, en Belgique. Il prépare
@@ -42,7 +48,10 @@ const Staff = (/* { classes } */) => (
     </Elder>
     <Hr xl />
     <Elder name="Denis Blum" picture={denisPicture} last>
-      <Typography>
+      <Typography variant="subtitle1">
+        <b>Ancien</b>
+      </Typography>
+      <Typography paragraph>
         Denis est médecin généraliste, parfois en cabinet, parfois aux urgences.
         Il est marié avec Maïlys avec qui il s'occupe du groupe d'ados. Il aime
         étudier la Bible et rendre son message accessible à tous.
