@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import EventListener, { withOptions } from 'react-event-listener';
+import debounce from 'lodash/debounce';
 
 class RevealQueue extends Component {
   childRefs = [];
@@ -23,6 +24,26 @@ class RevealQueue extends Component {
     display: false,
   };
 
+  handleScroll = debounce(() => {
+    if (!this.childRefs[0]) {
+      return;
+    }
+
+    // eslint-disable-next-line react/no-find-dom-node
+    const node = ReactDOM.findDOMNode(this.childRefs[0]);
+
+    const { offset } = this.props;
+    const { display } = this.state;
+    const screenHeight = window.innerHeight;
+    const { top } = node.getBoundingClientRect();
+
+    if (!display && top < (screenHeight * offset) / 100) {
+      this.show();
+    } else if (display && top >= screenHeight) {
+      this.hide();
+    }
+  }, 50);
+
   componentDidMount() {
     this.handleScroll();
   }
@@ -43,26 +64,6 @@ class RevealQueue extends Component {
 
     return `${transform}, ${opacity}, ${visibility}`;
   }
-
-  handleScroll = () => {
-    if (!this.childRefs[0]) {
-      return;
-    }
-
-    // eslint-disable-next-line react/no-find-dom-node
-    const node = ReactDOM.findDOMNode(this.childRefs[0]);
-
-    const { offset } = this.props;
-    const { display } = this.state;
-    const screenHeight = window.innerHeight;
-    const { top } = node.getBoundingClientRect();
-
-    if (!display && top < (screenHeight * offset) / 100) {
-      this.show();
-    } else if (display && top >= screenHeight) {
-      this.hide();
-    }
-  };
 
   show() {
     const { display } = this.state;
