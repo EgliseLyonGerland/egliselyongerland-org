@@ -16,7 +16,7 @@ class RevealQueue extends Component {
   static defaultProps = {
     delay: 0,
     speed: 0.5,
-    offset: 65,
+    offset: 90,
   };
 
   state = {
@@ -61,7 +61,7 @@ class RevealQueue extends Component {
     const node = ReactDOM.findDOMNode(this.childRefs[0]);
 
     const { offset } = this.props;
-    const screenHeight = window.screen.height;
+    const screenHeight = window.innerHeight;
     const { top } = node.getBoundingClientRect();
 
     if (top < (screenHeight * offset) / 100) {
