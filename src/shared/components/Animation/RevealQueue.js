@@ -27,27 +27,19 @@ class RevealQueue extends Component {
     this.handleScroll();
   }
 
-  getDelay(index) {
-    const { delay } = this.props;
+  getTransitionStyle(index) {
+    const { speed, delay } = this.props;
     const { display } = this.state;
 
-    if (display) {
-      return index * 0.2 + delay;
+    if (!display) {
+      return 'none';
     }
 
-    return (this.childRefs.length - index) * 0.1 + delay;
-  }
+    const finalDelay = index * 0.2 + delay;
 
-  getTransitionStyle(index) {
-    const { speed } = this.props;
-    const { display } = this.state;
-
-    const delay = this.getDelay(index);
-    const visibilityDeplay = display ? delay : delay + speed;
-
-    const transform = `transform ${speed}s ${delay}s`;
-    const opacity = `opacity ${speed}s ${delay}s`;
-    const visibility = `visibility ${speed}s ${visibilityDeplay}s`;
+    const transform = `transform ${speed}s ${finalDelay}s`;
+    const opacity = `opacity ${speed}s ${finalDelay}s`;
+    const visibility = `visibility ${speed}s ${finalDelay}s`;
 
     return `${transform}, ${opacity}, ${visibility}`;
   }
@@ -61,12 +53,13 @@ class RevealQueue extends Component {
     const node = ReactDOM.findDOMNode(this.childRefs[0]);
 
     const { offset } = this.props;
+    const { display } = this.state;
     const screenHeight = window.innerHeight;
     const { top } = node.getBoundingClientRect();
 
-    if (top < (screenHeight * offset) / 100) {
+    if (!display && top < (screenHeight * offset) / 100) {
       this.show();
-    } else {
+    } else if (display && top >= screenHeight) {
       this.hide();
     }
   };
