@@ -10,6 +10,7 @@ class RevealQueue extends Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
     delay: PropTypes.number,
+    from: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
     offset: PropTypes.number,
     speed: PropTypes.number,
   };
@@ -18,6 +19,7 @@ class RevealQueue extends Component {
     delay: 0,
     speed: 0.5,
     offset: 90,
+    from: 'top',
   };
 
   state = {
@@ -82,7 +84,7 @@ class RevealQueue extends Component {
   }
 
   render() {
-    const { children } = this.props;
+    const { children, from } = this.props;
     const { display } = this.state;
 
     return (
@@ -94,8 +96,26 @@ class RevealQueue extends Component {
             capture: false,
           })}
         />
-        {React.Children.map(children, (child, index) =>
-          React.cloneElement(child, {
+        {React.Children.map(children, (child, index) => {
+          let transform;
+
+          switch (from) {
+            case 'top':
+              transform = 'translateY(20px)';
+              break;
+            case 'bottom':
+              transform = 'translateY(-20px)';
+              break;
+            case 'left':
+              transform = 'translateX(-20px)';
+              break;
+            case 'right':
+              transform = 'translateX(20px)';
+              break;
+            default:
+          }
+
+          return React.cloneElement(child, {
             ...child.props,
             ref: ref => {
               this.childRefs[index] = ref;
@@ -103,11 +123,11 @@ class RevealQueue extends Component {
             style: {
               transition: this.getTransitionStyle(index),
               visibility: display ? 'visible' : 'hidden',
-              transform: display ? 'none' : 'translateY(20px)',
+              transform: display ? 'none' : transform,
               opacity: display ? 1 : 0,
             },
-          }),
-        )}
+          });
+        })}
       </>
     );
   }
