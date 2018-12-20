@@ -16,7 +16,7 @@ const Staff = () => (
       <Typography paragraph>
         Je suis diplômé en musicologie (Université Lumière{' '}
         <span style={{ whiteSpace: 'nowrap' }}>Lyon 2</span>) et en théologie
-        (Faculté Jean Calvin, Aix-en-Provence), j'éprouve beaucoup de joie à
+        (Faculté Jean Calvin, Aix-en-Provence). J'éprouve beaucoup de joie à
         étudier la Bible et à en partager le message avec d'autres.
       </Typography>
       <Typography>
@@ -31,7 +31,7 @@ const Staff = () => (
       <Typography paragraph>
         J'ai fait des études de philosophie qui m'ont conduit jusqu'à la
         maîtrise, puis j'ai fait un master en théologie à distance avec la
-        Faculté de Théologie Évangélique de Louvain, en Belgique. je prépare
+        Faculté de Théologie Évangélique de Louvain, en Belgique. Je prépare
         maintenant un doctorat.
       </Typography>
       <Typography>
@@ -46,7 +46,7 @@ const Staff = () => (
       </Typography>
       <Typography paragraph>
         Je suis médecin généraliste, parfois en cabinet, parfois aux urgences.
-        Je suis marié avec Maïlys avec qui je m'occupe du groupe d'ados. j'aime
+        Je suis marié avec Maïlys avec qui je m'occupe du groupe d'ados. J'aime
         étudier la Bible et rendre son message accessible à tous.
       </Typography>
       <Typography>
