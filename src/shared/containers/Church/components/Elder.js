@@ -69,7 +69,7 @@ const styles = ({ typography, palette, breakpoints }) => ({
       marginLeft: 40,
     },
   },
-  [breakpoints.down('xxs')]: {
+  [breakpoints.down('xs')]: {
     inverted: {},
     inner: {
       flexDirection: 'column',
@@ -81,6 +81,7 @@ const styles = ({ typography, palette, breakpoints }) => ({
     },
     pictureWrapper: {
       width: '100%',
+      maxWidth: 460,
       margin: 0,
 
       '$inverted &': {
@@ -88,10 +89,21 @@ const styles = ({ typography, palette, breakpoints }) => ({
       },
     },
     textWrapper: {
+      position: 'relative',
       padding: 32,
+      marginTop: -100,
+      zIndex: 1,
     },
     title: {
       fontSize: rem(24),
+      background: 'white',
+      padding: 32,
+      margin: [[-32, -32, 0]],
+      width: 280,
+
+      '$inverted &': {
+        background: '#F7F7F7',
+      },
     },
   },
 });
@@ -133,7 +145,6 @@ class Elder extends Component {
           [classes.last]: last,
         })}
         md
-        noMargins
       >
         {inverted && (
           <Parallax
