@@ -1,17 +1,13 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
 
 import Typography from 'components/Typography/Typography';
-import Hr from 'components/Hr/Hr';
 import Elder from './components/Elder';
 
 import alexPicture from './images/alex.jpg';
 import denisPicture from './images/denis.jpg';
 import jonahPicture from './images/jonah.jpg';
 
-const styles = () => ({});
-
-const Staff = (/* { classes } */) => (
+const Staff = () => (
   <>
     <Elder name="Alexandre Sarran" picture={alexPicture} first>
       <Typography variant="subtitle1">
@@ -24,12 +20,11 @@ const Staff = (/* { classes } */) => (
         étudier la Bible et à en partager le message avec d'autres. Ses
         passe-temps favoris ?
       </Typography>
-      <Typography paragraph>
+      <Typography>
         L'escalade, la randonnée, ou le ski ! Alexandre est le mari (privilégié)
         de Suzanne, et le père (débordé) de six enfants.
       </Typography>
     </Elder>
-    <Hr xl />
     <Elder name="Jonah Haddad" picture={jonahPicture} inverted>
       <Typography variant="subtitle1">
         <b>Ancien</b>
@@ -40,13 +35,12 @@ const Staff = (/* { classes } */) => (
         Faculté de Théologie Évangélique de Louvain, en Belgique. Il prépare
         maintenant un doctorat.
       </Typography>
-      <Typography paragraph>
+      <Typography>
         Jonah est le mari d'Amy, avec qui il a quatre enfants. Il aime étudier,
         prêcher à l’église, et dans son temps libre, faire du sport. Jonah a un
         petit faible pour les randonnées dans la nature.
       </Typography>
     </Elder>
-    <Hr xl />
     <Elder name="Denis Blum" picture={denisPicture} last>
       <Typography variant="subtitle1">
         <b>Ancien</b>
@@ -56,7 +50,7 @@ const Staff = (/* { classes } */) => (
         Il est marié avec Maïlys avec qui il s'occupe du groupe d'ados. Il aime
         étudier la Bible et rendre son message accessible à tous.
       </Typography>
-      <Typography paragraph>
+      <Typography>
         Il aime aussi beaucoup la montagne. Il n'est pas rare qu'entre deux
         gardes, Denis enfile vite ses chaussons d'escalade et aille grimper !
       </Typography>
@@ -64,4 +58,4 @@ const Staff = (/* { classes } */) => (
   </>
 );
 
-export default withStyles(styles)(Staff);
+export default Staff;

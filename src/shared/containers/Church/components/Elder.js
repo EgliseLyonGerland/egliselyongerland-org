@@ -9,7 +9,7 @@ import Container from 'components/Container/Container';
 import Image from 'components/Image/Image';
 import RevealQueue from 'components/Animation/RevealQueue';
 
-const styles = ({ typography, palette }) => ({
+const styles = ({ typography, palette, breakpoints }) => ({
   root: {
     position: 'relative',
   },
@@ -69,6 +69,31 @@ const styles = ({ typography, palette }) => ({
       marginLeft: 40,
     },
   },
+  [breakpoints.down('xxs')]: {
+    inverted: {},
+    inner: {
+      flexDirection: 'column',
+      margin: [[32, 0]],
+
+      '$inverted &': {
+        flexDirection: 'column',
+      },
+    },
+    pictureWrapper: {
+      width: '100%',
+      margin: 0,
+
+      '$inverted &': {
+        marginLeft: 0,
+      },
+    },
+    textWrapper: {
+      padding: 32,
+    },
+    title: {
+      fontSize: rem(24),
+    },
+  },
 });
 
 @withStyles(styles)
@@ -108,6 +133,7 @@ class Elder extends Component {
           [classes.last]: last,
         })}
         md
+        noMargins
       >
         {inverted && (
           <Parallax
@@ -138,7 +164,7 @@ class Elder extends Component {
               <Image ratio="3/4" src={picture} />
             </div>
           </RevealQueue>
-          <div>
+          <div className={classes.textWrapper}>
             <RevealQueue delay={0.5}>
               <div className={classes.title}>{name}</div>
               {children}
