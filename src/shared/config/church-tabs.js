@@ -1,11 +1,11 @@
 import loadable from 'react-loadable';
 
-import aboutUsPicture from 'containers/Church/jumbotrons/about-us.jpg';
-import activityPicture from 'containers/Church/jumbotrons/activity.jpg';
-import ourFaithPicture from 'containers/Church/jumbotrons/our-faith.jpg';
-import worshipPicture from 'containers/Church/jumbotrons/worship.jpg';
-import teamPicture from 'containers/Church/jumbotrons/team.jpg';
-import federativeLinksPicture from 'containers/Church/jumbotrons/federative-links.jpg';
+import aboutUsPicture from 'containers/Church/images/jumbotrons/about-us.jpg';
+import activityPicture from 'containers/Church/images/jumbotrons/activity.jpg';
+import ourFaithPicture from 'containers/Church/images/jumbotrons/our-faith.jpg';
+import worshipPicture from 'containers/Church/images/jumbotrons/worship.jpg';
+import teamPicture from 'containers/Church/images/jumbotrons/team.jpg';
+import federativeLinksPicture from 'containers/Church/images/jumbotrons/federative-links.jpg';
 
 const AsyncChurchWip = loadable({
   loader: () =>
@@ -50,7 +50,11 @@ export default [
     slug: 'l-equipe',
     title: "L'équipe",
     picture: teamPicture,
-    component: AsyncChurchWip,
+    component: loadable({
+      loader: () =>
+        import(/* webpackChunkName: "church-staff" */ 'containers/Church/Staff'),
+      loading: () => null,
+    }),
   },
   {
     slug: 'liens-federatifs',

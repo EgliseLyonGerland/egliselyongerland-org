@@ -78,7 +78,7 @@ const Discover = ({ classes }) => (
     <Jumbotron background={jumbotronImage} title={title} />
 
     <div className={classes.inner}>
-      <RevealQueue delay={0.5} offset={100}>
+      <RevealQueue delay={0.5}>
         <Container sm>
           <h2 className={classes.title}>
             La Bible est un livre <em>extraordinaire</em>

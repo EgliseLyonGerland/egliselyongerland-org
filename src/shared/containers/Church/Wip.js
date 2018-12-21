@@ -6,7 +6,7 @@ import Typography from 'components/Typography/Typography';
 
 const Wip = () => (
   <Container md>
-    <RevealQueue delay={0.2} offset={100}>
+    <RevealQueue delay={0.2}>
       <Typography align="center" variant="h5" gutterBottom>
         Work in progress...
       </Typography>
