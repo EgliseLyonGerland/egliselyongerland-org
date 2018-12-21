@@ -44,6 +44,11 @@ const styles = {
       paddingBottom: '75%',
     },
   },
+  ratio34: {
+    '&:before': {
+      paddingBottom: '125%',
+    },
+  },
   ratio169: {
     '&:before': {
       paddingBottom: '52.25%',
@@ -126,7 +131,7 @@ Image.propTypes = {
   height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   lazyload: PropTypes.bool,
   lazyloadBackground: PropTypes.string,
-  ratio: PropTypes.oneOf(['16/9', '4/3', '1/1']),
+  ratio: PropTypes.oneOf(['16/9', '4/3', '3/4', '1/1']),
   src: PropTypes.string,
   srcset: PropTypes.string,
   title: PropTypes.string,

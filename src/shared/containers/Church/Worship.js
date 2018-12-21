@@ -5,7 +5,7 @@ import Typography from 'components/Typography/Typography';
 import RevealQueue from 'components/Animation/RevealQueue';
 
 const Worship = () => (
-  <RevealQueue delay={0.2} offset={100}>
+  <RevealQueue delay={0.2}>
     <Container sm>
       <Typography>
         Le culte chrétien, dans la Bible, désigne avant tout une entière
