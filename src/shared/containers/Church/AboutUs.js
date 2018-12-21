@@ -17,7 +17,7 @@ const renderTitle = (prefix, suffix) => (
 );
 
 const AboutUs = () => (
-  <RevealQueue delay={0.2} offset={100}>
+  <RevealQueue delay={0.2}>
     <Container sm>
       {renderTitle('Notre église est', 'chrétienne.')}
       <Hr />
@@ -37,9 +37,8 @@ const AboutUs = () => (
         sont notamment le Crédo (ou “Symbole des Apôtres”), le Symbole de Nicée,
         et le Symbole dit “d’Athanase”.
       </Typography>
+      <Hr xl />
     </Container>
-
-    <Hr xl />
 
     <Container sm>
       {renderTitle('Notre église est', 'protestante.')}
@@ -61,9 +60,8 @@ const AboutUs = () => (
         attachement à la Bible comme ultime autorité en matière de foi et de
         vie.
       </Typography>
+      <Hr xl />
     </Container>
-
-    <Hr xl />
 
     <Container sm>
       {renderTitle('Notre église est', 'réformée.')}
@@ -85,9 +83,8 @@ const AboutUs = () => (
         Catéchisme de Heidelberg (1563), les Canons de Dordrecht (1619), et
         particulièrement la Confession de foi de Westminster (1647).
       </Typography>
+      <Hr xl />
     </Container>
-
-    <Hr xl />
 
     <Container sm>
       {renderTitle('Notre église est', 'évangélique.')}
