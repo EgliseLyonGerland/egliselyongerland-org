@@ -1,16 +1,44 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
 
 import Container from 'components/Container/Container';
 import Typography from 'components/Typography/Typography';
 import RevealQueue from 'components/Animation/RevealQueue';
 
-const Worship = () => (
+const styles = ({ typography, palette, breakpoints }) => ({
+  quote: {
+    fontWeight: typography.fontWeights.regular,
+    fontStyle: 'italic',
+    color: palette.text.primary,
+    fontSize: 32,
+    lineHeight: 1.3,
+    textAlign: 'center',
+  },
+  quoteAuthor: {
+    display: 'inline-block',
+    color: palette.text.hint,
+    fontSize: 20,
+  },
+  [breakpoints.down('xxs')]: {
+    quote: {
+      fontSize: 22,
+    },
+    quoteAuthor: {
+      fontSize: 18,
+    },
+  },
+});
+
+const Worship = ({ classes }) => (
   <Container sm>
     <RevealQueue delay={0.2}>
-      <Typography>
+      <Typography className={classes.quote}>
         « Le but principal de la vie de l’homme est de glorifier Dieu et de
-        trouver en lui son bonheur éternel. » (Petit Catéchisme de Westminster,
-        question 1)
+        trouver en lui son bonheur éternel. »{' '}
+        <span className={classes.quoteAuthor}>
+          — Petit Catéchisme de Westminster
+        </span>
       </Typography>
       <Typography paragraph>
         La Déclaration de foi du Conseil National des Évangéliques de France
@@ -82,4 +110,8 @@ const Worship = () => (
   </Container>
 );
 
-export default Worship;
+Worship.propTypes = {
+  classes: PropTypes.shape().isRequired,
+};
+
+export default withStyles(styles)(Worship);
