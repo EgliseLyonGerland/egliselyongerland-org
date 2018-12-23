@@ -17,7 +17,8 @@ const app = express();
 
 // if (process.env.NODE_ENV === "development") {
 app.use(express.static('static'));
-app.use('/static', express.static('static'));
+app.use(paths.publicPath, express.static('static'));
+app.use(paths.publicPath, express.static(paths.clientBuild));
 // }
 
 app.use(cors());
