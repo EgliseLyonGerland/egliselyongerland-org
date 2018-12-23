@@ -5,8 +5,8 @@ import Typography from 'components/Typography/Typography';
 import RevealQueue from 'components/Animation/RevealQueue';
 
 const Worship = () => (
-  <RevealQueue delay={0.2}>
-    <Container sm>
+  <Container sm>
+    <RevealQueue delay={0.2}>
       <Typography>
         « Le but principal de la vie de l’homme est de glorifier Dieu et de
         trouver en lui son bonheur éternel. » (Petit Catéchisme de Westminster,
@@ -78,8 +78,8 @@ const Worship = () => (
           Télécharger la confession de foi de Westminster
         </a>
       </Typography>
-    </Container>
-  </RevealQueue>
+    </RevealQueue>
+  </Container>
 );
 
 export default Worship;
