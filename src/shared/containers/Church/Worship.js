@@ -5,8 +5,8 @@ import Typography from 'components/Typography/Typography';
 import RevealQueue from 'components/Animation/RevealQueue';
 
 const Worship = () => (
-  <RevealQueue delay={0.2}>
-    <Container sm>
+  <Container sm>
+    <RevealQueue delay={0.2}>
       <Typography>
         Le culte chrétien, dans la Bible, désigne avant tout une entière
         consécration à Dieu. Rendre un culte à Dieu, c’est chercher à le
@@ -91,8 +91,8 @@ const Worship = () => (
           <em>(1 Corinthiens 10.31)</em>
         </Typography>
       </Typography>
-    </Container>
-  </RevealQueue>
+    </RevealQueue>
+  </Container>
 );
 
 export default Worship;
