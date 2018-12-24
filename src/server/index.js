@@ -16,10 +16,9 @@ require('dotenv').config();
 const app = express();
 
 // if (process.env.NODE_ENV === "development") {
+app.use(express.static('static'));
+app.use(paths.publicPath, express.static('static'));
 app.use(paths.publicPath, express.static(paths.clientBuild));
-app.use('/favicon.ico', (req, res) => {
-  res.send('');
-});
 // }
 
 app.use(cors());
