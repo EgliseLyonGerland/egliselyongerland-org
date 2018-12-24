@@ -34,27 +34,26 @@ const Worship = ({ classes }) => (
   <Container sm>
     <RevealQueue delay={0.2}>
       <Typography className={classes.quote}>
-        « Le but principal de la vie de l’homme est de glorifier Dieu et de
-        trouver en lui son bonheur éternel. »{' '}
+        « Le but principal de la vie de l'homme est de glorifier Dieu et de
+        trouver en lui son bonheur éternel. »
         <span className={classes.quoteAuthor}>
           — Petit Catéchisme de Westminster
         </span>
       </Typography>
       <Typography paragraph>
-        La Déclaration de foi du Conseil National des Évangéliques de France
+        La Déclaration de foi du Conseil National des Évangéliques de France
         résume bien les éléments essentiels de la foi chrétienne :
       </Typography>
       <Typography component="div" italic>
         <Typography gutterBottom>« Nous croyons :</Typography>
         <Typography component="ul" gutterBottom>
           <li>
-            Que l’Écriture Sainte est la Parole infaillible de Dieu, autorité
+            Que l'Écriture Sainte est la Parole infaillible de Dieu, autorité
             souveraine en matière de foi et de vie.
           </li>
         </Typography>
         <Typography component="ul" gutterBottom>
           <li>
-            {' '}
             En un seul Dieu, Père, Fils et Saint-Esprit de toute éternité.
           </li>
         </Typography>
@@ -69,33 +68,33 @@ const Worship = ({ classes }) => (
         </Typography>
         <Typography component="ul" gutterBottom>
           <li>
-            Au salut de l’homme pécheur et perdu, à sa justification, non par
+            Au salut de l'homme pécheur et perdu, à sa justification, non par
             les œuvres mais par la seule foi, grâce au sang versé par
             Jésus-Christ notre Seigneur, à sa régénération par le Saint-Esprit.
           </li>
         </Typography>
         <Typography component="ul" gutterBottom>
           <li>
-            En l’Esprit-Saint qui, venant demeurer en nous, nous donne le
+            En l'Esprit-Saint qui, venant demeurer en nous, nous donne le
             pouvoir de servir Jésus-Christ, de vivre une vie sainte et de rendre
             témoignage.
           </li>
         </Typography>
         <Typography component="ul" gutterBottom>
           <li>
-            À l’unité véritable dans le Saint-Esprit de tous les croyants
-            formant ensemble l’Église Universelle, corps du Christ.
+            À l'unité véritable dans le Saint-Esprit de tous les croyants
+            formant ensemble l'Église Universelle, corps du Christ.
           </li>
         </Typography>
         <Typography component="ul" gutterBottom>
           <li>
-            À la résurrection de tous : ceux qui sont perdus ressusciteront pour
+            À la résurrection de tous : ceux qui sont perdus ressusciteront pour
             le jugement, ceux qui sont sauvés ressusciteront pour la vie. »
           </li>
         </Typography>
       </Typography>
       <Typography paragraph>
-        Par ailleurs, en tant qu’église réformée, nous nous inscrivons dans la
+        Par ailleurs, en tant qu'église réformée, nous nous inscrivons dans la
         lignée historique et théologique des premiers protestants. Nous
         considérons que la Confession de foi de Westminster en particulier, et
         le Petit Catéchisme de Westminster (1647), présentent une bonne synthèse
