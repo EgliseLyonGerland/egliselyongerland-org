@@ -61,23 +61,6 @@ const styles = theme => ({
       height: theme.header.logo.height,
     },
   },
-  betaMark: {
-    display: 'block',
-    background: '#e83c3c',
-    borderRadius: 3,
-    color: 'white',
-    padding: [[2, 4]],
-    position: 'absolute',
-    left: theme.header.logo.height - 16,
-    top: 0,
-    fontSize: 9,
-    fontWeight: theme.typography.fontWeights.medium,
-    lineHeight: '1em',
-    width: 30,
-    textAlign: 'center',
-    cursor: 'default',
-    textTransform: 'uppercase',
-  },
   title: {},
   titleImg: {
     height: theme.header.brand.height,
@@ -248,13 +231,6 @@ class Header extends Component {
                 src={brand}
               />
             </Link>
-
-            <div
-              className={classes.betaMark}
-              title="Ce site internet est en cours de perfectionnement. Il se peut que vous rencontriez des problèmes au cours de votre navigation et nous vous prions de nous en excuser."
-            >
-              beta
-            </div>
           </div>
 
           <div className={classes.blankItem} />
