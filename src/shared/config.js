@@ -33,7 +33,7 @@ module.exports = Object.assign(
           { property: 'og:site_name', content: defaultTitle },
           {
             property: 'og:image',
-            content: '/images/og-image.jpg',
+            content: '/static/og-image.jpg',
           },
           { property: 'og:locale', content: 'fr_FR' },
           { property: 'og:title', content: defaultTitle },
