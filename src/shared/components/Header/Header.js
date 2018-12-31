@@ -77,6 +77,7 @@ const styles = theme => ({
   },
   links: {
     display: 'flex',
+    color: 'white',
     flexGrow: 0,
   },
   linksItem: {
@@ -85,18 +86,37 @@ const styles = theme => ({
     marginLeft: 24,
   },
   link: {
-    color: 'white',
+    position: 'relative',
     textDecoration: 'none',
     textTransform: 'capitalize',
     fontSize: 16,
     fontWeight: theme.typography.fontWeights.medium,
+    color: 'inherit',
 
-    '&:hover': {
-      textDecoration: 'underline',
+    '&:after': {
+      position: 'absolute',
+      content: '""',
+      left: 0,
+      bottom: -8,
+      width: '100%',
+      height: 2,
+      background: 'white',
+      transition: 'transform .2s',
+      transform: 'scale(0, 1)',
+      transformOrigin: 'center',
     },
-    '&:focus, &:visited': {
-      color: 'white',
+
+    '&:focus, &:visited, &:hover': {
+      color: 'inherit',
       textDecoration: 'none',
+    },
+
+    [theme.mixins.withHover]: {
+      '&:hover': {
+        '&:after': {
+          transform: 'none',
+        },
+      },
     },
   },
   [theme.breakpoints.down('sm')]: {
