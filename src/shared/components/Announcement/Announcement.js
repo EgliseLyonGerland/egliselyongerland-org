@@ -19,6 +19,11 @@ const styles = theme => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    overflowY: 'auto',
+  },
+  inner: {
+    margin: 'auto',
+    padding: [[24, 0]],
   },
   addressWrapper: {
     position: 'relative',
@@ -43,43 +48,50 @@ const styles = theme => ({
 
 const Announcement = ({ classes, onCloseButtonClicked }) => (
   <div className={classes.root}>
-    <Container xs>
-      <RevealQueue delay={0.2}>
-        <Typography color="primary" variant="h4">
-          Changement important !
-        </Typography>
-        <Typography component="div" paragraph bold>
-          <Typography bold gutterBottom>
-            Le culte du dimanche 24 février aura lieu exceptionnellement à 10h,
-            dans la salle de conférence de l’hôtel Novotel de Gerland.
+    <div className={classes.inner}>
+      <Container xs>
+        <RevealQueue delay={0.2}>
+          <Typography color="primary" variant="h5">
+            Changement important !
           </Typography>
-          <Typography>
-            À noter : il n’y aura pas de culte l’après- midi, à 17h, à l’adresse
-            habituelle !
+          <Typography bold component="div" paragraph>
+            <Typography bold gutterBottom>
+              Le culte du dimanche 24 février aura lieu exceptionnellement à
+              10h, dans la salle de conférence de l’hôtel Novotel de Gerland.
+            </Typography>
+            <Typography>
+              À noter : il n’y aura pas de culte l’après- midi, à 17h, à
+              l’adresse habituelle !
+            </Typography>
           </Typography>
-        </Typography>
-        <div className={classes.addressWrapper}>
-          <Typography bold gutterBottom>
-            Adresse :
-          </Typography>
-          <Typography gutterBottom>
-            70 avenue Leclerc <br />
-            Lyon 7ème
-          </Typography>
-          <Typography paragraph />
-          <Typography bold gutterBottom>
-            Accès :
-          </Typography>
-          <Typography component="ul" gutterBottom>
-            <li>Tram T1 arrêt Halle Tony Garnier.</li>
-            <li>En voiture, se garer au parking de l’hôtel.</li>
-          </Typography>
-        </div>
-        <div className={classes.buttonWrapper}>
-          <Button onClick={() => onCloseButtonClicked()}>J'ai compris !</Button>
-        </div>
-      </RevealQueue>
-    </Container>
+          <div className={classes.addressWrapper}>
+            <Typography bold gutterBottom>
+              Adresse :
+            </Typography>
+            <Typography gutterBottom>
+              70 avenue Leclerc <br />
+              Lyon 7ème
+            </Typography>
+            <Typography paragraph />
+            <Typography bold gutterBottom>
+              Accès :
+            </Typography>
+            <Typography component="ul" gutterBottom>
+              <li>Tram T1 arrêt Halle Tony Garnier.</li>
+              <li>Bus C22 arrêt Halle Tony Garnier.</li>
+              <li>Bus C7 arrêt Halle Tony Garnier.</li>
+              <li>Bus 60 arrêt Leclerc Girard.</li>
+              <li>En voiture, se garer au parking de l’hôtel.</li>
+            </Typography>
+          </div>
+          <div className={classes.buttonWrapper}>
+            <Button onClick={() => onCloseButtonClicked()}>
+              J'ai compris !
+            </Button>
+          </div>
+        </RevealQueue>
+      </Container>
+    </div>
   </div>
 );
 
