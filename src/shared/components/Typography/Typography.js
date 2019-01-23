@@ -4,24 +4,31 @@ import MuiTypography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import classnames from 'classnames';
 
-const styles = {
+const styles = theme => ({
   paragraph: {
     margin: [[32, 0]],
   },
   italic: {
     fontStyle: 'italic',
   },
-};
+  bold: {
+    fontWeight: theme.typography.fontWeights.medium,
+  },
+});
 
-const Typography = ({ classes, italic, ...rest }) => (
+const Typography = ({ classes, italic, bold, ...rest }) => (
   <MuiTypography
     classes={{ paragraph: classes.paragraph }}
-    className={classnames({ [classes.italic]: italic })}
+    className={classnames({
+      [classes.italic]: italic,
+      [classes.bold]: bold,
+    })}
     {...rest}
   />
 );
 
 Typography.propTypes = {
+  bold: PropTypes.bool,
   classes: PropTypes.shape().isRequired,
   italic: PropTypes.bool,
   variant: PropTypes.string,
@@ -30,6 +37,7 @@ Typography.propTypes = {
 Typography.defaultProps = {
   variant: 'body1',
   italic: false,
+  bold: false,
 };
 
 export default withStyles(styles)(Typography);

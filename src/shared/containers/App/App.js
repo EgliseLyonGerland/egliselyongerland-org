@@ -5,24 +5,36 @@ import { connect } from 'react-redux';
 import { TransitionMotion, spring, presets } from 'react-motion';
 import { withStyles } from '@material-ui/core/styles';
 import { renderRoutes } from 'react-router-config';
+import classnames from 'classnames';
 
-import * as searchbarActions from 'store/actions/searchbar';
-import * as sidebarActions from 'store/actions/sidebar';
+import { openSidebar, closeSidebar } from 'store/actions/sidebar';
+import {
+  closeAnnouncement,
+  openAnnouncement,
+} from 'store/actions/announcement';
 import { closeAudio, pauseAudio } from 'store/actions/audio';
 import Header from 'components/Header/Header';
 import Footer from 'components/Footer/Footer';
 import Overlay from 'components/Overlay/Overlay';
 import AudioPlayer from 'components/AudioPlayer/AudioPlayer';
 import ScrollToTop from 'components/Scroll/ScrollToTop';
+import Announcement from 'components/Announcement/Announcement';
 
-import config from '../../config';
+import config from 'config';
 
 import 'url-search-params-polyfill';
 
-import '../../theme/bootstrap.scss';
-import '../../theme/base.scss';
+import 'theme/bootstrap.scss';
+import 'theme/base.scss';
 
 const styles = theme => ({
+  root: {
+    paddingBottom: theme.footer.height + 55,
+  },
+  noScroll: {
+    height: '100vh',
+    overflow: 'hidden',
+  },
   player: {
     position: 'fixed',
     width: '100%',
@@ -42,23 +54,35 @@ const styles = theme => ({
 const mapStateToProps = state => ({
   overlay: state.overlay,
   audio: state.audio,
-  // isSearchbarOpened: state.searchbar.opened,
   isSidebarOpened: state.sidebar.opened,
+  announcementOpened: state.announcement.opened,
+  announcementOpenCount: state.announcement.count,
 });
 
 const mapDispatchToProps = {
-  ...searchbarActions,
-  ...sidebarActions,
+  openSidebarAction: openSidebar,
+  closeSidebarAction: closeSidebar,
   closeAudioAction: closeAudio,
   pauseAudioAction: pauseAudio,
+  openAnnouncementAction: openAnnouncement,
+  closeAnnouncementAction: closeAnnouncement,
 };
 
 class App extends Component {
-  handleOverlayClicked() {
-    const { closeSidebar } = this.props;
+  componentDidMount() {
+    const { announcementOpenCount, openAnnouncementAction } = this.props;
 
-    // this.props.closeSearchbar();
-    closeSidebar();
+    if (__CLIENT__ && announcementOpenCount === 0) {
+      setTimeout(() => {
+        openAnnouncementAction();
+      }, 2000);
+    }
+  }
+
+  handleOverlayClicked() {
+    const { closeSidebarAction } = this.props;
+
+    closeSidebarAction();
   }
 
   renderAudio() {
@@ -105,30 +129,35 @@ class App extends Component {
   render() {
     const {
       overlay,
-      // isSearchbarOpened,
       isSidebarOpened,
-      openSearchbar,
-      // closeSearchbar,
-      openSidebar,
-      closeSidebar,
+      openSidebarAction,
+      closeSidebarAction,
+      announcementOpened,
+      closeAnnouncementAction,
+      classes,
       route,
     } = this.props;
 
     return (
-      <div>
+      <div
+        className={classnames({
+          [classes.root]: true,
+          [classes.noScroll]: announcementOpened || isSidebarOpened,
+        })}
+      >
         <Helmet {...config.app.head} />
         <Overlay {...overlay} onClicked={() => this.handleOverlayClicked()} />
         <ScrollToTop />
         <Header
           sidebarOpened={isSidebarOpened}
-          onCloseSidebarButtonClicked={() => closeSidebar()}
-          onOpenSidebarButtonClicked={() => openSidebar()}
-          onSearchButtonClicked={() => openSearchbar()}
+          onCloseSidebarButtonClicked={() => closeSidebarAction()}
+          onOpenSidebarButtonClicked={() => openSidebarAction()}
         />
-        {/* <Search
-          opened={isSearchbarOpened}
-          hideButtonClicked={() => closeSearchbar()}
-        /> */}
+        {announcementOpened && (
+          <Announcement
+            onCloseButtonClicked={() => closeAnnouncementAction()}
+          />
+        )}
         {renderRoutes(route.routes)}
         <Footer />
         {this.renderAudio()}
@@ -138,13 +167,11 @@ class App extends Component {
 }
 
 App.propTypes = {
-  // children: PropTypes.object.isRequired,
-  closeSidebar: PropTypes.func.isRequired,
-  // isSearchbarOpened: PropTypes.bool.isRequired,
+  closeAnnouncementAction: PropTypes.func.isRequired,
+  closeSidebarAction: PropTypes.func.isRequired,
   isSidebarOpened: PropTypes.bool.isRequired,
-  // closeSearchbar: PropTypes.func.isRequired,
-  openSearchbar: PropTypes.func.isRequired,
-  openSidebar: PropTypes.func.isRequired,
+  openAnnouncementAction: PropTypes.func.isRequired,
+  openSidebarAction: PropTypes.func.isRequired,
   overlay: PropTypes.shape().isRequired,
 };
 

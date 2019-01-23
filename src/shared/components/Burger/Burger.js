@@ -14,6 +14,7 @@ const styles = {
     outline: 0,
   },
   line: {
+    display: 'block',
     transitionTimingFunction: 'cubic-bezier(0.535, 0.010, 0.265, 1.550)',
     transitionDuration: '0.5s',
   },
@@ -102,7 +103,7 @@ class Burger extends Component {
         }
       }
 
-      lines.push(<div key={index} {...props} />);
+      lines.push(<span key={index} {...props} />);
     }
 
     return lines;

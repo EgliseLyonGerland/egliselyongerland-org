@@ -9,6 +9,7 @@ import sidebar from './sidebar';
 import posts from './posts';
 import post from './post';
 import audio from './audio';
+import announcement from './announcement';
 
 export default combineReducers({
   routing: routerReducer,
@@ -20,4 +21,5 @@ export default combineReducers({
   posts,
   post,
   audio,
+  announcement,
 });
