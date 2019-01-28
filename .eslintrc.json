@@ -34,7 +34,7 @@
       "error",
       {
         "callbacksLast": true,
-        "shorthandLast": true,
+        "shorthandLast": false,
         "ignoreCase": true,
         "reservedFirst": true
       }
