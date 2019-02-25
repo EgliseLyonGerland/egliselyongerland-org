@@ -8,17 +8,17 @@ import { renderRoutes } from 'react-router-config';
 import classnames from 'classnames';
 
 import { openSidebar, closeSidebar } from 'store/actions/sidebar';
-import {
-  closeAnnouncement,
-  openAnnouncement,
-} from 'store/actions/announcement';
+// import {
+//   closeAnnouncement,
+//   openAnnouncement,
+// } from 'store/actions/announcement';
 import { closeAudio, pauseAudio } from 'store/actions/audio';
 import Header from 'components/Header/Header';
 import Footer from 'components/Footer/Footer';
 import Overlay from 'components/Overlay/Overlay';
 import AudioPlayer from 'components/AudioPlayer/AudioPlayer';
 import ScrollToTop from 'components/Scroll/ScrollToTop';
-import Announcement from 'components/Announcement/Announcement';
+// import Announcement from 'components/Announcement/Announcement';
 
 import config from 'config';
 
@@ -55,8 +55,8 @@ const mapStateToProps = state => ({
   overlay: state.overlay,
   audio: state.audio,
   isSidebarOpened: state.sidebar.opened,
-  announcementOpened: state.announcement.opened,
-  announcementOpenCount: state.announcement.count,
+  // announcementOpened: state.announcement.opened,
+  // announcementOpenCount: state.announcement.count,
 });
 
 const mapDispatchToProps = {
@@ -64,20 +64,20 @@ const mapDispatchToProps = {
   closeSidebarAction: closeSidebar,
   closeAudioAction: closeAudio,
   pauseAudioAction: pauseAudio,
-  openAnnouncementAction: openAnnouncement,
-  closeAnnouncementAction: closeAnnouncement,
+  // openAnnouncementAction: openAnnouncement,
+  // closeAnnouncementAction: closeAnnouncement,
 };
 
 class App extends Component {
-  componentDidMount() {
-    const { announcementOpenCount, openAnnouncementAction } = this.props;
+  // componentDidMount() {
+  //   const { announcementOpenCount, openAnnouncementAction } = this.props;
 
-    if (__CLIENT__ && announcementOpenCount === 0) {
-      setTimeout(() => {
-        openAnnouncementAction();
-      }, 2000);
-    }
-  }
+  //   if (__CLIENT__ && announcementOpenCount === 0) {
+  //     setTimeout(() => {
+  //       openAnnouncementAction();
+  //     }, 2000);
+  //   }
+  // }
 
   handleOverlayClicked() {
     const { closeSidebarAction } = this.props;
@@ -132,8 +132,8 @@ class App extends Component {
       isSidebarOpened,
       openSidebarAction,
       closeSidebarAction,
-      announcementOpened,
-      closeAnnouncementAction,
+      // announcementOpened,
+      // closeAnnouncementAction,
       classes,
       route,
     } = this.props;
@@ -142,7 +142,7 @@ class App extends Component {
       <div
         className={classnames({
           [classes.root]: true,
-          [classes.noScroll]: announcementOpened || isSidebarOpened,
+          [classes.noScroll]: /* announcementOpened || */ isSidebarOpened,
         })}
       >
         <Helmet {...config.app.head} />
@@ -153,11 +153,11 @@ class App extends Component {
           onCloseSidebarButtonClicked={() => closeSidebarAction()}
           onOpenSidebarButtonClicked={() => openSidebarAction()}
         />
-        {announcementOpened && (
+        {/* {announcementOpened && (
           <Announcement
             onCloseButtonClicked={() => closeAnnouncementAction()}
           />
-        )}
+        )} */}
         {renderRoutes(route.routes)}
         <Footer />
         {this.renderAudio()}
@@ -167,10 +167,10 @@ class App extends Component {
 }
 
 App.propTypes = {
-  closeAnnouncementAction: PropTypes.func.isRequired,
+  // closeAnnouncementAction: PropTypes.func.isRequired,
   closeSidebarAction: PropTypes.func.isRequired,
   isSidebarOpened: PropTypes.bool.isRequired,
-  openAnnouncementAction: PropTypes.func.isRequired,
+  // openAnnouncementAction: PropTypes.func.isRequired,
   openSidebarAction: PropTypes.func.isRequired,
   overlay: PropTypes.shape().isRequired,
 };
