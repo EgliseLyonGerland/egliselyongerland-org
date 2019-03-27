@@ -56,8 +56,12 @@ const Announcement = ({ classes, onCloseButtonClicked }) => (
           </Typography>
           <Typography bold component="div" paragraph>
             <Typography bold gutterBottom>
-              Le culte du dimanche 28 avril aura lieu exceptionnellement à 10h,
-              dans la salle de conférence de l’hôtel Novotel de Gerland.
+              Le culte du{' '}
+              <Typography bold color="primary" component="span" inline>
+                dimanche 28 avril
+              </Typography>{' '}
+              aura lieu exceptionnellement à 10h, dans la salle de conférence de
+              l’hôtel Novotel de Gerland.
             </Typography>
             <Typography>
               À noter : il n’y aura pas de culte l’après- midi, à 17h, à
