@@ -84,8 +84,8 @@ class App extends Component {
     const { announcementOpenCount, openAnnouncementAction } = this.props;
 
     if (
-      !__CLIENT__ &&
-      announcementOpenCount !== 0 &&
+      !__CLIENT__ ||
+      announcementOpenCount !== 0 ||
       isAfter(new Date(), new Date(2019, 3, 29))
     ) {
       return;
