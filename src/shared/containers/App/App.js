@@ -86,7 +86,7 @@ class App extends Component {
     if (
       !__CLIENT__ ||
       announcementOpenCount !== 0 ||
-      isAfter(new Date(), new Date(2019, 3, 29))
+      isAfter(new Date(), new Date(2019, 7, 7))
     ) {
       return;
     }

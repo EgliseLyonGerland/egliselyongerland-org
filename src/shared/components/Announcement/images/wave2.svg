@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1440px" height="746px" viewBox="0 0 1440 746" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55 (78076) - https://sketchapp.com -->
+    <title>wave2</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Divers" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Move-announcement" transform="translate(0.000000, -465.000000)" fill="#FFBE2D">
+            <g id="Group" transform="translate(730.000000, 754.000000) scale(1, -1) translate(-730.000000, -754.000000) translate(-33.000000, 297.000000)">
+                <path d="M0.999876058,0 C68.8304559,169.304378 132.085341,253.956567 190.76453,253.956567 C278.783315,253.956567 284.659403,36 380.178183,36 C475.696964,36 495.904508,140.938917 627.298374,140.938917 C691.48146,140.938917 729.823264,95.16142 796,95.16142 C862.176736,95.16142 881.041598,378.20164 958,378.20164 C1108.45,378.20164 1104.20217,106.686077 1176.22753,106.686077 C1248.25288,106.686077 1238.22756,214.027043 1301.98894,214.027043 C1365.75032,214.027043 1381.11717,9 1449.43602,9 C1494.98192,9 1520.50325,58.9067721 1526,158.720316 L1526,755 L0,755 L0.999876058,0 Z" id="wave2" transform="translate(763.000000, 377.500000) scale(1, -1) translate(-763.000000, -377.500000) "></path>
+            </g>
+        </g>
+    </g>
+</svg>

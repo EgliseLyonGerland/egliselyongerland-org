@@ -141,7 +141,7 @@ class Blog extends Component {
           }
         >
           {label => (
-            <Text fontSize={1} maxLines={1} ellipsis>
+            <Text ellipsis fontSize={1} maxLines={1}>
               {label.label}{' '}
               <Text color="#AAA" element="span" fontSize={0.8}>
                 ({label.total})
@@ -185,7 +185,7 @@ class Blog extends Component {
           }
         >
           {label => (
-            <Text fontSize={1} maxLines={1} ellipsis>
+            <Text ellipsis fontSize={1} maxLines={1}>
               {label.label}{' '}
               <Text color="#AAA" element="span" fontSize={0.8}>
                 ({label.total})
@@ -231,7 +231,7 @@ class Blog extends Component {
     const posts = this.getDenormalizedPosts();
 
     if (loading) {
-      return <BlankItemsFeed color="#4776e6" items={7} />;
+      return <BlankItemsFeed items={7} />;
     }
 
     if (posts.length) {
@@ -250,7 +250,7 @@ class Blog extends Component {
 
     return (
       <Fragment>
-        <Grid alignItems="center" justify="space-between" container>
+        <Grid alignItems="center" container justify="space-between">
           <Grid item>
             {total} {total > 1 ? 'articles' : 'article'}
             <Hr inline />
@@ -267,7 +267,7 @@ class Blog extends Component {
             >
               <ChevronLeftIcon />
             </Button>
-            <Hr multiplier={1} inline />
+            <Hr inline multiplier={1} />
             <Button
               disabled={page >= maxPage}
               mode="ghost"
