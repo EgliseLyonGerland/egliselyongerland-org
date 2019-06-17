@@ -9,10 +9,9 @@ import classnames from 'classnames';
 import RevealQueue from 'components/Animation/RevealQueue';
 import Hr from 'components/Hr/Hr';
 
-// import wave1Picture from './images/wave1.png';
-import wave1WidePicture from './images/wave1-wide.png';
-import wave2Picture from './images/wave2.png';
-import wave3Picture from './images/wave3.png';
+import wave1Picture from './images/wave1.svg';
+import wave2Picture from './images/wave2.svg';
+import wave3Picture from './images/wave3.svg';
 import boxPicture from './images/box.svg';
 
 const styles = {
@@ -24,9 +23,6 @@ const styles = {
     width: '100%',
     height: '100%',
     zIndex: 100,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
     overflowY: 'auto',
     color: '#16110D',
     fontWeight: 600,
@@ -37,39 +33,44 @@ const styles = {
     },
   },
   inner: {
+    position: 'relative',
+    width: '100%',
+    minHeight: '100%',
+    overflow: 'hidden',
+  },
+  content: {
     margin: 'auto',
     padding: [[100, 80, 80]],
     width: '100%',
     maxWidth: 880,
   },
   wave: {
-    display: 'none',
     position: 'absolute',
+    left: 0,
+    bottom: 0,
     width: '100%',
     height: '100%',
     background: 'no-repeat',
-    // backgroundSize: 'contain',
-    backgroundPosition: 'center bottom',
+    backgroundSize: 'cover',
+    zIndex: -1,
   },
   wave1: {
-    // backgroundImage: `url(${wave1Picture})`,
-    backgroundImage: `url(${wave1WidePicture})`,
+    backgroundImage: `url(${wave1Picture})`,
+    backgroundPosition: 'center 30vh',
   },
-  // '@media (color-gamut: p3)': {
-  //   wave1: {
-  //     backgroundImage: `url(${wave1WidePicture})`,
-  //   },
-  // },
   wave2: {
     backgroundImage: `url(${wave2Picture})`,
+    backgroundPosition: 'center 20vh',
   },
   wave3: {
     backgroundImage: `url(${wave3Picture})`,
+    backgroundPosition: 'center 10vh',
   },
   box: {
     position: 'absolute',
     top: -20,
-    left: 940,
+    left: '60vw',
+    zIndex: -1,
   },
   heading: {
     display: 'block',
@@ -127,6 +128,42 @@ const styles = {
     display: 'flex',
     alignItems: 'center',
   },
+  '@media (max-width: 880px)': {
+    root: {
+      fontSize: 18,
+    },
+    content: {
+      padding: [[48, 24, 32]],
+    },
+    heading: {
+      fontSize: 38,
+    },
+    excerpt: {
+      margin: [[32, 0]],
+      fontSize: 18,
+      maxWidth: 400,
+    },
+    box: {
+      left: 400,
+      height: 330,
+    },
+    details: {
+      position: 'relative',
+      width: '100%',
+      margin: [[0, -12]],
+
+      '&:after': {
+        width: 'calc(100% + 24px)',
+        top: -4,
+        left: -4,
+      },
+      '&:before': {
+        width: 'calc(100% + 24px)',
+        top: 4,
+        left: 4,
+      },
+    },
+  },
 };
 
 const Announcement = ({ classes, onCloseButtonClicked }) => {
@@ -134,64 +171,71 @@ const Announcement = ({ classes, onCloseButtonClicked }) => {
 
   return (
     <div className={classes.root}>
-      <div className={classnames(classes.wave, classes.wave3)} />
-      <div className={classnames(classes.wave, classes.wave2)} />
-      <div className={classnames(classes.wave, classes.wave1)} />
-      <img alt="We're going to move" className={classes.box} src={boxPicture} />
-
       <div className={classes.inner}>
         <RevealQueue delay={0.2}>
-          <h1 className={classes.heading}>Le 7 juillet,</h1>
-          <h1 className={classes.heading}>ça déménage !</h1>
-          <p className={classes.excerpt}>
-            À partir du dimanche 7 juillet inclus, l'Église Lyon Gerland prend
-            ses quartiers au Théâtre &ldquo; Lulu sur la colline &rdquo;, et la
-            célébration passe au matin !
-          </p>
-          <div className={classes.details}>
-            <div className={classes.detailsContent}>
-              <p>
-                <b>Culte le dimanche à 10h</b>
-              </p>
-              <Hr />
-              <p>
-                THÉÂTRE &ldquo; LULU SUR LA COLLINE &rdquo;
-                <br />
-                60 rue Victor Lagrange
-                <br />
-                69007 Lyon
-              </p>
-              <Hr />
-              <p>
-                <b>Accès :</b>
-              </p>
-              <p>
-                Station Jean Macé
-                <br />
-                En métro B, en tram T2
-                <br />
-                En bus : 35, S3, Z16, C4, C7, C12 et C14
-                <br />
-                En Vélov’ : Station 7022 Jaurès / Lagrange"
-              </p>
-            </div>
-          </div>
-          <div className={classes.confirm}>
-            <ButtonBase
-              className={classes.button}
-              onClick={onCloseButtonClicked}
-            >
-              J'AI COMPRIS
-            </ButtonBase>
-            <div className={classes.checkbox}>
-              <Checkbox
-                checked={remind}
-                onChange={event => setRemind(event.target.checked)}
-              />
-              Mais rapellez-le moi quand même lors de ma prochaine visite
-            </div>
-          </div>
+          <div className={classnames(classes.wave, classes.wave3)} />
+          <div className={classnames(classes.wave, classes.wave2)} />
+          <div className={classnames(classes.wave, classes.wave1)} />
+          <img
+            alt="We're going to move"
+            className={classes.box}
+            src={boxPicture}
+          />
         </RevealQueue>
+        <div className={classes.content}>
+          <RevealQueue delay={1.8}>
+            <h1 className={classes.heading}>Le 7 juillet,</h1>
+            <h1 className={classes.heading}>ça déménage !</h1>
+            <p className={classes.excerpt}>
+              À partir du dimanche 7 juillet inclus, l'Église Lyon Gerland prend
+              ses quartiers au Théâtre &ldquo; Lulu sur la colline &rdquo;, et
+              la célébration passe au matin !
+            </p>
+            <div className={classes.details}>
+              <div className={classes.detailsContent}>
+                <p>
+                  <b>Culte le dimanche à 10h</b>
+                </p>
+                <Hr />
+                <p>
+                  THÉÂTRE &ldquo; LULU SUR LA COLLINE &rdquo;
+                  <br />
+                  60 rue Victor Lagrange
+                  <br />
+                  69007 Lyon
+                </p>
+                <Hr />
+                <p>
+                  <b>Accès :</b>
+                </p>
+                <p>
+                  Station Jean Macé
+                  <br />
+                  En métro B, en tram T2
+                  <br />
+                  En bus : 35, S3, Z16, C4, C7, C12 et C14
+                  <br />
+                  En Vélov’ : Station 7022 Jaurès / Lagrange
+                </p>
+              </div>
+            </div>
+            <div className={classes.confirm}>
+              <ButtonBase
+                className={classes.button}
+                onClick={onCloseButtonClicked}
+              >
+                J'AI COMPRIS
+              </ButtonBase>
+              <div className={classes.checkbox}>
+                <Checkbox
+                  checked={remind}
+                  onChange={event => setRemind(event.target.checked)}
+                />
+                Mais rapellez-le moi quand même lors de ma prochaine visite
+              </div>
+            </div>
+          </RevealQueue>
+        </div>
       </div>
     </div>
   );
