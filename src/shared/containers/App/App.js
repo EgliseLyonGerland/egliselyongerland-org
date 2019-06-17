@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
@@ -7,6 +7,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { renderRoutes } from 'react-router-config';
 import classnames from 'classnames';
 import isAfter from 'date-fns/is_after';
+import useLocalStorage from 'react-use-localstorage';
 
 import { openSidebar, closeSidebar } from 'store/actions/sidebar';
 import {
@@ -69,24 +70,37 @@ const mapDispatchToProps = {
   closeAnnouncementAction: closeAnnouncement,
 };
 
-class App extends Component {
-  componentDidMount() {
-    this.openAnnouncementIfNecessary();
+function App({
+  overlay,
+  isSidebarOpened,
+  openSidebarAction,
+  closeSidebarAction,
+  announcementOpened,
+  announcementOpenCount,
+  openAnnouncementAction,
+  closeAnnouncementAction,
+  audio,
+  closeAudioAction,
+  pauseAudioAction,
+  classes,
+  route,
+}) {
+  let displayAnnouncement = false;
+  let setDisplayAnnouncement = null;
+
+  if (__CLIENT__) {
+    [displayAnnouncement, setDisplayAnnouncement] = useLocalStorage(
+      'displayAnnouncement',
+      1,
+    );
   }
 
-  handleOverlayClicked() {
-    const { closeSidebarAction } = this.props;
-
-    closeSidebarAction();
-  }
-
-  openAnnouncementIfNecessary() {
-    const { announcementOpenCount, openAnnouncementAction } = this.props;
-
+  useEffect(() => {
     if (
       !__CLIENT__ ||
+      displayAnnouncement === '0' ||
       announcementOpenCount !== 0 ||
-      isAfter(new Date(), new Date(2019, 3, 29))
+      isAfter(new Date(), new Date(2019, 7, 7))
     ) {
       return;
     }
@@ -94,11 +108,9 @@ class App extends Component {
     setTimeout(() => {
       openAnnouncementAction();
     }, 2000);
-  }
+  }, []);
 
-  renderAudio() {
-    const { audio, closeAudioAction, pauseAudioAction, classes } = this.props;
-
+  function renderAudio() {
     const defaultStyles = [];
 
     if (audio.opened) {
@@ -137,44 +149,34 @@ class App extends Component {
     );
   }
 
-  render() {
-    const {
-      overlay,
-      isSidebarOpened,
-      openSidebarAction,
-      closeSidebarAction,
-      announcementOpened,
-      closeAnnouncementAction,
-      classes,
-      route,
-    } = this.props;
-
-    return (
-      <div
-        className={classnames({
-          [classes.root]: true,
-          [classes.noScroll]: announcementOpened || isSidebarOpened,
-        })}
-      >
-        <Helmet {...config.app.head} />
-        <Overlay {...overlay} onClicked={() => this.handleOverlayClicked()} />
-        <ScrollToTop />
-        <Header
-          sidebarOpened={isSidebarOpened}
-          onCloseSidebarButtonClicked={() => closeSidebarAction()}
-          onOpenSidebarButtonClicked={() => openSidebarAction()}
+  return (
+    <div
+      className={classnames({
+        [classes.root]: true,
+        [classes.noScroll]: announcementOpened || isSidebarOpened,
+      })}
+    >
+      <Helmet {...config.app.head} />
+      <Overlay {...overlay} onClicked={closeSidebarAction} />
+      <ScrollToTop />
+      <Header
+        sidebarOpened={isSidebarOpened}
+        onCloseSidebarButtonClicked={() => closeSidebarAction()}
+        onOpenSidebarButtonClicked={() => openSidebarAction()}
+      />
+      {announcementOpened && (
+        <Announcement
+          onCloseButtonClicked={remind => {
+            setDisplayAnnouncement(remind + 0);
+            closeAnnouncementAction();
+          }}
         />
-        {announcementOpened && (
-          <Announcement
-            onCloseButtonClicked={() => closeAnnouncementAction()}
-          />
-        )}
-        {renderRoutes(route.routes)}
-        <Footer />
-        {this.renderAudio()}
-      </div>
-    );
-  }
+      )}
+      {renderRoutes(route.routes)}
+      <Footer />
+      {renderAudio()}
+    </div>
+  );
 }
 
 App.propTypes = {

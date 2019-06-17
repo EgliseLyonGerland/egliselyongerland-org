@@ -4,6 +4,7 @@ import range from 'lodash/range';
 import classnames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import clearFix from 'polished/lib/mixins/clearFix';
+import primaryPalette from 'config/palettes/primary';
 
 const styles = theme => ({
   item: {
@@ -108,7 +109,7 @@ BlankItemsFeed.propTypes = {
 };
 
 BlankItemsFeed.defaultProps = {
-  color: '#e5eef1',
+  color: primaryPalette[500],
   horizontal: false,
 };
 
