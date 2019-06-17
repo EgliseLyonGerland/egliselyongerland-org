@@ -163,6 +163,9 @@ const styles = {
         left: 4,
       },
     },
+    detailsContent: {
+      padding: 24,
+    },
   },
 };
 
@@ -188,8 +191,8 @@ const Announcement = ({ classes, onCloseButtonClicked }) => {
             <h1 className={classes.heading}>ça déménage !</h1>
             <p className={classes.excerpt}>
               À partir du dimanche 7 juillet inclus, l'Église Lyon Gerland prend
-              ses quartiers au Théâtre &ldquo; Lulu sur la colline &rdquo;, et
-              la célébration passe au matin !
+              ses quartiers au Théâtre &ldquo;Lulu sur la colline&rdquo;, et la
+              célébration passe au matin !
             </p>
             <div className={classes.details}>
               <div className={classes.detailsContent}>
@@ -198,7 +201,7 @@ const Announcement = ({ classes, onCloseButtonClicked }) => {
                 </p>
                 <Hr />
                 <p>
-                  THÉÂTRE &ldquo; LULU SUR LA COLLINE &rdquo;
+                  THÉÂTRE &ldquo;LULU SUR LA COLLINE&rdquo;
                   <br />
                   60 rue Victor Lagrange
                   <br />
@@ -222,7 +225,7 @@ const Announcement = ({ classes, onCloseButtonClicked }) => {
             <div className={classes.confirm}>
               <ButtonBase
                 className={classes.button}
-                onClick={onCloseButtonClicked}
+                onClick={() => onCloseButtonClicked(remind)}
               >
                 J'AI COMPRIS
               </ButtonBase>
