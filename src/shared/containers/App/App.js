@@ -91,7 +91,7 @@ function App({
   if (__CLIENT__) {
     [displayAnnouncement, setDisplayAnnouncement] = useLocalStorage(
       'displayAnnouncement',
-      0,
+      1,
     );
   }
 
