@@ -87,7 +87,8 @@ const Contact = ({ classes, history }) => (
 
           <Hr multiplier={3} />
 
-          <Text>302 avenue Jean Jaurès</Text>
+          <Text>Théâtre Lulu sur la Colline</Text>
+          <Text>60 Rue Victor Lagrange</Text>
           <Text>69007 Lyon</Text>
 
           <Hr multiplier={3} />
@@ -107,11 +108,10 @@ const Contact = ({ classes, history }) => (
           <Hr multiplier={2} />
 
           <Text>
-            Métro B, arrêt <b>Stade de Gerland</b>.
+            <b>Arrêt Jean Macé</b>
           </Text>
-          <Text>
-            Tram T1, arrêt <b>Debourg</b>.
-          </Text>
+          <Text>Métro B, Tram T2</Text>
+          <Text>Bus 35, S3, Z16, C4, C7, C12 et C14</Text>
         </div>
         <div className="col-sm-7 col-md-6">
           <iframe
