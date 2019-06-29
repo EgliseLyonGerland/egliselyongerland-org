@@ -55,7 +55,7 @@ const Contact = ({ classes, history }) => (
     <div className={classes.timeBanner}>
       <div className={classes.timeBannerText}>
         <Text color="#AAAAAA" fontSize={1.6} fontWeight="medium">
-          Culte ouvert à tous, le dimanche à 17h.
+          Culte ouvert à tous, le dimanche à 10h.
         </Text>
       </div>
       <div className={classes.timeBannerButton}>
@@ -115,13 +115,13 @@ const Contact = ({ classes, history }) => (
         </div>
         <div className="col-sm-7 col-md-6">
           <iframe
+            allowFullScreen
             frameBorder="0"
             height="450"
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2785.120360872194!2d4.8296063158166875!3d45.72868097910506!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47f4ea28fb13f6bf%3A0x23df16c38cf568e9!2zw4lnbGlzZSBMeW9uIEdlcmxhbmQgKFLDqWZvcm3DqWUgw4l2YW5nw6lsaXF1ZSk!5e0!3m2!1sfr!2sfr!4v1505047371132"
             style={{ border: 0, width: '100%', height: 450 }}
             title="Location de l'église"
             width="100%"
-            allowFullScreen
           />
 
           <Hr xl />
