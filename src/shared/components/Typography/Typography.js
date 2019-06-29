@@ -31,6 +31,7 @@ Typography.propTypes = {
   bold: PropTypes.bool,
   classes: PropTypes.shape().isRequired,
   italic: PropTypes.bool,
+  style: PropTypes.shape(),
   variant: PropTypes.string,
 };
 
@@ -38,6 +39,7 @@ Typography.defaultProps = {
   variant: 'body1',
   italic: false,
   bold: false,
+  style: {},
 };
 
 export default withStyles(styles)(Typography);

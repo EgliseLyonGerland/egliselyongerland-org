@@ -121,6 +121,7 @@ class RevealQueue extends Component {
               this.childRefs[index] = ref;
             },
             style: {
+              ...child.props.style,
               transition: this.getTransitionStyle(index),
               visibility: display ? 'visible' : 'hidden',
               transform: display ? 'none' : transform,
