@@ -65,7 +65,7 @@ const styles = theme => ({
     transition: 'opacity 0.3s',
   },
   h2: {
-    fontSize: rem(38),
+    fontSize: rem(32),
     fontWeight: theme.typography.fontWeights.medium,
     lineHeight: 1.2,
 
