@@ -65,7 +65,7 @@ const styles = theme => ({
     transition: 'opacity 0.3s',
   },
   h2: {
-    fontSize: rem(38),
+    fontSize: rem(32),
     fontWeight: theme.typography.fontWeights.medium,
     lineHeight: 1.2,
 
@@ -161,11 +161,14 @@ class WhatWhenWhere extends Component {
             <h2 className={classes.h2}>
               <RevealQueue>
                 <div>Culte ouvert à tous,</div>
-                <div>le dimanche à 17h.</div>
+                <div>le dimanche à 10h.</div>
               </RevealQueue>
             </h2>
             <RevealQueue>
-              <div className={classes.address}>302 avenue Jean Jaurès</div>
+              <div className={classes.address}>
+                <b>Théâtre Lulu sur la Colline</b>
+              </div>
+              <div className={classes.address}>60 Rue Victor Lagrange</div>
               <div className={classes.address}>69007 Lyon</div>
               <Hr xl />
               <Link className={classes.button} to={routes.worship()}>
