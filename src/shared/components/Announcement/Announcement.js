@@ -119,14 +119,37 @@ const styles = {
     margin: [[48, 0]],
   },
   button: {
-    fontSize: 24,
-    padding: 8,
+    fontSize: 20,
     textShadow: '2px 2px 0 rgba(255,255,255,0.80)',
+    marginTop: 32,
+    padding: [[0, 24]],
+    height: 48,
+    position: 'relative',
+
+    '&:before, &:after': {
+      content: '""',
+      position: 'absolute',
+      border: [['solid', 3]],
+      width: '100%',
+      height: '100%',
+    },
+
+    '&:before': {
+      borderColor: '#FFE596',
+      top: 3,
+      left: 3,
+    },
+
+    '&:after': {
+      top: -3,
+      left: -3,
+    },
   },
   checkbox: {
     fontSize: 14,
     display: 'flex',
     alignItems: 'center',
+    marginTop: 16,
   },
   '@media (max-width: 880px)': {
     root: {

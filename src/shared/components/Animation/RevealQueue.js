@@ -10,6 +10,7 @@ class RevealQueue extends Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
     delay: PropTypes.number,
+    disabled: PropTypes.bool,
     from: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
     offset: PropTypes.number,
     speed: PropTypes.number,
@@ -20,6 +21,7 @@ class RevealQueue extends Component {
     speed: 0.5,
     offset: 90,
     from: 'top',
+    disabled: false,
   };
 
   state = {
@@ -84,7 +86,7 @@ class RevealQueue extends Component {
   }
 
   render() {
-    const { children, from } = this.props;
+    const { children, disabled, from } = this.props;
     const { display } = this.state;
 
     return (
@@ -96,39 +98,41 @@ class RevealQueue extends Component {
             capture: false,
           })}
         />
-        {React.Children.map(children, (child, index) => {
-          let transform;
+        {disabled
+          ? children
+          : React.Children.map(children, (child, index) => {
+              let transform;
 
-          switch (from) {
-            case 'top':
-              transform = 'translateY(20px)';
-              break;
-            case 'bottom':
-              transform = 'translateY(-20px)';
-              break;
-            case 'left':
-              transform = 'translateX(-20px)';
-              break;
-            case 'right':
-              transform = 'translateX(20px)';
-              break;
-            default:
-          }
+              switch (from) {
+                case 'top':
+                  transform = 'translateY(20px)';
+                  break;
+                case 'bottom':
+                  transform = 'translateY(-20px)';
+                  break;
+                case 'left':
+                  transform = 'translateX(-20px)';
+                  break;
+                case 'right':
+                  transform = 'translateX(20px)';
+                  break;
+                default:
+              }
 
-          return React.cloneElement(child, {
-            ...child.props,
-            ref: ref => {
-              this.childRefs[index] = ref;
-            },
-            style: {
-              ...child.props.style,
-              transition: this.getTransitionStyle(index),
-              visibility: display ? 'visible' : 'hidden',
-              transform: display ? 'none' : transform,
-              opacity: display ? 1 : 0,
-            },
-          });
-        })}
+              return React.cloneElement(child, {
+                ...child.props,
+                ref: ref => {
+                  this.childRefs[index] = ref;
+                },
+                style: {
+                  ...child.props.style,
+                  transition: this.getTransitionStyle(index),
+                  visibility: display ? 'visible' : 'hidden',
+                  transform: display ? 'none' : transform,
+                  opacity: display ? 1 : 0,
+                },
+              });
+            })}
       </>
     );
   }
