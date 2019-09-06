@@ -62,9 +62,9 @@ const Worship = () => (
             croyants.
           </li>
           <li>
-            À l’issue du culte, le verre de l’amitié permet de prolonger la
-            convivialité et de faire plus ample connaissance les uns avec les
-            autres.
+            Du café est servi avant le culte, à 9h30 : un moment de convivialité
+            qui permet de faire plus ample connaissance les uns avec les autres
+            !
           </li>
         </Typography>
         <Typography paragraph>

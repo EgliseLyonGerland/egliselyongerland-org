@@ -178,7 +178,7 @@ class WhatWhenWhere extends Component {
               <RevealQueue>
                 <div>Culte ouvert à tous,</div>
                 <div>le dimanche à 10h.</div>
-                <div className={classes.coffee}>️Café à 9h30</div>
+                <div className={classes.coffee}>Café à 9h30</div>
               </RevealQueue>
             </h2>
             <RevealQueue>
