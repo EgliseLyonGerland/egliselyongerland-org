@@ -78,6 +78,22 @@ const styles = theme => ({
       width: '20%',
     },
   },
+  coffee: {
+    fontSize: rem(16),
+    fontWeight: theme.typography.fontWeights.bold,
+    border: 'solid 1px #777',
+    color: '#777',
+    padding: [[8, 16]],
+    marginTop: 24,
+    display: 'inline-block',
+    borderRadius: 4,
+
+    '&:before': {
+      content: '"☕"',
+      display: 'inline-block',
+      marginRight: 8,
+    },
+  },
   address: {
     fontSize: rem(20),
     fontWeight: theme.typography.fontWeights.regular,
@@ -162,6 +178,7 @@ class WhatWhenWhere extends Component {
               <RevealQueue>
                 <div>Culte ouvert à tous,</div>
                 <div>le dimanche à 10h.</div>
+                <div className={classes.coffee}>️Café à 9h30</div>
               </RevealQueue>
             </h2>
             <RevealQueue>
