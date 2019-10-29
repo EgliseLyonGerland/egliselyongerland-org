@@ -107,21 +107,6 @@ const ActionButton = createResponsiveButton(
 
 @withStyles(styles)
 class Sermons extends Component {
-  static propTypes = {
-    classes: PropTypes.shape().isRequired,
-    data: PropTypes.arrayOf(
-      PropTypes.shape({
-        categories: PropTypes.arrayOf(
-          PropTypes.shape({
-            name: PropTypes.string.isRequired,
-          }),
-        ),
-        id: PropTypes.string.isRequired,
-        title: PropTypes.string.isRequired,
-      }),
-    ).isRequired,
-  };
-
   render() {
     const { classes, data } = this.props;
 
@@ -160,5 +145,24 @@ class Sermons extends Component {
     );
   }
 }
+
+Sermons.propTypes = {
+  classes: PropTypes.shape(),
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      categories: PropTypes.arrayOf(
+        PropTypes.shape({
+          name: PropTypes.string.isRequired,
+        }),
+      ),
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
+};
+
+Sermons.defaultProps = {
+  classes: {},
+};
 
 export default Sermons;

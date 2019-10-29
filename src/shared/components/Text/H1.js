@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 
 import Text from './Text';
@@ -25,5 +26,9 @@ const styles = {
 const H1 = ({ classes, ...props }) => (
   <Text className={classes.h1} fontSize={2} fontWeight="light" {...props} />
 );
+
+H1.propTypes = {
+  classes: PropTypes.shape().isRequired,
+};
 
 export default withStyles(styles)(H1);

@@ -163,18 +163,6 @@ const links = [
 @withStyles(styles)
 @withWidth()
 class Header extends Component {
-  static propTypes = {
-    classes: PropTypes.shape().isRequired,
-    onCloseSidebarButtonClicked: PropTypes.func.isRequired,
-    onOpenSidebarButtonClicked: PropTypes.func.isRequired,
-    sidebarOpened: PropTypes.bool,
-    width: PropTypes.string.isRequired,
-  };
-
-  static defaultProps = {
-    sidebarOpened: false,
-  };
-
   constructor(props) {
     super(props);
 
@@ -275,9 +263,9 @@ class Header extends Component {
               delay={[0.5, 0.8]}
               height={17}
               muted={sidebarOpened}
+              rounded
               weight={3}
               width={17}
-              rounded
             />
           </button>
         </div>
@@ -294,5 +282,19 @@ class Header extends Component {
     );
   }
 }
+
+Header.propTypes = {
+  classes: PropTypes.shape(),
+  onCloseSidebarButtonClicked: PropTypes.func.isRequired,
+  onOpenSidebarButtonClicked: PropTypes.func.isRequired,
+  sidebarOpened: PropTypes.bool,
+  width: PropTypes.string,
+};
+
+Header.defaultProps = {
+  classes: {},
+  sidebarOpened: false,
+  width: 'lg',
+};
 
 export default Header;

@@ -40,7 +40,7 @@ const serverRenderer = () => async (req, res) => {
   const content = renderToString(
     <Loadable.Capture report={moduleName => modules.push(moduleName)}>
       <ReduxProvider store={req.store}>
-        <JssProvider {...{ registry, generateClassName }}>
+        <JssProvider generateClassName={generateClassName} registry={registry}>
           <MuiThemeProvider sheetsManager={new Map()} theme={muiTheme}>
             <ParallaxProvider>
               <Router context={staticContext} location={req.url}>

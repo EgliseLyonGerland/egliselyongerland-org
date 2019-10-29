@@ -110,17 +110,7 @@ const LinkButton = createResponsiveButton(
 @withStyles(styles)
 @withWidth()
 @withRouter
-class Header extends Component {
-  static propTypes = {
-    audio: PropTypes.shape().isRequired,
-    classes: PropTypes.shape().isRequired,
-    history: PropTypes.shape().isRequired,
-    openAudioAction: PropTypes.func.isRequired,
-    post: PropTypes.shape().isRequired,
-    url: PropTypes.string.isRequired,
-    width: PropTypes.string.isRequired,
-  };
-
+class PostHeader extends Component {
   render() {
     const {
       post,
@@ -245,4 +235,19 @@ class Header extends Component {
   }
 }
 
-export default Header;
+PostHeader.propTypes = {
+  audio: PropTypes.shape().isRequired,
+  classes: PropTypes.shape(),
+  history: PropTypes.shape().isRequired,
+  openAudioAction: PropTypes.func.isRequired,
+  post: PropTypes.shape().isRequired,
+  url: PropTypes.string.isRequired,
+  width: PropTypes.string,
+};
+
+PostHeader.defaultProps = {
+  classes: {},
+  width: 'lg',
+};
+
+export default PostHeader;

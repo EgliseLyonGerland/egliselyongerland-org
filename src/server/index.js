@@ -13,6 +13,8 @@ import ApiClient from '../shared/helpers/ApiClient';
 
 require('dotenv').config();
 
+const { log } = console;
+
 const app = express();
 
 // if (process.env.NODE_ENV === "development") {
@@ -64,7 +66,7 @@ app.use((err, req, res, next) =>
 
 Loadable.preloadAll().then(() => {
   app.listen(process.env.PORT || 8500, () => {
-    console.log(
+    log(
       `[${new Date().toISOString()}]`,
       chalk.blue(
         `App is running: http://localhost:${process.env.PORT || 8500}`,

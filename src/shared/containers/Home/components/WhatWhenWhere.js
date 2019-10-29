@@ -163,10 +163,6 @@ const MapButton = createResponsiveButton(
 
 @withStyles(styles)
 class WhatWhenWhere extends Component {
-  static propTypes = {
-    classes: PropTypes.shape().isRequired,
-  };
-
   render() {
     const { classes } = this.props;
 
@@ -223,5 +219,13 @@ class WhatWhenWhere extends Component {
     );
   }
 }
+
+WhatWhenWhere.propTypes = {
+  classes: PropTypes.shape(),
+};
+
+WhatWhenWhere.defaultProps = {
+  classes: {},
+};
 
 export default WhatWhenWhere;

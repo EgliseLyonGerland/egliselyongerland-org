@@ -60,7 +60,9 @@ const routes = [
         exact: true,
         component: loadable({
           loader: () =>
-            import(/* webpackChunkName: "contact" */ 'containers/Contact/Contact'),
+            import(
+              /* webpackChunkName: "contact" */ 'containers/Contact/Contact'
+            ),
           loading: () => null,
         }),
       },
@@ -69,7 +71,9 @@ const routes = [
         exact: true,
         component: loadable({
           loader: () =>
-            import(/* webpackChunkName: "discover" */ 'containers/Discover/Discover'),
+            import(
+              /* webpackChunkName: "discover" */ 'containers/Discover/Discover'
+            ),
           loading: () => null,
         }),
       },
@@ -77,7 +81,9 @@ const routes = [
         path: '*',
         component: loadable({
           loader: () =>
-            import(/* webpackChunkName: "notFound" */ 'containers/NotFound/NotFound'),
+            import(
+              /* webpackChunkName: "notFound" */ 'containers/NotFound/NotFound'
+            ),
           loading: () => null,
         }),
         status: 404,

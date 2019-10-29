@@ -103,7 +103,9 @@ class Burger extends Component {
         }
       }
 
-      lines.push(<span key={index} {...props} />);
+      lines.push(
+        <span key={index} className={props.className} style={props.style} />,
+      );
     }
 
     return lines;
@@ -128,6 +130,7 @@ class Burger extends Component {
 }
 
 Burger.propTypes = {
+  classes: PropTypes.shape().isRequired,
   color: PropTypes.string,
   delay: PropTypes.oneOfType([
     PropTypes.number,

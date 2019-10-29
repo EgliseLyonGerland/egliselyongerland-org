@@ -9,7 +9,7 @@ import jonahPicture from './images/jonah.jpg';
 
 const Staff = () => (
   <>
-    <Elder name="Alexandre Sarran" picture={alexPicture} first>
+    <Elder first name="Alexandre Sarran" picture={alexPicture}>
       <Typography variant="subtitle1">
         <b>Pasteur</b>
       </Typography>
@@ -24,7 +24,7 @@ const Staff = () => (
         le mari (privilégié) de Suzanne, et le père (débordé) de six enfants.
       </Typography>
     </Elder>
-    <Elder name="Jonah Haddad" picture={jonahPicture} inverted>
+    <Elder inverted name="Jonah Haddad" picture={jonahPicture}>
       <Typography variant="subtitle1">
         <b>Ancien</b>
       </Typography>
@@ -40,7 +40,7 @@ const Staff = () => (
         petit faible pour les randonnées dans la nature.
       </Typography>
     </Elder>
-    <Elder name="Denis Blum" picture={denisPicture} last>
+    <Elder last name="Denis Blum" picture={denisPicture}>
       <Typography variant="subtitle1">
         <b>Ancien</b>
       </Typography>

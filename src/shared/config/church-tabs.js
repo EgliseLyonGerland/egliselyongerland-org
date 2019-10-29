@@ -20,7 +20,9 @@ export default [
     picture: aboutUsPicture,
     component: loadable({
       loader: () =>
-        import(/* webpackChunkName: "church-aboutus" */ 'containers/Church/AboutUs'),
+        import(
+          /* webpackChunkName: "church-aboutus" */ 'containers/Church/AboutUs'
+        ),
       loading: () => null,
     }),
   },
@@ -30,7 +32,9 @@ export default [
     picture: ourFaithPicture,
     component: loadable({
       loader: () =>
-        import(/* webpackChunkName: "church-ourfaith" */ 'containers/Church/OurFaith'),
+        import(
+          /* webpackChunkName: "church-ourfaith" */ 'containers/Church/OurFaith'
+        ),
       loading: () => null,
     }),
   },
@@ -40,7 +44,9 @@ export default [
     picture: worshipPicture,
     component: loadable({
       loader: () =>
-        import(/* webpackChunkName: "church-worship" */ 'containers/Church/Worship'),
+        import(
+          /* webpackChunkName: "church-worship" */ 'containers/Church/Worship'
+        ),
       loading: () => null,
     }),
   },
@@ -56,7 +62,9 @@ export default [
     picture: teamPicture,
     component: loadable({
       loader: () =>
-        import(/* webpackChunkName: "church-staff" */ 'containers/Church/Staff'),
+        import(
+          /* webpackChunkName: "church-staff" */ 'containers/Church/Staff'
+        ),
       loading: () => null,
     }),
   },

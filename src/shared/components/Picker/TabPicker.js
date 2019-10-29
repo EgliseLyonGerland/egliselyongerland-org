@@ -115,7 +115,7 @@ TabPicker.defaultProps = {
   bgColor: null,
   activeBarColor: 'red',
   renderLabel: tab => (
-    <Text fontSize={0.9} fontWeight="regular" maxLines={1} ellipsis>
+    <Text ellipsis fontSize={0.9} fontWeight="regular" maxLines={1}>
       {tab.label}
     </Text>
   ),

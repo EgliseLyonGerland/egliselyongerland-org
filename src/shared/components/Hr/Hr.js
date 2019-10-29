@@ -78,16 +78,28 @@ const Hr = ({
     }
   }
 
-  return <span {...{ className, style }}>{children}</span>;
+  return (
+    <span className={className} style={style}>
+      {children}
+    </span>
+  );
 };
 
 Hr.propTypes = {
   children: PropTypes.node,
+  classes: PropTypes.shape().isRequired,
   color: PropTypes.string,
   inline: PropTypes.bool,
   line: PropTypes.bool,
   multiplier: PropTypes.number,
   opacity: PropTypes.number,
+  theme: PropTypes.shape({
+    hr: PropTypes.shape({
+      sizes: PropTypes.shape({
+        md: PropTypes.number.isRequired,
+      }).isRequired,
+    }).isRequired,
+  }).isRequired,
   width: PropTypes.string,
 };
 

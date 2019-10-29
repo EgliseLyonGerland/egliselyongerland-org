@@ -268,7 +268,7 @@ const Announcement = ({ classes, onCloseButtonClicked }) => {
 };
 
 Announcement.propTypes = {
-  classes: PropTypes.shape({}).isRequired,
+  classes: PropTypes.shape().isRequired,
   onCloseButtonClicked: PropTypes.func,
 };
 

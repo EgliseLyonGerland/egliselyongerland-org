@@ -10,7 +10,7 @@ import theme from 'config/theme';
 const renderTitle = (prefix, suffix) => (
   <Text color={theme.palette.primary[500]} element="h2" fontSize={40} unit="px">
     {prefix}{' '}
-    <Text element="span" fontSize={40} fontWeight="regular" unit="px" italic>
+    <Text element="span" fontSize={40} fontWeight="regular" italic unit="px">
       {suffix}
     </Text>
   </Text>

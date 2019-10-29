@@ -29,29 +29,6 @@ const styles = ({ breakpoints }) =>
 
 @withStyles(styles)
 class ResponsiveText extends Component {
-  static propTypes = {
-    children: PropTypes.node.isRequired,
-    classes: PropTypes.shape().isRequired,
-    ...sizes.reduce(
-      (acc, size) => ({
-        ...acc,
-        [size]: PropTypes.string,
-      }),
-      {},
-    ),
-  };
-
-  static defaultProps = {
-    classes: PropTypes.shape().isRequired,
-    ...sizes.reduce(
-      (acc, size) => ({
-        ...acc,
-        [size]: null,
-      }),
-      {},
-    ),
-  };
-
   render() {
     const { children, classes } = this.props;
 
@@ -61,21 +38,43 @@ class ResponsiveText extends Component {
       return txt ? [txt, currentSize] : acc;
     }, []);
 
-    let props = {};
+    let className;
+    let dataAlt;
 
     if (text) {
-      props = {
-        className: classes[size],
-        'data-alt': text,
-      };
+      className = classes[size];
+      dataAlt = text;
     }
 
     return (
-      <span {...props}>
+      <span className={className} data-alt={dataAlt}>
         <span>{children}</span>
       </span>
     );
   }
 }
+
+ResponsiveText.propTypes = {
+  children: PropTypes.node.isRequired,
+  classes: PropTypes.shape(),
+  ...sizes.reduce(
+    (acc, size) => ({
+      ...acc,
+      [size]: PropTypes.string,
+    }),
+    {},
+  ),
+};
+
+ResponsiveText.defaultProps = {
+  classes: {},
+  ...sizes.reduce(
+    (acc, size) => ({
+      ...acc,
+      [size]: null,
+    }),
+    {},
+  ),
+};
 
 export default ResponsiveText;

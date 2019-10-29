@@ -54,15 +54,6 @@ const styles = ({ breakpoints }) => ({
 
 @withStyles(styles)
 class Church extends Component {
-  static propTypes = {
-    classes: PropTypes.shape().isRequired,
-    history: PropTypes.shape({
-      push: PropTypes.func.isRequired,
-    }).isRequired,
-    location: PropTypes.shape().isRequired,
-    route: PropTypes.shape().isRequired,
-  };
-
   constructor() {
     super();
 
@@ -99,10 +90,10 @@ class Church extends Component {
               flexContainer: classes.tabsFlexContainer,
             }}
             indicatorColor="primary"
+            scrollable
             scrollButtons="off"
             textColor="primary"
             value={currentTab.slug}
-            scrollable
             onChange={this.handleTabChange}
           >
             {churchTabs.map(tab => (
@@ -121,5 +112,14 @@ class Church extends Component {
     );
   }
 }
+
+Church.propTypes = {
+  classes: PropTypes.shape().isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
+  location: PropTypes.shape().isRequired,
+  route: PropTypes.shape().isRequired,
+};
 
 export default Church;

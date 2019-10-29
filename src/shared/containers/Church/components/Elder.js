@@ -110,22 +110,6 @@ const styles = ({ typography, palette, breakpoints }) => ({
 
 @withStyles(styles)
 class Elder extends Component {
-  static propTypes = {
-    children: PropTypes.node.isRequired,
-    classes: PropTypes.shape().isRequired,
-    first: PropTypes.bool,
-    inverted: PropTypes.bool,
-    last: PropTypes.bool,
-    name: PropTypes.string.isRequired,
-    picture: PropTypes.string.isRequired,
-  };
-
-  static defaultProps = {
-    inverted: false,
-    first: false,
-    last: false,
-  };
-
   render() {
     const {
       name,
@@ -186,5 +170,21 @@ class Elder extends Component {
     );
   }
 }
+
+Elder.propTypes = {
+  children: PropTypes.node.isRequired,
+  classes: PropTypes.shape().isRequired,
+  first: PropTypes.bool,
+  inverted: PropTypes.bool,
+  last: PropTypes.bool,
+  name: PropTypes.string.isRequired,
+  picture: PropTypes.string.isRequired,
+};
+
+Elder.defaultProps = {
+  inverted: false,
+  first: false,
+  last: false,
+};
 
 export default Elder;

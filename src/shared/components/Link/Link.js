@@ -32,17 +32,6 @@ const styles = ({ palette }) => ({
 
 @withStyles(styles)
 class Link extends PureComponent {
-  static propTypes = {
-    classes: PropTypes.shape().isRequired,
-    className: PropTypes.string,
-    color: PropTypes.string,
-  };
-
-  static defaultProps = {
-    className: null,
-    color: 'primary',
-  };
-
   render() {
     const { className, classes, color, ...rest } = this.props;
 
@@ -54,5 +43,17 @@ class Link extends PureComponent {
     );
   }
 }
+
+Link.propTypes = {
+  classes: PropTypes.shape(),
+  className: PropTypes.string,
+  color: PropTypes.string,
+};
+
+Link.defaultProps = {
+  classes: {},
+  className: null,
+  color: 'primary',
+};
 
 export default Link;

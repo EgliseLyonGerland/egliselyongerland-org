@@ -212,6 +212,7 @@ const Button = ({
 
 Button.propTypes = {
   children: PropTypes.node.isRequired,
+  classes: PropTypes.shape().isRequired,
   className: PropTypes.string,
   color: PropTypes.oneOf(['primary', 'secondary', 'white']),
   corners: PropTypes.oneOf(['straight', 'rounded', 'circular']),

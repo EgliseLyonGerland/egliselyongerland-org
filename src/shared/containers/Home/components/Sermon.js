@@ -106,27 +106,6 @@ const styles = theme => ({
 
 @withStyles(styles)
 class Sermon extends PureComponent {
-  static propTypes = {
-    classes: PropTypes.shape().isRequired,
-    className: PropTypes.string,
-    data: PropTypes.shape({
-      author: PropTypes.shape({
-        name: PropTypes.string.isRequired,
-      }),
-      categories: PropTypes.arrayOf(
-        PropTypes.shape({
-          name: PropTypes.string.isRequired,
-        }),
-      ),
-      id: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
-    }).isRequired,
-  };
-
-  static defaultProps = {
-    className: null,
-  };
-
   render() {
     const { classes, className, data } = this.props;
 
@@ -190,10 +169,10 @@ class Sermon extends PureComponent {
         </div>
         <div className={classes.extras}>
           <Image
+            circular
             className={classes.avatar}
             src={authorPictureUrl}
             title={authorName}
-            circular
           />
           <div className={classes.author}>
             <Link to={routes.blog({ author: authorId })}>{authorName}</Link>
@@ -213,5 +192,28 @@ class Sermon extends PureComponent {
     );
   }
 }
+
+Sermon.propTypes = {
+  classes: PropTypes.shape(),
+  className: PropTypes.string,
+  data: PropTypes.shape({
+    author: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+    }),
+    categories: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string.isRequired,
+      }),
+    ),
+    date: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+  }).isRequired,
+};
+
+Sermon.defaultProps = {
+  classes: {},
+  className: null,
+};
 
 export default Sermon;

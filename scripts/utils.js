@@ -1,12 +1,14 @@
 const chalk = require('chalk');
 
+const { log } = console;
+
 const logMessage = (message, level = 'info') => {
   let color = 'white';
 
   if (level === 'error') color = 'red';
   else if (level === 'warning') color = 'yellow';
 
-  console.log(`[${new Date().toISOString()}]`, chalk[color](message));
+  log(`[${new Date().toISOString()}]`, chalk[color](message));
 };
 
 const compilerPromise = compiler =>

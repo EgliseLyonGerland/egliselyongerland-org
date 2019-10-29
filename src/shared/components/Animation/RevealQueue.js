@@ -7,27 +7,6 @@ import debounce from 'lodash/debounce';
 class RevealQueue extends Component {
   childRefs = [];
 
-  static propTypes = {
-    children: PropTypes.node.isRequired,
-    delay: PropTypes.number,
-    disabled: PropTypes.bool,
-    from: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
-    offset: PropTypes.number,
-    speed: PropTypes.number,
-  };
-
-  static defaultProps = {
-    delay: 0,
-    speed: 0.5,
-    offset: 90,
-    from: 'top',
-    disabled: false,
-  };
-
-  state = {
-    display: false,
-  };
-
   handleScroll = debounce(() => {
     if (!this.childRefs[0]) {
       return;
@@ -47,6 +26,14 @@ class RevealQueue extends Component {
       this.hide();
     }
   }, 50);
+
+  constructor() {
+    super();
+
+    this.state = {
+      display: false,
+    };
+  }
 
   componentDidMount() {
     this.handleScroll();
@@ -137,5 +124,22 @@ class RevealQueue extends Component {
     );
   }
 }
+
+RevealQueue.propTypes = {
+  children: PropTypes.node.isRequired,
+  delay: PropTypes.number,
+  disabled: PropTypes.bool,
+  from: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
+  offset: PropTypes.number,
+  speed: PropTypes.number,
+};
+
+RevealQueue.defaultProps = {
+  delay: 0,
+  speed: 0.5,
+  offset: 90,
+  from: 'top',
+  disabled: false,
+};
 
 export default RevealQueue;

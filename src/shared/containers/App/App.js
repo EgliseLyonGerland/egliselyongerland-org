@@ -88,6 +88,12 @@ function App({
   let displayAnnouncement = false;
   let setDisplayAnnouncement = null;
 
+  const {
+    app: {
+      head: { titleTemplate, meta },
+    },
+  } = config;
+
   if (__CLIENT__) {
     [displayAnnouncement, setDisplayAnnouncement] = useLocalStorage(
       'displayAnnouncement',
@@ -156,8 +162,8 @@ function App({
         [classes.noScroll]: announcementOpened || isSidebarOpened,
       })}
     >
-      <Helmet {...config.app.head} />
-      <Overlay {...overlay} onClicked={closeSidebarAction} />
+      <Helmet meta={meta} titleTemplate={titleTemplate} />
+      <Overlay active={overlay.active} onClicked={closeSidebarAction} />
       <ScrollToTop />
       <Header
         sidebarOpened={isSidebarOpened}
@@ -180,12 +186,19 @@ function App({
 }
 
 App.propTypes = {
+  announcementOpenCount: PropTypes.number.isRequired,
+  announcementOpened: PropTypes.bool.isRequired,
+  audio: PropTypes.shape().isRequired,
+  classes: PropTypes.shape().isRequired,
   closeAnnouncementAction: PropTypes.func.isRequired,
+  closeAudioAction: PropTypes.func.isRequired,
   closeSidebarAction: PropTypes.func.isRequired,
   isSidebarOpened: PropTypes.bool.isRequired,
   openAnnouncementAction: PropTypes.func.isRequired,
   openSidebarAction: PropTypes.func.isRequired,
   overlay: PropTypes.shape().isRequired,
+  pauseAudioAction: PropTypes.func.isRequired,
+  route: PropTypes.shape().isRequired,
 };
 
 App.getInitialData = () => new Promise(resolve => setTimeout(resolve, 2000));

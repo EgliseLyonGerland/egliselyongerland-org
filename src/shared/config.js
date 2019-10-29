@@ -19,29 +19,27 @@ const environment = {
   },
 }[process.env.NODE_ENV || 'development'];
 
-module.exports = Object.assign(
-  {
-    app: {
-      title: defaultTitle,
-      description: defaultDescription,
-      domain: 'egliselyongerland.org',
-      head: {
-        titleTemplate: `%s - ${defaultTitle}`,
-        meta: [
-          { name: 'description', content: defaultDescription },
-          { charset: 'utf-8' },
-          { property: 'og:site_name', content: defaultTitle },
-          {
-            property: 'og:image',
-            content: '/static/og-image.jpg',
-          },
-          { property: 'og:locale', content: 'fr_FR' },
-          { property: 'og:title', content: defaultTitle },
-          { property: 'og:description', content: defaultDescription },
-          { property: 'twitter:site', content: 'EREdeLyon' },
-        ],
-      },
+module.exports = {
+  app: {
+    title: defaultTitle,
+    description: defaultDescription,
+    domain: 'egliselyongerland.org',
+    head: {
+      titleTemplate: `%s - ${defaultTitle}`,
+      meta: [
+        { name: 'description', content: defaultDescription },
+        { charset: 'utf-8' },
+        { property: 'og:site_name', content: defaultTitle },
+        {
+          property: 'og:image',
+          content: '/static/og-image.jpg',
+        },
+        { property: 'og:locale', content: 'fr_FR' },
+        { property: 'og:title', content: defaultTitle },
+        { property: 'og:description', content: defaultDescription },
+        { property: 'twitter:site', content: 'EREdeLyon' },
+      ],
     },
   },
-  environment,
-);
+  ...environment,
+};

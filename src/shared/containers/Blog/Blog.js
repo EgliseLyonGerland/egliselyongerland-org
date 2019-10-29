@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import reduce from 'lodash/reduce';
 import map from 'lodash/map';
@@ -40,22 +40,6 @@ import jumbotron from './jumbotron.jpg';
 
 @withWidth()
 class Blog extends Component {
-  static propTypes = {
-    aggs: PropTypes.shape().isRequired,
-    loading: PropTypes.bool.isRequired,
-    location: PropTypes.shape().isRequired,
-    maxPage: PropTypes.number.isRequired,
-    page: PropTypes.number.isRequired,
-    params: PropTypes.shape().isRequired,
-    posts: PropTypes.arrayOf(PropTypes.string).isRequired,
-    total: PropTypes.number.isRequired,
-    width: PropTypes.string.isRequired,
-  };
-
-  static contextTypes = {
-    router: PropTypes.shape(),
-  };
-
   getDenormalizedPosts() {
     const { posts, entities } = this.props;
 
@@ -249,7 +233,7 @@ class Blog extends Component {
     const { total, page, maxPage, params, history } = this.props;
 
     return (
-      <Fragment>
+      <>
         <Grid alignItems="center" container justify="space-between">
           <Grid item>
             {total} {total > 1 ? 'articles' : 'article'}
@@ -281,7 +265,7 @@ class Blog extends Component {
           </Grid>
         </Grid>
         <Hr />
-      </Fragment>
+      </>
     );
   }
 
@@ -350,29 +334,26 @@ class Blog extends Component {
   renderSeo(title) {
     const { page, maxPage, params } = this.props;
 
-    const props = {
-      title,
-      link: [],
-      meta: [],
-    };
+    const link = [];
+    const meta = [];
 
     if (page > 1) {
-      props.link.push({
+      link.push({
         rel: 'prev',
         href: routes.blog({ ...params, page: page - 1 }),
       });
 
-      props.meta.push({ name: 'robots', content: 'noindex' });
+      meta.push({ name: 'robots', content: 'noindex' });
     }
 
     if (page < maxPage) {
-      props.link.push({
+      link.push({
         rel: 'next',
         href: routes.blog({ ...params, page: page + 1 }),
       });
     }
 
-    return <Helmet {...props} />;
+    return <Helmet link={link} meta={meta} title={title} />;
   }
 
   render() {
@@ -395,5 +376,23 @@ class Blog extends Component {
     );
   }
 }
+
+Blog.propTypes = {
+  aggs: PropTypes.shape().isRequired,
+  entities: PropTypes.shape().isRequired,
+  history: PropTypes.shape().isRequired,
+  loading: PropTypes.bool.isRequired,
+  location: PropTypes.shape().isRequired,
+  maxPage: PropTypes.number.isRequired,
+  page: PropTypes.number.isRequired,
+  params: PropTypes.shape().isRequired,
+  posts: PropTypes.arrayOf(PropTypes.string).isRequired,
+  total: PropTypes.number.isRequired,
+  width: PropTypes.string.isRequired,
+};
+
+Blog.contextTypes = {
+  router: PropTypes.shape(),
+};
 
 export default Blog;

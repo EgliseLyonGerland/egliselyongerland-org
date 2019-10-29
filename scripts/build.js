@@ -5,6 +5,8 @@ const webpackConfigs = require('../webpack')(
 );
 const paths = require('../webpack/paths');
 
+const { log } = console;
+
 const [clientConfig, serverConfig] = webpackConfigs;
 
 const compile = config =>
@@ -15,7 +17,7 @@ const compile = config =>
         return;
       }
 
-      console.log(stats.toString(config.stats));
+      log(stats.toString(config.stats));
       resolve();
     });
   });

@@ -9,11 +9,6 @@ import WhatWhenWhere from './components/WhatWhenWhere';
 import Sermons from './components/Sermons';
 
 class Home extends Component {
-  static propTypes = {
-    entities: PropTypes.shape().isRequired,
-    posts: PropTypes.arrayOf(PropTypes.string).isRequired,
-  };
-
   getDenormalizedSermons() {
     const { posts, entities } = this.props;
 
@@ -41,5 +36,10 @@ class Home extends Component {
     );
   }
 }
+
+Home.propTypes = {
+  entities: PropTypes.shape().isRequired,
+  posts: PropTypes.arrayOf(PropTypes.string).isRequired,
+};
 
 export default Home;

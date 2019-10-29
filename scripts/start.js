@@ -15,6 +15,8 @@ const app = express();
 const WEBPACK_HOST = process.env.WEBPACK_HOST || 'localhost';
 const [clientConfig, serverConfig] = webpackConfig;
 
+const { log } = console;
+
 const WEBPACK_PORT =
   process.env.WEBPACK_PORT ||
   (!Number.isNaN(Number(process.env.PORT))
@@ -86,7 +88,7 @@ const start = async () => {
 
     serverCompiler.watch(watchOptions, (error, stats) => {
       if (!error && !stats.hasErrors()) {
-        console.log(stats.toString(serverConfig.stats));
+        log(stats.toString(serverConfig.stats));
         return;
       }
 
@@ -119,7 +121,7 @@ const start = async () => {
   });
 
   script.on('quit', () => {
-    console.log('Process ended');
+    log('Process ended');
     process.exit();
   });
 

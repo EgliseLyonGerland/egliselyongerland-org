@@ -84,7 +84,7 @@ class LabelPicker extends Component {
               {children ? (
                 children(label)
               ) : (
-                <Text fontSize={1} maxLines={1} ellipsis>
+                <Text ellipsis fontSize={1} maxLines={1}>
                   {label.label}
                 </Text>
               )}
