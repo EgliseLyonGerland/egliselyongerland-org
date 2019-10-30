@@ -6,9 +6,8 @@ import { rem } from 'polished';
 import { get } from 'lodash';
 import classnames from 'classnames';
 import format from 'date-fns/format';
-import parse from 'date-fns/parse';
-import differenceInDays from 'date-fns/difference_in_days';
-import differenceInYears from 'date-fns/difference_in_years';
+import differenceInDays from 'date-fns/differenceInDays';
+import differenceInYears from 'date-fns/differenceInYears';
 import locale from 'date-fns/locale/fr';
 
 import Link from 'components/Link/Link';
@@ -121,12 +120,12 @@ class Sermon extends PureComponent {
     ]);
     const imageUrl = get(data, ['picture', 'sizes', 'medium', 'url'], null);
     const audioDuration = get(data, ['extras', 'audio', 'duration']);
-    const date = parse(get(data, ['extras', 'sermonDate'], data.date));
+    const date = new Date(get(data, ['extras', 'sermonDate'], data.date));
     const diffDays = differenceInDays(new Date(), date);
     const diffYears = differenceInYears(new Date(), date);
 
-    let formattedDate = format(date, 'dddd D MMMM', { locale });
-    let formattedDateShort = format(date, 'D MMM', { locale });
+    let formattedDate = format(date, 'eeee d MMMM', { locale });
+    let formattedDateShort = format(date, 'd MMM', { locale });
 
     if (diffDays <= 7) {
       formattedDate = 'dimanche dernier';

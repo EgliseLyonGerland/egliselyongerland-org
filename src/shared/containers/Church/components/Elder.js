@@ -173,7 +173,7 @@ class Elder extends Component {
 
 Elder.propTypes = {
   children: PropTypes.node.isRequired,
-  classes: PropTypes.shape().isRequired,
+  classes: PropTypes.shape(),
   first: PropTypes.bool,
   inverted: PropTypes.bool,
   last: PropTypes.bool,
@@ -182,6 +182,7 @@ Elder.propTypes = {
 };
 
 Elder.defaultProps = {
+  classes: {},
   inverted: false,
   first: false,
   last: false,

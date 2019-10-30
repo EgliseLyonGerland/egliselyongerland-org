@@ -1,21 +1,26 @@
-const paths = require("./webpack/paths");
+const postcssImportPlugin = require('postcss-import');
+const postcssNestedPlugin = require('postcss-nested');
+const postcssCustomPropertiesPlugin = require('postcss-custom-properties');
+const postcssFlexbugsFixesPlugin = require('postcss-flexbugs-fixes');
+const autoprefixerPlugin = require('autoprefixer');
+const postcssAssetsPlugin = require('postcss-assets');
+const postcssNormalizePlugin = require('postcss-normalize');
+
+const paths = require('./webpack/paths');
 
 module.exports = {
   plugins: [
-    require("postcss-import")({
-      path: [paths.srcShared]
+    postcssImportPlugin({
+      path: [paths.srcShared],
     }),
-    require("postcss-nested")(),
-    require("postcss-custom-properties")(),
-    require("postcss-flexbugs-fixes")(),
-    require("autoprefixer")({
-      browsers: ["last 3 versions", "ie >= 9", "Edge <= 15"]
+    postcssNestedPlugin(),
+    postcssCustomPropertiesPlugin(),
+    postcssFlexbugsFixesPlugin(),
+    autoprefixerPlugin(),
+    postcssAssetsPlugin({
+      basePath: './assets',
     }),
-    require("postcss-custom-properties")(),
-    require("postcss-assets")({
-      basePath: "./assets"
-    }),
-    require("postcss-normalize")()
+    postcssNormalizePlugin(),
   ],
-  sourceMap: true
+  sourceMap: true,
 };

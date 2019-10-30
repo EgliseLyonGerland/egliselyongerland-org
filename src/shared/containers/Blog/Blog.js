@@ -388,7 +388,11 @@ Blog.propTypes = {
   params: PropTypes.shape().isRequired,
   posts: PropTypes.arrayOf(PropTypes.string).isRequired,
   total: PropTypes.number.isRequired,
-  width: PropTypes.string.isRequired,
+  width: PropTypes.string,
+};
+
+Blog.defaultProps = {
+  width: 'lg',
 };
 
 Blog.contextTypes = {

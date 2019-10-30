@@ -90,10 +90,10 @@ class Church extends Component {
               flexContainer: classes.tabsFlexContainer,
             }}
             indicatorColor="primary"
-            scrollable
             scrollButtons="off"
             textColor="primary"
             value={currentTab.slug}
+            variant="scrollable"
             onChange={this.handleTabChange}
           >
             {churchTabs.map(tab => (
@@ -114,12 +114,16 @@ class Church extends Component {
 }
 
 Church.propTypes = {
-  classes: PropTypes.shape().isRequired,
+  classes: PropTypes.shape(),
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
   location: PropTypes.shape().isRequired,
   route: PropTypes.shape().isRequired,
+};
+
+Church.defaultProps = {
+  classes: {},
 };
 
 export default Church;

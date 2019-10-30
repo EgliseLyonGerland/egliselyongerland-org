@@ -95,7 +95,7 @@ const styles = theme => ({
 const renderDate = post => {
   const date = get(post, ['extras', 'sermonDate'], post.date);
 
-  return `le ${format(date, 'D MMMM YYYY', { locale })}`;
+  return `le ${format(new Date(date), 'd MMMM yyyy', { locale })}`;
 };
 
 const LinkButton = createResponsiveButton(
@@ -236,17 +236,20 @@ class PostHeader extends Component {
 }
 
 PostHeader.propTypes = {
-  audio: PropTypes.shape().isRequired,
+  audio: PropTypes.shape(),
   classes: PropTypes.shape(),
-  history: PropTypes.shape().isRequired,
-  openAudioAction: PropTypes.func.isRequired,
+  history: PropTypes.shape(),
+  openAudioAction: PropTypes.func,
   post: PropTypes.shape().isRequired,
   url: PropTypes.string.isRequired,
   width: PropTypes.string,
 };
 
 PostHeader.defaultProps = {
+  audio: {},
   classes: {},
+  history: {},
+  openAudioAction: () => {},
   width: 'lg',
 };
 

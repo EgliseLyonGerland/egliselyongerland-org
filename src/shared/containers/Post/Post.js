@@ -23,8 +23,8 @@ const getMetaDescription = post => {
 
   if (post.predication && sermonDate) {
     excerpt = `Prédication du ${format(
-      post.extras.sermonDate,
-      'dddd D MMMM YYYY',
+      new Date(post.extras.sermonDate),
+      'eeee d MMMM yyyy',
       { locale },
     )}. ${excerpt}`;
   }
