@@ -1,7 +1,11 @@
 {
   "parser": "babel-eslint",
   "extends": ["airbnb", "prettier", "prettier/react"],
-  "plugins": ["prettier"],
+  "plugins": ["prettier", "cypress"],
+  "env": {
+    "browser": true,
+    "cypress/globals": true
+  },
   "settings": {
     "react": {
       "version": "16.5"
@@ -52,9 +56,6 @@
   "globals": {
     "__DEVELOPMENT__": true,
     "__CLIENT__": true,
-    "__SERVER__": true,
-    "window": true,
-    "document": true,
-    "screen": true
+    "__SERVER__": true
   }
 }
