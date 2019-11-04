@@ -48,7 +48,7 @@
     "image-webpack-loader": "4.6.0",
     "invariant": "2.2.4",
     "json-loader": "0.5.7",
-    "lodash": "4.17.11",
+    "lodash": "4.17.13",
     "lru-memoize": "1.0.2",
     "map-props": "1.0.0",
     "md5": "2.2.1",
