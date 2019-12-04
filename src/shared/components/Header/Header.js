@@ -12,6 +12,7 @@ import routes from 'utils/routes';
 
 import logo from './logo.svg';
 import brand from './brand.svg';
+import christmas from './christmas.svg';
 
 const miniStyles = theme => ({
   transform: `scale(${theme.header.sticky.brandScale})
@@ -255,6 +256,10 @@ class Header extends Component {
 
           <div className={classes.blankItem} />
 
+          <Link alt="Cult de Noël" to="/noel">
+            <img alt="Culte de Noël" height="28" src={christmas} />
+          </Link>
+
           <div className={classes.links}>
             {links.map(link => (
               <div key={link.label} className={classes.linksItem}>
@@ -275,9 +280,9 @@ class Header extends Component {
               delay={[0.5, 0.8]}
               height={17}
               muted={sidebarOpened}
+              rounded
               weight={3}
               width={17}
-              rounded
             />
           </button>
         </div>
