@@ -23,7 +23,7 @@ const styles = theme => ({
       width: '100%',
       top: 0,
       left: 0,
-      background: 'rgba(0, 0, 0, 0.2)',
+      background: 'rgba(0, 0, 0, 0.5)',
     },
   },
   inner: {
@@ -63,7 +63,7 @@ const styles = theme => ({
   },
   '@media (min-height: 700px)': {
     inner: {
-      minHeight: 540,
+      minHeight: 480,
     },
   },
   [theme.breakpoints.down('sm')]: {

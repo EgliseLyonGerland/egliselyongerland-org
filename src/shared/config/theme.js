@@ -10,7 +10,7 @@ export default {
       xxs: 0,
       xs: 480,
       sm: 720,
-      md: 960,
+      md: 1024,
       lg: 1280,
       xl: 1440,
       xxl: 1920,
