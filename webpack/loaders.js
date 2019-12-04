@@ -29,9 +29,6 @@ const createStyleLoaders = ({
           sourceMap: true,
         },
       },
-      {
-        loader: 'sass-loader',
-      },
     ],
   },
   server: {
@@ -54,9 +51,6 @@ const createStyleLoaders = ({
         options: {
           sourceMap: true,
         },
-      },
-      {
-        loader: 'sass-loader',
       },
     ],
   },

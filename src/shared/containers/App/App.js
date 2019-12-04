@@ -26,8 +26,7 @@ import config from 'config';
 
 import 'url-search-params-polyfill';
 
-import 'theme/bootstrap.scss';
-import 'theme/base.scss';
+import 'theme/base.css';
 
 const styles = theme => ({
   root: {

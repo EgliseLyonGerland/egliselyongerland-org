@@ -8,7 +8,7 @@
     "dev": "cross-env NODE_ENV=development node scripts/start.js",
     "lint": "eslint --cache src webpack scripts",
     "format": "prettier-eslint --write '{src,webpack,scripts}/**/*.{js,json,scss,md}'",
-    "postinstall": "npm rebuild node-sass && node ./scripts/replaceBreakpoints",
+    "postinstall": "node ./scripts/replaceBreakpoints",
     "heroku-postbuild": "npm run build"
   },
   "dependencies": {
@@ -88,7 +88,6 @@
     "redux-connect": "8.0.0",
     "redux-thunk": "2.3.0",
     "rimraf": "2.6.2",
-    "sass-loader": "7.1.0",
     "serialize-javascript": "1.5.0",
     "style-loader": "0.23.1",
     "superagent": "4.0.0",
@@ -101,7 +100,6 @@
   },
   "devDependencies": {
     "babel-eslint": "10.0.1",
-    "bootstrap-sass": "3.3.7",
     "cypress": "3.5.0",
     "eslint": "5.10.0",
     "eslint-config-airbnb": "17.1.0",
@@ -114,7 +112,6 @@
     "eslint-plugin-react": "7.11.1",
     "husky": "1.2.0",
     "lint-staged": "8.1.0",
-    "node-sass": "4.11.0",
     "nodemon": "1.18.8",
     "prettier": "1.15.3",
     "prettier-eslint": "8.8.2",
