@@ -1,10 +1,15 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { withStyles } from '@material-ui/core/styles';
-import rem from 'polished/lib/helpers/rem';
+import { NavLink as Link } from 'react-router-dom';
 
 import Jumbotron from 'components/Jumbotron/Jumbotron';
+import Container from 'components/Container/Container';
+import RevealQueue from 'components/Animation/RevealQueue';
+import Typography from 'components/Typography/Typography';
+import Hr from 'components/Hr/Hr';
+import routes from 'utils/routes';
 
 import jumbotronImage from './images/jumbotron.jpg';
 
@@ -12,56 +17,29 @@ const styles = ({ palette, typography, breakpoints }) => ({
   inner: {
     margin: [[88, 0]],
   },
-  title: {
-    display: 'block',
-    fontSize: rem(32),
+  quote: {
     fontWeight: typography.fontWeights.regular,
-    color: palette.primary[500],
+    fontStyle: 'italic',
+    color: palette.text.primary,
+    fontSize: 24,
+    lineHeight: 1.3,
     textAlign: 'center',
-    marginBottom: 40,
-
-    '&::after': {
-      content: '""',
-      display: 'block',
-      width: 140,
-      height: 1,
-      backgroundColor: palette.primary[500],
-      margin: [[32, 'auto', 0]],
-    },
   },
-  imageWrapper: {
-    margin: [[64, 0, -80]],
-  },
-  discoverWrapper: {
-    position: 'relative',
-  },
-  discoverInner: {
-    backgroundColor: 'white',
-  },
-  buttonWrapper: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    margin: [[64, 0]],
+  quoteAuthor: {
+    display: 'inline-block',
+    color: palette.text.hint,
+    fontSize: 20,
   },
   [breakpoints.down('xs')]: {
     inner: {
       margin: [[40, 0]],
-    },
-    title: {
-      fontSize: rem(24),
-
-      '&::after': {
-        width: 90,
-        marginTop: 24,
-      },
     },
   },
 });
 
 const title = 'Célébration de Noël';
 
-const Christmas = () => (
+const Christmas = ({ classes }) => (
   <div>
     <Helmet>
       <title>{title}</title>
@@ -69,63 +47,75 @@ const Christmas = () => (
 
     <Jumbotron background={jumbotronImage} title={title} />
 
-    {/* <div className={classes.inner}>
-      <RevealQueue delay={0.5}>
-        <Container sm>
-          <h2 className={classes.title}>
-            La Bible est un livre <em>extraordinaire</em>
-          </h2>
-          <Typography paragraph>
-            Que l’on soit croyant ou non, le moins qu’on puisse dire, c’est que
-            la Bible est un livre complètement à part dans toute l’histoire de
-            la littérature ! Un livre unique du point de vue de sa composition,
-            de sa distribution, de sa conservation, de son influence…
+    <div className={classes.inner}>
+      <Container sm>
+        <RevealQueue delay={0.5}>
+          <Typography variant="h6">
+            L'assemblée protestante évangélique de Lyon Gerland se réjouit de
+            vous accueillir pour sa célébration de Noël.
           </Typography>
           <Typography paragraph>
-            Mais si la Bible est un livre extraordinaire, c’est surtout parce
-            qu’elle contient un message extraordinaire. Un message
-            incontournable, même !
+            <Hr />
+            Ouverte à toutes et à tous, c'est l'occasion de (re)découvrir le
+            message originel de Noël :{' '}
+            <span aria-label="visage en plein réflexion" role="img">
+              🤔
+            </span>
           </Typography>
-        </Container>
-        <Container className={classes.imageWrapper} noMargins>
-          <Image ratio="16/9" src={bibleImage} />
-        </Container>
-        <Container
-          classes={{ inner: classes.discoverInner }}
-          className={classes.discoverWrapper}
-          sm
-          withPaddings
-        >
-          <h2 className={classes.title}>
-            Découvrir <em>la Bible</em>
-          </h2>
-          <Typography>
-            À l’Église Lyon Gerland, nous vous proposons de suivre un
-            parcours-découverte qui vous permettra de vous familiariser avec ce
-            « livre à part ».
+          <Typography paragraph>
+            Si ce n'est plus la fête païenne de la victoire du soleil sur la
+            nuit (sol invictus), christianisée au début du 4ème siècle, Noël
+            n'est pas non plus la fête du petit Jésus sous le sapin au pied
+            duquel le père Noël vient déposer des cadeaux par milliers. Non, le
+            message du Noël chrétien est beaucoup plus profond, beaucoup plus
+            dérangeant, mais aussi plus essentiel que cela. Il s'agit d'un
+            message de secours et de liberté, que nous vous proposons de
+            découvrir lors de cette célébration de Noël du 15 décembre.
           </Typography>
-          <Typography>Intéressé(e) ? Faites-le nous savoir !</Typography>
-          <div className={classes.buttonWrapper}>
-            <Link to={routes.contact()}>
-              <Button>Contact</Button>
-            </Link>
-          </div>
-          <Typography>
-            Au plaisir de découvrir la Bible ensemble,
+          <Typography component="div" paragraph>
+            <Hr />
+            <b>Déroulement :</b>
             <br />
-            <br />
-            <b>Alexandre</b>
-            <br />
-            <em>Pasteur</em>
+            <ul>
+              <li>9h30 : Accueil avec café et viennoiseries</li>
+              <li>
+                10h00 : Début de la célébration, incluant une chorale, un
+                message centré sur la signification de la naissance de Jésus,
+                ...
+              </li>
+              <li>
+                11h30 : Fin. Enfin, pas tout à fait, on aime bien rester
+                discuter un peu{' '}
+                <span aria-label="visage souriant avec une auréole" role="img">
+                  😇
+                </span>
+              </li>
+            </ul>
           </Typography>
-        </Container>
-      </RevealQueue>
-    </div> */}
+          <Typography paragraph>
+            Si vous n'êtes pas familier du culte protestant, ou si vous êtes
+            simplement curieux de son déroulement et sa signification, je vous
+            encourage à consulter la page{' '}
+            <Link to={routes.worship()}>"Le culte"</Link>.
+          </Typography>
+          <Hr xl />
+          <Typography className={classes.quote}>
+            « Le peuple qui marchait dans les ténèbres a vu une grande lumière,
+            sur ceux qui habitaient le pays de l'ombre de la mort une lumière a
+            brillé.... En effet, un enfant nous est né, un fils nous a été
+            donné, et la souveraineté reposera sur son épaule ; on l'appellera
+            merveilleux conseiller, Dieu puissant, Père éternel, Prince de la{' '}
+            <span style={{ display: 'inline-block' }}>paix. »</span>{' '}
+            <span className={classes.quoteAuthor}>— Esaïe 9.1-5</span>
+          </Typography>
+        </RevealQueue>
+      </Container>
+    </div>
   </div>
 );
 
-// Christmas.propTypes = {
-//   classes: PropTypes.shape().isRequired,
-// };
+Christmas.propTypes = {
+  classes: PropTypes.shape().isRequired,
+};
 
 export default withStyles(styles)(Christmas);

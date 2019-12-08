@@ -37,6 +37,9 @@ const styles = theme => ({
     '& $logo': {
       transform: 'rotate(180deg)',
     },
+    '& $christmas': {
+      transform: `scale(${theme.header.sticky.brandScale})`,
+    },
   },
   body: {
     position: 'absolute',
@@ -51,6 +54,10 @@ const styles = theme => ({
     transition: 'transform 0.3s',
     transformOrigin: 'left center',
     position: 'relative',
+  },
+  christmas: {
+    height: 56,
+    transition: 'transform 0.5s',
   },
   logo: {
     position: 'relative',
@@ -123,6 +130,9 @@ const styles = theme => ({
   [theme.breakpoints.down('sm')]: {
     brand: {
       ...miniStyles(theme),
+    },
+    christmas: {
+      transform: `scale(${theme.header.sticky.brandScale})`,
     },
     body: {
       height: theme.header.mini.height,
@@ -256,9 +266,15 @@ class Header extends Component {
 
           <div className={classes.blankItem} />
 
-          <Link alt="Cult de Noël" to="/noel">
-            <img alt="Culte de Noël" height="28" src={christmas} />
-          </Link>
+          {+new Date() < 1576411200000 && (
+            <Link alt="Culte de Noël" to="/noel">
+              <img
+                alt="Culte de Noël"
+                className={classes.christmas}
+                src={christmas}
+              />
+            </Link>
+          )}
 
           <div className={classes.links}>
             {links.map(link => (
