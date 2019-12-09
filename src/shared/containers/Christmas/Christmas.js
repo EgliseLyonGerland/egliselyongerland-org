@@ -48,63 +48,68 @@ const Christmas = ({ classes }) => (
     <Jumbotron background={jumbotronImage} title={title} />
 
     <div className={classes.inner}>
-      <Container sm>
+      <Container md>
         <RevealQueue delay={0.5}>
-          <Typography variant="h6">
-            L'assemblée protestante évangélique de Lyon Gerland se réjouit de
-            vous accueillir pour sa célébration de Noël.
-          </Typography>
-          <Typography paragraph>
+          <Typography variant="h5">
+            La paroisse protestante de Lyon Gerland se réjouit de vous
+            accueillir pour sa célébration de Noël.
             <Hr />
-            Ouverte à toutes et à tous, c'est l'occasion de (re)découvrir le
-            message originel de Noël :{' '}
-            <span aria-label="visage en plein réflexion" role="img">
-              🤔
-            </span>
-          </Typography>
-          <Typography paragraph>
-            Si ce n'est plus la fête païenne de la victoire du soleil sur la
-            nuit (sol invictus), christianisée au début du 4ème siècle, Noël
-            n'est pas non plus la fête du petit Jésus sous le sapin au pied
-            duquel le père Noël vient déposer des cadeaux par milliers. Non, le
-            message du Noël chrétien est beaucoup plus profond, beaucoup plus
-            dérangeant, mais aussi plus essentiel que cela. Il s'agit d'un
-            message de secours et de liberté, que nous vous proposons de
-            découvrir lors de cette célébration de Noël du 15 décembre.
           </Typography>
           <Typography component="div" paragraph>
-            <Hr />
+            <div style={{ float: 'right', margin: 16 }}>
+              <iframe
+                allow="encrypted-media"
+                allowTransparency
+                frameBorder="0"
+                height="350"
+                scrolling="no"
+                src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fegliselyongerland%2F&tabs=events&width=340&height=350&small_header=true&adapt_container_width=false&hide_cover=true&show_facepile=false&appId=139041246774067"
+                style={{ border: 'none', overflow: 'hidden', maxWidth: '100%' }}
+                title="Page de l'évènement Facebook"
+                width="340"
+              />
+            </div>
+            Ouverte à tous, c'est l'occasion de (re)découvrir le message
+            originel de Noël !<br />
+            <br />
+            Si ce n'est plus la fête païenne de la victoire du soleil sur la
+            nuit (sol invictus), christianisée au début du 4ème siècle, Noël
+            n'est pas non plus la fête du petit Jésus sous le sapin, au pied
+            duquel le père Noël vient déposer des cadeaux par milliers ! Non, le
+            message du Noël chrétien est beaucoup plus profond, peut-être plus
+            dérangeant aussi, mais certainement plus pertinent que jamais. Il
+            s'agit d'un message de secours et de liberté, que nous vous
+            proposons de découvrir lors de cette célébration de Noël du 15
+            décembre.
+            <br />
+            <br />
             <b>Déroulement :</b>
             <br />
             <ul>
               <li>9h30 : Accueil avec café et viennoiseries</li>
               <li>
-                10h00 : Début de la célébration, incluant une chorale, un
-                message centré sur la signification de la naissance de Jésus,
-                ...
+                10h00 : Début de la célébration, avec des chants, la lecture de
+                l'histoire de Noël, un message centré sur la signification de la
+                naissance de Jésus...
               </li>
               <li>
                 11h30 : Fin. Enfin, pas tout à fait, on aime bien rester
-                discuter un peu{' '}
-                <span aria-label="visage souriant avec une auréole" role="img">
-                  😇
-                </span>
+                discuter un peu !
               </li>
             </ul>
-          </Typography>
-          <Typography paragraph>
+            <br />
             Si vous n'êtes pas familier du culte protestant, ou si vous êtes
-            simplement curieux de son déroulement et sa signification, je vous
-            encourage à consulter la page{' '}
+            simplement curieux de son déroulement et de sa signification, je
+            vous encourage à consulter la page{' '}
             <Link to={routes.worship()}>"Le culte"</Link>.
           </Typography>
-          <Hr xl />
           <Typography className={classes.quote}>
-            « Le peuple qui marchait dans les ténèbres a vu une grande lumière,
-            sur ceux qui habitaient le pays de l'ombre de la mort une lumière a
-            brillé.... En effet, un enfant nous est né, un fils nous a été
-            donné, et la souveraineté reposera sur son épaule ; on l'appellera
-            merveilleux conseiller, Dieu puissant, Père éternel, Prince de la{' '}
+            <Hr xl />« Le peuple qui marchait dans les ténèbres a vu une grande
+            lumière, sur ceux qui habitaient le pays de l'ombre de la mort une
+            lumière a brillé.... En effet, un enfant nous est né, un fils nous a
+            été donné, et la souveraineté reposera sur son épaule ; on
+            l'appellera merveilleux conseiller, Dieu puissant, Père éternel,
+            Prince de la{' '}
             <span style={{ display: 'inline-block' }}>paix. »</span>{' '}
             <span className={classes.quoteAuthor}>— Esaïe 9.1-5</span>
           </Typography>
