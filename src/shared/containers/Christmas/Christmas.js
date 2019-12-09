@@ -99,8 +99,8 @@ const Christmas = ({ classes }) => (
             </ul>
             <br />
             Si vous n'êtes pas familier du culte protestant, ou si vous êtes
-            simplement curieux de son déroulement et de sa signification, je
-            vous encourage à consulter la page{' '}
+            simplement curieux de son déroulement et de sa signification,
+            n'hésitez pas à consulter la page{' '}
             <Link to={routes.worship()}>"Le culte"</Link>.
           </Typography>
           <Typography className={classes.quote}>
