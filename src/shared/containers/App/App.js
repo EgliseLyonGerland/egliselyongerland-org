@@ -88,8 +88,12 @@ function App({
   let setDisplayAnnouncement = null;
 
   if (__CLIENT__) {
+    if (localStorage) {
+      localStorage.removeItem('displayAnnouncement');
+    }
+
     [displayAnnouncement, setDisplayAnnouncement] = useLocalStorage(
-      'displayAnnouncement',
+      'displayAnnouncement2',
       1,
     );
   }
@@ -99,7 +103,7 @@ function App({
       !__CLIENT__ ||
       displayAnnouncement === '0' ||
       announcementOpenCount !== 0 ||
-      isAfter(new Date(), new Date(2019, 7, 7))
+      isAfter(new Date(), new Date(2020, 1, 19))
     ) {
       return;
     }
