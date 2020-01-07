@@ -40,10 +40,10 @@ const Announcement = ({ classes, onCloseButtonClicked }) => {
         <Typography variant="h5">Attention !</Typography>
 
         <Typography paragraph>
-          Exceptionnellement, ce dimanche 19 janvier, il n’y aura PAS DE CULTE
-          au Théâtre Lulu sur la Colline, car notre église se joint aux autres
-          églises protestantes évangéliques de la région lyonnaise pour un culte
-          en commun, à l’occasion de la semaine universelle de prière.
+          Exceptionnellement, ce <b>dimanche 19 janvier</b>, il n’y aura PAS DE
+          CULTE au Théâtre Lulu sur la Colline, car notre église se joint aux
+          autres églises protestantes évangéliques de la région lyonnaise pour
+          un culte en commun, à l’occasion de la semaine universelle de prière.
         </Typography>
 
         <Typography paragraph>
