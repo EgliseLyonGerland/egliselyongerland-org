@@ -8,6 +8,8 @@ import Container from 'components/Container/Container';
 import Button from 'components/Button/Button';
 import Typography from 'components/Typography/Typography';
 
+import pasDeCulteImage from './images/pasdeculte.png';
+
 const styles = {
   root: {
     background: '#FFFFFF',
@@ -19,6 +21,12 @@ const styles = {
     zIndex: 100,
     overflowY: 'auto',
     padding: [[48, 0]],
+  },
+  image: {
+    width: 500,
+    maxWidth: '100%',
+    margin: [[0, 'auto', 40]],
+    display: 'block',
   },
   confirm: {
     margin: [[48, 0]],
@@ -37,20 +45,24 @@ const Announcement = ({ classes, onCloseButtonClicked }) => {
   return (
     <div className={classes.root}>
       <Container sm>
+        <img
+          alt="PAS DE CULTE"
+          className={classes.image}
+          src={pasDeCulteImage}
+        />
+
         <Typography variant="h5">Attention !</Typography>
 
         <Typography paragraph>
-          Exceptionnellement, ce <b>dimanche 19 janvier</b>, il n’y aura PAS DE
-          CULTE au Théâtre Lulu sur la Colline, car notre église se joint aux
-          autres églises protestantes évangéliques de la région lyonnaise pour
-          un culte en commun, à l’occasion de la semaine universelle de prière.
-        </Typography>
-
-        <Typography paragraph>
-          Comme chaque année, cet événement aura lieu à la{' '}
-          <b>Bourse du Travail</b> : 205 Place Guichard, Lyon 3ème (Métro B
-          arrêt Place Guichard), à 10h (ouverture des portes à 9h30). Le culte
-          est ouvert à tous !
+          Info #CORONAVIRUS. Dans un souci de protection des plus vulnérables et
+          de coopération avec les autorités, nous annonçons{' '}
+          <b>
+            la suspension des célébrations de notre église à partir du dimanche
+            15 mars
+          </b>{' '}
+          inclus et jusqu'à nouvel ordre. L’assemblée générale annuelle
+          initialement prévue le 15 mars est également reportée. Merci de votre
+          compréhension.
         </Typography>
 
         <div className={classes.confirm}>

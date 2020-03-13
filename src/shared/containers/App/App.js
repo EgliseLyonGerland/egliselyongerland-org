@@ -93,7 +93,7 @@ function App({
     }
 
     [displayAnnouncement, setDisplayAnnouncement] = useLocalStorage(
-      'displayAnnouncement2',
+      'displayAnnouncement3',
       1,
     );
   }
@@ -103,7 +103,7 @@ function App({
       !__CLIENT__ ||
       displayAnnouncement === '0' ||
       announcementOpenCount !== 0 ||
-      isAfter(new Date(), new Date(2020, 0, 19))
+      isAfter(new Date(), new Date(2020, 2, 15))
     ) {
       return;
     }
