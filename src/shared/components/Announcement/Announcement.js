@@ -64,6 +64,23 @@ const Announcement = ({ classes, onCloseButtonClicked }) => {
           initialement prévue le 15 mars est également reportée. Merci de votre
           compréhension.
         </Typography>
+        <Typography paragraph>
+          Un culte délocalisé sera diffusé en live sur ce lien :<br />
+          <a
+            href="https://youtu.be/bEmxuzcCrb0"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            https://youtu.be/bEmxuzcCrb0
+          </a>
+          <br />
+          <br />
+          <em>
+            Nous comptons sur votre compréhension en cas de difficultés
+            techniques, car c’est la première fois que nous expérimentons ce
+            procédé. En espérant que cette situation inédite ne perdure pas !
+          </em>
+        </Typography>
 
         <div className={classes.confirm}>
           <Button onClick={() => onCloseButtonClicked(remind)}>
