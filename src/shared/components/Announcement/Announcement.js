@@ -67,11 +67,11 @@ const Announcement = ({ classes, onCloseButtonClicked }) => {
         <Typography paragraph>
           Un culte délocalisé sera diffusé en live sur ce lien :<br />
           <a
-            href="https://youtu.be/bEmxuzcCrb0"
+            href="https://links.egliselyongerland.org/link/live"
             rel="noopener noreferrer"
             target="_blank"
           >
-            https://youtu.be/bEmxuzcCrb0
+            https://links.egliselyongerland.org/link/live
           </a>
           <br />
           <br />

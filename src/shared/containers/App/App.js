@@ -103,7 +103,7 @@ function App({
       !__CLIENT__ ||
       displayAnnouncement === '0' ||
       announcementOpenCount !== 0 ||
-      isAfter(new Date(), new Date(2020, 2, 15))
+      isAfter(new Date(), new Date(2020, 2, 23))
     ) {
       return;
     }
