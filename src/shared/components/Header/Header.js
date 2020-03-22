@@ -8,6 +8,7 @@ import withWidth, { isWidthDown } from '@material-ui/core/withWidth';
 
 import Sidebar from 'components/Sidebar/Sidebar';
 import Burger from 'components/Burger/Burger';
+import Button from 'components/Button/Button';
 import routes from 'utils/routes';
 
 import logo from './logo.svg';
@@ -87,6 +88,7 @@ const styles = theme => ({
     display: 'flex',
     color: 'white',
     flexGrow: 0,
+    marginRight: 24,
   },
   linksItem: {
     flexGrow: 0,
@@ -286,8 +288,13 @@ class Header extends Component {
             ))}
           </div>
 
+          <Button color="white" component={Link} size="xs" to={routes.gift()}>
+            Faire un don
+          </Button>
+
           <button
             className={classes.burger}
+            mode="outlined"
             type="button"
             onClick={() => this.toggleSidebar()}
           >

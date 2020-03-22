@@ -81,6 +81,7 @@ const styles = theme => ({
     background: '#eee',
     transition: 'background .2s',
     fontWeight: theme.typography.fontWeights.regular,
+    outline: 'none !important',
   },
   normal: {},
   icon: {},
@@ -121,15 +122,15 @@ const styles = theme => ({
   outlined: {
     background: 'none',
     border: 'solid 1px',
-    color: 'white',
+    color: 'white !important',
 
     '&$primary': {
-      color: theme.palette.primary[500],
+      color: `${theme.palette.primary[500]} !important`,
       borderColor: theme.palette.primary[500],
 
       '&:hover': {
         background: theme.palette.primary[500],
-        color: 'white',
+        color: 'white !important',
       },
     },
 

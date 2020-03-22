@@ -74,6 +74,15 @@ const routes = [
         }),
       },
       {
+        path: '/don',
+        exact: true,
+        component: loadable({
+          loader: () =>
+            import(/* webpackChunkName: "don" */ 'containers/Gift/Gift'),
+          loading: () => null,
+        }),
+      },
+      {
         path: '/noel',
         exact: true,
         component: loadable({
