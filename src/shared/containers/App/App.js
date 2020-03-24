@@ -6,7 +6,6 @@ import { TransitionMotion, spring, presets } from 'react-motion';
 import { withStyles } from '@material-ui/core/styles';
 import { renderRoutes } from 'react-router-config';
 import classnames from 'classnames';
-import isAfter from 'date-fns/is_after';
 import useLocalStorage from 'react-use-localstorage';
 
 import { openSidebar, closeSidebar } from 'store/actions/sidebar';
@@ -102,8 +101,7 @@ function App({
     if (
       !__CLIENT__ ||
       displayAnnouncement === '0' ||
-      announcementOpenCount !== 0 ||
-      isAfter(new Date(), new Date(2020, 2, 23))
+      announcementOpenCount !== 0
     ) {
       return;
     }
