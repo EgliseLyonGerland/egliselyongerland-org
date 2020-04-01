@@ -288,7 +288,7 @@ class Header extends Component {
             ))}
           </div>
 
-          <Button color="white" component={Link} size="xs" to={routes.gift()}>
+          <Button color="white" component={Link} size="xs" to={routes.donate()}>
             Faire un don
           </Button>
 

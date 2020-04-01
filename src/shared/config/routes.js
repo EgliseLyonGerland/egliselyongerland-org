@@ -78,7 +78,7 @@ const routes = [
         exact: true,
         component: loadable({
           loader: () =>
-            import(/* webpackChunkName: "don" */ 'containers/Gift/Gift'),
+            import(/* webpackChunkName: "don" */ 'containers/Donate/Donate'),
           loading: () => null,
         }),
       },

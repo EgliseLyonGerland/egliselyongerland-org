@@ -48,7 +48,7 @@ const routes = {
   federativeLinks: () => '/liens-federatifs',
   contact: () => '/contact',
   discover: () => '/decouvrir',
-  gift: () => '/don',
+  donate: () => '/don',
 };
 
 const getAbsoluteUrl = path => `${config.protocol}://${config.host}${path}`;
