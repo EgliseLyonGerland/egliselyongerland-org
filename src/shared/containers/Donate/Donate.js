@@ -41,7 +41,7 @@ const styles = {
 
 const title = 'Faire un don';
 
-const Gift = ({ classes }) => (
+const Donate = ({ classes }) => (
   <div>
     <Helmet>
       <title>{title}</title>
@@ -55,14 +55,14 @@ const Gift = ({ classes }) => (
       allowTransparency
       className={classes.iframe}
       scrolling="auto"
-      src="https://helloasso.com/associations/eglise-lyon-gerland/formulaires/1/widget"
+      src="https://www.helloasso.com/associations/eglise-reformee-evangelique-de-lyon-eglise-lyon-gerland/formulaires/1/widget"
       title="Formulaire HelloAsso"
     />
   </div>
 );
 
-Gift.propTypes = {
+Donate.propTypes = {
   classes: PropTypes.shape().isRequired,
 };
 
-export default withStyles(styles)(Gift);
+export default withStyles(styles)(Donate);
