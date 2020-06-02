@@ -89,10 +89,12 @@ function App({
   if (__CLIENT__) {
     if (localStorage) {
       localStorage.removeItem('displayAnnouncement');
+      localStorage.removeItem('displayAnnouncement2');
+      localStorage.removeItem('displayAnnouncement3');
     }
 
     [displayAnnouncement, setDisplayAnnouncement] = useLocalStorage(
-      'displayAnnouncement3',
+      'displayAnnouncement4',
       1,
     );
   }
