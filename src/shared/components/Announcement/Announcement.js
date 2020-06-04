@@ -69,7 +69,7 @@ const Announcement = ({ classes, onCloseButtonClicked }) => {
           !
         </Typography>
         <Typography paragraph>
-          <a href="/assets/2020/06/2020.05.30_Plan_de_reprise_des_célébrations.pdf">
+          <a href="/assets/2020/06/plan_de_reprise_des_celebrations.pdf">
             &rarr; Consulter le protocole sanitaire
           </a>
           <br />
