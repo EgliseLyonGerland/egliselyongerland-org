@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { noop } from 'lodash';
 import { withStyles } from '@material-ui/core/styles';
 import Checkbox from '@material-ui/core/Checkbox';
@@ -7,8 +8,6 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Container from 'components/Container/Container';
 import Button from 'components/Button/Button';
 import Typography from 'components/Typography/Typography';
-
-import pasDeCulteImage from './images/pasdeculte.png';
 
 const styles = {
   root: {
@@ -45,41 +44,38 @@ const Announcement = ({ classes, onCloseButtonClicked }) => {
   return (
     <div className={classes.root}>
       <Container sm>
-        <img
-          alt="PAS DE CULTE"
-          className={classes.image}
-          src={pasDeCulteImage}
-        />
-
-        <Typography variant="h5">Attention !</Typography>
+        <Typography variant="h5">Bonne nouvelle !</Typography>
 
         <Typography paragraph>
-          Info #CORONAVIRUS. Dans un souci de protection des plus vulnérables et
-          de coopération avec les autorités, nous annonçons{' '}
-          <b>
-            la suspension des célébrations de notre église à partir du dimanche
-            15 mars
-          </b>{' '}
-          inclus et jusqu'à nouvel ordre. L’assemblée générale annuelle
-          initialement prévue le 15 mars est également reportée. Merci de votre
-          compréhension.
+          Nous pouvons vous accueillir de nouveau pour la célébration du
+          dimanche, à 10h, au Théâtre de Lulu sur la Colline,{' '}
+          <b>à partir du dimanche 7 juin</b>.
         </Typography>
         <Typography paragraph>
-          Un culte délocalisé sera diffusé en live sur ce lien :<br />
-          <a
-            href="https://links.egliselyongerland.org/link/live"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            https://links.egliselyongerland.org/link/live
+          Cette possibilité s'accompagne toutefois d'un protocole sanitaire
+          précis, qui suit les directives officielles.
+        </Typography>
+        <Typography paragraph>
+          À noter en particulier : <b>le port obligatoire du masque</b> pour les
+          plus de 11 ans dans l'enceinte du bâtiment, et{' '}
+          <b>la limitation du nombre de fidèles présents</b> en fonction de la
+          surface des lieux.
+        </Typography>
+        <Typography paragraph>
+          Pour toute question, n'hésitez pas à{' '}
+          <Link to="/contact" onClick={() => onCloseButtonClicked(remind)}>
+            nous contacter
+          </Link>{' '}
+          !
+        </Typography>
+        <Typography paragraph>
+          <a href="/assets/2020/06/plan_de_reprise_des_celebrations.pdf">
+            &rarr; Consulter le protocole sanitaire
           </a>
           <br />
-          <br />
-          <em>
-            Nous comptons sur votre compréhension en cas de difficultés
-            techniques, car c’est la première fois que nous expérimentons ce
-            procédé. En espérant que cette situation inédite ne perdure pas !
-          </em>
+          <Link to="/contact" onClick={() => onCloseButtonClicked(remind)}>
+            &rarr; S'inscrire pour assister au prochain culte
+          </Link>
         </Typography>
 
         <div className={classes.confirm}>
