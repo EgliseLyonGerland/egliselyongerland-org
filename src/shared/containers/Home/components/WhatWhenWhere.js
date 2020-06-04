@@ -78,6 +78,17 @@ const styles = theme => ({
       width: '20%',
     },
   },
+  covid: {
+    fontSize: rem(16),
+    color: '#c00',
+    marginTop: 24,
+    maxWidth: 400,
+    fontWeight: 600,
+
+    '& > b': {
+      fontWeight: 900,
+    },
+  },
   coffee: {
     fontSize: rem(16),
     fontWeight: theme.typography.fontWeights.bold,
@@ -178,7 +189,22 @@ class WhatWhenWhere extends Component {
               <RevealQueue>
                 <div>Culte ouvert à tous,</div>
                 <div>le dimanche à 10h.</div>
-                <div className={classes.coffee}>Café à 9h30</div>
+                {/* <div className={classes.coffee}>Café à 9h30</div> */}
+                <div className={classes.covid}>
+                  La situation sanitaire liée à l'épidémie de Covid-19 nous
+                  oblige à un protocole pour l'accueil du public aux réunions de
+                  l'église, notamment le <b>port du masque obligatoire</b> pour
+                  les plus de 11 ans, et <b>l'inscription préalable</b>.
+                  <br />
+                  <br />
+                  <a href="/assets/2020/06/plan_de_reprise_des_celebrations.pdf">
+                    &rarr; Consulter le protocole sanitaire
+                  </a>
+                  <br />
+                  <Link to="/contact">
+                    &rarr; S'inscrire pour assister au prochain culte
+                  </Link>
+                </div>
               </RevealQueue>
             </h2>
             <RevealQueue>
