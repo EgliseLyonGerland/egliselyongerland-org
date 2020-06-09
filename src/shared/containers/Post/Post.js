@@ -41,7 +41,7 @@ const renderContent = post => {
     return <NoTranscription />;
   }
 
-  return <PostContent content={post.content} />;
+  return <PostContent post={post} />;
 };
 
 class Post extends Component {
