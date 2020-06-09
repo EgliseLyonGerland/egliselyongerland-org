@@ -136,7 +136,7 @@ class Header extends Component {
       'picture.sizes.large.url',
       '/images/placeholder.jpg',
     );
-    const audioUrl = get(post, 'extras.audioUrl', null);
+    const audioUrl = get(post, 'extras.audio.url', null);
 
     return (
       <Jumbotron background={imageUrl} title={post.title}>

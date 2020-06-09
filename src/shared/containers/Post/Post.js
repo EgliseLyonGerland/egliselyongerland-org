@@ -37,7 +37,7 @@ const renderContent = post => {
     return null;
   }
 
-  if (post.content === '' && get(post, 'extras.audioUrl', null)) {
+  if (post.content === '' && get(post, 'extras.audio.url', null)) {
     return <NoTranscription />;
   }
 
