@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import range from 'lodash/range';
 import classnames from 'classnames';
+import { findVideoId } from 'utils/youtube';
 
 import Button from 'components/Button/Button';
 
@@ -11,7 +12,7 @@ const headings = range(1, 6)
   .join(',');
 
 const styles = theme => ({
-  root: {
+  content: {
     fontSize: '1.1rem',
     fontWeight: theme.typography.fontWeights.regular,
     lineHeight: '1.5',
@@ -91,9 +92,28 @@ const styles = theme => ({
     marginTop: 50,
     textAlign: 'center',
   },
+  video: {
+    maxWidth: 900,
+    margin: [[80, 'auto', 0]],
+    padding: [[0, 40]],
+  },
+  videoInner: {
+    overflow: 'hidden',
+    paddingBottom: '56.25%',
+    position: 'relative',
+    height: 0,
+
+    '& iframe': {
+      left: 0,
+      top: 0,
+      height: '100%',
+      width: '100%',
+      position: 'absolute',
+    },
+  },
 
   [theme.breakpoints.down('xs')]: {
-    root: {
+    content: {
       padding: [[0, 20]],
 
       '& > *:first-child': {
@@ -120,6 +140,10 @@ const styles = theme => ({
         margin: [[0, -20]],
       },
     },
+    video: {
+      marginTop: 40,
+      padding: [[0, 24]],
+    },
   },
 });
 
@@ -128,18 +152,56 @@ class PostContent extends Component {
     super(props);
 
     this.state = {
-      full: props.content.length < 200,
+      full: props.post.content.length < 200,
     };
   }
 
+  renderYoutubeVideo() {
+    const {
+      post: { title, extras },
+      classes,
+    } = this.props;
+
+    if (!extras.youtubeUrl) {
+      return null;
+    }
+
+    try {
+      const videoId = findVideoId(extras.youtubeUrl);
+
+      return (
+        <div className={classes.video}>
+          <div className={classes.videoInner}>
+            <iframe
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              frameBorder="0"
+              height="315"
+              src={`https://www.youtube.com/embed/${videoId}`}
+              title={title}
+              width="560"
+            />
+          </div>
+        </div>
+      );
+    } catch (err) {
+      return null;
+    }
+  }
+
   render() {
-    const { content, classes } = this.props;
+    const {
+      post: { content },
+      classes,
+    } = this.props;
     const { full } = this.state;
 
     return (
       <div>
+        {this.renderYoutubeVideo()}
+
         <div
-          className={classnames(classes.root, { full })}
+          className={classnames(classes.content, { full })}
           dangerouslySetInnerHTML={{ __html: content }}
         />
         {!full && (
@@ -159,7 +221,13 @@ class PostContent extends Component {
 
 PostContent.propTypes = {
   classes: PropTypes.shape().isRequired,
-  content: PropTypes.string.isRequired,
+  post: PropTypes.shape({
+    content: PropTypes.string.isRequired,
+    extras: PropTypes.shape({
+      youtubeUrl: PropTypes.string,
+    }).isRequired,
+    title: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default withStyles(styles)(PostContent);
