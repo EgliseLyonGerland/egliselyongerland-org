@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import range from 'lodash/range';
 import classnames from 'classnames';
-import { getURLVideoID } from 'ytdl-core/lib/util';
+import { findVideoId } from 'utils/youtube';
 
 import Button from 'components/Button/Button';
 
@@ -167,7 +167,7 @@ class PostContent extends Component {
     }
 
     try {
-      const videoId = getURLVideoID(extras.youtubeUrl);
+      const videoId = findVideoId(extras.youtubeUrl);
 
       return (
         <div className={classes.video}>
