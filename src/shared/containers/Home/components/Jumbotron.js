@@ -32,6 +32,11 @@ const styles = ({ palette, breakpoints, jumbotronGradient }) => ({
       ...jumbotronGradient,
     },
   },
+  background: {
+    '& div': {
+      backgroundPosition: 'center right !important',
+    },
+  },
   inner: {
     position: 'relative',
     zIndex: 2,
@@ -78,6 +83,7 @@ const ActionButton = createResponsiveButton(
 const Jumbotron = ({ classes }) => (
   <div className={classes.wrapper}>
     <ParallaxBanner
+      className={classes.background}
       layers={[
         {
           image: worshipImage,

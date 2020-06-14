@@ -32,7 +32,7 @@ const styles = theme => ({
       ...miniStyles(theme),
     },
     '& $body': {
-      background: '#111',
+      background: theme.palette.primary[900],
       height: theme.header.sticky.height,
     },
     '& $logo': {
