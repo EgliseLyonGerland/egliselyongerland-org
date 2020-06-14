@@ -1,3 +1,4 @@
+import { rgba } from 'polished';
 import primary from './palettes/primary.json';
 import secondary from './palettes/secondary.json';
 
@@ -100,6 +101,12 @@ export default {
     border: '#4776e6 solid 1px',
     borderImage: 'linear-gradient(to right, #4776e6, #8e54e9) 1',
   }),
+  jumbotronGradient: {
+    backgroundImage: `linear-gradient(-225deg, ${rgba(
+      '#302D7D',
+      0.9,
+    )} 0%, ${rgba('#302D7D', 0.1)} 100%)`,
+  },
   mixins: {
     withHover:
       '@media (any-hover: hover), (-moz-touch-enabled: 0), (-ms-high-contrast: none)',
