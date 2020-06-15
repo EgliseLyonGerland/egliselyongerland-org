@@ -23,7 +23,7 @@ const styles = theme => ({
     },
   },
   background: {
-    filter: 'grayscale(1)',
+    filter: 'grayscale(0.7)',
   },
   inner: {
     display: 'flex',
