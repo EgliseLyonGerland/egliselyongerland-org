@@ -9,9 +9,9 @@ import RevealQueue from 'components/Animation/RevealQueue';
 import routes from 'utils/routes';
 import createResponsiveButton from 'utils/createResponsiveButton.hoc';
 
-import worship from '../images/worship.jpg';
+import worshipImage from '../images/worship.png';
 
-const styles = ({ palette: { primary }, breakpoints }) => ({
+const styles = ({ palette, breakpoints, jumbotronGradient }) => ({
   wrapper: {
     position: 'relative',
     display: 'flex',
@@ -19,6 +19,7 @@ const styles = ({ palette: { primary }, breakpoints }) => ({
     justifyContent: 'center',
     minHeight: '100vh',
     overflow: 'hidden',
+    background: palette.primary[500],
 
     '&:before': {
       content: '""',
@@ -27,12 +28,13 @@ const styles = ({ palette: { primary }, breakpoints }) => ({
       right: 0,
       bottom: 0,
       left: 0,
-      backgroundColor: primary[600],
-      backgroundImage: `linear-gradient(-180deg, ${primary[700]} 0%, ${
-        primary[500]
-      } 100%)`,
-      opacity: 0.9,
       zIndex: 1,
+      ...jumbotronGradient,
+    },
+  },
+  background: {
+    '& div': {
+      backgroundPosition: 'center right !important',
     },
   },
   inner: {
@@ -81,10 +83,11 @@ const ActionButton = createResponsiveButton(
 const Jumbotron = ({ classes }) => (
   <div className={classes.wrapper}>
     <ParallaxBanner
+      className={classes.background}
       layers={[
         {
-          image: worship,
-          amount: 0.2,
+          image: worshipImage,
+          amount: 1,
           slowerScrollRate: true,
           expanded: false,
         },

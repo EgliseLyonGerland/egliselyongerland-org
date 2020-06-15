@@ -1,21 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import { ParallaxBanner } from 'react-scroll-parallax';
 
 import picture from './default.jpg';
 
 const getBonus = str => 1 + 1 / str.length;
 
 const styles = theme => ({
-  jumbotron: {
-    background: theme.palette.primary[500],
-    backgroundImage: 'url(/generic-bg.jpg)',
-    backgroundRepeat: 'no-repeat',
-    backgroundPosition: 'center center',
-    backgroundSize: 'cover',
+  root: {
     position: 'relative',
 
-    '&:before': {
+    '&:after': {
       content: '""',
       position: 'absolute',
       display: 'block',
@@ -23,8 +19,11 @@ const styles = theme => ({
       width: '100%',
       top: 0,
       left: 0,
-      background: 'rgba(0, 0, 0, 0.5)',
+      ...theme.jumbotronGradient,
     },
+  },
+  background: {
+    filter: 'grayscale(0.6)',
   },
   inner: {
     display: 'flex',
@@ -34,6 +33,7 @@ const styles = theme => ({
     position: 'relative',
     background: 'rgba(0, 0, 0, 0.2)',
     minHeight: '50vh',
+    zIndex: 1,
   },
   emptyRow1: {
     minHeight: theme.header.height,
@@ -49,7 +49,7 @@ const styles = theme => ({
   title: {
     display: 'block',
     fontSize: 44,
-    fontWeight: theme.typography.fontWeights.light,
+    fontWeight: theme.typography.fontWeights.medium,
     margin: [[0, 20]],
     textAlign: 'center',
     color: 'white',
@@ -82,14 +82,22 @@ const styles = theme => ({
   },
 });
 
-const Jumbotron = ({ background, title, gravity, classes, children }) => (
-  <div
-    className={classes.jumbotron}
-    style={{
-      backgroundImage: `url(${background || picture})`,
-      backgroundPosition: gravity,
-    }}
-  >
+const Jumbotron = ({ background, title, classes, children }) => (
+  <div className={classes.root}>
+    <ParallaxBanner
+      className={classes.background}
+      layers={[
+        {
+          image: background || picture,
+          amount: 0.5,
+          slowerScrollRate: true,
+        },
+      ]}
+      style={{
+        height: '100%',
+        position: 'absolute',
+      }}
+    />
     <div className={classes.inner}>
       <div className={classes.emptyRow1} />
       <div className={classes.emptyRow2} />
@@ -111,16 +119,6 @@ Jumbotron.propTypes = {
   background: PropTypes.string,
   children: PropTypes.node,
   classes: PropTypes.shape().isRequired,
-  gravity: PropTypes.oneOf([
-    'top left',
-    'top right',
-    'top center',
-    'bottom left',
-    'bottom right',
-    'bottom center',
-    'center center',
-    'center',
-  ]),
   title: PropTypes.string,
 };
 
@@ -128,7 +126,6 @@ Jumbotron.defaultProps = {
   background: null,
   title: null,
   children: null,
-  gravity: 'center',
 };
 
 export default withStyles(styles)(Jumbotron);
