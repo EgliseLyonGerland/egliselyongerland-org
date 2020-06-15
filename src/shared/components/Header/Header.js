@@ -35,9 +35,6 @@ const styles = theme => ({
       background: theme.palette.primary[900],
       height: theme.header.sticky.height,
     },
-    '& $logo': {
-      transform: 'rotate(180deg)',
-    },
     '& $christmas': {
       transform: `scale(${theme.header.sticky.brandScale})`,
     },
@@ -64,7 +61,6 @@ const styles = theme => ({
     position: 'relative',
     display: 'inline-block',
     marginRight: 20,
-    transition: 'transform 0.5s',
 
     '&, & > img': {
       height: theme.header.logo.height,
@@ -194,6 +190,8 @@ class Header extends Component {
     this.state = {
       sticky: false,
     };
+
+    this.logoRef = React.createRef();
   }
 
   componentDidUpdate() {
@@ -202,11 +200,15 @@ class Header extends Component {
 
   handleScroll() {
     const { sticky } = this.state;
-    const itemTranslate = !Math.min(0, window.scrollY - 30);
 
-    if (sticky !== itemTranslate) {
+    this.logoRef.current.style.transform = `rotate(${Math.floor(
+      window.scrollY / 4,
+    )}deg)`;
+
+    const shouldStick = !Math.min(0, window.scrollY - 30);
+    if (sticky !== shouldStick) {
       this.setState({
-        sticky: itemTranslate,
+        sticky: shouldStick,
       });
     }
   }
@@ -254,7 +256,7 @@ class Header extends Component {
         <div className={classes.body}>
           <div className={classes.brand}>
             <Link className={classes.logo} to="/">
-              <img alt="Église Lyon Gerland" src={logo} />
+              <img ref={this.logoRef} alt="Église Lyon Gerland" src={logo} />
             </Link>
             <Link className={classes.title} to="/">
               <img
