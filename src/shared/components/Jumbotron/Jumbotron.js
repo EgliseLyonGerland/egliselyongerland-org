@@ -89,7 +89,7 @@ const Jumbotron = ({ background, title, classes, children }) => (
       layers={[
         {
           image: background || picture,
-          amount: 1,
+          amount: 0.5,
           slowerScrollRate: true,
         },
       ]}
