@@ -14,7 +14,6 @@ import logoPicutre from 'images/logo.jpg';
 import Header from './components/Header';
 import Shares from './components/Shares';
 import PostContent from './components/PostContent';
-import NoTranscription from './components/NoTranscription';
 
 const getMetaDescription = post => {
   let excerpt = get(post, 'excerpt', '');
@@ -35,10 +34,6 @@ const getMetaDescription = post => {
 const renderContent = post => {
   if (post.partial) {
     return null;
-  }
-
-  if (post.content === '' && get(post, 'extras.audio.url', null)) {
-    return <NoTranscription />;
   }
 
   return <PostContent post={post} />;

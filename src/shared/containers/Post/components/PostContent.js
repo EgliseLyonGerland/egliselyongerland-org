@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import range from 'lodash/range';
+import get from 'lodash/get';
 import classnames from 'classnames';
 import { findVideoId } from 'utils/youtube';
 
 import Button from 'components/Button/Button';
+import NoTranscription from './NoTranscription';
 
 const headings = range(1, 6)
   .map(level => `& > h${level}`)
@@ -44,7 +46,7 @@ const styles = theme => ({
     },
 
     '& > *:first-child': {
-      marginTop: 100,
+      marginTop: 80,
     },
 
     '& > p': {
@@ -190,29 +192,34 @@ class PostContent extends Component {
   }
 
   render() {
-    const {
-      post: { content },
-      classes,
-    } = this.props;
+    const { post, classes } = this.props;
     const { full } = this.state;
+    const noTranscription =
+      post.content === '' && get(post, 'extras.audio.url', null);
 
     return (
       <div>
         {this.renderYoutubeVideo()}
 
-        <div
-          className={classnames(classes.content, { full })}
-          dangerouslySetInnerHTML={{ __html: content }}
-        />
-        {!full && (
-          <div className={classes.more}>
-            <Button
-              color="primary"
-              onClick={() => this.setState({ full: true })}
-            >
-              Lire la suite
-            </Button>
-          </div>
+        {noTranscription ? (
+          <NoTranscription />
+        ) : (
+          <>
+            <div
+              className={classnames(classes.content, { full })}
+              dangerouslySetInnerHTML={{ __html: post.content }}
+            />
+            {!full && (
+              <div className={classes.more}>
+                <Button
+                  color="primary"
+                  onClick={() => this.setState({ full: true })}
+                >
+                  Lire la suite
+                </Button>
+              </div>
+            )}
+          </>
         )}
       </div>
     );
