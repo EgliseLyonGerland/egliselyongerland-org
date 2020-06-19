@@ -33,25 +33,7 @@
     "jsx-a11y/media-has-caption": "off",
     "jsx-a11y/anchor-is-valid": ["warn", { "aspects": ["invalidHref"] }],
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-    "react/no-unescaped-entities": "off",
-    "react/jsx-sort-props": [
-      "error",
-      {
-        "callbacksLast": true,
-        "shorthandLast": false,
-        "ignoreCase": true,
-        "reservedFirst": true
-      }
-    ],
-    "react/sort-prop-types": [
-      "error",
-      {
-        "ignoreCase": true,
-        "callbacksLast": false,
-        "requiredFirst": false,
-        "sortShapeProp": true
-      }
-    ]
+    "react/no-unescaped-entities": "off"
   },
   "globals": {
     "__DEVELOPMENT__": true,

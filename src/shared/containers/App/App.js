@@ -28,12 +28,13 @@ import 'url-search-params-polyfill';
 import 'theme/base.css';
 
 const styles = theme => ({
-  root: {
-    paddingBottom: theme.footer.height + 55,
-  },
+  root: {},
   noScroll: {
     height: '100vh',
     overflow: 'hidden',
+  },
+  content: {
+    minHeight: `calc(100vh - ${theme.footer.height}px)`,
   },
   player: {
     position: 'fixed',
@@ -175,7 +176,7 @@ function App({
           }}
         />
       )}
-      {renderRoutes(route.routes)}
+      <div className={classes.content}>{renderRoutes(route.routes)}</div>
       <Footer />
       {renderAudio()}
     </div>
