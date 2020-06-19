@@ -49,6 +49,10 @@ const HTML = ({ children, scripts, styles, css, state }) => {
           rel="stylesheet"
           type="text/css"
         />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&display=swap&text=AÂBCEFIÎLNORTUVSP"
+          rel="stylesheet"
+        />
 
         <script
           dangerouslySetInnerHTML={{
