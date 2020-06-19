@@ -4,9 +4,9 @@ import Helmet from 'react-helmet';
 import { denormalize } from 'normalizr';
 
 import { postSchema } from 'store/schemas';
-import Jumbotron from './components/Jumbotron';
 import WhatWhenWhere from './components/WhatWhenWhere';
 import Sermons from './components/Sermons';
+import Intro from './components/Intro';
 
 class Home extends Component {
   static propTypes = {
@@ -34,7 +34,7 @@ class Home extends Component {
           <meta content={desc} property="og:description" />
         </Helmet>
 
-        <Jumbotron />
+        <Intro />
         <WhatWhenWhere />
         <Sermons data={posts} />
       </>

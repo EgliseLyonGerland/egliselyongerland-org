@@ -111,7 +111,7 @@ function App({
 
     setTimeout(() => {
       openAnnouncementAction();
-    }, 2000);
+    }, 5000);
   }, []);
 
   function renderAudio() {
