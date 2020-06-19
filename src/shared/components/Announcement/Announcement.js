@@ -28,7 +28,10 @@ const styles = theme => ({
     },
   },
   inner: {
-    transition: theme.transitions.create('opacity', { duration: 700 }),
+    transition: theme.transitions.create('opacity', {
+      duration: 700,
+      delay: 700,
+    }),
   },
   image: {
     width: 500,
@@ -68,17 +71,9 @@ const Announcement = ({ classes, onCloseButtonClicked }) => {
   return (
     <div
       className={classes.root}
-      style={{
-        transform: `translateY(${displayed ? 0 : '100vh'})`,
-      }}
+      style={{ transform: `translateY(${displayed ? 0 : '100vh'})` }}
     >
-      <div
-        className={classes.inner}
-        style={{
-          opacity: displayed ? 1 : 0,
-          transitionDelay: 0.7,
-        }}
-      >
+      <div className={classes.inner} style={{ opacity: displayed ? 1 : 0 }}>
         <Container sm>
           <Typography variant="h5" color="inherit">
             Bonne nouvelle !
