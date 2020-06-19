@@ -13,10 +13,6 @@ const styles = theme => ({
     textAlign: 'center',
     fontWeight: theme.typography.fontWeights.light,
     fontSize: '1.1rem',
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
   },
 });
 
