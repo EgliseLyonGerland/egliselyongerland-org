@@ -61,7 +61,7 @@ const styles = theme => ({
   logo: {
     position: 'relative',
     display: 'inline-block',
-    marginRight: 20,
+    marginRight: 16,
 
     '&, & > img': {
       height: theme.header.logo.height,
@@ -74,7 +74,7 @@ const styles = theme => ({
   },
   burger: {
     position: 'relative',
-    marginLeft: 35,
+    marginLeft: 32,
     zIndex: theme.sidebar.zindex + 1,
     display: 'none',
   },
@@ -85,12 +85,11 @@ const styles = theme => ({
     display: 'flex',
     color: 'white',
     flexGrow: 0,
-    marginRight: 24,
   },
   linksItem: {
     flexGrow: 0,
     textAlign: 'right',
-    marginLeft: 24,
+    marginRight: 24,
   },
   link: {
     position: 'relative',
@@ -132,6 +131,9 @@ const styles = theme => ({
     marginRight: 8,
   },
   [theme.breakpoints.down('xs')]: {
+    logo: {
+      marginRight: 0,
+    },
     brand: {
       ...miniStyles(theme),
     },
@@ -144,9 +146,13 @@ const styles = theme => ({
     },
     burger: {
       display: 'block',
+      marginLeft: 16,
     },
     links: {
       display: 'none',
+    },
+    linksItem: {
+      marginRight: 16,
     },
   },
   [theme.breakpoints.down(1100)]: {
@@ -290,21 +296,21 @@ class Header extends Component {
             </Link>
           )}
 
-          <div className={classes.links}>
-            {live && (
-              <div className={classes.linksItem} style={{ color: '#ff6060' }}>
-                <a
-                  className={classes.link}
-                  href="https://www.youtube.com/channel/UCLljMSW6t5jUjldgmuzcQDQ/live"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  <PlayIcon className={classes.linkIcon} fontSize="small" />
-                  <span>Live</span>
-                </a>
-              </div>
-            )}
+          {live && (
+            <div className={classes.linksItem} style={{ color: '#ff6060' }}>
+              <a
+                className={classes.link}
+                href="https://www.youtube.com/channel/UCLljMSW6t5jUjldgmuzcQDQ/live"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <PlayIcon className={classes.linkIcon} fontSize="small" />
+                <span>Live</span>
+              </a>
+            </div>
+          )}
 
+          <div className={classes.links}>
             {links.map(link => (
               <div key={link.label} className={classes.linksItem}>
                 <Link className={classes.link} to={link.path}>
