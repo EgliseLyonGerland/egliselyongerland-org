@@ -256,7 +256,7 @@ class Header extends Component {
 
     const now = new Date();
     const live =
-      now.getDay() === 6 || (now.getDay() === 7 && now.getHours() < 12);
+      now.getDay() === 6 || (now.getDay() === 0 && now.getHours() < 12);
 
     return (
       <div className={className}>
