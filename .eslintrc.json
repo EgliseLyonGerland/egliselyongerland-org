@@ -1,10 +1,9 @@
 {
   "parser": "babel-eslint",
   "extends": ["airbnb", "prettier", "prettier/react"],
-  "plugins": ["prettier", "cypress"],
+  "plugins": ["prettier"],
   "env": {
-    "browser": true,
-    "cypress/globals": true
+    "browser": true
   },
   "settings": {
     "react": {
