@@ -13,7 +13,7 @@ const styles = theme => ({
   root: {
     display: 'flex',
     flexWrap: 'wrap',
-    margin: [[96, 'auto']],
+    margin: [[96, 'auto', 0]],
     maxWidth: 1280,
   },
   box: {

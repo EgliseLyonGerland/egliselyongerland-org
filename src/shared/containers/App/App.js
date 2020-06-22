@@ -35,6 +35,7 @@ const styles = theme => ({
   },
   content: {
     minHeight: `calc(100vh - ${theme.footer.height}px)`,
+    paddingBottom: 80,
   },
   player: {
     position: 'fixed',
@@ -48,6 +49,9 @@ const styles = theme => ({
   [theme.breakpoints.down('xs')]: {
     player: {
       marginBottom: 0,
+    },
+    content: {
+      paddingBottom: 40,
     },
   },
 });

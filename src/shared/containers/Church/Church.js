@@ -27,7 +27,7 @@ const getTab = slug =>
 
 const styles = ({ breakpoints }) => ({
   inner: {
-    margin: [[88, 0]],
+    marginTop: 88,
   },
   tabsWrapper: {
     borderBottom: [['#EEE', 'solid', 1]],
@@ -47,7 +47,7 @@ const styles = ({ breakpoints }) => ({
   },
   [breakpoints.down('xs')]: {
     inner: {
-      margin: [[40, 0]],
+      marginTop: 40,
     },
   },
 });
