@@ -17,7 +17,7 @@ const mapFloodSize = 128;
 
 const styles = theme => ({
   root: {
-    background: '#fafafa',
+    background: '#f5f5f5',
     display: 'flex',
     justifyContent: 'center',
     zIndex: 5,

@@ -5,6 +5,7 @@ import range from 'lodash/range';
 import get from 'lodash/get';
 import classnames from 'classnames';
 import { findVideoId } from 'utils/youtube';
+import rgba from 'polished/lib/color/rgba';
 
 import Button from 'components/Button/Button';
 import NoTranscription from './NoTranscription';
@@ -32,8 +33,9 @@ const styles = theme => ({
       left: 0,
       right: 0,
       height: 100,
-      background:
-        'linear-gradient(to top, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%)',
+      background: `linear-gradient(to top, ${
+        theme.palette.background
+      } 0%, ${rgba(theme.palette.background, 0)} 100%)`,
     },
 
     '&.full': {

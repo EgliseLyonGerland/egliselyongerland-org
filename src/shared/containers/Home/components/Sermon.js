@@ -25,7 +25,7 @@ const styles = theme => ({
   },
   headlines: {
     position: 'relative',
-    background: 'white',
+    background: theme.palette.background,
     padding: 24,
     maxWidth: 360,
     fontSize: rem(26),

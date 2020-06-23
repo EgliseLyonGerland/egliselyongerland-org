@@ -45,6 +45,7 @@ export default {
       disabled: '#aaa',
       hint: '#aaa',
     },
+    background: '#fafafa',
   },
   header: {
     height: headerHeight,

@@ -1,11 +1,27 @@
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+* {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
 html {
-  font-family: sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 body {
+  background-color: #fafafa;
+  min-height: 100%;
+  position: relative;
   margin: 0;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 16px;
+  line-height: 1.42857;
+  color: #444;
 }
 article,
 aside,
@@ -178,26 +194,6 @@ table {
 td,
 th {
   padding: 0;
-}
-* {
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-}
-*:before,
-*:after {
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-}
-html {
-  font-size: 10px;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-}
-body {
-  font-family: 'Source Sans Pro', sans-serif;
-  font-size: 16px;
-  line-height: 1.42857;
-  color: #444;
-  background-color: #fff;
 }
 input,
 button,
@@ -2100,18 +2096,6 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
-body {
-  background: #fff;
-  min-height: 100%;
-  position: relative;
-}
-
-@media (color-index: 48) {
-  body {
-    background: black !important;
-  }
-}
-
 a:hover,
 a:focus,
 a:visited {
@@ -2152,4 +2136,10 @@ button {
 
 b {
   font-weight: 600;
+}
+
+@media (color-index: 48) {
+  body {
+    background: black !important;
+  }
 }
