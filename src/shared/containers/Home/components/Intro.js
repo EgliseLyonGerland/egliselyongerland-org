@@ -74,7 +74,7 @@ const styles = ({
     fontFamily: "'Barlow Condensed', sans-serif",
     fontSize: 'min(10vw, 8vh)',
     lineHeight: 1,
-    letterSpacing: -2,
+    letterSpacing: -1,
     color: 'white',
     cursor: 'pointer',
     verticalAlign: 'middle',
