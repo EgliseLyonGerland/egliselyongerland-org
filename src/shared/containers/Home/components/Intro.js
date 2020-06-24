@@ -153,7 +153,7 @@ const Intro = ({ classes, width }) => {
               <div key={line} className={classes.textLine}>
                 <span
                   style={{
-                    transform: `translateY(${displayed ? 0 : '100%'})`,
+                    transform: displayed ? 'none' : `translateY(100%)`,
                     transitionDelay: `${lines.length * 0.2 - index * 0.2}s`,
                   }}
                 >
@@ -165,7 +165,7 @@ const Intro = ({ classes, width }) => {
           <div className={classes.linkWrapper}>
             <div
               style={{
-                transform: `translateY(${displayed ? 0 : '-100%'})`,
+                transform: displayed ? 'none' : `translateY(-100%)`,
                 transitionDelay: `${lines.length * 0.2}s`,
               }}
             >
