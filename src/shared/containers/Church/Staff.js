@@ -24,7 +24,21 @@ const Staff = () => (
         le mari (privilégié) de Suzanne, et le père (débordé) de six enfants.
       </Typography>
     </Elder>
-    <Elder name="Kalhou Vang" picture={kalhouPicture} inverted>
+    <Elder name="Denis Blum" picture={denisPicture} inverted>
+      <Typography variant="subtitle1">
+        <b>Ancien</b>
+      </Typography>
+      <Typography paragraph>
+        Je suis médecin généraliste, parfois en cabinet, parfois aux urgences.
+        Je suis marié avec Maïlys avec qui je m’occupe du groupe d’ados. J’aime
+        étudier la Bible et rendre son message accessible à tous.
+      </Typography>
+      <Typography>
+        J’aime aussi beaucoup la montagne. Il n’est pas rare qu’entre deux
+        gardes, j’enfile vite mes chaussons d’escalade et aille grimper !
+      </Typography>
+    </Elder>
+    <Elder name="Kalhou Vang" picture={kalhouPicture} last>
       <Typography variant="subtitle1">
         <b>Ancien</b>
       </Typography>
@@ -42,20 +56,6 @@ const Staff = () => (
         je découvre en moi un désir qu’aucune expérience au monde ne puisse
         satisfaire, l’explication plausible ne serait-elle pas que je suis fait
         pour un autre monde ?
-      </Typography>
-    </Elder>
-    <Elder name="Denis Blum" picture={denisPicture} last>
-      <Typography variant="subtitle1">
-        <b>Ancien</b>
-      </Typography>
-      <Typography paragraph>
-        Je suis médecin généraliste, parfois en cabinet, parfois aux urgences.
-        Je suis marié avec Maïlys avec qui je m’occupe du groupe d’ados. J’aime
-        étudier la Bible et rendre son message accessible à tous.
-      </Typography>
-      <Typography>
-        J’aime aussi beaucoup la montagne. Il n’est pas rare qu’entre deux
-        gardes, j’enfile vite mes chaussons d’escalade et aille grimper !
       </Typography>
     </Elder>
   </>
