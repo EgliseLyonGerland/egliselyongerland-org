@@ -200,10 +200,6 @@ class WhatWhenWhere extends Component {
                   <a href="/assets/2020/07/20200706_Plan_de_reprise_des_celebrations.pdf">
                     &rarr; Consulter le protocole sanitaire
                   </a>
-                  <br />
-                  <Link to="/contact">
-                    &rarr; S'inscrire pour assister au prochain culte
-                  </Link>
                 </div>
               </RevealQueue>
             </h2>
