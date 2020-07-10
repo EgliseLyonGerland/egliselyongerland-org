@@ -90,9 +90,7 @@ const Announcement = ({ classes, onCloseButtonClicked }) => {
           </Typography>
           <Typography paragraph color="inherit">
             À noter en particulier : <b>le port obligatoire du masque</b> pour
-            les plus de 11 ans dans l'enceinte du bâtiment, et{' '}
-            <b>la limitation du nombre de fidèles présents</b> en fonction de la
-            surface des lieux.
+            les plus de 11 ans dans l'enceinte du bâtiment.
           </Typography>
           <Typography paragraph color="inherit">
             Pour toute question, n'hésitez pas à{' '}
@@ -102,13 +100,9 @@ const Announcement = ({ classes, onCloseButtonClicked }) => {
             !
           </Typography>
           <Typography paragraph color="inherit">
-            <a href="/assets/2020/06/plan_de_reprise_des_celebrations.pdf">
+            <a href="/assets/2020/07/20200706_Plan_de_reprise_des_celebrations.pdf">
               &rarr; Consulter le protocole sanitaire
             </a>
-            <br />
-            <Link to="/contact" onClick={handleClose}>
-              &rarr; S'inscrire pour assister au prochain culte
-            </Link>
           </Typography>
 
           <div className={classes.confirm}>
