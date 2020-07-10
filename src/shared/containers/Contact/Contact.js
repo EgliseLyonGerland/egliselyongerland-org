@@ -129,10 +129,10 @@ const Contact = ({ classes, history }) => {
               La situation sanitaire liée à l'épidémie de Covid-19 nous oblige à
               un protocole pour l'accueil du public aux réunions de l'église,
               notamment le <b>port du masque obligatoire</b> pour les plus de 11
-              ans, et <b>l'inscription préalable</b>.
+              ans.
               <br />
               <br />
-              <a href="/assets/2020/06/plan_de_reprise_des_celebrations.pdf">
+              <a href="/assets/2020/07/20200706_Plan_de_reprise_des_celebrations.pdf">
                 &rarr; Consulter le protocole sanitaire
               </a>
             </div>

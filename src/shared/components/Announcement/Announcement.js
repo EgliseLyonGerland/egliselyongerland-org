@@ -102,13 +102,9 @@ const Announcement = ({ classes, onCloseButtonClicked }) => {
             !
           </Typography>
           <Typography paragraph color="inherit">
-            <a href="/assets/2020/06/plan_de_reprise_des_celebrations.pdf">
+            <a href="/assets/2020/07/20200706_Plan_de_reprise_des_celebrations.pdf">
               &rarr; Consulter le protocole sanitaire
             </a>
-            <br />
-            <Link to="/contact" onClick={handleClose}>
-              &rarr; S'inscrire pour assister au prochain culte
-            </Link>
           </Typography>
 
           <div className={classes.confirm}>
