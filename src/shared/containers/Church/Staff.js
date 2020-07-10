@@ -52,8 +52,8 @@ const Staff = () => (
         avoir de loisir préféré, mais je ne m’ennuie que rarement...
       </Typography>
       <Typography>
-        En réfléchissant à cette question, je croise la pensée de C.S. Lewis: si
-        je découvre en moi un désir qu’aucune expérience au monde ne puisse
+        En réfléchissant à cette question, je croise la pensée de C.S. Lewis :
+        si je découvre en moi un désir qu’aucune expérience au monde ne puisse
         satisfaire, l’explication plausible ne serait-elle pas que je suis fait
         pour un autre monde ?
       </Typography>
