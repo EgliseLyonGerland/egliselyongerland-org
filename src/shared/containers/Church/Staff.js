@@ -5,7 +5,7 @@ import Elder from './components/Elder';
 
 import alexPicture from './images/alex.jpg';
 import denisPicture from './images/denis.jpg';
-import jonahPicture from './images/jonah.jpg';
+import kalhouPicture from './images/kalhou.jpg';
 
 const Staff = () => (
   <>
@@ -24,23 +24,7 @@ const Staff = () => (
         le mari (privilégié) de Suzanne, et le père (débordé) de six enfants.
       </Typography>
     </Elder>
-    <Elder name="Jonah Haddad" picture={jonahPicture} inverted>
-      <Typography variant="subtitle1">
-        <b>Ancien</b>
-      </Typography>
-      <Typography paragraph>
-        J’ai fait des études de philosophie qui m’ont conduit jusqu’à la
-        maîtrise, puis j’ai fait un master en théologie à distance avec la
-        Faculté de Théologie Évangélique de Louvain, en Belgique. Je prépare
-        maintenant un doctorat.
-      </Typography>
-      <Typography>
-        Je suis le mari d’Amy, avec qui j’ai quatre enfants. J’aime étudier,
-        prêcher à l’église, et dans mon temps libre, faire du sport. J’ai un
-        petit faible pour les randonnées dans la nature.
-      </Typography>
-    </Elder>
-    <Elder name="Denis Blum" picture={denisPicture} last>
+    <Elder name="Denis Blum" picture={denisPicture} inverted>
       <Typography variant="subtitle1">
         <b>Ancien</b>
       </Typography>
@@ -52,6 +36,26 @@ const Staff = () => (
       <Typography>
         J’aime aussi beaucoup la montagne. Il n’est pas rare qu’entre deux
         gardes, j’enfile vite mes chaussons d’escalade et aille grimper !
+      </Typography>
+    </Elder>
+    <Elder name="Kalhou Vang" picture={kalhouPicture} last>
+      <Typography variant="subtitle1">
+        <b>Ancien</b>
+      </Typography>
+      <Typography paragraph>
+        Je suis ingénieur et je travaille dans l’industrie. Mon livre préféré
+        dans le rayon théologie est le précis de doctrine chrétienne de Louis
+        Berkhof. J’aime aussi écouter R.C. Sproul.
+      </Typography>
+      <Typography paragraph>
+        Je suis marié à Soohyun et nous avons deux enfants. Je ne pense pas
+        avoir de loisir préféré, mais je ne m’ennuie que rarement...
+      </Typography>
+      <Typography>
+        En réfléchissant à cette question, je croise la pensée de C.S. Lewis :
+        si je découvre en moi un désir qu’aucune expérience au monde ne puisse
+        satisfaire, l’explication plausible ne serait-elle pas que je suis fait
+        pour un autre monde ?
       </Typography>
     </Elder>
   </>
