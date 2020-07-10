@@ -90,9 +90,7 @@ const Announcement = ({ classes, onCloseButtonClicked }) => {
           </Typography>
           <Typography paragraph color="inherit">
             À noter en particulier : <b>le port obligatoire du masque</b> pour
-            les plus de 11 ans dans l'enceinte du bâtiment, et{' '}
-            <b>la limitation du nombre de fidèles présents</b> en fonction de la
-            surface des lieux.
+            les plus de 11 ans dans l'enceinte du bâtiment.
           </Typography>
           <Typography paragraph color="inherit">
             Pour toute question, n'hésitez pas à{' '}
