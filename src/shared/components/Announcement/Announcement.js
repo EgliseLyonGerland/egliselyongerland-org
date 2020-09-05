@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { noop } from 'lodash';
 import { withStyles } from '@material-ui/core/styles';
 import Checkbox from '@material-ui/core/Checkbox';
+import classnames from 'classnames';
 
 import Container from 'components/Container/Container';
 import Button from 'components/Button/Button';
@@ -48,6 +49,18 @@ const styles = theme => ({
     alignItems: 'center',
     marginTop: 16,
   },
+  crucial: {
+    fontWeight: theme.typography.fontWeights.bold,
+    display: 'inline-block',
+    background: theme.palette.secondary[400],
+    color: theme.palette.primary[500],
+    padding: [[0, 8]],
+    margin: [[0, 4]],
+    borderRadius: 4,
+  },
+  noLeftMargin: {
+    marginLeft: 0,
+  },
 });
 
 const Announcement = ({ classes, onCloseButtonClicked }) => {
@@ -81,13 +94,16 @@ const Announcement = ({ classes, onCloseButtonClicked }) => {
 
           <Typography paragraph color="inherit">
             À partir du 1er septembre, et suivant les consignes officielles,{' '}
-            <b>l'inscription préalable</b> est nécessaire pour pouvoir assister
-            à la célébration le dimanche à 10h au Théâtre de Lulu sur la
-            Colline.
+            <span className={classes.crucial}>l'inscription préalable</span> est
+            nécessaire pour pouvoir assister à la célébration le dimanche à 10h
+            au Théâtre de Lulu sur la Colline.
           </Typography>
           <Typography paragraph color="inherit">
-            <b>Le port du masque</b> est également obligatoire pour toute
-            personne de plus de 11 ans à l'intérieur du bâtiment.
+            <span className={classnames(classes.crucial, classes.noLeftMargin)}>
+              Le port du masque
+            </span>{' '}
+            est également obligatoire pour toute personne de plus de 11 ans à
+            l'intérieur du bâtiment.
           </Typography>
           <Typography paragraph color="inherit">
             Les inscriptions peuvent se faire par SMS au 06.68.36.77.65, ou par
