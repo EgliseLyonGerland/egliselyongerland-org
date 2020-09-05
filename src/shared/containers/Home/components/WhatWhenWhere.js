@@ -79,14 +79,32 @@ const styles = theme => ({
     },
   },
   covid: {
-    fontSize: rem(16),
-    color: '#c00',
+    background: theme.palette.secondary[500],
+    fontSize: rem(20),
+    lineHeight: 1.5,
+    color: 'white',
     marginTop: 24,
     maxWidth: 400,
-    fontWeight: 600,
+    padding: 16,
 
     '& > b': {
       fontWeight: 900,
+    },
+
+    '& > a': {
+      position: 'relative',
+      display: 'inline-block',
+      color: 'white',
+
+      '&:after': {
+        content: '""',
+        position: 'absolute',
+        width: '100%',
+        height: 1,
+        left: 0,
+        bottom: -2,
+        background: 'white',
+      },
     },
   },
   coffee: {
@@ -191,15 +209,9 @@ class WhatWhenWhere extends Component {
                 <div>le dimanche à 10h.</div>
                 {/* <div className={classes.coffee}>Café à 9h30</div> */}
                 <div className={classes.covid}>
-                  La situation sanitaire liée à l'épidémie de Covid-19 nous
-                  oblige à un protocole pour l'accueil du public aux réunions de
-                  l'église, notamment le <b>port du masque obligatoire</b> pour
-                  les plus de 11 ans.
-                  <br />
-                  <br />
-                  <a href="/assets/2020/07/20200706_Plan_de_reprise_des_celebrations.pdf">
-                    &rarr; Consulter le protocole sanitaire
-                  </a>
+                  <b>COVID-19 :</b> inscription préalable et port du masque
+                  obligatoires. Plus d’infos sur notre{' '}
+                  <Link to={routes.contact()}>page contact</Link>.
                 </div>
               </RevealQueue>
             </h2>
