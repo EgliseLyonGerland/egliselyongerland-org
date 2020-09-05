@@ -122,7 +122,7 @@ const Announcement = ({ classes, onCloseButtonClicked }) => {
             !
           </Typography>
           <Typography paragraph color="inherit">
-            <a href="/assets/2020/09/20200831_Plan_de_reprise_des_celebrations.pdff">
+            <a href="/assets/2020/09/20200831_Plan_de_reprise_des_celebrations.pdf">
               &rarr; Consulter le protocole sanitaire
             </a>
           </Typography>
