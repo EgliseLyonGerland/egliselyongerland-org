@@ -76,21 +76,27 @@ const Announcement = ({ classes, onCloseButtonClicked }) => {
       <div className={classes.inner} style={{ opacity: displayed ? 1 : 0 }}>
         <Container sm>
           <Typography variant="h5" color="inherit">
-            Bonne nouvelle !
+            Information COVID-19
           </Typography>
 
           <Typography paragraph color="inherit">
-            Nous pouvons vous accueillir de nouveau pour la célébration du
-            dimanche, à 10h, au Théâtre de Lulu sur la Colline,{' '}
-            <b>à partir du dimanche 7 juin</b>.
+            À partir du 1er septembre, et suivant les consignes officielles,{' '}
+            <b>l'inscription préalable</b> est nécessaire pour pouvoir assister
+            à la célébration le dimanche à 10h au Théâtre de Lulu sur la
+            Colline.
           </Typography>
           <Typography paragraph color="inherit">
-            Cette possibilité s'accompagne toutefois d'un protocole sanitaire
-            précis, qui suit les directives officielles.
+            <b>Le port du masque</b> est également obligatoire pour toute
+            personne de plus de 11 ans à l'intérieur du bâtiment.
           </Typography>
           <Typography paragraph color="inherit">
-            À noter en particulier : <b>le port obligatoire du masque</b> pour
-            les plus de 11 ans dans l'enceinte du bâtiment.
+            Les inscriptions peuvent se faire par SMS au 06.68.36.77.65, ou par
+            voie électronique à{' '}
+            <a href="mailto:contact@egliselyongerland.org">
+              contact@egliselyongerland.org
+            </a>
+            . Merci de préciser le nombre de personnes que vous inscrivez, avec
+            leur nom.
           </Typography>
           <Typography paragraph color="inherit">
             Pour toute question, n'hésitez pas à{' '}
@@ -100,7 +106,7 @@ const Announcement = ({ classes, onCloseButtonClicked }) => {
             !
           </Typography>
           <Typography paragraph color="inherit">
-            <a href="/assets/2020/07/20200706_Plan_de_reprise_des_celebrations.pdf">
+            <a href="/assets/2020/09/20200831_Plan_de_reprise_des_celebrations.pdff">
               &rarr; Consulter le protocole sanitaire
             </a>
           </Typography>
