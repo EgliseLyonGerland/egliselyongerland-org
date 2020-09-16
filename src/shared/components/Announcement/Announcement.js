@@ -93,7 +93,7 @@ const Announcement = ({ classes, onCloseButtonClicked }) => {
     >
       <div className={classes.inner} style={{ opacity: displayed ? 1 : 0 }}>
         <Container sm>
-          {new Date() < new Date('2020-09-20 20:00') ? (
+          {new Date() < new Date('2020/09/20 20:00') ? (
             <>
               <Typography variant="h5" color="inherit">
                 <span role="img" aria-label="Attention">
