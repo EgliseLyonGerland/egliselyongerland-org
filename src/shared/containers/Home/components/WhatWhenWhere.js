@@ -22,7 +22,7 @@ const styles = theme => ({
     justifyContent: 'center',
     zIndex: 5,
     position: 'relative',
-    height: '30vw',
+    height: '50vw',
     maxHeight: 550,
   },
   left: {
@@ -41,7 +41,8 @@ const styles = theme => ({
   },
   map: {
     width: '100%',
-    height: `calc(100% + ${mapFloodSize}px)`,
+    height: '100%',
+    // height: `calc(100% + ${mapFloodSize}px)`,
 
     '&:hover': {
       '& $mapLink': {
@@ -78,51 +79,22 @@ const styles = theme => ({
       width: '20%',
     },
   },
-  covid: {
-    background: theme.palette.secondary[500],
-    fontSize: rem(20),
-    lineHeight: 1.5,
-    color: 'white',
-    marginTop: 24,
-    maxWidth: 400,
-    padding: 16,
+  // coffee: {
+  //   fontSize: rem(16),
+  //   fontWeight: theme.typography.fontWeights.bold,
+  //   border: 'solid 1px #777',
+  //   color: '#777',
+  //   padding: [[8, 16]],
+  //   marginTop: 24,
+  //   display: 'inline-block',
+  //   borderRadius: 4,
 
-    '& > b': {
-      fontWeight: 900,
-    },
-
-    '& > a': {
-      position: 'relative',
-      display: 'inline-block',
-      color: 'white',
-
-      '&:after': {
-        content: '""',
-        position: 'absolute',
-        width: '100%',
-        height: 1,
-        left: 0,
-        bottom: -2,
-        background: 'white',
-      },
-    },
-  },
-  coffee: {
-    fontSize: rem(16),
-    fontWeight: theme.typography.fontWeights.bold,
-    border: 'solid 1px #777',
-    color: '#777',
-    padding: [[8, 16]],
-    marginTop: 24,
-    display: 'inline-block',
-    borderRadius: 4,
-
-    '&:before': {
-      content: '"☕"',
-      display: 'inline-block',
-      marginRight: 8,
-    },
-  },
+  //   '&:before': {
+  //     content: '"☕"',
+  //     display: 'inline-block',
+  //     marginRight: 8,
+  //   },
+  // },
   address: {
     fontSize: rem(20),
     fontWeight: theme.typography.fontWeights.regular,
@@ -208,11 +180,6 @@ class WhatWhenWhere extends Component {
                 <div>Culte ouvert à tous,</div>
                 <div>le dimanche à 10h.</div>
                 {/* <div className={classes.coffee}>Café à 9h30</div> */}
-                <div className={classes.covid}>
-                  <b>COVID-19 :</b> inscription préalable et port du masque
-                  obligatoires. Plus d’infos sur notre{' '}
-                  <Link to={routes.contact()}>page contact</Link>.
-                </div>
               </RevealQueue>
             </h2>
             <RevealQueue>
@@ -236,7 +203,7 @@ class WhatWhenWhere extends Component {
             <Parallax
               className={classes.map}
               offsetYMax={0}
-              offsetYMin={-40}
+              offsetYMin={0}
               styleInner={{ height: '100%' }}
             >
               <Image height="100%" src={mapImage} />
