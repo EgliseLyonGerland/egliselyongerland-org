@@ -9,6 +9,7 @@ import Jumbotron from 'components/Jumbotron/Jumbotron';
 import Text from 'components/Text/Text';
 import Hr from 'components/Hr/Hr';
 import Button from 'components/Button/Button';
+import CovidBanner from 'components/CovidBanner';
 
 import routes from 'utils/routes';
 
@@ -50,27 +51,6 @@ const styles = theme => ({
   title: {
     color: theme.palette.primary[500],
   },
-  covid: {
-    fontSize: rem(18),
-    color: '#c00',
-    marginTop: 24,
-    maxWidth: 400,
-    fontWeight: 600,
-
-    '& > b': {
-      fontWeight: 900,
-    },
-  },
-  subscribe: {
-    fontSize: rem(18),
-    marginTop: 24,
-    maxWidth: 400,
-    fontWeight: 600,
-
-    '& > b': {
-      fontWeight: 900,
-    },
-  },
   [theme.breakpoints.down('xs')]: {
     timeBannerText: {
       fontSize: '1.6rem',
@@ -101,6 +81,7 @@ const Contact = ({ classes, history }) => {
       </Helmet>
 
       <Jumbotron background={picture} title="Contact" />
+      <CovidBanner />
 
       <div className={classes.timeBanner}>
         <div className={classes.timeBannerText}>
@@ -125,26 +106,6 @@ const Contact = ({ classes, history }) => {
         <div className="row">
           <div className="col-sm-5 col-md-6">
             {/* <div className={classes.coffee}>Accueil & café à 9h30</div> */}
-            <div className={classes.covid}>
-              La situation sanitaire liée à l'épidémie de Covid-19 nous oblige à
-              un protocole pour l'accueil du public aux réunions de l'église,
-              notamment <b>l'inscription préalable</b>, et le{' '}
-              <b>port du masque</b> obligatoire pour les plus de 11 ans.
-              <br />
-              <br />
-              <a href="/assets/2020/09/20200831_Plan_de_reprise_des_celebrations.pdf">
-                &rarr; Consulter le protocole sanitaire
-              </a>
-            </div>
-            <div className={classes.subscribe}>
-              Pour vous inscrire au prochain culte, veuillez nous envoyer un
-              message par mail ou SMS (aux coordonnées ci-dessous) en{' '}
-              <b>indiquant le prénom et le nom de toutes les personnes</b> qui
-              seront présentes.
-            </div>
-
-            <Hr multiplier={6} />
-
             {renderTitle('Coordonnées')}
 
             <Hr multiplier={2} />
