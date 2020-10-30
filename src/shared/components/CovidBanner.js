@@ -53,7 +53,15 @@ class Covid extends Component {
     return (
       <Container className={classes.root} md>
         <div className={classes.inner}>
-          <h2>Information COVID-19</h2>
+          <h2>
+            <span role="img" aria-label="Attention">
+              ⚠️
+            </span>{' '}
+            INFORMATION CORONAVIRUS{' '}
+            <span role="img" aria-label="Attention">
+              ⚠️
+            </span>
+          </h2>
           En raison de la situation sanitaire, la célébration du dimanche est
           actuellement suspendue et remplacée par un culte en direct sur
           internet, chaque dimanche à 10h, accessible par le lien suivant :{' '}
