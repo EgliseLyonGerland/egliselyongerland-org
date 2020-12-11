@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { NavLink as Link } from 'react-router-dom';
 import { noop } from 'lodash';
 import { withStyles } from '@material-ui/core/styles';
 import Checkbox from '@material-ui/core/Checkbox';
@@ -7,6 +8,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Container from 'components/Container/Container';
 import Button from 'components/Button/Button';
 import Typography from 'components/Typography/Typography';
+import routes from 'utils/routes';
 
 const styles = theme => ({
   root: {
@@ -96,19 +98,22 @@ const Announcement = ({ classes, onCloseButtonClicked }) => {
               <span role="img" aria-label="Attention">
                 ⚠️
               </span>{' '}
-              INFO CORONAVIRUS : PAS DE CULTE{' '}
+              Information CORONAVIRUS{' '}
               <span role="img" aria-label="Attention">
                 ⚠️
               </span>
             </Typography>
             <Typography paragraph color="inherit">
               En raison de la situation sanitaire liée à l'épidémie de Covid-19,
-              la célébration du dimanche au Théâtre de Lulu sur la Colline est
-              suspendue jusqu'à nouvel ordre, et remplacée par{' '}
-              <span className={classes.crucial}>
-                une célébration en direct sur internet
-              </span>{' '}
-              chaque dimanche à 10h, accessible par le lien suivant :<br />
+              la capacité d'accueil du public dans notre lieu de culte est
+              actuellement limitée, et{' '}
+              <span className={classes.crucial}>l'inscription préalable</span>{' '}
+              par e-mail ou par SMS (voir{' '}
+              <Link to={routes.contact()}>page contact</Link>) est par
+              conséquent obligatoire pour pouvoir assister à la célébration. Il
+              est aussi possible de suivre la{' '}
+              <span className={classes.crucial}>célébration en direct</span>{' '}
+              chaque dimanche à 10h, par le lien suivant :<br />
               <br />
               <a
                 href="https://links.egliselyongerland.org/link/live"
