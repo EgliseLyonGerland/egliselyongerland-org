@@ -94,14 +94,12 @@ const Announcement = ({ classes, onCloseButtonClicked }) => {
       <div className={classes.inner} style={{ opacity: displayed ? 1 : 0 }}>
         <Container sm>
           <>
-            <Typography variant="h5" color="inherit">
-              <span role="img" aria-label="Attention">
-                ⚠️
-              </span>{' '}
-              Information CORONAVIRUS{' '}
-              <span role="img" aria-label="Attention">
-                ⚠️
-              </span>
+            <Typography
+              variant="h5"
+              color="inherit"
+              style={{ whiteSpace: 'break-spaces' }}
+            >
+              {'⚠️ Information CORONAVIRUS ⚠️'}
             </Typography>
             <Typography paragraph color="inherit">
               En raison de la situation sanitaire liée à l'épidémie de Covid-19,
