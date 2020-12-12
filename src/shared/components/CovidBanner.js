@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { NavLink as Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import { rem } from 'polished';
 import Container from 'components/Container/Container';
+import routes from 'utils/routes';
 
 const styles = theme => ({
   root: {
@@ -51,26 +53,20 @@ class Covid extends Component {
     const { classes } = this.props;
 
     return (
-      <Container className={classes.root} md>
+      <Container className={classes.root} lg>
         <div className={classes.inner}>
-          <h2>
-            <span role="img" aria-label="Attention">
-              ⚠️
-            </span>{' '}
-            INFORMATION CORONAVIRUS{' '}
-            <span role="img" aria-label="Attention">
-              ⚠️
-            </span>
-          </h2>
-          En raison de la situation sanitaire, la célébration du dimanche est
-          actuellement suspendue et remplacée par un culte en direct sur
-          internet, chaque dimanche à 10h, accessible par le lien suivant :{' '}
+          <h2>INFORMATION CORONAVIRUS</h2>
+          La capacité d'accueil du public dans notre lieu de culte étant
+          actuellement limitée, l'inscription préalable par e-mail ou par SMS
+          (voir <Link to={routes.contact()}>page contact</Link>) est obligatoire
+          pour pouvoir assister à la célébration. Chaque dimanche à 10h, la
+          célébration est également diffusée en direct ici :{' '}
           <a
             href="https://links.egliselyongerland.org/link/live"
             target="_blank"
             rel="noopener noreferrer"
           >
-            https://links.egliselyongerland.org/link/live
+            links.egliselyongerland.org/link/live
           </a>
         </div>
       </Container>
