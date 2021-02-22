@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
@@ -6,7 +6,7 @@ import { TransitionMotion, spring, presets } from 'react-motion';
 import { withStyles } from '@material-ui/core/styles';
 import { renderRoutes } from 'react-router-config';
 import classnames from 'classnames';
-import useLocalStorage from 'react-use-localstorage';
+// import useLocalStorage from 'react-use-localstorage';
 
 import { openSidebar, closeSidebar } from 'store/actions/sidebar';
 import {
@@ -19,7 +19,7 @@ import Footer from 'components/Footer/Footer';
 import Overlay from 'components/Overlay/Overlay';
 import AudioPlayer from 'components/AudioPlayer/AudioPlayer';
 import ScrollToTop from 'components/Scroll/ScrollToTop';
-import Announcement from 'components/Announcement/Announcement';
+// import Announcement from 'components/Announcement/Announcement';
 
 import config from 'config';
 
@@ -79,47 +79,47 @@ function App({
   openSidebarAction,
   closeSidebarAction,
   announcementOpened,
-  announcementOpenCount,
-  openAnnouncementAction,
-  closeAnnouncementAction,
+  // announcementOpenCount,
+  // openAnnouncementAction,
+  // closeAnnouncementAction,
   audio,
   closeAudioAction,
   pauseAudioAction,
   classes,
   route,
 }) {
-  let displayAnnouncement = false;
-  let setDisplayAnnouncement = null;
+  // let displayAnnouncement = false;
+  // let setDisplayAnnouncement = null;
 
-  if (__CLIENT__) {
-    if (localStorage) {
-      localStorage.removeItem('displayAnnouncement');
-      localStorage.removeItem('displayAnnouncement2');
-      localStorage.removeItem('displayAnnouncement3');
-      localStorage.removeItem('displayAnnouncement4');
-      localStorage.removeItem('displayAnnouncement5');
-      localStorage.removeItem('displayAnnouncement6');
-    }
+  // if (__CLIENT__) {
+  //   if (localStorage) {
+  //     localStorage.removeItem('displayAnnouncement');
+  //     localStorage.removeItem('displayAnnouncement2');
+  //     localStorage.removeItem('displayAnnouncement3');
+  //     localStorage.removeItem('displayAnnouncement4');
+  //     localStorage.removeItem('displayAnnouncement5');
+  //     localStorage.removeItem('displayAnnouncement6');
+  //   }
 
-    [displayAnnouncement, setDisplayAnnouncement] = useLocalStorage(
-      'displayAnnouncement7',
-      1,
-    );
-  }
+  //   [displayAnnouncement, setDisplayAnnouncement] = useLocalStorage(
+  //     'displayAnnouncement7',
+  //     1,
+  //   );
+  // }
 
-  useEffect(() => {
-    if (
-      !__CLIENT__ ||
-      displayAnnouncement === '0' ||
-      announcementOpenCount !== 0
-    ) {
-      return;
-    }
+  // useEffect(() => {
+  //   if (
+  //     !__CLIENT__ ||
+  //     displayAnnouncement === '0' ||
+  //     announcementOpenCount !== 0
+  //   ) {
+  //     return;
+  //   }
 
-    setTimeout(() => {
-      openAnnouncementAction();
-    }, 5000);
-  }, []);
+  //   setTimeout(() => {
+  //     openAnnouncementAction();
+  //   }, 5000);
+  // }, []);
 
   function renderAudio() {
     const defaultStyles = [];
@@ -175,14 +175,14 @@ function App({
         onCloseSidebarButtonClicked={() => closeSidebarAction()}
         onOpenSidebarButtonClicked={() => openSidebarAction()}
       />
-      {announcementOpened && (
+      {/* {announcementOpened && (
         <Announcement
           onCloseButtonClicked={remind => {
             setDisplayAnnouncement(remind + 0);
             closeAnnouncementAction();
           }}
         />
-      )}
+      )} */}
       <div className={classes.content}>{renderRoutes(route.routes)}</div>
       <Footer />
       {renderAudio()}
