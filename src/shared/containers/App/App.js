@@ -9,10 +9,10 @@ import classnames from 'classnames';
 // import useLocalStorage from 'react-use-localstorage';
 
 import { openSidebar, closeSidebar } from 'store/actions/sidebar';
-import {
-  closeAnnouncement,
-  openAnnouncement,
-} from 'store/actions/announcement';
+// import {
+//   closeAnnouncement,
+//   openAnnouncement,
+// } from 'store/actions/announcement';
 import { closeAudio, pauseAudio } from 'store/actions/audio';
 import Header from 'components/Header/Header';
 import Footer from 'components/Footer/Footer';
@@ -60,8 +60,8 @@ const mapStateToProps = state => ({
   overlay: state.overlay,
   audio: state.audio,
   isSidebarOpened: state.sidebar.opened,
-  announcementOpened: state.announcement.opened,
-  announcementOpenCount: state.announcement.count,
+  // announcementOpened: state.announcement.opened,
+  // announcementOpenCount: state.announcement.count,
 });
 
 const mapDispatchToProps = {
@@ -69,8 +69,8 @@ const mapDispatchToProps = {
   closeSidebarAction: closeSidebar,
   closeAudioAction: closeAudio,
   pauseAudioAction: pauseAudio,
-  openAnnouncementAction: openAnnouncement,
-  closeAnnouncementAction: closeAnnouncement,
+  // openAnnouncementAction: openAnnouncement,
+  // closeAnnouncementAction: closeAnnouncement,
 };
 
 function App({
@@ -78,7 +78,7 @@ function App({
   isSidebarOpened,
   openSidebarAction,
   closeSidebarAction,
-  announcementOpened,
+  // announcementOpened,
   // announcementOpenCount,
   // openAnnouncementAction,
   // closeAnnouncementAction,
@@ -164,7 +164,7 @@ function App({
     <div
       className={classnames({
         [classes.root]: true,
-        [classes.noScroll]: announcementOpened || isSidebarOpened,
+        // [classes.noScroll]: announcementOpened || isSidebarOpened,
       })}
     >
       <Helmet {...config.app.head} />
@@ -191,10 +191,10 @@ function App({
 }
 
 App.propTypes = {
-  closeAnnouncementAction: PropTypes.func.isRequired,
   closeSidebarAction: PropTypes.func.isRequired,
   isSidebarOpened: PropTypes.bool.isRequired,
-  openAnnouncementAction: PropTypes.func.isRequired,
+  // closeAnnouncementAction: PropTypes.func.isRequired,
+  // openAnnouncementAction: PropTypes.func.isRequired,
   openSidebarAction: PropTypes.func.isRequired,
   overlay: PropTypes.shape().isRequired,
 };
