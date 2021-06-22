@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { NavLink as Link } from 'react-router-dom';
 import { noop } from 'lodash';
 import { withStyles } from '@material-ui/core/styles';
 import Checkbox from '@material-ui/core/Checkbox';
@@ -8,7 +7,6 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Container from 'components/Container/Container';
 import Button from 'components/Button/Button';
 import Typography from 'components/Typography/Typography';
-import routes from 'utils/routes';
 
 const styles = theme => ({
   root: {
@@ -99,27 +97,23 @@ const Announcement = ({ classes, onCloseButtonClicked }) => {
               color="inherit"
               style={{ whiteSpace: 'break-spaces' }}
             >
-              {'⚠️ Information CORONAVIRUS ⚠️'}
+              {'⚠️ Attention: changement de lieu de culte pour l’été ⚠️'}
             </Typography>
             <Typography paragraph color="inherit">
-              En raison de la situation sanitaire liée à l'épidémie de Covid-19,
-              la capacité d'accueil du public dans notre lieu de culte est
-              actuellement limitée, et{' '}
-              <span className={classes.crucial}>l'inscription préalable</span>{' '}
-              par e-mail ou par SMS (voir{' '}
-              <Link to={routes.contact()}>page contact</Link>) est par
-              conséquent obligatoire pour pouvoir assister à la célébration. Il
-              est aussi possible de suivre la{' '}
-              <span className={classes.crucial}>célébration en direct</span>{' '}
-              chaque dimanche à 10h, par le lien suivant :<br />
-              <br />
-              <a
-                href="https://links.egliselyongerland.org/link/live"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                https://links.egliselyongerland.org/link/live
-              </a>
+              L’Église Lyon Gerland passe ses vacances à l’hôtel !
+            </Typography>
+            <Typography paragraph color="inherit">
+              À partir du <b>dimanche 11 juillet inclus</b>, la célébration du
+              dimanche à 10h aura lieu dans la salle de conférence du NOVOTEL
+              Lyon-Gerland (rez-de-chaussée), au{' '}
+              <b>70 avenue Leclerc, Lyon 7ème</b>.
+            </Typography>
+            <Typography paragraph color="inherit" component="div">
+              <b>Accès :</b>
+              <ul>
+                <li>Tram T1, arrêt « Halle Tony Garnier »</li>
+                <li>Bus C7 ou 34, arrêt « Place Docteurs Mérieux »</li>
+              </ul>
             </Typography>
           </>
 
