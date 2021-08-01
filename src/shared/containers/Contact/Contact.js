@@ -116,9 +116,20 @@ const Contact = ({ classes, history }) => {
             <Text color="#777">Réformée, Évangélique</Text>
 
             <Hr multiplier={3} />
+            <div
+              className={classes.address}
+              style={{
+                color: 'red',
+                fontSize: '1em',
+                fontWeight: 'bold',
+              }}
+            >
+              Du 11 juillet au 29 août inclus :
+            </div>
 
-            <Text>Théâtre Lulu sur la Colline</Text>
-            <Text>60 Rue Victor Lagrange</Text>
+            <Hr xs />
+            <Text fontWeight="medium">Hôtel NOVOTEL de Gerland</Text>
+            <Text>70 avenue Leclerc</Text>
             <Text>69007 Lyon</Text>
 
             <Hr multiplier={3} />

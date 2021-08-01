@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { NavLink as Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import { rem } from 'polished';
 import Container from 'components/Container/Container';
-import routes from 'utils/routes';
 
 const styles = theme => ({
   root: {
@@ -55,19 +53,11 @@ class Covid extends Component {
     return (
       <Container className={classes.root} lg>
         <div className={classes.inner}>
-          <h2>INFORMATION CORONAVIRUS</h2>
-          La capacité d'accueil du public dans notre lieu de culte étant
-          actuellement limitée, l'inscription préalable par e-mail ou par SMS
-          (voir <Link to={routes.contact()}>page contact</Link>) est obligatoire
-          pour pouvoir assister à la célébration. Chaque dimanche à 10h, la
-          célébration est également diffusée en direct ici :{' '}
-          <a
-            href="https://links.egliselyongerland.org/link/live"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            links.egliselyongerland.org/link/live
-          </a>
+          <h2>ATTENTION : INFORMATION ÉTÉ 2021</h2>
+          Du dimanche 11 juillet au dimanche 29 août inclus, le culte aura lieu
+          dans la salle de conférences de l'hôtel NOVOTEL de Gerland, 70 avenue
+          Leclerc, Lyon 7ème, à 10h. L'inscription préalable n'est plus
+          obligatoire.
         </div>
       </Container>
     );
