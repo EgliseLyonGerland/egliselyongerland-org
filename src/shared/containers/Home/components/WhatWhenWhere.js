@@ -157,10 +157,6 @@ const ActionButton = createResponsiveButton(
   { xxs: 'xs', xs: 'sm', md: 'md' },
   'WhatWhenWhereActionButton',
 );
-const MapButton = createResponsiveButton(
-  { xxs: 'xl' },
-  'WhatWhenWhereMapButton',
-);
 
 @withStyles(styles)
 class WhatWhenWhere extends Component {
@@ -183,10 +179,21 @@ class WhatWhenWhere extends Component {
               </RevealQueue>
             </h2>
             <RevealQueue>
-              <div className={classes.address}>
-                <b>Théâtre Lulu sur la Colline</b>
+              <div
+                className={classes.address}
+                style={{
+                  color: 'red',
+                  fontSize: '1em',
+                  fontWeight: 'bold',
+                }}
+              >
+                Du 11 juillet au 29 août inclus :
               </div>
-              <div className={classes.address}>60 Rue Victor Lagrange</div>
+              <Hr xs />
+              <div className={classes.address}>
+                <b>Hôtel NOVOTEL de Gerland</b>
+              </div>
+              <div className={classes.address}>70 avenue Leclerc</div>
               <div className={classes.address}>69007 Lyon</div>
               <Hr xl />
               <Link className={classes.button} to={routes.worship()}>
@@ -207,16 +214,32 @@ class WhatWhenWhere extends Component {
               styleInner={{ height: '100%' }}
             >
               <Image height="100%" src={mapImage} />
-              <a
-                className={classes.mapLink}
-                href="https://goo.gl/maps/KqaN3u1ciiR2"
-                rel="noopener noreferrer"
-                target="_blank"
+
+              <span
+                style={{
+                  position: 'absolute',
+                  top: '50%',
+                  left: '50%',
+                  width: 280,
+                  height: 120,
+                  marginTop: -60,
+                  marginLeft: -140,
+                  padding: 10,
+                  border: 'solid 10px red',
+                  color: 'red',
+                  fontWeight: 'bold',
+                  fontSize: '1.3rem',
+                  lineHeight: 1.2,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  textAlign: 'center',
+                  background: 'rgba(255, 255, 255, 0.7)',
+                  transform: 'rotate(-10deg)',
+                }}
               >
-                <MapButton color="primary" corners="circular">
-                  Voir le plan
-                </MapButton>
-              </a>
+                ATTENTION: le lieu de culte change pendant les vacances d'été
+              </span>
             </Parallax>
           </div>
         </RevealQueue>
