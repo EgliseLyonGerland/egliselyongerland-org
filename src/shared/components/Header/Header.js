@@ -5,7 +5,6 @@ import classnames from 'classnames';
 import EventListener, { withOptions } from 'react-event-listener';
 import { withStyles } from '@material-ui/core/styles';
 import withWidth, { isWidthDown } from '@material-ui/core/withWidth';
-import PlayIcon from '@material-ui/icons/PlayCircleFilledOutlined';
 
 import Sidebar from 'components/Sidebar/Sidebar';
 import Burger from 'components/Burger/Burger';
@@ -254,10 +253,6 @@ class Header extends Component {
       [classes.sticky]: sticky,
     });
 
-    const now = new Date();
-    const live =
-      now.getDay() === 6 || (now.getDay() === 0 && now.getHours() < 12);
-
     return (
       <div className={className}>
         <EventListener
@@ -294,20 +289,6 @@ class Header extends Component {
                 src={christmas}
               />
             </Link>
-          )}
-
-          {live && (
-            <div className={classes.linksItem} style={{ color: '#ff6060' }}>
-              <a
-                className={classes.link}
-                href="https://links.egliselyongerland.org/link/live"
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                <PlayIcon className={classes.linkIcon} fontSize="small" />
-                <span>Live</span>
-              </a>
-            </div>
           )}
 
           <div className={classes.links}>
