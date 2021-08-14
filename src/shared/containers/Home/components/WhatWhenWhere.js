@@ -182,12 +182,12 @@ class WhatWhenWhere extends Component {
               <div
                 className={classes.address}
                 style={{
-                  color: 'red',
+                  color: '#F0544F',
                   fontSize: '1em',
                   fontWeight: 'bold',
                 }}
               >
-                Du 11 juillet au 29 août inclus :
+                Dimanche 15 août :
               </div>
               <Hr xs />
               <div className={classes.address}>
@@ -225,8 +225,8 @@ class WhatWhenWhere extends Component {
                   marginTop: -60,
                   marginLeft: -140,
                   padding: 10,
-                  border: 'solid 10px red',
-                  color: 'red',
+                  border: 'solid 10px #F0544F',
+                  color: '#F0544F',
                   fontWeight: 'bold',
                   fontSize: '1.3rem',
                   lineHeight: 1.2,

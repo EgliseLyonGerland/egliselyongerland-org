@@ -6,7 +6,7 @@ import Container from 'components/Container/Container';
 
 const styles = theme => ({
   root: {
-    background: theme.palette.secondary[500],
+    background: '#F0544F',
     fontSize: rem(22),
     fontWeight: theme.typography.fontWeights.regular,
     lineHeight: 1.5,
@@ -16,7 +16,7 @@ const styles = theme => ({
   inner: {
     '& > h2': {
       fontWeight: theme.typography.fontWeights.bold,
-      fontSize: rem(24),
+      fontSize: rem(28),
       textTransform: 'uppercase',
       display: 'block',
       marginBottom: 8,
@@ -53,11 +53,15 @@ class Covid extends Component {
     return (
       <Container className={classes.root} lg>
         <div className={classes.inner}>
-          <h2>ATTENTION : INFORMATION ÉTÉ 2021</h2>
-          Du dimanche 11 juillet au dimanche 29 août inclus, le culte aura lieu
-          dans la salle de conférences de l'hôtel NOVOTEL de Gerland, 70 avenue
-          Leclerc, Lyon 7ème, à 10h. L'inscription préalable n'est plus
-          obligatoire.
+          <h2>IMPORTANT : LISEZ BIEN CE MESSAGE</h2>
+          La paroissage rencontre actuellement des difficultés pour trouver un
+          lieu où se rassembler. C'est pourquoi bla bla bla... Labore sunt aute
+          incididunt nisi ad ut non exercitation id Lorem sint consectetur.
+          Proident magna duis id ex ex aliquip occaecat proident eiusmod duis
+          mollit commodo. Nostrud elit incididunt aliquip id ipsum occaecat.
+          Occaecat proident non non labore eu laboris sunt irure nisi
+          reprehenderit ut incididunt adipisicing dolor. Aliqua eiusmod aliqua
+          sit aliqua ex est ullamco.
         </div>
       </Container>
     );
