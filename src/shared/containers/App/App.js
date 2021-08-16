@@ -101,10 +101,11 @@ function App({
       localStorage.removeItem('displayAnnouncement5');
       localStorage.removeItem('displayAnnouncement6');
       localStorage.removeItem('displayAnnouncement7');
+      localStorage.removeItem('displayAnnouncement8');
     }
 
     [displayAnnouncement, setDisplayAnnouncement] = useLocalStorage(
-      'displayAnnouncement8',
+      'displayAnnouncement9',
       1,
     );
   }

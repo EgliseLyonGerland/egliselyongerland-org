@@ -119,17 +119,17 @@ const Contact = ({ classes, history }) => {
             <div
               className={classes.address}
               style={{
-                color: 'red',
+                color: '#F0544F',
                 fontSize: '1em',
                 fontWeight: 'bold',
               }}
             >
-              Du 11 juillet au 29 août inclus :
+              Dimanche 22 août :
             </div>
 
             <Hr xs />
-            <Text fontWeight="medium">Hôtel NOVOTEL de Gerland</Text>
-            <Text>70 avenue Leclerc</Text>
+            <Text fontWeight="medium">Théâtre de Lulu sur la Colline</Text>
+            <Text>60 avenue Victor Lagrange</Text>
             <Text>69007 Lyon</Text>
 
             <Hr multiplier={3} />

@@ -6,7 +6,7 @@ import Container from 'components/Container/Container';
 
 const styles = theme => ({
   root: {
-    background: '#F0544F',
+    background: '#E7BB41',
     fontSize: rem(22),
     fontWeight: theme.typography.fontWeights.regular,
     lineHeight: 1.5,
@@ -16,7 +16,7 @@ const styles = theme => ({
   inner: {
     '& > h2': {
       fontWeight: theme.typography.fontWeights.bold,
-      fontSize: rem(28),
+      fontSize: rem(24),
       textTransform: 'uppercase',
       display: 'block',
       marginBottom: 8,
@@ -53,15 +53,10 @@ class Covid extends Component {
     return (
       <Container className={classes.root} lg>
         <div className={classes.inner}>
-          <h2>IMPORTANT : LISEZ BIEN CE MESSAGE</h2>
-          La paroissage rencontre actuellement des difficultés pour trouver un
-          lieu où se rassembler. C'est pourquoi bla bla bla... Labore sunt aute
-          incididunt nisi ad ut non exercitation id Lorem sint consectetur.
-          Proident magna duis id ex ex aliquip occaecat proident eiusmod duis
-          mollit commodo. Nostrud elit incididunt aliquip id ipsum occaecat.
-          Occaecat proident non non labore eu laboris sunt irure nisi
-          reprehenderit ut incididunt adipisicing dolor. Aliqua eiusmod aliqua
-          sit aliqua ex est ullamco.
+          <h2>IMPORTANT : CHANGEMENT DE LIEU DE CULTE</h2>
+          Les conditions sanitaires et la règlementation actuelle entraînent ces
+          jours-ci un changement fréquent de lieu de culte pour notre église. En
+          cas de doute, contactez-nous !
         </div>
       </Container>
     );
