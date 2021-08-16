@@ -104,10 +104,10 @@ const Announcement = ({ classes, onCloseButtonClicked }) => {
               n'est pas obligatoire pour pouvoir participer au culte.
             </Typography>
             <Typography paragraph color="inherit">
-              À partir du <b>dimanche 11 juillet inclus</b>, la célébration du
-              dimanche à 10h aura lieu dans la salle de conférence du NOVOTEL
-              Lyon-Gerland (rez-de-chaussée), au{' '}
-              <b>70 avenue Leclerc, Lyon 7ème</b>.
+              Par contre, notre lieu de culte est susceptible de changer d'une
+              semaine sur l'autre. Pensez à consulter notre site internet ou
+              notre page Facebook pour vous tenir informés, et en cas de doute,
+              n'hésitez pas à nous contacter par email ou par téléphone.
             </Typography>
           </>
 
