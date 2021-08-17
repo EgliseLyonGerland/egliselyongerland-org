@@ -182,18 +182,18 @@ class WhatWhenWhere extends Component {
               <div
                 className={classes.address}
                 style={{
-                  color: 'red',
+                  color: '#F0544F',
                   fontSize: '1em',
                   fontWeight: 'bold',
                 }}
               >
-                Du 11 juillet au 29 août inclus :
+                Dimanche 22 août :
               </div>
               <Hr xs />
               <div className={classes.address}>
-                <b>Hôtel NOVOTEL de Gerland</b>
+                <b>Théâtre de Lulu sur la Colline</b>
               </div>
-              <div className={classes.address}>70 avenue Leclerc</div>
+              <div className={classes.address}>60 avenue Victor Lagrange</div>
               <div className={classes.address}>69007 Lyon</div>
               <Hr xl />
               <Link className={classes.button} to={routes.worship()}>
@@ -225,10 +225,10 @@ class WhatWhenWhere extends Component {
                   marginTop: -60,
                   marginLeft: -140,
                   padding: 10,
-                  border: 'solid 10px red',
-                  color: 'red',
+                  border: 'solid 10px #F0544F',
+                  color: '#F0544F',
                   fontWeight: 'bold',
-                  fontSize: '1.3rem',
+                  fontSize: '1.2rem',
                   lineHeight: 1.2,
                   display: 'flex',
                   alignItems: 'center',
@@ -238,7 +238,8 @@ class WhatWhenWhere extends Component {
                   transform: 'rotate(-10deg)',
                 }}
               >
-                ATTENTION: le lieu de culte change pendant les vacances d'été
+                ATTENTION : actuellement, changement fréquent de lieu de culte.
+                Pensez à nous contacter !
               </span>
             </Parallax>
           </div>

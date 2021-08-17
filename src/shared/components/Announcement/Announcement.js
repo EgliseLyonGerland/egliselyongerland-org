@@ -97,23 +97,17 @@ const Announcement = ({ classes, onCloseButtonClicked }) => {
               color="inherit"
               style={{ whiteSpace: 'break-spaces' }}
             >
-              {'⚠️ Attention: changement de lieu de culte pour l’été ⚠️'}
+              {'⚠️ PASS SANITAIRE ET LIEU DE CULTE ⚠️'}
             </Typography>
             <Typography paragraph color="inherit">
-              L’Église Lyon Gerland passe ses vacances à l’hôtel !
+              Conformément aux directives du gouvernement, le pass sanitaire
+              n'est pas obligatoire pour pouvoir participer au culte.
             </Typography>
             <Typography paragraph color="inherit">
-              À partir du <b>dimanche 11 juillet inclus</b>, la célébration du
-              dimanche à 10h aura lieu dans la salle de conférence du NOVOTEL
-              Lyon-Gerland (rez-de-chaussée), au{' '}
-              <b>70 avenue Leclerc, Lyon 7ème</b>.
-            </Typography>
-            <Typography paragraph color="inherit" component="div">
-              <b>Accès :</b>
-              <ul>
-                <li>Tram T1, arrêt « Halle Tony Garnier »</li>
-                <li>Bus C7 ou 34, arrêt « Place Docteurs Mérieux »</li>
-              </ul>
+              Par contre, notre lieu de culte est susceptible de changer d'une
+              semaine sur l'autre. Pensez à consulter notre site internet ou
+              notre page Facebook pour vous tenir informés, et en cas de doute,
+              n'hésitez pas à nous contacter par email ou par téléphone.
             </Typography>
           </>
 

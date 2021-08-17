@@ -6,7 +6,7 @@ import Container from 'components/Container/Container';
 
 const styles = theme => ({
   root: {
-    background: theme.palette.secondary[500],
+    background: '#E7BB41',
     fontSize: rem(22),
     fontWeight: theme.typography.fontWeights.regular,
     lineHeight: 1.5,
@@ -53,11 +53,10 @@ class Covid extends Component {
     return (
       <Container className={classes.root} lg>
         <div className={classes.inner}>
-          <h2>ATTENTION : INFORMATION ÉTÉ 2021</h2>
-          Du dimanche 11 juillet au dimanche 29 août inclus, le culte aura lieu
-          dans la salle de conférences de l'hôtel NOVOTEL de Gerland, 70 avenue
-          Leclerc, Lyon 7ème, à 10h. L'inscription préalable n'est plus
-          obligatoire.
+          <h2>IMPORTANT : CHANGEMENT DE LIEU DE CULTE</h2>
+          Les conditions sanitaires et la règlementation actuelle entraînent ces
+          jours-ci un changement fréquent de lieu de culte pour notre église. En
+          cas de doute, contactez-nous !
         </div>
       </Container>
     );
