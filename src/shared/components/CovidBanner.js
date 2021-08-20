@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { rem } from 'polished';
+import { NavLink as Link } from 'react-router-dom';
 import Container from 'components/Container/Container';
 
 const styles = theme => ({
@@ -53,10 +54,28 @@ class Covid extends Component {
     return (
       <Container className={classes.root} lg>
         <div className={classes.inner}>
-          <h2>IMPORTANT : CHANGEMENT DE LIEU DE CULTE</h2>
+          <h2>
+            IMPORTANT : CHANGEMENT DE{' '}
+            <span style={{ color: '#4843bb' }}>LIEU DE CULTE</span>
+          </h2>
           Les conditions sanitaires et la règlementation actuelle entraînent ces
-          jours-ci un changement fréquent de lieu de culte pour notre église. En
-          cas de doute, contactez-nous !
+          jours-ci un changement fréquent de lieu de culte pour notre église.
+          <br />
+          <span style={{ color: '#4843bb' }}>
+            <span style={{ fontSize: '1.5em' }}>&raquo;</span> Plus d'infos sur
+            la{' '}
+            <Link
+              to="/contact"
+              style={{
+                color: 'inherit',
+                borderColor: 'inherit',
+                textDecoration: 'underline',
+              }}
+            >
+              page contact
+            </Link>
+            .
+          </span>
         </div>
       </Container>
     );

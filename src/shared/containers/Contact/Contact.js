@@ -9,7 +9,6 @@ import Jumbotron from 'components/Jumbotron/Jumbotron';
 import Text from 'components/Text/Text';
 import Hr from 'components/Hr/Hr';
 import Button from 'components/Button/Button';
-import CovidBanner from 'components/CovidBanner';
 
 import routes from 'utils/routes';
 
@@ -51,6 +50,14 @@ const styles = theme => ({
   title: {
     color: theme.palette.primary[500],
   },
+  alert: {
+    background: '#E7BB41',
+    fontSize: rem(20),
+    fontWeight: theme.typography.fontWeights.regular,
+    lineHeight: 1.3,
+    color: 'white',
+    padding: 24,
+  },
   [theme.breakpoints.down('xs')]: {
     timeBannerText: {
       fontSize: '1.6rem',
@@ -81,11 +88,10 @@ const Contact = ({ classes, history }) => {
       </Helmet>
 
       <Jumbotron background={picture} title="Contact" />
-      <CovidBanner />
 
       <div className={classes.timeBanner}>
         <div className={classes.timeBannerText}>
-          <span>Culte ouvert à tous,</span> <span>le dimanche à 10h.</span>
+          <span>Note culte est ouvert à tous.</span>
         </div>
         <div className={classes.timeBannerButton}>
           <Button
@@ -106,6 +112,24 @@ const Contact = ({ classes, history }) => {
         <div className="row">
           <div className="col-sm-5 col-md-6">
             {/* <div className={classes.coffee}>Accueil & café à 9h30</div> */}
+
+            <div className={classes.alert}>
+              ATTENTION : les conditions sanitaires et la règlementation
+              actuelle entraînent ces jours-ci un changement fréquent de lieu de
+              culte pour notre église !
+              <Hr multiplier={2} />
+              Pensez à visiter régulièrement notre site internet pour obtenir
+              les dernières informations. En cas de doute, n'hésitez pas à
+              envoyer un email à{' '}
+              <a href="mailto:contact@egliselyongerland.org">
+                contact@egliselyongerland.org
+              </a>
+              , et demandez à être ajouté à la liste de diffusion de l'église.
+              <Hr multiplier={2} />
+              Merci de votre compréhension !
+            </div>
+            <Hr multiplier={4} />
+
             {renderTitle('Coordonnées')}
 
             <Hr multiplier={2} />
@@ -115,7 +139,7 @@ const Contact = ({ classes, history }) => {
             </Text>
             <Text color="#777">Réformée, Évangélique</Text>
 
-            <Hr multiplier={3} />
+            {/* <Hr multiplier={3} />
             <div
               className={classes.address}
               style={{
@@ -130,7 +154,7 @@ const Contact = ({ classes, history }) => {
             <Hr xs />
             <Text fontWeight="medium">Théâtre de Lulu sur la Colline</Text>
             <Text>60 avenue Victor Lagrange</Text>
-            <Text>69007 Lyon</Text>
+            <Text>69007 Lyon</Text> */}
 
             <Hr multiplier={3} />
 
@@ -142,7 +166,7 @@ const Contact = ({ classes, history }) => {
               </a>
             </Text>
 
-            <Hr multiplier={6} />
+            {/* <Hr multiplier={6} />
 
             {renderTitle('Accès')}
 
@@ -152,16 +176,37 @@ const Contact = ({ classes, history }) => {
               <b>Arrêt Jean Macé</b>
             </Text>
             <Text>Métro B, Tram T2</Text>
-            <Text>Bus 35, S3, Z16, C4, C7, C12 et C14</Text>
+            <Text>Bus 35, S3, Z16, C4, C7, C12 et C14</Text> */}
 
             <Hr multiplier={4} />
+            {renderTitle('Lieu et horaire du culte')}
+
+            <Hr multiplier={2} />
+
+            <div
+              className={classes.address}
+              style={{
+                color: '#F0544F',
+                fontSize: '1.2em',
+                fontWeight: 'bold',
+              }}
+            >
+              Exceptionnellement dimanche 22 août, culte à 17h :
+            </div>
+            <Hr xs />
+            <Text fontWeight="regular">Église Évangélique Baptiste</Text>
+            <Text>85 cours Vitton</Text>
+            <Text>69003 Lyon</Text>
+            <Hr multiplier={2} />
+            <Text fontWeight="medium">Accès</Text>
+            <Text>Métro B ou tram T1, arrêt Charpennes</Text>
           </div>
           <div className="col-sm-7 col-md-6">
             <iframe
               allowFullScreen
               frameBorder="0"
               height="450"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2785.120360872194!2d4.8296063158166875!3d45.72868097910506!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47f4ea28fb13f6bf%3A0x23df16c38cf568e9!2zw4lnbGlzZSBMeW9uIEdlcmxhbmQgKFLDqWZvcm3DqWUgw4l2YW5nw6lsaXF1ZSk!5e0!3m2!1sfr!2sfr!4v1505047371132"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2783.041228933069!2d4.858441615877586!3d45.770363979105745!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47f4ea8fae4daa4f%3A0x16846280e8bc0cd5!2sEglise%20Evangelique%20Baptiste!5e0!3m2!1sen!2sfr!4v1629475001559!5m2!1sen!2sfr"
               style={{ border: 0, width: '100%', height: 450 }}
               title="Location de l'église"
               width="100%"
