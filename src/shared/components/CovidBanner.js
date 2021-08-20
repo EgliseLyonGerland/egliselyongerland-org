@@ -54,10 +54,19 @@ class Covid extends Component {
     return (
       <Container className={classes.root} lg>
         <div className={classes.inner}>
-          <h2>IMPORTANT : CHANGEMENT DE LIEU DE CULTE</h2>
+          <h2>
+            IMPORTANT : CHANGEMENT DE{' '}
+            <span style={{ color: '#4843bb' }}>LIEU DE CULTE</span>
+          </h2>
           Les conditions sanitaires et la règlementation actuelle entraînent ces
           jours-ci un changement fréquent de lieu de culte pour notre église.
-          Plus d'info sur la <Link to="/contact">page contact</Link>.
+          <br />
+          <br />
+          ➡️ Plus d'infos sur la{' '}
+          <Link to="/contact" style={{ color: '#4843bb' }}>
+            page contact
+          </Link>
+          .
         </div>
       </Container>
     );

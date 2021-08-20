@@ -114,16 +114,19 @@ const Contact = ({ classes, history }) => {
             {/* <div className={classes.coffee}>Accueil & café à 9h30</div> */}
 
             <div className={classes.alert}>
-              Les conditions sanitaires et la règlementation actuelle entraînent
-              ces jours-ci un changement fréquent de lieu de culte pour notre
-              église.
+              ATTENTION : les conditions sanitaires et la règlementation
+              actuelle entraînent ces jours-ci un changement fréquent de lieu de
+              culte pour notre église !
               <Hr multiplier={2} />
-              Prière de visiter régulièrement notre site internet pour rester
-              informé. Vous pouvez également envoyer un email à{' '}
+              Pensez à visiter régulièrement notre site internet pour obtenir
+              les dernières informations. En cas de doute, n'hésitez pas à
+              envoyer un email à{' '}
               <a href="mailto:contact@egliselyongerland.org">
                 contact@egliselyongerland.org
-              </a>{' '}
-              afin que l'on vous ajoute à notre liste de diffusion.
+              </a>
+              , et demandez à être ajouté à la liste de diffusion de l'église.
+              <Hr multiplier={2} />
+              Merci de votre compréhension !
             </div>
             <Hr multiplier={4} />
 
