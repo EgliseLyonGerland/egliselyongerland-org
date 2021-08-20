@@ -44,7 +44,7 @@ const styles = ({ palette, typography, breakpoints }) => ({
     position: 'relative',
   },
   discoverInner: {
-    backgroundColor: 'white',
+    backgroundColor: palette.background,
   },
   buttonWrapper: {
     display: 'flex',

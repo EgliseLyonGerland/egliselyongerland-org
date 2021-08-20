@@ -5,7 +5,7 @@ import { denormalize } from 'normalizr';
 
 import CovidBanner from 'components/CovidBanner';
 import { postSchema } from 'store/schemas';
-import WhatWhenWhere from './components/WhatWhenWhere';
+// import WhatWhenWhere from './components/WhatWhenWhere';
 import Sermons from './components/Sermons';
 import Intro from './components/Intro';
 
@@ -37,7 +37,7 @@ class Home extends Component {
 
         <Intro />
         <CovidBanner />
-        <WhatWhenWhere />
+        {/* <WhatWhenWhere /> */}
         <Sermons data={posts} />
       </>
     );

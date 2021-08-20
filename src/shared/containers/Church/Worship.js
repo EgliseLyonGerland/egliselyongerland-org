@@ -3,7 +3,7 @@ import React from 'react';
 import Container from 'components/Container/Container';
 import Typography from 'components/Typography/Typography';
 import RevealQueue from 'components/Animation/RevealQueue';
-import WhatWhenWhere from 'containers/Home/components/WhatWhenWhere';
+// import WhatWhenWhere from 'containers/Home/components/WhatWhenWhere';
 
 const Worship = () => (
   <>
@@ -97,9 +97,9 @@ const Worship = () => (
         </Typography>
       </RevealQueue>
     </Container>
-    <div style={{ margin: '56px 0' }}>
+    {/* <div style={{ margin: '56px 0' }}>
       <WhatWhenWhere />
-    </div>
+    </div> */}
   </>
 );
 
