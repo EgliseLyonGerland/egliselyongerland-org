@@ -61,12 +61,21 @@ class Covid extends Component {
           Les conditions sanitaires et la règlementation actuelle entraînent ces
           jours-ci un changement fréquent de lieu de culte pour notre église.
           <br />
-          <br />
-          ➡️ Plus d'infos sur la{' '}
-          <Link to="/contact" style={{ color: '#4843bb' }}>
-            page contact
-          </Link>
-          .
+          <span style={{ color: '#4843bb' }}>
+            <span style={{ fontSize: '1.5em' }}>&raquo;</span> Plus d'infos sur
+            la{' '}
+            <Link
+              to="/contact"
+              style={{
+                color: 'inherit',
+                borderColor: 'inherit',
+                textDecoration: 'underline',
+              }}
+            >
+              page contact
+            </Link>
+            .
+          </span>
         </div>
       </Container>
     );
