@@ -194,6 +194,9 @@ const Contact = ({ classes, history }) => {
             <Text fontWeight="regular">Église Évangélique Baptiste</Text>
             <Text>85 cours Vitton</Text>
             <Text>69003 Lyon</Text>
+            <Hr multiplier={2} />
+            <Text fontWeight="medium">Accès</Text>
+            <Text>Métro B ou tram T1, arrêt Charpennes</Text>
           </div>
           <div className="col-sm-7 col-md-6">
             <iframe
