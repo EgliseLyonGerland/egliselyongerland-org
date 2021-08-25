@@ -191,15 +191,15 @@ const Contact = ({ classes, history }) => {
                 fontWeight: 'bold',
               }}
             >
-              Exceptionnellement dimanche 22 août, culte à 17h :
+              Exceptionnellement dimanche 29 août, culte à 10h :
             </div>
             <Hr xs />
-            <Text fontWeight="regular">Église Évangélique Baptiste</Text>
-            <Text>85 cours Vitton</Text>
-            <Text>69003 Lyon</Text>
+            <Text fontWeight="regular">Novotel Lyon Gerland</Text>
+            <Text>70 avenue Leclerc</Text>
+            <Text>69007 Lyon</Text>
             <Hr multiplier={2} />
             <Text fontWeight="medium">Accès</Text>
-            <Text>Métro B ou tram T1, arrêt Charpennes</Text>
+            <Text>Tram T1 arrêt « Halle Tony Garnier »</Text>
           </div>
           <div className="col-sm-7 col-md-6">
             <iframe
