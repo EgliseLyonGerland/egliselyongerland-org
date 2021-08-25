@@ -191,22 +191,22 @@ const Contact = ({ classes, history }) => {
                 fontWeight: 'bold',
               }}
             >
-              Exceptionnellement dimanche 22 août, culte à 17h :
+              Dimanche 29 août, culte à 10h :
             </div>
             <Hr xs />
-            <Text fontWeight="regular">Église Évangélique Baptiste</Text>
-            <Text>85 cours Vitton</Text>
-            <Text>69003 Lyon</Text>
+            <Text fontWeight="regular">Novotel Lyon Gerland</Text>
+            <Text>70 avenue Leclerc</Text>
+            <Text>69007 Lyon</Text>
             <Hr multiplier={2} />
             <Text fontWeight="medium">Accès</Text>
-            <Text>Métro B ou tram T1, arrêt Charpennes</Text>
+            <Text>Tram T1 arrêt « Halle Tony Garnier »</Text>
           </div>
           <div className="col-sm-7 col-md-6">
             <iframe
               allowFullScreen
               frameBorder="0"
               height="450"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2783.041228933069!2d4.858441615877586!3d45.770363979105745!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47f4ea8fae4daa4f%3A0x16846280e8bc0cd5!2sEglise%20Evangelique%20Baptiste!5e0!3m2!1sen!2sfr!4v1629475001559!5m2!1sen!2sfr"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2784.899451983952!2d4.821432216186977!3d45.733111223479426!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47f4ebd328e31dab%3A0x92137433a30d5457!2sNovotel%20Lyon%20Gerland%20Mus%C3%A9e%20des%20Confluences!5e0!3m2!1sen!2sfr!4v1629894724067!5m2!1sen!2sfr"
               style={{ border: 0, width: '100%', height: 450 }}
               title="Location de l'église"
               width="100%"
