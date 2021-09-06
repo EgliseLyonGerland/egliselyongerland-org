@@ -184,7 +184,7 @@ const Contact = ({ classes, history }) => {
 
             <Hr multiplier={2} />
 
-            {isBefore(new Date(), new Date(2021, 8, 13)) ? (
+            {isBefore(new Date(), new Date(2021, 8, 6)) ? (
               <div>
                 <div
                   className={classes.address}
