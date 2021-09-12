@@ -184,47 +184,25 @@ const Contact = ({ classes, history }) => {
 
             <Hr multiplier={2} />
 
-            {isBefore(new Date(), new Date(2021, 8, 6)) ? (
-              <div>
-                <div
-                  className={classes.address}
-                  style={{
-                    color: '#F0544F',
-                    fontSize: '1.2em',
-                    fontWeight: 'bold',
-                  }}
-                >
-                  Dimanche 5 septembre, culte à 10h :
-                </div>
-                <Hr xs />
-                <Text fontWeight="regular">Salle Saint Irénée</Text>
-                <Text>37 rue Félix Brun</Text>
-                <Text>69007 Lyon</Text>
-                <Hr multiplier={2} />
-                <Text fontWeight="medium">Accès</Text>
-                <Text>Accès : métro B, arrêt Place Jean Jaurès</Text>
+            <div>
+              <div
+                className={classes.address}
+                style={{
+                  color: '#F0544F',
+                  fontSize: '1.2em',
+                  fontWeight: 'bold',
+                }}
+              >
+                Dimanche 19 septembre, culte à 17h :
               </div>
-            ) : (
-              <div>
-                <div
-                  className={classes.address}
-                  style={{
-                    color: '#F0544F',
-                    fontSize: '1.2em',
-                    fontWeight: 'bold',
-                  }}
-                >
-                  Dimanche 12 septembre, culte à 10h :
-                </div>
-                <Hr xs />
-                <Text fontWeight="regular">Novotel Lyon Gerland</Text>
-                <Text>70 avenue Leclerc</Text>
-                <Text>69007 Lyon</Text>
-                <Hr multiplier={2} />
-                <Text fontWeight="medium">Accès</Text>
-                <Text>Tram T1 arrêt « Halle Tony Garnier »</Text>
-              </div>
-            )}
+              <Hr xs />
+              <Text fontWeight="regular">Salle Saint Irénée</Text>
+              <Text>37 rue Félix Brun</Text>
+              <Text>69007 Lyon</Text>
+              <Hr multiplier={2} />
+              <Text fontWeight="medium">Accès</Text>
+              <Text>Accès : métro B, arrêt Place Jean Jaurès</Text>
+            </div>
           </div>
           <div className="col-sm-7 col-md-6">
             <iframe
