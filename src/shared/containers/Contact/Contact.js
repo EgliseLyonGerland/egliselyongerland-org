@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { withStyles } from '@material-ui/core/styles';
 import { rem } from 'polished';
-import { isBefore } from 'date-fns';
 
 import Container from 'components/Container/Container';
 import Jumbotron from 'components/Jumbotron/Jumbotron';
@@ -209,11 +208,7 @@ const Contact = ({ classes, history }) => {
               allowFullScreen
               frameBorder="0"
               height="450"
-              src={
-                isBefore(new Date(), new Date(2021, 8, 13))
-                  ? 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1378.537058835475!2d4.831138835290314!3d45.73805705581388!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47f4ea31094ee287%3A0x85a608e54e9ebe76!2s37%20Rue%20F%C3%A9lix%20Brun%2C%2069007%20Lyon!5e0!3m2!1sfr!2sfr!4v1630345666281!5m2!1sfr!2sfr'
-                  : 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2784.899451983952!2d4.821432216186977!3d45.733111223479426!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47f4ebd328e31dab%3A0x92137433a30d5457!2sNovotel%20Lyon%20Gerland%20Mus%C3%A9e%20des%20Confluences!5e0!3m2!1sen!2sfr!4v1629894724067!5m2!1sen!2sfr'
-              }
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1378.537058835475!2d4.831138835290314!3d45.73805705581388!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47f4ea31094ee287%3A0x85a608e54e9ebe76!2s37%20Rue%20F%C3%A9lix%20Brun%2C%2069007%20Lyon!5e0!3m2!1sfr!2sfr!4v1630345666281!5m2!1sfr!2sfr"
               style={{ border: 0, width: '100%', height: 450 }}
               title="Location de l'église"
               width="100%"
