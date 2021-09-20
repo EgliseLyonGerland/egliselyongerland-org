@@ -41,7 +41,7 @@ const worships = [
   },
 ];
 
-const now = new Date().setHours(22);
+const now = new Date().setHours(0);
 const nextWorship = worships.reduce(
   (acc, item) => (item.date >= now ? item : acc),
   null,
