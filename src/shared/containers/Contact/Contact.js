@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { withStyles } from '@material-ui/core/styles';
 import { rem } from 'polished';
+import format from 'date-fns/format';
+import locale from 'date-fns/locale/fr';
 
 import Container from 'components/Container/Container';
 import Jumbotron from 'components/Jumbotron/Jumbotron';
@@ -13,6 +15,37 @@ import Button from 'components/Button/Button';
 import routes from 'utils/routes';
 
 import picture from './jumbotron.jpg';
+
+const locations = {
+  saintIrenee: {
+    name: 'Salle Saint Irénée',
+    address: ['37 rue Félix Brun', '69007 Lyon'],
+    access: ['Métro B, arrêt Place Jean Jaurès'],
+    gmap:
+      'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1378.537058835475!2d4.831138835290314!3d45.73805705581388!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47f4ea31094ee287%3A0x85a608e54e9ebe76!2s37%20Rue%20F%C3%A9lix%20Brun%2C%2069007%20Lyon!5e0!3m2!1sfr!2sfr!4v1630345666281!5m2!1sfr!2sfr',
+  },
+};
+
+const worships = [
+  {
+    date: new Date('2021-10-10 10:00'),
+    location: locations.saintIrenee,
+  },
+  {
+    date: new Date('2021-10-03 10:00'),
+    location: locations.saintIrenee,
+  },
+  {
+    date: new Date('2021-10-26 10:00'),
+    location: locations.saintIrenee,
+  },
+];
+
+const now = new Date().setHours(22);
+const nextWorship = worships.reduce(
+  (acc, item) => (item.date >= now ? item : acc),
+  null,
+);
 
 const styles = theme => ({
   timeBanner: {
@@ -109,26 +142,26 @@ const Contact = ({ classes, history }) => {
       <Hr multiplier={12} />
 
       <Container>
+        <div className={classes.alert}>
+          ATTENTION : les conditions sanitaires et la règlementation actuelle
+          entraînent ces jours-ci un changement fréquent de lieu de culte pour
+          notre église !
+          <Hr multiplier={2} />
+          Pensez à visiter régulièrement notre site internet pour obtenir les
+          dernières informations. En cas de doute, n'hésitez pas à envoyer un
+          email à{' '}
+          <a href="mailto:contact@egliselyongerland.org">
+            contact@egliselyongerland.org
+          </a>
+          , et demandez à être ajouté à la liste de diffusion de l'église.
+          <Hr multiplier={2} />
+          Merci de votre compréhension !
+        </div>
+        <Hr multiplier={4} />
+
         <div className="row">
           <div className="col-sm-5 col-md-6">
             {/* <div className={classes.coffee}>Accueil & café à 9h30</div> */}
-
-            <div className={classes.alert}>
-              ATTENTION : les conditions sanitaires et la règlementation
-              actuelle entraînent ces jours-ci un changement fréquent de lieu de
-              culte pour notre église !
-              <Hr multiplier={2} />
-              Pensez à visiter régulièrement notre site internet pour obtenir
-              les dernières informations. En cas de doute, n'hésitez pas à
-              envoyer un email à{' '}
-              <a href="mailto:contact@egliselyongerland.org">
-                contact@egliselyongerland.org
-              </a>
-              , et demandez à être ajouté à la liste de diffusion de l'église.
-              <Hr multiplier={2} />
-              Merci de votre compréhension !
-            </div>
-            <Hr multiplier={4} />
 
             {renderTitle('Coordonnées')}
 
@@ -183,36 +216,48 @@ const Contact = ({ classes, history }) => {
 
             <Hr multiplier={2} />
 
-            <div>
-              <div
-                className={classes.address}
-                style={{
-                  color: '#F0544F',
-                  fontSize: '1.2em',
-                  fontWeight: 'bold',
-                }}
-              >
-                Dimanche 19 septembre, culte à 17h :
+            {nextWorship && (
+              <div>
+                <div
+                  className={classes.address}
+                  style={{
+                    color: '#F0544F',
+                    fontSize: '1.2em',
+                    fontWeight: 'bold',
+                  }}
+                >
+                  Dimanche{' '}
+                  {nextWorship.date.getDate() === 1
+                    ? '1er'
+                    : nextWorship.date.getDate()}{' '}
+                  {format(nextWorship.date, 'MMMM', { locale })}, culte à{' '}
+                  {nextWorship.date.getHours()}h :
+                </div>
+                <Hr xs />
+                <Text fontWeight="regular">{nextWorship.location.name}</Text>
+                {nextWorship.location.address.map(line => (
+                  <Text key={line}>{line}</Text>
+                ))}
+                <Hr multiplier={2} />
+                <Text fontWeight="medium">Accès</Text>
+                {nextWorship.location.access.map(line => (
+                  <Text key={line}>{line}</Text>
+                ))}
               </div>
-              <Hr xs />
-              <Text fontWeight="regular">Salle Saint Irénée</Text>
-              <Text>37 rue Félix Brun</Text>
-              <Text>69007 Lyon</Text>
-              <Hr multiplier={2} />
-              <Text fontWeight="medium">Accès</Text>
-              <Text>Accès : métro B, arrêt Place Jean Jaurès</Text>
-            </div>
+            )}
           </div>
           <div className="col-sm-7 col-md-6">
-            <iframe
-              allowFullScreen
-              frameBorder="0"
-              height="450"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1378.537058835475!2d4.831138835290314!3d45.73805705581388!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47f4ea31094ee287%3A0x85a608e54e9ebe76!2s37%20Rue%20F%C3%A9lix%20Brun%2C%2069007%20Lyon!5e0!3m2!1sfr!2sfr!4v1630345666281!5m2!1sfr!2sfr"
-              style={{ border: 0, width: '100%', height: 450 }}
-              title="Location de l'église"
-              width="100%"
-            />
+            {nextWorship && (
+              <iframe
+                allowFullScreen
+                frameBorder="0"
+                height="450"
+                src={nextWorship.location.gmap}
+                style={{ border: 0, width: '100%', height: 450 }}
+                title="Location de l'église"
+                width="100%"
+              />
+            )}
 
             <Hr multiplier={4} />
           </div>
