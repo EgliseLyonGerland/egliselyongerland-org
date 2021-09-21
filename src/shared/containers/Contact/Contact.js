@@ -13,6 +13,7 @@ import Hr from 'components/Hr/Hr';
 import Button from 'components/Button/Button';
 
 import routes from 'utils/routes';
+import { getNextWorship } from './utils';
 
 import picture from './jumbotron.jpg';
 
@@ -28,27 +29,24 @@ const locations = {
 
 const worships = [
   {
-    date: new Date('2021-10-10T10:00'),
-    time: 10,
+    date: Date.UTC(2021, 9, 10, 10, 0, 0),
     location: locations.saintIrenee,
   },
   {
-    date: new Date('2021-10-03T10:00'),
-    time: 10,
+    date: Date.UTC(2021, 9, 3, 10, 0, 0),
     location: locations.saintIrenee,
   },
   {
-    date: new Date('2021-09-26T10:00'),
-    time: 10,
+    date: Date.UTC(2021, 8, 26, 10, 0, 0),
     location: locations.saintIrenee,
   },
-];
+].map(item => ({
+  ...item,
+  day: new Date(item.date).getUTCDate(),
+  time: new Date(item.date).getUTCHours(),
+}));
 
-const now = new Date().setHours(0);
-const nextWorship = worships.reduce(
-  (acc, item) => (item.date >= now ? item : acc),
-  null,
-);
+const nextWorship = getNextWorship(worships);
 
 const styles = theme => ({
   timeBanner: {
@@ -229,10 +227,7 @@ const Contact = ({ classes, history }) => {
                     fontWeight: 'bold',
                   }}
                 >
-                  Dimanche{' '}
-                  {nextWorship.date.getDate() === 1
-                    ? '1er'
-                    : nextWorship.date.getDate()}{' '}
+                  Dimanche {nextWorship.day === 1 ? '1er' : nextWorship.day}{' '}
                   {format(nextWorship.date, 'MMMM', { locale })}, culte à{' '}
                   {nextWorship.time}h :
                 </div>
