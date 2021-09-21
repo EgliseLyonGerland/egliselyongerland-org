@@ -28,15 +28,15 @@ const locations = {
 
 const worships = [
   {
-    date: new Date('2021-10-10 10:00'),
+    date: new Date('2021-10-10T10:00'),
     location: locations.saintIrenee,
   },
   {
-    date: new Date('2021-10-03 10:00'),
+    date: new Date('2021-10-03T10:00'),
     location: locations.saintIrenee,
   },
   {
-    date: new Date('2021-09-26 10:00'),
+    date: new Date('2021-09-26T10:00'),
     location: locations.saintIrenee,
   },
 ];
