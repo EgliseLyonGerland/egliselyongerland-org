@@ -29,14 +29,17 @@ const locations = {
 const worships = [
   {
     date: new Date('2021-10-10T10:00'),
+    time: 10,
     location: locations.saintIrenee,
   },
   {
     date: new Date('2021-10-03T10:00'),
+    time: 10,
     location: locations.saintIrenee,
   },
   {
     date: new Date('2021-09-26T10:00'),
+    time: 10,
     location: locations.saintIrenee,
   },
 ];
@@ -231,7 +234,7 @@ const Contact = ({ classes, history }) => {
                     ? '1er'
                     : nextWorship.date.getDate()}{' '}
                   {format(nextWorship.date, 'MMMM', { locale })}, culte à{' '}
-                  {nextWorship.date.getHours()}h :
+                  {nextWorship.time}h :
                 </div>
                 <Hr xs />
                 <Text fontWeight="regular">{nextWorship.location.name}</Text>
@@ -245,6 +248,8 @@ const Contact = ({ classes, history }) => {
                 ))}
               </div>
             )}
+
+            <Hr multiplier={4} />
           </div>
           <div className="col-sm-7 col-md-6">
             {nextWorship && (
