@@ -72,6 +72,9 @@ const styles = theme => ({
     },
   },
   [theme.breakpoints.down('xs')]: {
+    inner: {
+      minHeight: 'auto',
+    },
     title: {
       fontSize: 24,
       fontWeight: theme.typography.fontWeights.regular,

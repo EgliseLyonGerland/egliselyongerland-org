@@ -77,8 +77,8 @@ const styles = theme => ({
   },
 });
 
-const BlankItemsFeed = ({ items, color, horizontal, classes }) => (
-  <div className={horizontal ? classes.horizontal : ''}>
+const BlankItemsFeed = ({ items, color, classes }) => (
+  <div>
     {range(0, items).map(value => (
       <div key={value} className={classes.item}>
         <div className={classes.picture} style={{ backgroundColor: color }} />
@@ -104,13 +104,11 @@ const BlankItemsFeed = ({ items, color, horizontal, classes }) => (
 BlankItemsFeed.propTypes = {
   classes: PropTypes.shape().isRequired,
   color: PropTypes.string,
-  horizontal: PropTypes.bool,
   items: PropTypes.number.isRequired,
 };
 
 BlankItemsFeed.defaultProps = {
   color: primaryPalette[500],
-  horizontal: false,
 };
 
 export default withStyles(styles)(BlankItemsFeed);

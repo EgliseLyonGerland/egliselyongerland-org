@@ -8,6 +8,7 @@ import Grid from '@material-ui/core/Grid';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
+import { withStyles } from '@material-ui/core/styles';
 
 import routes from 'utils/routes';
 import { postSchema } from 'store/schemas';
@@ -38,7 +39,19 @@ import jumbotron from './jumbotron.jpg';
 //   </div>
 // );
 
+const styles = theme => ({
+  inner: {
+    marginTop: 32,
+  },
+  [theme.breakpoints.down('sm')]: {
+    inner: {
+      marginTop: 16,
+    },
+  },
+});
+
 @withWidth()
+@withStyles(styles)
 class Blog extends Component {
   static propTypes = {
     aggs: PropTypes.shape().isRequired,
@@ -50,6 +63,7 @@ class Blog extends Component {
     posts: PropTypes.arrayOf(PropTypes.string).isRequired,
     total: PropTypes.number.isRequired,
     width: PropTypes.string.isRequired,
+    classes: PropTypes.shape().isRequired,
   };
 
   static contextTypes = {
@@ -341,6 +355,7 @@ class Blog extends Component {
   renderSmallScreen() {
     return (
       <div>
+        {this.renderNavigation()}
         {this.renderPosts()}
         <PopButton title="Filtres">{this.renderFilters()}</PopButton>
       </div>
@@ -376,7 +391,7 @@ class Blog extends Component {
   }
 
   render() {
-    const { width } = this.props;
+    const { width, classes } = this.props;
 
     const title = this.getTitle();
 
@@ -385,8 +400,7 @@ class Blog extends Component {
         {this.renderSeo(title)}
 
         <Jumbotron background={jumbotron} title={title} />
-        <Hr xl />
-        <Container md>
+        <Container md className={classes.inner}>
           {isWidthUp('sm', width)
             ? this.renderWideScreen()
             : this.renderSmallScreen()}
