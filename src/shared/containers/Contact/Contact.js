@@ -29,19 +29,31 @@ const locations = {
 
 const worships = [
   {
-    date: Date.UTC(2021, 9, 31, 10, 0, 0),
+    date: Date.UTC(2021, 11, 26, 10, 0, 0),
     location: locations.saintIrenee,
   },
   {
-    date: Date.UTC(2021, 9, 24, 10, 0, 0),
+    date: Date.UTC(2021, 11, 19, 17, 0, 0),
     location: locations.saintIrenee,
   },
   {
-    date: Date.UTC(2021, 9, 17, 17, 0, 0),
+    date: Date.UTC(2021, 11, 12, 10, 0, 0),
     location: locations.saintIrenee,
   },
   {
-    date: Date.UTC(2021, 9, 10, 10, 0, 0),
+    date: Date.UTC(2021, 11, 5, 10, 0, 0),
+    location: locations.saintIrenee,
+  },
+  {
+    date: Date.UTC(2021, 10, 28, 10, 0, 0),
+    location: locations.saintIrenee,
+  },
+  {
+    date: Date.UTC(2021, 10, 21, 17, 0, 0),
+    location: locations.saintIrenee,
+  },
+  {
+    date: Date.UTC(2021, 10, 14, 10, 0, 0),
     location: locations.saintIrenee,
   },
 ].map(item => ({
