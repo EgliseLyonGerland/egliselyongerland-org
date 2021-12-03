@@ -73,7 +73,7 @@ const Christmas = ({ classes }) => (
             message du Noël chrétien est beaucoup plus profond, peut-être plus
             dérangeant aussi, mais certainement plus pertinent que jamais. Il
             s'agit d'un message de secours et de liberté, que nous vous
-            proposons de découvrir lors de cette célébration de Noël du 15
+            proposons de découvrir lors de cette célébration de Noël du 12
             décembre.
             <br />
             <br />
