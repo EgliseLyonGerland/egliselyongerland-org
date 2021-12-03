@@ -54,8 +54,12 @@ const styles = theme => ({
     position: 'relative',
   },
   christmas: {
-    height: 56,
     transition: 'transform 0.5s',
+    flexShrink: 1,
+    marginRight: 32,
+  },
+  christmasImg: {
+    maxHeight: 56,
   },
   logo: {
     position: 'relative',
@@ -138,6 +142,7 @@ const styles = theme => ({
     },
     christmas: {
       transform: `scale(${theme.header.sticky.brandScale})`,
+      marginRight: 8,
     },
     body: {
       height: theme.header.mini.height,
@@ -281,11 +286,11 @@ class Header extends Component {
 
           <div className={classes.blankItem} />
 
-          {+new Date() < 1576411200000 && (
-            <Link alt="Culte de Noël" to="/noel">
+          {+new Date() < 1640131200000 && (
+            <Link alt="Culte de Noël" to="/noel" className={classes.christmas}>
               <img
                 alt="Culte de Noël"
-                className={classes.christmas}
+                className={classes.christmasImg}
                 src={christmas}
               />
             </Link>

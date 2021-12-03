@@ -12,6 +12,7 @@ import Hr from 'components/Hr/Hr';
 import routes from 'utils/routes';
 
 import jumbotronImage from './images/jumbotron.jpg';
+import titleImage from './images/title.png';
 
 const styles = ({ palette, typography, breakpoints }) => ({
   inner: {
@@ -45,10 +46,16 @@ const Christmas = ({ classes }) => (
       <title>{title}</title>
     </Helmet>
 
-    <Jumbotron background={jumbotronImage} title={title} />
+    <Jumbotron background={jumbotronImage}>
+      <img
+        src={titleImage}
+        style={{ maxWidth: '100%', padding: 16, display: 'block' }}
+        alt="Célébration Protestante de Noël"
+      />
+    </Jumbotron>
 
     <div className={classes.inner}>
-      <Container md>
+      <Container sm>
         <RevealQueue delay={0.5}>
           <Typography variant="h5">
             La paroisse protestante de Lyon Gerland se réjouit de vous
@@ -56,19 +63,6 @@ const Christmas = ({ classes }) => (
             <Hr />
           </Typography>
           <Typography component="div" paragraph>
-            <div style={{ float: 'right', margin: 16 }}>
-              <iframe
-                allow="encrypted-media"
-                allowTransparency
-                frameBorder="0"
-                height="350"
-                scrolling="no"
-                src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fegliselyongerland%2F&tabs=events&width=340&height=350&small_header=true&adapt_container_width=false&hide_cover=true&show_facepile=false&appId=139041246774067"
-                style={{ border: 'none', overflow: 'hidden', maxWidth: '100%' }}
-                title="Page de l'évènement Facebook"
-                width="340"
-              />
-            </div>
             Ouverte à tous, c'est l'occasion de (re)découvrir le message
             originel de Noël !<br />
             <br />
@@ -86,7 +80,7 @@ const Christmas = ({ classes }) => (
             <b>Déroulement :</b>
             <br />
             <ul>
-              <li>9h30 : Accueil avec café et viennoiseries</li>
+              <li>9h30 : Accueil</li>
               <li>
                 10h00 : Début de la célébration, avec des chants, la lecture de
                 l'histoire de Noël, un message centré sur la signification de la
@@ -104,14 +98,15 @@ const Christmas = ({ classes }) => (
             <Link to={routes.worship()}>"Le culte"</Link>.
           </Typography>
           <Typography className={classes.quote}>
-            <Hr xl />« Le peuple qui marchait dans les ténèbres a vu une grande
-            lumière, sur ceux qui habitaient le pays de l'ombre de la mort une
-            lumière a brillé.... En effet, un enfant nous est né, un fils nous a
-            été donné, et la souveraineté reposera sur son épaule ; on
-            l'appellera merveilleux conseiller, Dieu puissant, Père éternel,
-            Prince de la{' '}
-            <span style={{ display: 'inline-block' }}>paix. »</span>{' '}
-            <span className={classes.quoteAuthor}>— Esaïe 9.1-5</span>
+            <Hr xl />« L'ange leur dit : Soyez sans crainte, car je vous annonce
+            la bonne nouvelle d'une grande joie qui sera pour tout le peuple :
+            aujourd'hui, dans la ville de David, il vous est né un Sauveur, qui
+            est le Christ, le Seigneur. Et ceci sera pour vous un signe : vous
+            trouverez un nouveau-né emmailloté et couché dans une crèche. Et
+            soudain il se joignit à l'ange une multitude de l'armée céleste, qui
+            louait Dieu et disait : Gloire à Dieu dans les lieux très hauts, et
+            paix sur la terre parmi les hommes qu'il agrée ! »{' '}
+            <span className={classes.quoteAuthor}>— Luc 2 • 10-14</span>
           </Typography>
         </RevealQueue>
       </Container>

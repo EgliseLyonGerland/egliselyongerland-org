@@ -82,6 +82,7 @@ const styles = theme => ({
     transition: 'background .2s',
     fontWeight: theme.typography.fontWeights.regular,
     outline: 'none !important',
+    whiteSpace: 'nowrap',
   },
   normal: {},
   icon: {},
