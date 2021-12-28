@@ -149,7 +149,7 @@ class Sermon extends PureComponent {
     let formattedDate = format(date, 'dddd D MMMM', { locale });
     let formattedDateShort = format(date, 'D MMM', { locale });
 
-    if (diffDays < 7) {
+    if (date.getDay() === 0 && diffDays < 7) {
       formattedDate = 'dimanche dernier';
       formattedDateShort = 'dim. dernier';
     } else if (diffYears >= 1) {
