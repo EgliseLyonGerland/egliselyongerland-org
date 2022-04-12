@@ -140,13 +140,12 @@ const Contact = ({ classes, history }) => {
 
       <Container>
         <div className={classes.alert}>
-          ATTENTION : les conditions sanitaires et la règlementation actuelle
-          entraînent ces jours-ci un changement fréquent de lieu de culte pour
-          notre église !
+          ATTENTION : actuellement, notre église se réunit chaque dimanche pour
+          le culte à la salle Saint-Irénée (37 rue Félix Brun, Lyon 7ème).
           <Hr multiplier={2} />
-          Pensez à visiter régulièrement notre site internet pour obtenir les
-          dernières informations. En cas de doute, n'hésitez pas à envoyer un
-          email à{' '}
+          Pensez à visiter régulièrement notre site internet pour vous tenir
+          informé de tout changement. En cas de doute, n'hésitez pas à envoyer
+          un email à{' '}
           <a href="mailto:contact@egliselyongerland.org">
             contact@egliselyongerland.org
           </a>

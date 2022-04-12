@@ -27,17 +27,7 @@ const styles = theme => ({
       fontWeight: theme.typography.fontWeights.medium,
       position: 'relative',
       display: 'inline-block',
-      color: 'white',
-
-      '&:after': {
-        content: '""',
-        position: 'absolute',
-        width: '100%',
-        height: 1,
-        left: 0,
-        bottom: -2,
-        background: 'white',
-      },
+      color: '#4843bb',
     },
   },
 });
@@ -54,28 +44,15 @@ class Covid extends Component {
     return (
       <Container className={classes.root} lg>
         <div className={classes.inner}>
-          <h2>
-            IMPORTANT : CHANGEMENT DE{' '}
-            <span style={{ color: '#4843bb' }}>LIEU DE CULTE</span>
-          </h2>
-          Les conditions sanitaires et la règlementation actuelle entraînent ces
-          jours-ci un changement fréquent de lieu de culte pour notre église.
+          <h2>IMPORTANT : LIEU ET HORAIRE DU CULTE</h2>
+          Actuellement, le culte a lieu chaque dimanche à 10h à la salle
+          Saint-Irénée (37 rue Félix Brun, Lyon 7ème). ATTENTION : une fois par
+          mois, le culte est à 17h.
           <br />
-          <span style={{ color: '#4843bb' }}>
+          <Link to="/contact">
             <span style={{ fontSize: '1.5em' }}>&raquo;</span> Plus d'infos sur
-            la{' '}
-            <Link
-              to="/contact"
-              style={{
-                color: 'inherit',
-                borderColor: 'inherit',
-                textDecoration: 'underline',
-              }}
-            >
-              page contact
-            </Link>
-            .
-          </span>
+            la page contact.
+          </Link>
         </div>
       </Container>
     );
