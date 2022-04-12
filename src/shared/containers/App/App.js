@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React /* , { useEffect } */ from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
@@ -6,21 +6,21 @@ import { TransitionMotion, spring, presets } from 'react-motion';
 import { withStyles } from '@material-ui/core/styles';
 import { renderRoutes } from 'react-router-config';
 import classnames from 'classnames';
-import useLocalStorage from 'react-use-localstorage';
-import { isBefore } from 'date-fns';
+// import useLocalStorage from 'react-use-localstorage';
+// import { isBefore } from 'date-fns';
 
 import { openSidebar, closeSidebar } from 'store/actions/sidebar';
-import {
-  closeAnnouncement,
-  openAnnouncement,
-} from 'store/actions/announcement';
+// import {
+//   closeAnnouncement,
+//   openAnnouncement,
+// } from 'store/actions/announcement';
 import { closeAudio, pauseAudio } from 'store/actions/audio';
 import Header from 'components/Header/Header';
 import Footer from 'components/Footer/Footer';
 import Overlay from 'components/Overlay/Overlay';
 import AudioPlayer from 'components/AudioPlayer/AudioPlayer';
 import ScrollToTop from 'components/Scroll/ScrollToTop';
-import Announcement from 'components/Announcement/Announcement';
+// import Announcement from 'components/Announcement/Announcement';
 
 import config from 'config';
 
@@ -61,8 +61,8 @@ const mapStateToProps = state => ({
   overlay: state.overlay,
   audio: state.audio,
   isSidebarOpened: state.sidebar.opened,
-  announcementOpened: state.announcement.opened,
-  announcementOpenCount: state.announcement.count,
+  // announcementOpened: state.announcement.opened,
+  // announcementOpenCount: state.announcement.count,
 });
 
 const mapDispatchToProps = {
@@ -70,8 +70,8 @@ const mapDispatchToProps = {
   closeSidebarAction: closeSidebar,
   closeAudioAction: closeAudio,
   pauseAudioAction: pauseAudio,
-  openAnnouncementAction: openAnnouncement,
-  closeAnnouncementAction: closeAnnouncement,
+  // openAnnouncementAction: openAnnouncement,
+  // closeAnnouncementAction: closeAnnouncement,
 };
 
 function App({
@@ -79,18 +79,18 @@ function App({
   isSidebarOpened,
   openSidebarAction,
   closeSidebarAction,
-  announcementOpened,
-  announcementOpenCount,
-  openAnnouncementAction,
-  closeAnnouncementAction,
+  // announcementOpened,
+  // announcementOpenCount,
+  // openAnnouncementAction,
+  // closeAnnouncementAction,
   audio,
   closeAudioAction,
   pauseAudioAction,
   classes,
   route,
 }) {
-  let displayAnnouncement = false;
-  let setDisplayAnnouncement = null;
+  // let displayAnnouncement = false;
+  // let setDisplayAnnouncement = null;
 
   if (__CLIENT__) {
     if (localStorage) {
@@ -102,28 +102,29 @@ function App({
       localStorage.removeItem('displayAnnouncement6');
       localStorage.removeItem('displayAnnouncement7');
       localStorage.removeItem('displayAnnouncement8');
+      localStorage.removeItem('displayAnnouncement9');
     }
 
-    [displayAnnouncement, setDisplayAnnouncement] = useLocalStorage(
-      'displayAnnouncement9',
-      1,
-    );
+    // [displayAnnouncement, setDisplayAnnouncement] = useLocalStorage(
+    //   'displayAnnouncement9',
+    //   1,
+    // );
   }
 
-  useEffect(() => {
-    if (
-      !__CLIENT__ ||
-      displayAnnouncement === '0' ||
-      announcementOpenCount !== 0 ||
-      isBefore(new Date(), new Date(2021, 5, 23))
-    ) {
-      return;
-    }
+  // useEffect(() => {
+  //   if (
+  //     !__CLIENT__ ||
+  //     displayAnnouncement === '0' ||
+  //     announcementOpenCount !== 0 ||
+  //     isBefore(new Date(), new Date(2021, 5, 23))
+  //   ) {
+  //     return;
+  //   }
 
-    setTimeout(() => {
-      openAnnouncementAction();
-    }, 5000);
-  }, []);
+  //   setTimeout(() => {
+  //     openAnnouncementAction();
+  //   }, 5000);
+  // }, []);
 
   function renderAudio() {
     const defaultStyles = [];
@@ -168,7 +169,7 @@ function App({
     <div
       className={classnames({
         [classes.root]: true,
-        [classes.noScroll]: announcementOpened || isSidebarOpened,
+        [classes.noScroll]: /* announcementOpened || */ isSidebarOpened,
       })}
     >
       <Helmet {...config.app.head} />
@@ -179,14 +180,14 @@ function App({
         onCloseSidebarButtonClicked={() => closeSidebarAction()}
         onOpenSidebarButtonClicked={() => openSidebarAction()}
       />
-      {announcementOpened && (
+      {/* {announcementOpened && (
         <Announcement
           onCloseButtonClicked={remind => {
             setDisplayAnnouncement(remind + 0);
             closeAnnouncementAction();
           }}
         />
-      )}
+      )} */}
       <div className={classes.content}>{renderRoutes(route.routes)}</div>
       <Footer />
       {renderAudio()}
@@ -195,10 +196,10 @@ function App({
 }
 
 App.propTypes = {
-  closeAnnouncementAction: PropTypes.func.isRequired,
+  // closeAnnouncementAction: PropTypes.func.isRequired,
   closeSidebarAction: PropTypes.func.isRequired,
   isSidebarOpened: PropTypes.bool.isRequired,
-  openAnnouncementAction: PropTypes.func.isRequired,
+  // openAnnouncementAction: PropTypes.func.isRequired,
   openSidebarAction: PropTypes.func.isRequired,
   overlay: PropTypes.shape().isRequired,
 };
