@@ -46,8 +46,9 @@ class Covid extends Component {
         <div className={classes.inner}>
           <h2>IMPORTANT : LIEU ET HORAIRE DU CULTE</h2>
           Actuellement, le culte a lieu chaque dimanche à 10h à la salle
-          Saint-Irénée (37 rue Félix Brun, Lyon 7ème). ATTENTION : une fois par
-          mois, le culte est à 17h.
+          Saint-Irénée (37 rue Félix Brun, Lyon 7ème).
+          <br />
+          ATTENTION : une fois par mois, le culte est à 17h.
           <br />
           <Link to="/contact">
             <span style={{ fontSize: '1.5em' }}>&raquo;</span> Plus d'infos sur
