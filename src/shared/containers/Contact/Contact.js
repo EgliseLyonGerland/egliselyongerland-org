@@ -28,14 +28,16 @@ const locations = {
 };
 
 const worships = [
-  { date: Date.UTC(2022, 3, 24, 10, 0, 0), location: locations.saintIrenee },
-  { date: Date.UTC(2022, 3, 17, 10, 0, 0), location: locations.saintIrenee },
-  { date: Date.UTC(2022, 3, 10, 10, 0, 0), location: locations.saintIrenee },
-  { date: Date.UTC(2022, 3, 3, 10, 0, 0), location: locations.saintIrenee },
-  { date: Date.UTC(2022, 2, 27, 10, 0, 0), location: locations.saintIrenee },
-  { date: Date.UTC(2022, 2, 20, 10, 0, 0), location: locations.saintIrenee },
-  { date: Date.UTC(2022, 2, 13, 10, 0, 0), location: locations.saintIrenee },
-  { date: Date.UTC(2022, 2, 6, 10, 0, 0), location: locations.saintIrenee },
+  { date: Date.UTC(2022, 5, 26, 10, 0, 0), location: locations.saintIrenee },
+  { date: Date.UTC(2022, 5, 19, 10, 0, 0), location: locations.saintIrenee },
+  { date: Date.UTC(2022, 5, 12, 17, 0, 0), location: locations.saintIrenee },
+  { date: Date.UTC(2022, 5, 5, 10, 0, 0), location: locations.saintIrenee },
+  { date: Date.UTC(2022, 5, 5, 10, 0, 0), location: locations.saintIrenee },
+  { date: Date.UTC(2022, 4, 29, 10, 0, 0), location: locations.saintIrenee },
+  { date: Date.UTC(2022, 4, 22, 10, 0, 0), location: locations.saintIrenee },
+  { date: Date.UTC(2022, 4, 15, 17, 0, 0), location: locations.saintIrenee },
+  { date: Date.UTC(2022, 4, 8, 10, 0, 0), location: locations.saintIrenee },
+  { date: Date.UTC(2022, 4, 1, 10, 0, 0), location: locations.saintIrenee },
 ].map(item => ({
   ...item,
   day: new Date(item.date).getUTCDate(),
