@@ -10,6 +10,7 @@ import posts from './posts';
 import post from './post';
 import audio from './audio';
 import announcement from './announcement';
+import schedule from './schedule';
 
 export default combineReducers({
   routing: routerReducer,
@@ -22,4 +23,5 @@ export default combineReducers({
   post,
   audio,
   announcement,
+  schedule,
 });
