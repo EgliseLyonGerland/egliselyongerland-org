@@ -3,6 +3,7 @@ import App from 'containers/App/App';
 import Home from 'containers/Home/HomeConnector';
 import Blog from 'containers/Blog/BlogConnector';
 import Post from 'containers/Post/PostConnector';
+import Contact from 'containers/Contact/ContactConnector';
 import churchTabs from 'config/church-tabs';
 
 const blogRoutes = [
@@ -58,11 +59,7 @@ const routes = [
       {
         path: '/contact',
         exact: true,
-        component: loadable({
-          loader: () =>
-            import(/* webpackChunkName: "contact" */ 'containers/Contact/Contact'),
-          loading: () => null,
-        }),
+        component: Contact,
       },
       {
         path: '/decouvrir',

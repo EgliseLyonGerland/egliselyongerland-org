@@ -17,35 +17,6 @@ import { getNextWorship } from './utils';
 
 import picture from './jumbotron.jpg';
 
-const locations = {
-  saintIrenee: {
-    name: 'Salle Saint Irénée',
-    address: ['37 rue Félix Brun', '69007 Lyon'],
-    access: ['Métro B, arrêt Place Jean Jaurès'],
-    gmap:
-      'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1378.537058835475!2d4.831138835290314!3d45.73805705581388!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47f4ea31094ee287%3A0x85a608e54e9ebe76!2s37%20Rue%20F%C3%A9lix%20Brun%2C%2069007%20Lyon!5e0!3m2!1sfr!2sfr!4v1630345666281!5m2!1sfr!2sfr',
-  },
-};
-
-const worships = [
-  { date: Date.UTC(2022, 5, 26, 10, 0, 0), location: locations.saintIrenee },
-  { date: Date.UTC(2022, 5, 19, 10, 0, 0), location: locations.saintIrenee },
-  { date: Date.UTC(2022, 5, 12, 17, 0, 0), location: locations.saintIrenee },
-  { date: Date.UTC(2022, 5, 5, 10, 0, 0), location: locations.saintIrenee },
-  { date: Date.UTC(2022, 5, 5, 10, 0, 0), location: locations.saintIrenee },
-  { date: Date.UTC(2022, 4, 29, 10, 0, 0), location: locations.saintIrenee },
-  { date: Date.UTC(2022, 4, 22, 10, 0, 0), location: locations.saintIrenee },
-  { date: Date.UTC(2022, 4, 15, 17, 0, 0), location: locations.saintIrenee },
-  { date: Date.UTC(2022, 4, 8, 10, 0, 0), location: locations.saintIrenee },
-  { date: Date.UTC(2022, 4, 1, 10, 0, 0), location: locations.saintIrenee },
-].map(item => ({
-  ...item,
-  day: new Date(item.date).getUTCDate(),
-  time: new Date(item.date).getUTCHours(),
-}));
-
-const nextWorship = getNextWorship(worships);
-
 const styles = theme => ({
   timeBanner: {
     background: '#eee',
@@ -101,7 +72,19 @@ const styles = theme => ({
   },
 });
 
-const Contact = ({ classes, history }) => {
+const Contact = ({ schedule, classes, history }) => {
+  const nextWorship =
+    schedule &&
+    getNextWorship(
+      schedule.dates.map(item => ({
+        ...item,
+        day: new Date(item.date).getUTCDate(),
+        time: new Date(item.date).getUTCHours(),
+      })),
+    );
+
+  const location = nextWorship && schedule.locations[nextWorship.location];
+
   const renderTitle = title => (
     <Text
       className={classes.title}
@@ -229,13 +212,13 @@ const Contact = ({ classes, history }) => {
                   {nextWorship.time}h :
                 </div>
                 <Hr xs />
-                <Text fontWeight="regular">{nextWorship.location.name}</Text>
-                {nextWorship.location.address.map(line => (
+                <Text fontWeight="regular">{location.name}</Text>
+                {location.address.map(line => (
                   <Text key={line}>{line}</Text>
                 ))}
                 <Hr multiplier={2} />
                 <Text fontWeight="medium">Accès</Text>
-                {nextWorship.location.access.map(line => (
+                {location.access.map(line => (
                   <Text key={line}>{line}</Text>
                 ))}
               </div>
@@ -249,7 +232,7 @@ const Contact = ({ classes, history }) => {
                 allowFullScreen
                 frameBorder="0"
                 height="450"
-                src={nextWorship.location.gmap}
+                src={location.gmap}
                 style={{ border: 0, width: '100%', height: 450 }}
                 title="Location de l'église"
                 width="100%"
@@ -265,6 +248,7 @@ const Contact = ({ classes, history }) => {
 };
 
 Contact.propTypes = {
+  schedule: PropTypes.shape().isRequired,
   classes: PropTypes.shape().isRequired,
   history: PropTypes.shape().isRequired,
 };
