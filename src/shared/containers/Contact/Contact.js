@@ -61,6 +61,17 @@ const styles = theme => ({
     color: 'white',
     padding: 24,
   },
+  worshipMessage: {
+    fontSize: rem(16),
+    fontWeight: theme.typography.fontWeights.medium,
+    fontStyle: 'italic',
+    lineHeight: 1.3,
+    borderRadius: 4,
+    margin: [[16, 0]],
+    padding: 16,
+    border: 'solid 1px',
+    maxWidth: 400,
+  },
   [theme.breakpoints.down('xs')]: {
     timeBannerText: {
       fontSize: '1.6rem',
@@ -72,18 +83,19 @@ const styles = theme => ({
   },
 });
 
-const Contact = ({ schedule, classes, history }) => {
-  const nextWorship =
-    schedule &&
-    getNextWorship(
-      schedule.dates.map(item => ({
-        ...item,
-        day: new Date(item.date).getUTCDate(),
-        time: new Date(item.date).getUTCHours(),
-      })),
-    );
+function formatDate(date) {
+  const day = format(date, 'D');
+  const month = format(date, 'MMMM', { locale });
 
-  const location = nextWorship && schedule.locations[nextWorship.location];
+  return `Dimanche ${day === 1 ? '1er' : day} ${month}`;
+}
+
+const Contact = ({ schedule, classes, history }) => {
+  const nextWorship = schedule && getNextWorship(schedule.dates);
+
+  const location =
+    nextWorship &&
+    schedule.locations[nextWorship.location || schedule.defaultLocation];
 
   const renderTitle = title => (
     <Text
@@ -95,6 +107,53 @@ const Contact = ({ schedule, classes, history }) => {
       {title}
     </Text>
   );
+
+  const renderNextWorrship = () => {
+    if (!nextWorship) {
+      return (
+        <div className={classes.worshipMessage}>
+          Aucune informations disponible sur le prochain culte. Merci de revenir
+          ultérieurement.
+        </div>
+      );
+    }
+
+    return (
+      <div>
+        <div
+          className={classes.address}
+          style={{
+            color: '#F0544F',
+            fontSize: '1.2em',
+            fontWeight: 'bold',
+          }}
+        >
+          {formatDate(new Date(nextWorship.date))}
+          {!nextWorship.disabled && `, culte à ${nextWorship.hour}h`} :
+        </div>
+        <Hr xs />
+
+        {nextWorship.disabled ? (
+          <div className={classes.worshipMessage}>
+            {nextWorship.message ||
+              'Le culte ne sera pas assuré ce dimanche, merci de votre compréhension.'}
+          </div>
+        ) : (
+          <>
+            <Text fontWeight="regular">{location.name}</Text>
+            {location.address.map(line => (
+              <Text key={line}>{line}</Text>
+            ))}
+            <Hr multiplier={2} />
+            <Text fontWeight="medium">Accès</Text>
+            {location.access.map(line => (
+              <Text key={line}>{line}</Text>
+            ))}
+          </>
+        )}
+      </div>
+    );
+  };
 
   return (
     <div>
@@ -142,8 +201,6 @@ const Contact = ({ schedule, classes, history }) => {
 
         <div className="row">
           <div className="col-sm-5 col-md-6">
-            {/* <div className={classes.coffee}>Accueil & café à 9h30</div> */}
-
             {renderTitle('Coordonnées')}
 
             <Hr multiplier={2} />
@@ -152,23 +209,6 @@ const Contact = ({ schedule, classes, history }) => {
               Église Lyon Gerland
             </Text>
             <Text color="#777">Réformée, Évangélique</Text>
-
-            {/* <Hr multiplier={3} />
-            <div
-              className={classes.address}
-              style={{
-                color: '#F0544F',
-                fontSize: '1em',
-                fontWeight: 'bold',
-              }}
-            >
-              Dimanche 22 août :
-            </div>
-
-            <Hr xs />
-            <Text fontWeight="medium">Théâtre de Lulu sur la Colline</Text>
-            <Text>60 avenue Victor Lagrange</Text>
-            <Text>69007 Lyon</Text> */}
 
             <Hr multiplier={3} />
 
@@ -180,50 +220,10 @@ const Contact = ({ schedule, classes, history }) => {
               </a>
             </Text>
 
-            {/* <Hr multiplier={6} />
-
-            {renderTitle('Accès')}
-
-            <Hr multiplier={2} />
-
-            <Text>
-              <b>Arrêt Jean Macé</b>
-            </Text>
-            <Text>Métro B, Tram T2</Text>
-            <Text>Bus 35, S3, Z16, C4, C7, C12 et C14</Text> */}
-
             <Hr multiplier={4} />
             {renderTitle('Lieu et horaire du culte')}
-
             <Hr multiplier={2} />
-
-            {nextWorship && (
-              <div>
-                <div
-                  className={classes.address}
-                  style={{
-                    color: '#F0544F',
-                    fontSize: '1.2em',
-                    fontWeight: 'bold',
-                  }}
-                >
-                  Dimanche {nextWorship.day === 1 ? '1er' : nextWorship.day}{' '}
-                  {format(nextWorship.date, 'MMMM', { locale })}, culte à{' '}
-                  {nextWorship.time}h :
-                </div>
-                <Hr xs />
-                <Text fontWeight="regular">{location.name}</Text>
-                {location.address.map(line => (
-                  <Text key={line}>{line}</Text>
-                ))}
-                <Hr multiplier={2} />
-                <Text fontWeight="medium">Accès</Text>
-                {location.access.map(line => (
-                  <Text key={line}>{line}</Text>
-                ))}
-              </div>
-            )}
-
+            {renderNextWorrship()}
             <Hr multiplier={4} />
           </div>
           <div className="col-sm-7 col-md-6">

@@ -1,13 +1,14 @@
-export function getNextWorship(worships, now = Date.now()) {
+function dateToNumber(date) {
+  return (
+    date.getFullYear() * 10000 + (date.getMonth() + 1) * 100 + date.getDate()
+  );
+}
+
+export function getNextWorship(worships, now = new Date()) {
+  const current = dateToNumber(now);
+
   return worships.reduce(
-    (acc, item) =>
-      // console.log(
-      //   new Date(item.date + 4 * 60 * 60 * 1000).toUTCString(),
-      //   new Date(now).toUTCString(),
-      //   item.date + 4 * 60 * 60 * 1000 - now,
-      //   item.date + 4 * 60 * 60 * 1000 >= now,
-      // );
-      item.date + 4 * 60 * 60 * 1000 > now ? item : acc,
+    (acc, item) => (dateToNumber(new Date(item.date)) >= current ? item : acc),
     null,
   );
 }
