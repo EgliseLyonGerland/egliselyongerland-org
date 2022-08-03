@@ -44,11 +44,9 @@ class Covid extends Component {
     return (
       <Container className={classes.root} lg>
         <div className={classes.inner}>
-          <h2>IMPORTANT : LIEU ET HORAIRE DU CULTE</h2>
-          Actuellement, le culte a lieu chaque dimanche à 10h à la salle
-          Saint-Irénée (37 rue Félix Brun, Lyon 7ème).
-          <br />
-          ATTENTION : une fois par mois, le culte est à 17h.
+          <h2>LIEU ET HORAIRE DU CULTE</h2>
+          Culte tous les dimanches à 10h au Théâtre de Lulu, 60 rue Victor
+          Lagrange, Lyon 7ème
           <br />
           <Link to="/contact">
             <span style={{ fontSize: '1.5em' }}>&raquo;</span> Plus d'infos sur
