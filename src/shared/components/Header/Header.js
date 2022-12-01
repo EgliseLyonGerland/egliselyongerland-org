@@ -13,7 +13,7 @@ import routes from 'utils/routes';
 
 import logo from './logo.svg';
 import brand from './brand.svg';
-// import christmas from './christmas.svg';
+import christmas from './christmas.svg';
 
 const miniStyles = theme => ({
   transform: `scale(${theme.header.sticky.brandScale})
@@ -286,7 +286,7 @@ class Header extends Component {
 
           <div className={classes.blankItem} />
 
-          {/* {+new Date() < 1640131200000 && (
+          {+new Date() < 1671404400000 && (
             <Link alt="Culte de Noël" to="/noel" className={classes.christmas}>
               <img
                 alt="Culte de Noël"
@@ -294,7 +294,7 @@ class Header extends Component {
                 src={christmas}
               />
             </Link>
-          )} */}
+          )}
 
           <div className={classes.links}>
             {links.map(link => (

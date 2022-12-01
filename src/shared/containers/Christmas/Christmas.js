@@ -73,7 +73,7 @@ const Christmas = ({ classes }) => (
             message du Noël chrétien est beaucoup plus profond, peut-être plus
             dérangeant aussi, mais certainement plus pertinent que jamais. Il
             s'agit d'un message de secours et de liberté, que nous vous
-            proposons de découvrir lors de cette célébration de Noël du 12
+            proposons de découvrir lors de cette célébration de Noël du 18
             décembre.
             <br />
             <br />
@@ -91,6 +91,26 @@ const Christmas = ({ classes }) => (
                 discuter un peu !
               </li>
             </ul>
+            <b>Lieu :</b>
+            <div style={{ paddingLeft: 16 }}>
+              <br />
+              Théâtre Lulu
+              <br />
+              60 Rue Victor Lagrange - Lyon 7e
+              <br />
+              Plus d'info sur la page{' '}
+              <Link to={routes.contact()}>"Contact"</Link>
+            </div>
+            <br />
+            Visitez la page Facebook de l'évènement :{' '}
+            <a
+              href="https://www.facebook.com/events/1781928982177490"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              https://www.facebook.com/events/1781928982177490
+            </a>
+            <br />
             <br />
             Si vous n'êtes pas familier du culte protestant, ou si vous êtes
             simplement curieux de son déroulement et de sa signification,

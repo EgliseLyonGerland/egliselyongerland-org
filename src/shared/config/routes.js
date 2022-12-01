@@ -79,15 +79,15 @@ const routes = [
           loading: () => null,
         }),
       },
-      // {
-      //   path: '/noel',
-      //   exact: true,
-      //   component: loadable({
-      //     loader: () =>
-      //       import(/* webpackChunkName: "christmas" */ 'containers/Christmas/Christmas'),
-      //     loading: () => null,
-      //   }),
-      // },
+      {
+        path: '/noel',
+        exact: true,
+        component: loadable({
+          loader: () =>
+            import(/* webpackChunkName: "christmas" */ 'containers/Christmas/Christmas'),
+          loading: () => null,
+        }),
+      },
       {
         path: '/priere',
         exact: true,
