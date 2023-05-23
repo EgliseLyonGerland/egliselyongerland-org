@@ -13,7 +13,8 @@ export function isLoaded(key, globalState) {
 export function load(key, params = {}) {
   return {
     types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
-    promise: client => client.get('/posts', { params }),
+    promise: client =>
+      client.get('/posts', { params }).then(({ body }) => body),
     schema: { data: [postSchema] },
     key,
   };

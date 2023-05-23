@@ -1,8 +1,5 @@
 import loadable from 'react-loadable';
 import { connect } from 'react-redux';
-import { asyncConnect } from 'redux-connect';
-
-import { load as loadSchedule } from 'store/actions/schedule';
 
 const Contact = loadable({
   loader: () =>
@@ -10,26 +7,12 @@ const Contact = loadable({
   loading: () => null,
 });
 
-const asyncPromises = [
-  {
-    promise: ({ store: { dispatch, getState } }) => {
-      if (getState().schedule.data) {
-        return null;
-      }
-
-      const result = dispatch(loadSchedule());
-
-      return __CLIENT__ ? null : result;
-    },
-  },
-];
-
 const mapStateToProps = state => {
-  const schedule = state.schedule.data;
+  const config = state.config.data;
 
   return {
-    schedule,
+    config,
   };
 };
 
-export default asyncConnect(asyncPromises)(connect(mapStateToProps)(Contact));
+export default connect(mapStateToProps)(Contact);

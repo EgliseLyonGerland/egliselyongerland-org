@@ -90,7 +90,8 @@ function formatDate(date) {
   return `Dimanche ${day === 1 ? '1er' : day} ${month}`;
 }
 
-const Contact = ({ schedule, classes, history }) => {
+const Contact = ({ config, classes, history }) => {
+  const { schedule } = config;
   const nextWorship = schedule && getNextWorship(schedule.dates);
 
   const location =
@@ -248,7 +249,7 @@ const Contact = ({ schedule, classes, history }) => {
 };
 
 Contact.propTypes = {
-  schedule: PropTypes.shape().isRequired,
+  config: PropTypes.shape().isRequired,
   classes: PropTypes.shape().isRequired,
   history: PropTypes.shape().isRequired,
 };

@@ -1,13 +1,13 @@
-import { LOAD, LOAD_SUCCESS, LOAD_FAIL } from '../actions/schedule';
+import { LOAD, LOAD_SUCCESS, LOAD_FAIL } from '../actions/config';
 
-export default function schedule(state = {}, action = {}) {
+export default function config(state = {}, action = {}) {
   switch (action.type) {
     case LOAD:
       return {
         ...state,
         loading: true,
         loaded: false,
-        data: null,
+        data: {},
       };
     case LOAD_SUCCESS:
       return {
@@ -22,7 +22,7 @@ export default function schedule(state = {}, action = {}) {
         loading: false,
         loaded: false,
         error: action.error,
-        data: null,
+        data: {},
       };
     default:
       return state;

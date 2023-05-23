@@ -66,7 +66,11 @@ const styles = theme => ({
   },
 });
 
-const Announcement = ({ classes, onCloseButtonClicked }) => {
+function ensureArray(value) {
+  return Array.isArray(value) ? value : [value];
+}
+
+const Announcement = ({ classes, onCloseButtonClicked, title, content }) => {
   const [remind, setRemind] = useState(true);
   const [displayed, setDisplayed] = useState(false);
 
@@ -91,25 +95,25 @@ const Announcement = ({ classes, onCloseButtonClicked }) => {
     >
       <div className={classes.inner} style={{ opacity: displayed ? 1 : 0 }}>
         <Container sm>
-          <>
+          {title && (
             <Typography
               variant="h5"
               color="inherit"
               style={{ whiteSpace: 'break-spaces' }}
             >
-              {'⚠️ PASS SANITAIRE ET LIEU DE CULTE ⚠️'}
+              {title}
             </Typography>
-            <Typography paragraph color="inherit">
-              Conformément aux directives du gouvernement, le pass sanitaire
-              n'est pas obligatoire pour pouvoir participer au culte.
-            </Typography>
-            <Typography paragraph color="inherit">
-              Par contre, notre lieu de culte est susceptible de changer d'une
-              semaine sur l'autre. Pensez à consulter notre site internet ou
-              notre page Facebook pour vous tenir informés, et en cas de doute,
-              n'hésitez pas à nous contacter par email ou par téléphone.
-            </Typography>
-          </>
+          )}
+
+          {ensureArray(content).map((part, index) => (
+            <Typography
+              paragraph
+              color="inherit"
+              // eslint-disable-next-line react/no-array-index-key
+              key={index}
+              dangerouslySetInnerHTML={{ __html: part }}
+            />
+          ))}
 
           <div className={classes.confirm}>
             <Button
@@ -135,11 +139,17 @@ const Announcement = ({ classes, onCloseButtonClicked }) => {
 };
 
 Announcement.propTypes = {
+  title: PropTypes.string,
+  content: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string),
+  ]).isRequired,
   classes: PropTypes.shape({}).isRequired,
   onCloseButtonClicked: PropTypes.func,
 };
 
 Announcement.defaultProps = {
+  title: null,
   onCloseButtonClicked: noop,
 };
 
