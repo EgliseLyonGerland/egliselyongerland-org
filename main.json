@@ -45,16 +45,16 @@
       }
     },
     "dates": [
-      { "date": "2023-10-22", "hour": 10, "location": "saintMichel" },
-      { "date": "2023-10-29", "hour": 10, "location": "saintMichel" },
-      { "date": "2023-11-05", "hour": 10 },
-      { "date": "2023-11-12", "hour": 10 },
-      { "date": "2023-11-19", "hour": 10 },
-      { "date": "2023-11-26", "hour": 10 },
-      { "date": "2023-12-03", "hour": 10 },
-      { "date": "2023-12-10", "hour": 10 },
-      { "date": "2023-12-17", "hour": 10 },
       { "date": "2023-12-24", "hour": 10 }
+      { "date": "2023-12-17", "hour": 10 },
+      { "date": "2023-12-10", "hour": 10 },
+      { "date": "2023-12-03", "hour": 10 },
+      { "date": "2023-11-26", "hour": 10 },
+      { "date": "2023-11-19", "hour": 10 },
+      { "date": "2023-11-12", "hour": 10 },
+      { "date": "2023-11-05", "hour": 10 },
+      { "date": "2023-10-29", "hour": 10, "location": "saintMichel" },
+      { "date": "2023-10-22", "hour": 10, "location": "saintMichel" },
     ]
   }
 }
