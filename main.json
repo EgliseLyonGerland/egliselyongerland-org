@@ -1,98 +1,60 @@
 {
-    "announcement": {
-      "id": 1,
-      "startAt": "2023-05-20",
-      "endAt": "2023-05-28 18:00",
-      "title": "⚠️ ATTENTION : PAS DE CULTE CE DIMANCHE ⚠️",
-      "content": [
-        "Exceptionnellement, il n’y aura pas de culte ce dimanche 28 mai 2023 au Théâtre Lulu, en raison de la retraite annuelle de la paroisse. Le culte sera délocalisé sur le lieu de la retraite.",
-        "Si vous êtes à Lyon ce week-end, profitez-en pour visiter une autre Église protestante évangélique dans la région ! Consultez l’annuaire du CNEF (Conseil National des Evangélique de France) ici : <a href=\"https://www.eglises.org/?s=&eglise_filter=true&statut_filter=cnef&pole=cnef&state=70\" target=\"__blank\">www.eglises.org</a>",
-        "Notre prochaine célébration au Théâtre Lulu sera le dimanche 4 juin à 10h (accueil-café à 9h30) ! À bientôt !"
-      ]
-    },
-    "schedule": {
-      "defaultLocation": "lulu",
-      "locations": {
-        "saintIrenee": {
-          "name": "Salle Saint Irénée",
-          "address": ["37 rue Félix Brun", "69007 Lyon"],
-          "access": ["Métro B, arrêt Place Jean Jaurès"],
-          "gmap": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1378.537058835475!2d4.831138835290314!3d45.73805705581388!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47f4ea31094ee287%3A0x85a608e54e9ebe76!2s37%20Rue%20F%C3%A9lix%20Brun%2C%2069007%20Lyon!5e0!3m2!1sfr!2sfr!4v1630345666281!5m2!1sfr!2sfr"
-        },
-        "lulu": {
-          "name": "Théâtre Lulu",
-          "address": ["60 Rue Victor Lagrange", "69007 Lyon"],
-          "access": [
-            "Métro B, Tram T2",
-            "Bus 35, S3, Z16, C4, C7, C12 et C14",
-            "Arrêt Jean Macé"
-          ],
-          "gmap": "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d11137.463745695666!2d4.838705!3d45.7438093!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xf04c12d9d7f2b195!2zVGjDqcOidHJlIEx1bHU!5e0!3m2!1sen!2sfr!4v1658820734581!5m2!1sen!2sfr"
-        }
+  "announcement": {
+    "id": 1,
+    "startAt": "2023-05-20",
+    "endAt": "2023-05-28 18:00",
+    "title": "⚠️ ATTENTION : PAS DE CULTE CE DIMANCHE ⚠️",
+    "content": [
+      "Exceptionnellement, il n’y aura pas de culte ce dimanche 28 mai 2023 au Théâtre Lulu, en raison de la retraite annuelle de la paroisse. Le culte sera délocalisé sur le lieu de la retraite.",
+      "Si vous êtes à Lyon ce week-end, profitez-en pour visiter une autre Église protestante évangélique dans la région ! Consultez l’annuaire du CNEF (Conseil National des Evangélique de France) ici : <a href=\"https://www.eglises.org/?s=&eglise_filter=true&statut_filter=cnef&pole=cnef&state=70\" target=\"__blank\">www.eglises.org</a>",
+      "Notre prochaine célébration au Théâtre Lulu sera le dimanche 4 juin à 10h (accueil-café à 9h30) ! À bientôt !"
+    ]
+  },
+  "schedule": {
+    "defaultLocation": "lulu",
+    "locations": {
+      "saintIrenee": {
+        "name": "Salle Saint Irénée",
+        "address": ["37 rue Félix Brun", "69007 Lyon"],
+        "access": ["Métro B, arrêt Place Jean Jaurès"],
+        "gmap": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1378.537058835475!2d4.831138835290314!3d45.73805705581388!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47f4ea31094ee287%3A0x85a608e54e9ebe76!2s37%20Rue%20F%C3%A9lix%20Brun%2C%2069007%20Lyon!5e0!3m2!1sfr!2sfr!4v1630345666281!5m2!1sfr!2sfr"
       },
-      "dates": [
-        {
-          "date": "2023-08-27",
-          "hour": 10
-        },
-        {
-          "date": "2023-08-20",
-          "hour": 10
-        },
-        {
-          "date": "2023-08-13",
-          "hour": 10
-        },
-        {
-          "date": "2023-08-06",
-          "hour": 10
-        },
-        {
-          "date": "2023-07-30",
-          "hour": 10
-        },
-        {
-          "date": "2023-07-23",
-          "hour": 10
-        },
-        {
-          "date": "2023-07-16",
-          "hour": 10
-        },
-        {
-          "date": "2023-07-09",
-          "hour": 10
-        },
-        {
-          "date": "2023-07-02",
-          "hour": 10
-        },
-        {
-          "date": "2023-06-25",
-          "hour": 10
-        },
-        {
-          "date": "2023-06-18",
-          "hour": 10
-        },
-        {
-          "date": "2023-06-11",
-          "hour": 10
-        },
-        {
-          "date": "2023-06-04",
-          "hour": 10
-        },
-        {
-          "date": "2023-05-28",
-          "hour": 10,
-          "disabled": true
-        },
-        {
-          "date": "2023-05-21",
-          "hour": 10
-        }
-      ]
-    }
+      "lulu": {
+        "name": "Théâtre Lulu",
+        "address": ["60 Rue Victor Lagrange", "69007 Lyon"],
+        "access": [
+          "Métro B, Tram T2",
+          "Bus 35, S3, Z16, C4, C7, C12 et C14",
+          "Arrêt Jean Macé"
+        ],
+        "gmap": "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d11137.463745695666!2d4.838705!3d45.7438093!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xf04c12d9d7f2b195!2zVGjDqcOidHJlIEx1bHU!5e0!3m2!1sen!2sfr!4v1658820734581!5m2!1sen!2sfr"
+      },
+      "saintMichel": {
+        "name": "Salle Francis Chirat",
+        "address": [
+          "Rez-de-chaussée de l’église Saint Michel",
+          "45 avenue Berthelot",
+          "Lyon 7ème"
+        ],
+        "access": [
+          "Métro B, Tram T2",
+          "Bus 35, S3, Z16, C4, C7, C12 et C14",
+          "Arrêt Jean Macé"
+        ],
+        "gmap": "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d11137.463745695666!2d4.838705!3d45.7438093!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xf04c12d9d7f2b195!2zVGjDqcOidHJlIEx1bHU!5e0!3m2!1sen!2sfr!4v1658820734581!5m2!1sen!2sfr"
+      }
+    },
+    "dates": [
+      { "date": "2023-10-22", "hour": 10, "location": "saintMichel" },
+      { "date": "2023-10-29", "hour": 10, "location": "saintMichel" },
+      { "date": "2023-11-05", "hour": 10 },
+      { "date": "2023-11-12", "hour": 10 },
+      { "date": "2023-11-19", "hour": 10 },
+      { "date": "2023-11-26", "hour": 10 },
+      { "date": "2023-12-03", "hour": 10 },
+      { "date": "2023-12-10", "hour": 10 },
+      { "date": "2023-12-17", "hour": 10 },
+      { "date": "2023-12-24", "hour": 10 }
+    ]
   }
-  
+}
