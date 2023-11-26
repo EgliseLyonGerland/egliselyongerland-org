@@ -8,15 +8,17 @@ import Jumbotron from 'components/Jumbotron/Jumbotron';
 import Container from 'components/Container/Container';
 import RevealQueue from 'components/Animation/RevealQueue';
 import Typography from 'components/Typography/Typography';
+import Image from 'components/Image/Image';
 import Hr from 'components/Hr/Hr';
 import routes from 'utils/routes';
 
 import jumbotronImage from './images/jumbotron.jpg';
 import titleImage from './images/title.png';
+import bannerImage from './images/banner.png';
 
 const styles = ({ palette, typography, breakpoints }) => ({
   inner: {
-    margin: [[88, 0]],
+    margin: [[88, 16]],
   },
   quote: {
     fontWeight: typography.fontWeights.regular,
@@ -31,9 +33,15 @@ const styles = ({ palette, typography, breakpoints }) => ({
     color: palette.text.hint,
     fontSize: 20,
   },
+  facebookLink: {
+    display: 'block',
+    whiteSpace: 'nowrap',
+    textOverflow: 'ellipsis',
+    overflow: 'hidden',
+  },
   [breakpoints.down('xs')]: {
     inner: {
-      margin: [[40, 0]],
+      margin: [[40, 16]],
     },
   },
 });
@@ -49,7 +57,7 @@ const Christmas = ({ classes }) => (
     <Jumbotron background={jumbotronImage}>
       <img
         src={titleImage}
-        style={{ maxWidth: '100%', padding: 16, display: 'block' }}
+        style={{ maxWidth: 600, width: '100%', padding: 16, display: 'block' }}
         alt="Célébration Protestante de Noël"
       />
     </Jumbotron>
@@ -62,6 +70,9 @@ const Christmas = ({ classes }) => (
             accueillir pour sa célébration de Noël.
             <Hr />
           </Typography>
+          <div>
+            <Image src={bannerImage} />
+          </div>
           <Typography component="div" paragraph>
             Ouverte à tous, c'est l'occasion de (re)découvrir le message
             originel de Noël !<br />
@@ -73,14 +84,14 @@ const Christmas = ({ classes }) => (
             message du Noël chrétien est beaucoup plus profond, peut-être plus
             dérangeant aussi, mais certainement plus pertinent que jamais. Il
             s'agit d'un message de secours et de liberté, que nous vous
-            proposons de découvrir lors de cette célébration de Noël du 18
+            proposons de découvrir lors de cette célébration de Noël du 17
             décembre.
             <br />
             <br />
             <b>Déroulement :</b>
             <br />
             <ul>
-              <li>9h30 : Accueil</li>
+              <li>9h30 : Accueil et café</li>
               <li>
                 10h00 : Début de la célébration, avec des chants, la lecture de
                 l'histoire de Noël, un message centré sur la signification de la
@@ -104,11 +115,13 @@ const Christmas = ({ classes }) => (
             <br />
             Visitez la page Facebook de l'évènement :{' '}
             <a
-              href="https://www.facebook.com/events/1781928982177490"
+              href="https://www.facebook.com/events/1117862975864672"
               target="_blank"
               rel="noopener noreferrer"
             >
-              https://www.facebook.com/events/1781928982177490
+              <span className={classes.facebookLink}>
+                https://www.facebook.com/events/1117862975864672
+              </span>
             </a>
             <br />
             <br />
@@ -118,15 +131,13 @@ const Christmas = ({ classes }) => (
             <Link to={routes.worship()}>"Le culte"</Link>.
           </Typography>
           <Typography className={classes.quote}>
-            <Hr xl />« L'ange leur dit : Soyez sans crainte, car je vous annonce
-            la bonne nouvelle d'une grande joie qui sera pour tout le peuple :
-            aujourd'hui, dans la ville de David, il vous est né un Sauveur, qui
-            est le Christ, le Seigneur. Et ceci sera pour vous un signe : vous
-            trouverez un nouveau-né emmailloté et couché dans une crèche. Et
-            soudain il se joignit à l'ange une multitude de l'armée céleste, qui
-            louait Dieu et disait : Gloire à Dieu dans les lieux très hauts, et
-            paix sur la terre parmi les hommes qu'il agrée ! »{' '}
-            <span className={classes.quoteAuthor}>— Luc 2 • 10-14</span>
+            <Hr xl />« Il se dressera et les fera paître avec la force de
+            l’Éternel, son Dieu : et ils auront une demeure assurée, car il est
+            dès maintenant glorifié jusqu’aux extrémités de la terre. C’est lui
+            qui sera la Paix ! »{' '}
+            <span className={classes.quoteAuthor}>
+              — La Bible, Michée 5 • 3–4
+            </span>
           </Typography>
         </RevealQueue>
       </Container>

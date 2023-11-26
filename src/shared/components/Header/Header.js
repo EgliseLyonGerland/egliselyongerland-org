@@ -286,7 +286,7 @@ class Header extends Component {
 
           <div className={classes.blankItem} />
 
-          {+new Date() < 1671404400000 && (
+          {+new Date() < 1702854000000 && (
             <Link alt="Culte de Noël" to="/noel" className={classes.christmas}>
               <img
                 alt="Culte de Noël"
