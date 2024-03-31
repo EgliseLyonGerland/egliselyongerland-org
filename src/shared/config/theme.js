@@ -51,13 +51,13 @@ export default {
     height: headerHeight,
     zindex: 100,
     logo: { height: 58 },
-    brand: { height: 36 },
+    brand: { height: 56 },
     mini: {
       height: headerHeight * 0.8,
     },
     sticky: {
       height: headerHeight * 0.6,
-      brandScale: 0.8,
+      brandScale: 0.76,
       brandTranslate: -10,
     },
   },

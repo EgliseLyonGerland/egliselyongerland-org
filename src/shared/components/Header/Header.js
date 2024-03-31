@@ -278,7 +278,6 @@ class Header extends Component {
               <img
                 alt="Église Lyon Gerland"
                 className={classes.titleImg}
-                height="22"
                 src={brand}
               />
             </Link>
