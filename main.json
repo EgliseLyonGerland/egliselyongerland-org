@@ -77,7 +77,7 @@
       { "date": "2024-06-09", "hour": 10 },
       { "date": "2024-06-02", "hour": 10 },
       { "date": "2024-05-26", "hour": 10 },
-      { "date": "2024-05-19", "hour": 10 },
+      { "date": "2024-05-19", "hour": 10, "disabled": true, "message": "ATTENTION : il n’y aura PAS de culte au Théâtre de Lulu ce dimanche 19 mai, en raison du week-end annuel d’Église. Le culte sera exceptionnellement délocalisé sur le lieu du week-end.\n\nVous pouvez profiter de l’occasion pour visiter une autre Église protestante évangélique dans la région. <a href=\"https://www.eglises.org/?s=&eglise_filter=true&statut_filter=cnef&state=70\" target=\"_blank\">Toutes les adresses ici !</a>\n\nLe dimanche 26 mai, le culte aura lieu comme d’habitude au Théâtre de Lulu à 10h (café à partir de 9h30)" },
       { "date": "2024-05-12", "hour": 10 },
       { "date": "2024-05-05", "hour": 10 },
       { "date": "2024-04-28", "hour": 10 },
