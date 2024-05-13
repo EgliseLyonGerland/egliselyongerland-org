@@ -1,13 +1,13 @@
 {
   "announcement": {
-    "id": 2,
-    "startAt": "2023-05-20",
-    "endAt": "2023-10-29 18:00",
-    "title": "⚠️ ATTENTION : CHANGEMENT DE LIEU DE CULTE ⚠️",
+    "id": 3,
+    "startAt": "2024-05-13",
+    "endAt": "2024-05-19 18:00",
+    "title": "⚠️ ATTENTION : PAS DE CULTE DIMANCHE 19 MAI ⚠️",
     "content": [
-      "ATTENTION : exceptionnellement, les cultes des dimanches 22 octobre et 29 octobre n’auront pas lieu au Théâtre de Lulu, mais à la salle Francis Chirat (rez-de-chaussée de l’église Saint Michel), 45 avenue Berthelot, Lyon 7ème.",
-      "Culte à 10h, accueil café à 9h30 !",
-      "<iframe allowfullscreen=\"\" frameborder=\"0\" height=\"450\" src=\"https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d11136.931629688968!2d4.8392566!3d45.7464765!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47f4ea47b0262215%3A0xf2e86f7d44e9e028!2s%C3%89glise%20Saint%20Michel%20-%20Guilloti%C3%A8re%20-%20Paroisse%20du%20Bx%20Antoine%20Chevrier!5e0!3m2!1sfr!2sfr!4v1697481968727!5m2!1sfr!2sfr\" style=\"border: 0; width: 100%; height: 450px\" title=\"Location de l&#x27;église\" width=\"100%\" ></iframe ><span class=\"jss64\" style=\"margin: 16px auto\">"
+      "ATTENTION : il n’y aura PAS de culte au Théâtre de Lulu ce dimanche 19 mai, en raison du week-end annuel d’Église. Le culte sera exceptionnellement délocalisé sur le lieu du week-end.",
+      "Vous pouvez profiter de l’occasion pour visiter une autre Église protestante évangélique dans la région. <a href=\"https://www.eglises.org/?s=&eglise_filter=true&statut_filter=cnef&state=70\" target=\"_blank\">Toutes les adresses ici !</a>",
+      "Le dimanche 26 mai, le culte aura lieu comme d’habitude au Théâtre de Lulu à 10h (café à partir de 9h30). À bientôt !"
     ]
   },
   "schedule": {
