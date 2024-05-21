@@ -1,13 +1,13 @@
 {
   "announcement": {
-    "id": 3,
-    "startAt": "2024-05-13",
-    "endAt": "2024-05-19 18:00",
-    "title": "⚠️ ATTENTION : PAS DE CULTE DIMANCHE 19 MAI ⚠️",
+    "id": 4,
+    "startAt": "2024-05-21",
+    "endAt": "2024-06-09 18:00",
+    "title": "⚠️ ATTENTION : CHANGEMENT DE LIEU DE CULTE DIMANHCE 9 JUIN ⚠️",
     "content": [
-      "ATTENTION : il n’y aura PAS de culte au Théâtre de Lulu ce dimanche 19 mai, en raison du week-end annuel d’Église. Le culte sera exceptionnellement délocalisé sur le lieu du week-end.",
-      "Vous pouvez profiter de l’occasion pour visiter une autre Église protestante évangélique dans la région. <a href=\"https://www.eglises.org/?s=&eglise_filter=true&statut_filter=cnef&state=70\" target=\"_blank\">Toutes les adresses ici !</a>",
-      "Le dimanche 26 mai, le culte aura lieu comme d’habitude au Théâtre de Lulu à 10h (café à partir de 9h30). À bientôt !"
+      "ATTENTION : exceptionnellement, <b>le culte du dimanche 9 juin aura lieu à la salle Saint Irénée</b> (37 rue Félix Brun, Lyon 7ème), en raison de l’indisponibilité du Théâtre de Lulu.",
+      "L’accueil-café, se fera comme d’habitude à 9h30 !",
+      "Le dimanche 16 juin, le culte reprendra comme d’habitude au Théâtre de Lulu à 10h (café à partir de 9h30). À bientôt !"
     ]
   },
   "schedule": {
@@ -74,7 +74,7 @@
       { "date": "2024-06-30", "hour": 10 },
       { "date": "2024-06-23", "hour": 10 },
       { "date": "2024-06-16", "hour": 10 },
-      { "date": "2024-06-09", "hour": 10 },
+      { "date": "2024-06-09", "hour": 10, "location": "saintIrenee", "message": "ATTENTION : changement exceptionnel de lieu de culte ce dimanche" },
       { "date": "2024-06-02", "hour": 10 },
       { "date": "2024-05-26", "hour": 10 },
       { "date": "2024-05-19", "hour": 10, "disabled": true, "message": "ATTENTION : il n’y aura PAS de culte au Théâtre de Lulu ce dimanche 19 mai, en raison du week-end annuel d’Église. Le culte sera exceptionnellement délocalisé sur le lieu du week-end. Le dimanche 26 mai, le culte aura lieu comme d’habitude au Théâtre de Lulu à 10h (café à partir de 9h30)" },
