@@ -6,6 +6,8 @@ import Elder from './components/Elder';
 import alexPicture from './images/alex.jpg';
 import denisPicture from './images/denis.jpg';
 import kalhouPicture from './images/kalhou.jpg';
+import joshuaPicture from './images/joshua.jpg';
+import antoinePicture from './images/antoine.jpg';
 
 const Staff = () => (
   <>
@@ -38,7 +40,7 @@ const Staff = () => (
         gardes, j’enfile vite mes chaussons d’escalade et aille grimper !
       </Typography>
     </Elder>
-    <Elder name="Kalhou Vang" picture={kalhouPicture} last>
+    <Elder name="Kalhou Vang" picture={kalhouPicture}>
       <Typography variant="subtitle1">
         <b>Ancien</b>
       </Typography>
@@ -56,6 +58,40 @@ const Staff = () => (
         si je découvre en moi un désir qu’aucune expérience au monde ne puisse
         satisfaire, l’explication plausible ne serait-elle pas que je suis fait
         pour un autre monde ?
+      </Typography>
+    </Elder>
+    <Elder name="Joshua Jacobs" picture={joshuaPicture} inverted>
+      <Typography variant="subtitle1">
+        <b>Pasteur assistant</b>
+      </Typography>
+      <Typography paragraph>
+        Arrivé en France en 2018 après avoir obtenu mon master en théologie aux
+        États-Unis, je suis heureux de pouvoir maintenant servir le Seigneur à
+        temps plein.
+      </Typography>
+      <Typography paragraph>
+        Je suis marié à ma chère colmarienne Charline avec qui nous avons un
+        enfant. Durant mon temps libre, j’aime faire du vélo de route ou
+        pratiquer le body combat mais aussi profiter de la gastronomie
+        française.
+      </Typography>
+    </Elder>
+    <Elder name="Antoine Fréchet" picture={antoinePicture}>
+      <Typography variant="subtitle1">
+        <b>Pasteur stagiaire</b>
+      </Typography>
+      <Typography paragraph>
+        Marié à Noémie et père de 2 enfants, je suis étudiant de 2ème cycle à la
+        Faculté Jean Calvin d’Aix-en-Provence. J’aime me rappeler que mon unique
+        assurance dans la vie comme dans la mort, c’est d’appartenir, corps et
+        âme, non pas à moi-même mais à Jésus-Christ mon fidèle sauveur ; et le
+        fait de contribuer au développement de son Église et à la formation de
+        disciples me procure une grande joie.
+      </Typography>
+      <Typography paragraph>
+        J’apprécie beaucoup partir à l’aventure avec ma famille que ce soit en
+        vélo, en randonnée, en escalade… toujours avec un bon livre dans le sac
+        !
       </Typography>
     </Elder>
   </>
