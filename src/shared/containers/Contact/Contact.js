@@ -185,9 +185,6 @@ const Contact = ({ config, classes, history }) => {
 
       <Container>
         <div className={classes.alert}>
-          Notre église se réunit chaque dimanche pour le culte à 10h au Théâtre
-          de Lulu (60 rue Victor Lagrange, Lyon 7ème).
-          <Hr multiplier={2} />
           Pensez à visiter régulièrement notre site internet pour vous tenir
           informé de tout changement. En cas de doute, n'hésitez pas à envoyer
           un email à{' '}

@@ -3,9 +3,7 @@ import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { denormalize } from 'normalizr';
 
-import CovidBanner from 'components/CovidBanner';
 import { postSchema } from 'store/schemas';
-// import WhatWhenWhere from './components/WhatWhenWhere';
 import Sermons from './components/Sermons';
 import Intro from './components/Intro';
 
@@ -36,8 +34,6 @@ class Home extends Component {
         </Helmet>
 
         <Intro />
-        <CovidBanner />
-        {/* <WhatWhenWhere /> */}
         <Sermons data={posts} />
       </>
     );
