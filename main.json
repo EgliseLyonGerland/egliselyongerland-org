@@ -7,7 +7,7 @@
     "content": [
       "Notre Église doit temporairement se réunir pour le culte dans les locaux de l'Église Évangélique Baptiste :",
       "<ul><li>tous les dimanches à 16h (accueil café à 15h30)</li><li>85 cours Vitton, Lyon 6ème (quartier Charpennes)</li></ul>",
-      "En cas de doute, pensez à consulter la page contact de notre site afin de vérifier le lieu et l’horaire du culte. Si vous le souhaitez, vous pouvez aussi demander à être ajouté à la liste de diffusion en envoyant un mail à <a href=\"mailto:contact@egliselyongerland.org\">contact@egliselyongerland.org</a>.",
+      "En cas de doute, pensez à consulter la page contact de notre site afin de vérifier le lieu et l’horaire du culte. Si vous le souhaitez, vous pouvez aussi demander à être ajouté à la liste de diffusion en envoyant un mail à <a href=\"mailto:contact@egliselyongerland.org\">contact@egliselyongerland.org</a>."
     ]
   },
   "schedule": {
@@ -15,21 +15,13 @@
     "locations": {
       "saintIrenee": {
         "name": "Salle Saint Irénée",
-        "address": [
-          "37 rue Félix Brun",
-          "69007 Lyon"
-        ],
-        "access": [
-          "Métro B, arrêt Place Jean Jaurès"
-        ],
+        "address": ["37 rue Félix Brun", "69007 Lyon"],
+        "access": ["Métro B, arrêt Place Jean Jaurès"],
         "gmap": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1378.537058835475!2d4.831138835290314!3d45.73805705581388!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47f4ea31094ee287%3A0x85a608e54e9ebe76!2s37%20Rue%20F%C3%A9lix%20Brun%2C%2069007%20Lyon!5e0!3m2!1sfr!2sfr!4v1630345666281!5m2!1sfr!2sfr"
       },
       "lulu": {
         "name": "Théâtre Lulu",
-        "address": [
-          "60 Rue Victor Lagrange",
-          "69007 Lyon"
-        ],
+        "address": ["60 Rue Victor Lagrange", "69007 Lyon"],
         "access": [
           "Métro B, Tram T2",
           "Bus 35, S3, Z16, C4, C7, C12 et C14",
@@ -53,10 +45,7 @@
       },
       "egliseBaptiste": {
         "name": "Église Baptiste",
-        "address": [
-          "85 cours Vitton",
-          "Lyon 6ème"
-        ],
+        "address": ["85 cours Vitton", "Lyon 6ème"],
         "access": [
           "Métro A & B, Tram T1 & T2",
           "Bus C2, C16, C17, 27, 37, 70",
@@ -68,79 +57,79 @@
     "dates": [
       {
         "date": "2024-12-29",
-        "hour": 17
+        "hour": 16
       },
       {
         "date": "2024-12-22",
-        "hour": 17
+        "hour": 16
       },
       {
         "date": "2024-12-15",
-        "hour": 17
+        "hour": 16
       },
       {
         "date": "2024-12-08",
-        "hour": 17
+        "hour": 16
       },
       {
         "date": "2024-12-01",
-        "hour": 17
+        "hour": 16
       },
       {
         "date": "2024-11-24",
-        "hour": 17
+        "hour": 16
       },
       {
         "date": "2024-11-17",
-        "hour": 17
+        "hour": 16
       },
       {
         "date": "2024-11-10",
-        "hour": 17,
+        "hour": 16
       },
       {
         "date": "2024-11-03",
-        "hour": 17,
+        "hour": 16
       },
       {
         "date": "2024-10-27",
-        "hour": 17,
+        "hour": 16
       },
       {
         "date": "2024-10-20",
-        "hour": 17,
+        "hour": 16
       },
       {
         "date": "2024-10-13",
-        "hour": 17,
+        "hour": 16
       },
       {
         "date": "2024-10-06",
-        "hour": 17,
+        "hour": 16
       },
       {
         "date": "2024-09-29",
-        "hour": 17,
+        "hour": 16
       },
       {
         "date": "2024-09-22",
-        "hour": 17,
+        "hour": 16
       },
       {
         "date": "2024-09-15",
-        "hour": 17,
+        "hour": 16
       },
       {
         "date": "2024-09-08",
-        "hour": 17,
+        "hour": 16
       },
       {
         "date": "2024-09-01",
-        "hour": 17,
+        "hour": 17
       },
       {
         "date": "2024-08-25",
-        "hour": 17,
+        "hour": 17
       },
       {
         "date": "2024-08-18",
