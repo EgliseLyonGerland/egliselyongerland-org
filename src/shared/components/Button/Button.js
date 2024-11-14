@@ -6,9 +6,9 @@ import reduce from 'lodash/reduce';
 
 const SIZES = {
   xxs: {
-    fontSize: 12,
+    fontSize: 14,
     height: 24,
-    padding: 12,
+    padding: 8,
     radius: 2,
   },
   xs: {

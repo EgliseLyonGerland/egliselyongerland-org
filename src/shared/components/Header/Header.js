@@ -5,6 +5,7 @@ import classnames from 'classnames';
 import EventListener, { withOptions } from 'react-event-listener';
 import { withStyles } from '@material-ui/core/styles';
 import withWidth, { isWidthDown } from '@material-ui/core/withWidth';
+import loadable from 'react-loadable';
 
 import Sidebar from 'components/Sidebar/Sidebar';
 import Burger from 'components/Burger/Burger';
@@ -13,7 +14,11 @@ import routes from 'utils/routes';
 
 import logo from './logo.svg';
 import brand from './brand.svg';
-import christmas from './christmas.svg';
+
+const Christmas = loadable({
+  loader: () => import(/* webpackChunkName: "ChristmasHeader" */ './Christmas'),
+  loading: () => <div />,
+});
 
 const miniStyles = theme => ({
   transform: `scale(${theme.header.sticky.brandScale})
@@ -21,7 +26,7 @@ const miniStyles = theme => ({
 });
 
 const styles = theme => ({
-  header: {
+  root: {
     position: 'sticky',
     top: 0,
     zIndex: theme.header.zindex,
@@ -32,16 +37,18 @@ const styles = theme => ({
       ...miniStyles(theme),
     },
     '& $body': {
-      background: theme.palette.primary[900],
+      background: 'rgba(0, 0, 0, 0.95)',
       height: theme.header.sticky.height,
     },
     '& $christmas': {
       transform: `scale(${theme.header.sticky.brandScale})`,
     },
   },
-  body: {
+  inner: {
     position: 'absolute',
     width: '100%',
+  },
+  body: {
     display: 'flex',
     alignItems: 'center',
     height: theme.header.height,
@@ -52,14 +59,6 @@ const styles = theme => ({
     transition: 'transform 0.3s',
     transformOrigin: 'left center',
     position: 'relative',
-  },
-  christmas: {
-    transition: 'transform 0.5s',
-    flexShrink: 1,
-    marginRight: 32,
-  },
-  christmasImg: {
-    maxHeight: 56,
   },
   logo: {
     position: 'relative',
@@ -140,10 +139,6 @@ const styles = theme => ({
     brand: {
       ...miniStyles(theme),
     },
-    christmas: {
-      transform: `scale(${theme.header.sticky.brandScale})`,
-      marginRight: 8,
-    },
     body: {
       height: theme.header.mini.height,
       padding: [[0, 24]],
@@ -194,6 +189,9 @@ class Header extends Component {
     onOpenSidebarButtonClicked: PropTypes.func.isRequired,
     sidebarOpened: PropTypes.bool,
     width: PropTypes.string.isRequired,
+    location: PropTypes.shape({
+      pathname: PropTypes.string,
+    }).isRequired,
   };
 
   static defaultProps = {
@@ -246,20 +244,23 @@ class Header extends Component {
   render() {
     const { sticky } = this.state;
 
+    const isChristmasTimes = +new Date() < 1734303599000;
+
     const {
       width,
       classes,
+      location,
       sidebarOpened,
       onOpenSidebarButtonClicked,
       onCloseSidebarButtonClicked,
     } = this.props;
 
-    const className = classnames(classes.header, {
-      [classes.sticky]: sticky,
-    });
-
     return (
-      <div className={className}>
+      <div
+        className={classnames(classes.root, {
+          [classes.sticky]: sticky,
+        })}
+      >
         <EventListener
           target="window"
           onResize={this.handleResize}
@@ -269,72 +270,73 @@ class Header extends Component {
           })}
         />
 
-        <div className={classes.body}>
-          <div className={classes.brand}>
-            <Link className={classes.logo} to="/">
-              <img ref={this.logoRef} alt="Église Lyon Gerland" src={logo} />
-            </Link>
-            <Link className={classes.title} to="/">
-              <img
-                alt="Église Lyon Gerland"
-                className={classes.titleImg}
-                src={brand}
-              />
-            </Link>
-          </div>
-
-          <div className={classes.blankItem} />
-
-          {+new Date() < 1702854000000 && (
-            <Link alt="Culte de Noël" to="/noel" className={classes.christmas}>
-              <img
-                alt="Culte de Noël"
-                className={classes.christmasImg}
-                src={christmas}
-              />
-            </Link>
+        <div className={classes.inner}>
+          {isChristmasTimes && location.pathname !== '/noel' && (
+            <Christmas sticky={sticky} />
           )}
 
-          <div className={classes.links}>
-            {links.map(link => (
-              <div key={link.label} className={classes.linksItem}>
-                <Link className={classes.link} to={link.path}>
-                  {link.label}
-                </Link>
-              </div>
-            ))}
+          <div className={classes.body}>
+            <div className={classes.brand}>
+              <Link className={classes.logo} to="/">
+                <img ref={this.logoRef} alt="Église Lyon Gerland" src={logo} />
+              </Link>
+              <Link className={classes.title} to="/">
+                <img
+                  alt="Église Lyon Gerland"
+                  className={classes.titleImg}
+                  src={brand}
+                />
+              </Link>
+            </div>
+
+            <div className={classes.blankItem} />
+
+            <div className={classes.links}>
+              {links.map(link => (
+                <div key={link.label} className={classes.linksItem}>
+                  <Link className={classes.link} to={link.path}>
+                    {link.label}
+                  </Link>
+                </div>
+              ))}
+            </div>
+
+            <Button
+              color="white"
+              component={Link}
+              size="xs"
+              to={routes.donate()}
+            >
+              Faire un don
+            </Button>
+
+            <button
+              className={classes.burger}
+              mode="outlined"
+              type="button"
+              onClick={() => this.toggleSidebar()}
+            >
+              <Burger
+                color="white"
+                delay={[0.5, 0.8]}
+                height={17}
+                muted={sidebarOpened}
+                rounded
+                weight={3}
+                width={17}
+              />
+            </button>
           </div>
 
-          <Button color="white" component={Link} size="xs" to={routes.donate()}>
-            Faire un don
-          </Button>
-
-          <button
-            className={classes.burger}
-            mode="outlined"
-            type="button"
-            onClick={() => this.toggleSidebar()}
-          >
-            <Burger
-              color="white"
-              delay={[0.5, 0.8]}
-              height={17}
-              muted={sidebarOpened}
-              rounded
-              weight={3}
-              width={17}
+          {isWidthDown('sm', width) && (
+            <Sidebar
+              links={links}
+              opened={sidebarOpened}
+              onCloseSidebarButtonClicked={() => onCloseSidebarButtonClicked()}
+              onOpenSidebarButtonClicked={() => onOpenSidebarButtonClicked()}
             />
-          </button>
+          )}
         </div>
-
-        {isWidthDown('sm', width) && (
-          <Sidebar
-            links={links}
-            opened={sidebarOpened}
-            onCloseSidebarButtonClicked={() => onCloseSidebarButtonClicked()}
-            onOpenSidebarButtonClicked={() => onOpenSidebarButtonClicked()}
-          />
-        )}
       </div>
     );
   }

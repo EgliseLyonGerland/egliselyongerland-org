@@ -2143,3 +2143,30 @@ b {
     background: black !important;
   }
 }
+
+@keyframes slide-y-from-0-to--10 {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-10%);
+  }
+}
+
+@keyframes slide-y-from-0-to--20 {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-20%);
+  }
+}
+
+@keyframes opacity-from-100-to-0 {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}

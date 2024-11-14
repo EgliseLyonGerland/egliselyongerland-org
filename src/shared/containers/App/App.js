@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
@@ -33,7 +33,12 @@ const styles = theme => ({
   content: {
     minHeight: `calc(100vh - ${theme.footer.height}px)`,
     paddingBottom: 80,
+
+    '&:has(.no-bottom-padding)': {
+      paddingBottom: 0,
+    },
   },
+
   player: {
     position: 'fixed',
     width: '100%',
@@ -92,7 +97,10 @@ function App({
   isAnnouncementOpened,
   classes,
   route,
+  history,
 }) {
+  const isChristmasPage = useRef(history.location.pathname.includes('/noel'));
+
   function renderAudio() {
     const defaultStyles = [];
 
@@ -143,11 +151,12 @@ function App({
       <Overlay {...overlay} onClicked={closeSidebarAction} />
       <ScrollToTop />
       <Header
+        location={history.location}
         sidebarOpened={isSidebarOpened}
         onCloseSidebarButtonClicked={() => closeSidebarAction()}
         onOpenSidebarButtonClicked={() => openSidebarAction()}
       />
-      <Announcement />
+      {!isChristmasPage.current && <Announcement />}
       <div className={classes.content}>{renderRoutes(route.routes)}</div>
       <Footer />
       {renderAudio()}
