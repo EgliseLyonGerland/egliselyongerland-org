@@ -89,15 +89,6 @@ const routes = [
         }),
       },
       {
-        path: '/priere',
-        exact: true,
-        component: loadable({
-          loader: () =>
-            import(/* webpackChunkName: "christmas" */ 'containers/AdventPraying/AdventPraying'),
-          loading: () => null,
-        }),
-      },
-      {
         path: '*',
         component: loadable({
           loader: () =>
