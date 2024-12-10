@@ -24,6 +24,10 @@ const mapDispatchToProps = {
 function AnnouncementContainer({ config, opened, count, open, close }) {
   const { announcement: data } = config;
 
+  if (data.enabled === false) {
+    return null;
+  }
+
   if (!__CLIENT__ || !data) {
     return null;
   }
