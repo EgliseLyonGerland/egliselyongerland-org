@@ -98,6 +98,8 @@ const Contact = ({ config, classes, history }) => {
     nextWorship &&
     schedule.locations[nextWorship.location || schedule.defaultLocation];
 
+  const hour = nextWorship.hour || schedule.defaultHour;
+
   const renderTitle = title => (
     <Text
       className={classes.title}
@@ -130,7 +132,7 @@ const Contact = ({ config, classes, history }) => {
           }}
         >
           {formatDate(new Date(nextWorship.date))}
-          {!nextWorship.disabled && `, culte à ${nextWorship.hour}h`} :
+          {!nextWorship.disabled && `, culte à ${hour}h`} :
         </div>
         <Hr xs />
 
