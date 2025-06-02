@@ -1,14 +1,14 @@
 {
   "announcement": {
-    "id": 8,
-    "startAt": "2024-06-03",
-    "endAt": "2030-06-09",
-    "title": "⚠️ ATTENTION : CHANGEMENT DE LIEU ⚠️",
-    "enabled": false,
+    "id": 9,
+    "startAt": "2025-06-01",
+    "endAt": "2025-06-09",
+    "enabled": true,
+    "title": "⚠️ ATTENTION : PAS DE CULTE DIMANCHE 8 JUIN ⚠️",
     "content": [
-      "Les cultes reprendront au théâtre Lulu tous les dimanches à 10h, à partir du 22 décembre 2024.",
-      "Nous vous informons également que des discussions sont en cours pour prolonger l'utilisation de ce lieu jusqu'en 2026. Pensez à consulter la page contact de notre site afin de vérifier le lieu et l’horaire du culte.",
-      "Si vous le souhaitez, vous pouvez aussi demander à être ajouté à la liste de diffusion en envoyant un mail à <a href=\"mailto:contact@egliselyongerland.org\">contact@egliselyongerland.org</a>."
+      "ATTENTION : il n’y aura PAS de culte au Théâtre de Lulu ce dimanche 8 juin, en raison du week-end annuel d’Église. Le culte sera exceptionnellement délocalisé sur le lieu du week-end.",
+      "Vous pouvez profiter de l’occasion pour visiter une autre Église protestante évangélique dans la région. <a href=\"https://www.eglises.org/?s=&eglise_filter=true&statut_filter=cnef&state=70\" target=\"_blank\">Toutes les adresses ici !</a>",
+      "Le dimanche 15 juin, le culte aura lieu comme d’habitude au Théâtre de Lulu à 10h (café à partir de 9h30). À bientôt !"
     ]
   },
   "schedule": {
@@ -156,7 +156,7 @@
       { "date":"2025-06-29" },
       { "date":"2025-06-22" },
       { "date":"2025-06-15" },
-      { "date":"2025-06-08" },
+      { "date":"2025-06-08", disabled: true },
       { "date":"2025-06-01" },
       { "date":"2025-05-25" },
       { "date":"2025-05-18" },
