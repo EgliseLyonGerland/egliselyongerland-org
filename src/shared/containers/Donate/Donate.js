@@ -55,7 +55,7 @@ const Donate = ({ classes }) => (
       allowTransparency
       className={classes.iframe}
       scrolling="auto"
-      src="https://www.helloasso.com/associations/eglise-reformee-evangelique-de-lyon-eglise-lyon-gerland/formulaires/1/widget"
+      src="https://www.helloasso.com/associations/eglise-reformee-evangelique-de-lyon/formulaires/1/widget"
       title="Formulaire HelloAsso"
     />
   </div>
