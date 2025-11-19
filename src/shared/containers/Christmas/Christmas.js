@@ -13,43 +13,38 @@ import routes from 'utils/routes';
 
 import noiseImage from './images/noise.png';
 import titleImage from './images/title.svg';
-import sparklesImage from './images/sparkles.png';
 import whenWhereImage from './images/when-where.svg';
 import separatorImage from './images/separator.svg';
-import topImage from './images/top.png';
+import backgroundImage from './images/background.png';
 
 const styles = ({ breakpoints, typography }) => ({
   root: {
     minHeight: '100vh',
     background: '#202626',
-    backgroundImage: 'linear-gradient(215deg, #111818 0%, #283434 100%)',
     paddingBottom: 50,
 
     '& a': {
       color: '#E05D5D',
     },
   },
-  background: {
+  backgroundWrapper: {
     position: 'fixed',
     left: 0,
     top: 0,
     width: '100vw',
     height: '100vh',
   },
-  sparkles: {
-    position: 'absolute',
+  background: {
+    position: 'fixed',
     left: 0,
     top: 0,
     width: '100vw',
-    height: '100vh',
-    backgroundImage: `url(${sparklesImage})`,
-    backgroundRepeat: 'no-repeat',
-    backgroundPosition: 'center',
-    opacity: 0.2,
+    height: 'calc(100vh + 80px)',
 
-    animationName: 'slide-y-from-0-to--20',
-    animationDuration: '1ms',
-    animationTimeline: 'scroll()',
+    backgroundImage: `url(${backgroundImage})`,
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+    backgroundPosition: 'top center',
   },
   noise: {
     position: 'absolute',
@@ -86,11 +81,12 @@ const styles = ({ breakpoints, typography }) => ({
   },
   header: {
     display: 'flex',
+    flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
     height: '80vh',
     maxHeight: 800,
-    gap: '5vw',
+    gap: '40px',
     padding: [[0, 16]],
 
     animationName: 'opacity-from-100-to-0',
@@ -107,30 +103,39 @@ const styles = ({ breakpoints, typography }) => ({
     fontSize: '1.5rem',
   },
   heading1: {
-    color: '#EFC098',
+    color: '#ddca87',
   },
   heading2: {
-    color: '#D59D6C',
+    color: '#ddca87',
     fontWeight: typography.fontWeights.bold,
   },
+  quoteWrapper: {
+    display: 'flex',
+    justifyContent: 'center',
+    marginTop: 80,
+  },
   quote: {
-    color: '#EFC098',
+    color: '#ddca87',
     fontWeight: typography.fontWeights.regular,
     fontStyle: 'italic',
-    fontSize: 28,
+    fontSize: '42px',
     lineHeight: 1.5,
     textAlign: 'center',
     textWrap: 'balance',
+    maxWidth: '500px',
   },
   quoteAuthor: {
     display: 'inline-block',
-    fontSize: 24,
+    fontSize: '0.8em',
   },
   facebookLink: {
     display: 'block',
     whiteSpace: 'nowrap',
     textOverflow: 'ellipsis',
     overflow: 'hidden',
+  },
+  separator: {
+    textAlign: 'center',
   },
 
   [breakpoints.up('sm')]: {
@@ -147,7 +152,6 @@ const styles = ({ breakpoints, typography }) => ({
   },
   [breakpoints.down('sm')]: {
     header: {
-      flexDirection: 'column',
       height: '80vh',
       gap: '5vh',
     },
@@ -177,21 +181,16 @@ const Christmas = ({ classes }) => (
       <title>{title}</title>
     </Helmet>
 
-    <div className={classes.background}>
-      <div className={classes.sparkles} />
-      <div className={classes.top}>
-        <img src={topImage} alt="" />
-      </div>
-      <div className={classes.noise} />
-    </div>
+    <Parallax
+      offsetYMax="80px"
+      offsetYMin="-80px"
+      className={classes.backgroundWrapper}
+    >
+      <div className={classes.background} />
+    </Parallax>
 
     <div className={classes.inner}>
-      <Parallax
-        className={classes.inner}
-        offsetYMax={50}
-        offsetYMin={-50}
-        slowerScrollRate
-      >
+      <Parallax className={classes.inner} offsetYMax={20} offsetYMin={-20}>
         <div className={classes.header}>
           <img
             className={classes.title}
@@ -201,19 +200,21 @@ const Christmas = ({ classes }) => (
           <img
             className={classes.whenWhere}
             src={whenWhereImage}
-            alt="15 décembre 2024 à 10h à la maison Ravier"
+            alt="14 décembre 2024 à 10h à la maison Ravier"
           />
         </div>
       </Parallax>
 
       <div className={classes.content}>
         <Container sm>
-          <Typography variant="h5" className={clx(classes.heading1)}>
+          <Typography variant="h5" className={classes.heading1}>
             La paroisse protestante de Lyon Gerland se réjouit de vous
             accueillir pour sa célébration de Noël.
           </Typography>
           <Hr multiplier={6} />
-          <img src={separatorImage} alt="" style={{ opacity: 0.2 }} />
+          <div className={classes.separator}>
+            <img src={separatorImage} alt="" />
+          </div>
           <Hr />
           <Typography component="div" paragraph className={classes.body}>
             Ouverte à tous, c'est l'occasion de (re)découvrir le message
@@ -229,7 +230,7 @@ const Christmas = ({ classes }) => (
             peut-être plus dérangeant aussi, mais certainement plus pertinent
             que jamais. Il s'agit d'un message de secours et de liberté, que
             nous vous proposons de découvrir lors de cette célébration de Noël
-            du 15 décembre.
+            du 14 décembre.
             <br />
             <br />
             <Typography variant="h5" className={classes.heading2}>
@@ -267,16 +268,18 @@ const Christmas = ({ classes }) => (
             <br />
             Visitez la page Facebook de l'évènement :{' '}
             <a
-              href="https://www.facebook.com/events/1117862975864672"
+              href="https://fb.me/e/3LiOwVVc8"
               target="_blank"
               rel="noopener noreferrer"
             >
               <span className={classes.facebookLink}>
-                https://fb.me/e/hOjWIQ4ze
+                https://fb.me/e/3LiOwVVc8
               </span>
             </a>
             <br />
-            <img src={separatorImage} alt="" style={{ opacity: 0.2 }} />
+            <div className={classes.separator}>
+              <img src={separatorImage} alt="" />
+            </div>
             <br />
             <br />
             Si vous n'êtes pas familier du culte protestant, ou si vous êtes
@@ -288,13 +291,14 @@ const Christmas = ({ classes }) => (
             En cas de besoin, n’hésitez pas à{' '}
             <Link to="/contact">nous contacter</Link> !
           </Typography>
-          <Typography className={clx(classes.body, classes.quote)}>
-            <Hr xl />« Le soleil de la justice se lèvera, et la guérison sera
-            sous ses ailes »{' '}
-            <span className={clx(classes.body, classes.quoteAuthor)}>
-              — La Bible, Malachie 4.2
-            </span>
-          </Typography>
+          <div className={classes.quoteWrapper}>
+            <Typography className={classes.quote}>
+              <Hr xl />« Gloire à Dieu et paix sur la terre. »{' '}
+              <span className={clx(classes.body, classes.quoteAuthor)}>
+                — La Bible
+              </span>
+            </Typography>
+          </div>
         </Container>
       </div>
     </div>

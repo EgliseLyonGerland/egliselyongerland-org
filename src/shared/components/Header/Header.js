@@ -244,7 +244,7 @@ class Header extends Component {
   render() {
     const { sticky } = this.state;
 
-    const isChristmasTimes = +new Date() < 1734303599000;
+    const isChristmasTimes = +new Date() < 1765756799000;
 
     const {
       width,
