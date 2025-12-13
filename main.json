@@ -129,7 +129,7 @@
       { "date":"2026-01-04" },
       { "date":"2025-12-28" },
       { "date":"2025-12-21" },
-      { "date":"2025-12-14", "location": "ravier" },
+      { "date":"2025-12-14", "location": "ravier", "message": "Attention : changement de lieu pour ce dimanche en raison de la célébration de Noël" },
       { "date":"2025-12-07" },
       { "date":"2025-11-30" },
       { "date":"2025-11-23" },
