@@ -109,7 +109,7 @@
       { "date":"2026-05-24" },
       { "date":"2026-05-17" },
       { "date":"2026-05-10" },
-      { "date":"2026-05-03", "disabled": true, "message": "Pas de culte ce dimanche en raison du week-end annuel d’Église. Le prochain aura lieu le dimanche 10 main" },
+      { "date":"2026-05-03", "disabled": true, "message": "Pas de culte ce dimanche en raison du week-end annuel d’Église. Le prochain aura lieu le dimanche 10 mai" },
       { "date":"2026-04-26" },
       { "date":"2026-04-19" },
       { "date":"2026-04-12" },
