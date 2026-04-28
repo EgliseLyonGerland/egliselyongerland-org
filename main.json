@@ -1,14 +1,14 @@
 {
   "announcement": {
-    "id": 9,
-    "startAt": "2025-06-01",
-    "endAt": "2025-06-09",
+    "id": 10,
+    "startAt": "2026-04-27",
+    "endAt": "2025-05-04",
     "enabled": true,
-    "title": "⚠️ ATTENTION : PAS DE CULTE DIMANCHE 8 JUIN ⚠️",
+    "title": "⚠️ ATTENTION : PAS DE CULTE DIMANCHE 3 mai ⚠️",
     "content": [
-      "ATTENTION : il n’y aura PAS de culte au Théâtre de Lulu ce dimanche 8 juin, en raison du week-end annuel d’Église. Le culte sera exceptionnellement délocalisé sur le lieu du week-end.",
+      "ATTENTION : il n’y aura PAS de culte au Théâtre de Lulu ce dimanche 3 mai, en raison du week-end annuel d’Église. Le culte sera exceptionnellement délocalisé sur le lieu du week-end.",
       "Vous pouvez profiter de l’occasion pour visiter une autre Église protestante évangélique dans la région. <a href=\"https://www.eglises.org/?s=&eglise_filter=true&statut_filter=cnef&state=70\" target=\"_blank\">Toutes les adresses ici !</a>",
-      "Le dimanche 15 juin, le culte aura lieu comme d’habitude au Théâtre de Lulu à 10h (café à partir de 9h30). À bientôt !"
+      "Le dimanche 10 mai, le culte aura lieu comme d’habitude au Théâtre de Lulu à 10h (café à partir de 9h30). À bientôt !"
     ]
   },
   "schedule": {
@@ -109,7 +109,7 @@
       { "date":"2026-05-24" },
       { "date":"2026-05-17" },
       { "date":"2026-05-10" },
-      { "date":"2026-05-03" },
+      { "date":"2026-05-03", "disabled": true, "message": "Pas de culte ce dimanche en raison du week-end annuel d’Église. Le prochain aura lieu le dimanche 10 main" },
       { "date":"2026-04-26" },
       { "date":"2026-04-19" },
       { "date":"2026-04-12" },
