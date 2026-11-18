@@ -4,7 +4,6 @@ import Helmet from 'react-helmet';
 import { withStyles } from '@material-ui/core/styles';
 import { NavLink as Link } from 'react-router-dom';
 import clx from 'classnames';
-import { Parallax } from 'react-scroll-parallax';
 
 import Container from 'components/Container/Container';
 import Typography from 'components/Typography/Typography';
@@ -14,7 +13,6 @@ import routes from 'utils/routes';
 import noiseImage from './images/noise.png';
 import titleImage from './images/title.svg';
 import whenWhereImage from './images/when-where.svg';
-import separatorImage from './images/separator.svg';
 import backgroundImage from './images/background.png';
 
 const styles = ({ breakpoints, typography }) => ({
@@ -27,19 +25,12 @@ const styles = ({ breakpoints, typography }) => ({
       color: '#E05D5D',
     },
   },
-  backgroundWrapper: {
-    position: 'fixed',
-    left: 0,
-    top: 0,
-    width: '100vw',
-    height: '100vh',
-  },
   background: {
     position: 'fixed',
     left: 0,
     top: 0,
     width: '100vw',
-    height: 'calc(100vh + 80px)',
+    height: 'calc(100vh + 5000px)',
 
     backgroundImage: `url(${backgroundImage})`,
     backgroundRepeat: 'no-repeat',
@@ -65,10 +56,6 @@ const styles = ({ breakpoints, typography }) => ({
     justifyContent: 'center',
     overflow: 'hidden',
 
-    animationName: 'slide-y-from-0-to--10',
-    animationDuration: '1ms',
-    animationTimeline: 'scroll()',
-
     '& img': {
       width: '100%',
       minWidth: 500,
@@ -79,6 +66,7 @@ const styles = ({ breakpoints, typography }) => ({
   inner: {
     position: 'relative',
   },
+  headerWrapper: {},
   header: {
     display: 'flex',
     flexDirection: 'column',
@@ -88,10 +76,32 @@ const styles = ({ breakpoints, typography }) => ({
     maxHeight: 800,
     gap: '40px',
     padding: [[0, 16]],
-
-    animationName: 'opacity-from-100-to-0',
-    animationDuration: '1ms',
-    animationTimeline: 'scroll()',
+  },
+  '@keyframes christmas-background-parallax': {
+    from: { transform: 'translateY(0)' },
+    to: { transform: 'translateY(-5000px)' },
+  },
+  '@keyframes christmas-title-parallax': {
+    from: { transform: 'translateY(80%)' },
+    to: { transform: 'translateY(-40%)' },
+  },
+  '@supports (animation-timeline: scroll())': {
+    '@media (prefers-reduced-motion: no-preference)': {
+      background: {
+        animation: 'christmas-background-parallax 1ms linear both',
+        animationTimeline: 'scroll(root block)',
+      },
+      headerWrapper: {
+        viewTimelineName: '--christmas-title',
+        viewTimelineAxis: 'block',
+        viewTimelineInset: '0',
+      },
+      title: {
+        animation: 'christmas-title-parallax 1ms linear both',
+        animationTimeline: '--christmas-title',
+        animationRange: 'cover',
+      },
+    },
   },
   title: {},
   whenWhere: {},
@@ -103,10 +113,11 @@ const styles = ({ breakpoints, typography }) => ({
     fontSize: '1.5rem',
   },
   heading1: {
-    color: '#ddca87',
+    color: '#FFCB7D',
+    fontFamily: 'serif',
   },
   heading2: {
-    color: '#ddca87',
+    color: '#FFCB7D',
     fontWeight: typography.fontWeights.bold,
   },
   quoteWrapper: {
@@ -115,7 +126,7 @@ const styles = ({ breakpoints, typography }) => ({
     marginTop: 80,
   },
   quote: {
-    color: '#ddca87',
+    color: '#FFCB7D',
     fontWeight: typography.fontWeights.regular,
     fontStyle: 'italic',
     fontSize: '42px',
@@ -135,14 +146,17 @@ const styles = ({ breakpoints, typography }) => ({
     overflow: 'hidden',
   },
   separator: {
-    textAlign: 'center',
+    width: '80px',
+    height: '2px',
+    backgroundColor: '#FFCB7D',
+    margin: '0 auto',
   },
 
   [breakpoints.up('sm')]: {
     title: {
       height: '40vh',
       minHeight: 240,
-      maxHeight: 320,
+      maxHeight: 420,
     },
     whenWhere: {
       height: '15vh',
@@ -151,9 +165,22 @@ const styles = ({ breakpoints, typography }) => ({
     },
   },
   [breakpoints.down('sm')]: {
+    body: {
+      fontSize: '1.2rem',
+    },
+    quote: {
+      fontSize: '1.5rem',
+    },
     header: {
-      height: '80vh',
-      gap: '5vh',
+      height: 'auto',
+      gap: '10vh',
+      paddingTop: '20vh',
+    },
+    heading1: {
+      fontSize: '1.5rem',
+    },
+    heading2: {
+      fontSize: '1.5rem',
     },
     title: {
       width: '80vw',
@@ -165,8 +192,6 @@ const styles = ({ breakpoints, typography }) => ({
       height: 'auto',
       maxWidth: 350,
     },
-  },
-  [breakpoints.down('xs')]: {
     content: {
       margin: [[40, 16]],
     },
@@ -181,16 +206,10 @@ const Christmas = ({ classes }) => (
       <title>{title}</title>
     </Helmet>
 
-    <Parallax
-      offsetYMax="80px"
-      offsetYMin="-80px"
-      className={classes.backgroundWrapper}
-    >
-      <div className={classes.background} />
-    </Parallax>
+    <div className={classes.background} />
 
     <div className={classes.inner}>
-      <Parallax className={classes.inner} offsetYMax={20} offsetYMin={-20}>
+      <div className={clx(classes.inner, classes.headerWrapper)}>
         <div className={classes.header}>
           <img
             className={classes.title}
@@ -200,21 +219,19 @@ const Christmas = ({ classes }) => (
           <img
             className={classes.whenWhere}
             src={whenWhereImage}
-            alt="14 décembre 2024 à 10h à la maison Ravier"
+            alt="13 décembre 2026 à 10h au théâtre Lulu"
           />
         </div>
-      </Parallax>
+      </div>
 
       <div className={classes.content}>
         <Container sm>
+          <div className={classes.separator} />
+          <Hr multiplier={6} />
           <Typography variant="h5" className={classes.heading1}>
             La paroisse protestante de Lyon Gerland se réjouit de vous
             accueillir pour sa célébration de Noël.
           </Typography>
-          <Hr multiplier={6} />
-          <div className={classes.separator}>
-            <img src={separatorImage} alt="" />
-          </div>
           <Hr />
           <Typography component="div" paragraph className={classes.body}>
             Ouverte à tous, c'est l'occasion de (re)découvrir le message
@@ -230,7 +247,7 @@ const Christmas = ({ classes }) => (
             peut-être plus dérangeant aussi, mais certainement plus pertinent
             que jamais. Il s'agit d'un message de secours et de liberté, que
             nous vous proposons de découvrir lors de cette célébration de Noël
-            du 14 décembre.
+            du 13 décembre.
             <br />
             <br />
             <Typography variant="h5" className={classes.heading2}>
@@ -253,12 +270,12 @@ const Christmas = ({ classes }) => (
               Lieu :
             </Typography>
             <div style={{ marginTop: '1em' }}>
-              Maison Ravier
+              Théâtre Lulu
               <br />
-              5-7 rue Ravier - Lyon 7e
+              60 rue Victor Lagrange - Lyon 7e
               <br />
               <a
-                href="https://maps.app.goo.gl/hoTxWds7m6reWHE1A"
+                href="https://maps.app.goo.gl/WbxgPib2yZePE6kB8"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -268,18 +285,16 @@ const Christmas = ({ classes }) => (
             <br />
             Visitez la page Facebook de l'évènement :{' '}
             <a
-              href="https://fb.me/e/3LiOwVVc8"
+              href="https://fb.me/e/5o13JDJcO"
               target="_blank"
               rel="noopener noreferrer"
             >
               <span className={classes.facebookLink}>
-                https://fb.me/e/3LiOwVVc8
+                https://fb.me/e/5o13JDJcO
               </span>
             </a>
             <br />
-            <div className={classes.separator}>
-              <img src={separatorImage} alt="" />
-            </div>
+            <div className={classes.separator} />
             <br />
             <br />
             Si vous n'êtes pas familier du culte protestant, ou si vous êtes
@@ -293,9 +308,9 @@ const Christmas = ({ classes }) => (
           </Typography>
           <div className={classes.quoteWrapper}>
             <Typography className={classes.quote}>
-              <Hr xl />« Gloire à Dieu et paix sur la terre. »{' '}
+              <Hr xl />« La lumière luit dans les ténèbres. »{' '}
               <span className={clx(classes.body, classes.quoteAuthor)}>
-                — La Bible
+                — Jean 1.5
               </span>
             </Typography>
           </div>

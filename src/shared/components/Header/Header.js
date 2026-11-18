@@ -12,8 +12,8 @@ import Burger from 'components/Burger/Burger';
 import Button from 'components/Button/Button';
 import routes from 'utils/routes';
 
-import logo from './logo.svg';
-import brand from './brand.svg';
+import logo from './images/logo.svg';
+import brand from './images/brand.svg';
 
 const Christmas = loadable({
   loader: () => import(/* webpackChunkName: "ChristmasHeader" */ './Christmas'),
@@ -244,7 +244,7 @@ class Header extends Component {
   render() {
     const { sticky } = this.state;
 
-    const isChristmasTimes = +new Date() < 1765756799000;
+    const isChristmasTimes = +new Date() < 1797202799000;
 
     const {
       width,
